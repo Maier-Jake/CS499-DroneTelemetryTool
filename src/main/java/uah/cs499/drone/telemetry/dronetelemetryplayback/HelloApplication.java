@@ -48,6 +48,7 @@ import javafx.stage.Stage;
 import java.time.LocalTime;
 import java.util.Locale;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 
 public class HelloApplication extends Application {
@@ -736,7 +737,7 @@ public class HelloApplication extends Application {
 
         testTile = TileBuilder.create()
                 .skinType(SkinType.GAUGE)
-                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                //.prefSize(TILE_WIDTH, TILE_HEIGHT)
                 .title("Gauge Tile")
                 .unit("\u0025")
                 .threshold(-20)
@@ -752,7 +753,7 @@ public class HelloApplication extends Application {
         rectangle.relocate(70,70);
         */
         //pane.getChildren().addAll(circle,rectangle);
-        //pane.getChildren().addAll(testTile);
+        //pane.getChildren().addAll(testTile, testTile2);
 
         Scene scene = new Scene(pane);
         stage.setTitle("TilesFX");
@@ -763,6 +764,7 @@ public class HelloApplication extends Application {
         //calcNoOfNodes(pane);
         //System.out.println(noOfNodes + " Nodes in SceneGraph");
 
+        //testTile.setPrefSize(700,700);
         //timer.start();
 
         //mapTile.addPoiLocation(new Location(51.85, 7.75, "Test"));
@@ -787,8 +789,6 @@ public class HelloApplication extends Application {
             }
         }
     }
-
-
 
     public static void main(String[] args) {
         launch(args);
