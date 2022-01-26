@@ -23,6 +23,7 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -50,11 +51,12 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+//import uah.cs499.drone.telemetry.dronetelemetryplayback.DTO_Tools;
 
 public class HelloApplication extends Application {
     private static final Random RND = new Random();
-    private static final double TILE_WIDTH = 150;
-    private static final double TILE_HEIGHT = 150;
+    private static final double TILE_WIDTH = 250;
+    private static final double TILE_HEIGHT = 250;
     private static int noOfNodes = 0;
     private BarChartItem barChartItem1;
     private BarChartItem barChartItem2;
@@ -118,6 +120,7 @@ public class HelloApplication extends Application {
     private Tile imageTile;
 
     private Tile testTile;
+    private Tile testTile2;
 
     private long lastTimerCall;
     private AnimationTimer timer;
@@ -728,47 +731,169 @@ public class HelloApplication extends Application {
         PerspectiveCamera camera = new PerspectiveCamera();
         camera.setFieldOfView(10);
         */
-
+        init();
         //Scene scene = new Scene(pane);
         //scene.setCamera(camera);
 
-        //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        //Scene scene = new Scene(fxmlLoader.load(), 620, 240);
+        // LineChart Data
+        XYChart.Series<String, Number> series1 = new XYChart.Series();
+        series1.setName("Whatever");
+        series1.getData().add(new XYChart.Data("MO", 23));
+        series1.getData().add(new XYChart.Data("TU", 21));
+        series1.getData().add(new XYChart.Data("WE", 20));
+        series1.getData().add(new XYChart.Data("TH", 22));
+        series1.getData().add(new XYChart.Data("FR", 24));
+        series1.getData().add(new XYChart.Data("SA", 22));
+        series1.getData().add(new XYChart.Data("SU", 20));
+
+        XYChart.Series<String, Number> series2 = new XYChart.Series();
+        series2.setName("Inside");
+        series2.getData().add(new XYChart.Data("MO", 8));
+        series2.getData().add(new XYChart.Data("TU", 5));
+        series2.getData().add(new XYChart.Data("WE", 0));
+        series2.getData().add(new XYChart.Data("TH", 2));
+        series2.getData().add(new XYChart.Data("FR", 4));
+        series2.getData().add(new XYChart.Data("SA", 3));
+        series2.getData().add(new XYChart.Data("SU", 5));
+
+        XYChart.Series<String, Number> series3 = new XYChart.Series();
+        series3.setName("Outside");
+        series3.getData().add(new XYChart.Data("MO", 8));
+        series3.getData().add(new XYChart.Data("TU", 5));
+        series3.getData().add(new XYChart.Data("WE", 0));
+        series3.getData().add(new XYChart.Data("TH", 2));
+        series3.getData().add(new XYChart.Data("FR", 4));
+        series3.getData().add(new XYChart.Data("SA", 3));
+        series3.getData().add(new XYChart.Data("SU", 5));
+
+        // Chart Data
+        chartData1 = new ChartData("Item 1", 24.0, Tile.GREEN);
+        chartData2 = new ChartData("Item 2", 10.0, Tile.BLUE);
+        chartData3 = new ChartData("Item 3", 12.0, Tile.RED);
+        chartData4 = new ChartData("Item 4", 13.0, Tile.YELLOW_ORANGE);
+        chartData5 = new ChartData("Item 5", 13.0, Tile.BLUE);
+        chartData6 = new ChartData("Item 6", 13.0, Tile.BLUE);
+        chartData7 = new ChartData("Item 7", 13.0, Tile.BLUE);
+        chartData8 = new ChartData("Item 8", 13.0, Tile.BLUE);
+        //ChartData.animated = true;
+
+        smoothChartData1 = new ChartData("Item 1", 10, Tile.BLUE);
+        smoothChartData2 = new ChartData("Item 2", 15, Tile.BLUE);
+        smoothChartData3 = new ChartData("Item 3", 20, Tile.BLUE);
+        smoothChartData4 = new ChartData("Item 4", 12, Tile.BLUE);
+
+        sliderTile = TileBuilder.create()
+                .skinType(SkinType.SLIDER)
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .title("Slider Tile")
+                .text("Whatever text")
+                .description("Test")
+                .unit("\u00B0C")
+                .value(50)
+                .interactive(false)
+                .knobColor(TileColor.RED.color)
+                .barBackgroundColor(TileColor.BLUE.color)
+                .build();
+
+        circularProgressTile = TileBuilder.create()
+                .skinType(SkinType.CIRCULAR_PROGRESS)
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .title("CircularProgress")
+                .text("Some text")
+                .unit("\u0025")
+                .series(series1,series2)
+                .chartData(chartData1,chartData2)
+                //.graphic(new WeatherSymbol(ConditionAndIcon.CLEAR_DAY, 48, Color.WHITE))
+                .build();
 
         testTile = TileBuilder.create()
                 .skinType(SkinType.GAUGE)
                 //.prefSize(TILE_WIDTH, TILE_HEIGHT)
-                .title("Gauge Tile")
+                //.title("Example Test Tile")
                 .unit("\u0025")
-                .threshold(-20)
+                .threshold(60)
                 .build();
 
-        Pane pane = new Pane(testTile);
-        //pane.setStyle("-fx-background-color: black;");
-        //pane.setPrefSize(200,200);
-        /*
-        Circle circle = new Circle(50,Color.BLUE);
-        circle.relocate(20, 20);
-        Rectangle rectangle = new Rectangle(100,100,Color.RED);
-        rectangle.relocate(70,70);
-        */
+        testTile2 = TileBuilder.create()
+                .skinType(SkinType.CUSTOM)
+                .title("Custom Skinned Test Tile")
+                .graphic(new Button("Click Me"))
+                .roundedCorners(true)
+                .unit("\u0025")
+                .threshold(60)
+                .build();
+
+        Stage mapTile = DTO_Tools.displayTile(
+            TileBuilder.create()
+                .skinType(SkinType.MAP)
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .backgroundColor(TileColor.RED.color)
+                //.title("Map")
+                //.text("Some text")
+                .description("Description")
+                .currentLocation(new Location(51.91178, 7.63379, "Home", TileColor.MAGENTA.color))
+                .pointsOfInterest(new Location(51.914405, 7.635732, "POI 1", TileColor.RED.color),
+                        new Location(51.912529, 7.631752, "POI 2", TileColor.BLUE.color),
+                        new Location(51.923993, 7.628906, "POI 3", TileColor.YELLOW_ORANGE.color))
+                .mapProvider(MapProvider.TOPO)
+                .build()
+        );
+
+        Stage areaChart = DTO_Tools.displayTile(
+            TileBuilder.create()
+                .skinType(SkinType.SMOOTHED_CHART)
+                .chartType(ChartType.AREA)
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .title("AreaChart Tile")
+
+                .series(series1)
+                .build()
+        );
+
+        Stage smoothAreaChartTile = DTO_Tools.displayTile(
+            TileBuilder.create().skinType(SkinType.SMOOTH_AREA_CHART)
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .minValue(0)
+                .maxValue(40)
+                .title("SmoothAreaChart")
+                .unit("Unit")
+                .text("Test")
+                //.series(series1)
+                //.chartData(smoothChartData1, smoothChartData2, smoothChartData3, smoothChartData4)
+                .tooltipText("")
+                .animated(true)
+                .build()
+        );
+
+        lineChartTile = TileBuilder.create()
+                .skinType(SkinType.SMOOTHED_CHART)
+                .chartType(ChartType.LINE)
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .title("LineChart Tile")
+                .series(series2, series3)
+                .build();
+
+        donutChartTile = TileBuilder.create()
+                .skinType(SkinType.CIRCULAR_PROGRESS)
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .title("DonutChart")
+                .text("Some text")
+                .textVisible(false)
+                .chartData(chartData1)
+                .build();
+
         //pane.getChildren().addAll(circle,rectangle);
         //pane.getChildren().addAll(testTile, testTile2);
-
-        Scene scene = new Scene(pane);
-        stage.setTitle("TilesFX");
-        stage.setScene(scene);
-        stage.show();
 
         // Calculate number of nodes
         //calcNoOfNodes(pane);
         //System.out.println(noOfNodes + " Nodes in SceneGraph");
 
-        //testTile.setPrefSize(700,700);
         //timer.start();
 
         //mapTile.addPoiLocation(new Location(51.85, 7.75, "Test"));
         //mapTile.removePoiLocation(new Location(51.85, 7.75, "Test"));
+
     }
 
     @Override
