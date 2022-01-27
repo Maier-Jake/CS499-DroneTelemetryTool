@@ -1,55 +1,26 @@
 package uah.cs499.drone.telemetry.dronetelemetryplayback;
 
-import java.io.IOException;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.Tile.ChartType;
-import eu.hansolo.tilesfx.Tile.ImageMask;
 import eu.hansolo.tilesfx.Tile.MapProvider;
 import eu.hansolo.tilesfx.Tile.SkinType;
 import eu.hansolo.tilesfx.Tile.TileColor;
 import eu.hansolo.tilesfx.TileBuilder;
-import eu.hansolo.tilesfx.TimeSection;
-import eu.hansolo.tilesfx.TimeSectionBuilder;
-import eu.hansolo.tilesfx.addons.Indicator;
 import eu.hansolo.tilesfx.chart.ChartData;;
-import eu.hansolo.tilesfx.chart.RadarChartMode;
 import eu.hansolo.tilesfx.skins.BarChartItem;
 import eu.hansolo.tilesfx.skins.LeaderBoardItem;
-import eu.hansolo.tilesfx.tools.Country;
-import eu.hansolo.tilesfx.tools.FlowGridPane;
-import eu.hansolo.tilesfx.tools.Helper;
 import eu.hansolo.tilesfx.tools.Location;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.PerspectiveCamera;
-import javafx.scene.Scene;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Stop;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-import java.time.LocalTime;
-import java.util.Locale;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 //import uah.cs499.drone.telemetry.dronetelemetryplayback.DTO_Tools;
 
@@ -823,7 +794,7 @@ public class HelloApplication extends Application {
                 .threshold(60)
                 .build();
 
-        Stage mapTile = DTO_Tools.displayTile(
+        Stage mapTile = DTT_Tools.displayTile(
             TileBuilder.create()
                 .skinType(SkinType.MAP)
                 .prefSize(TILE_WIDTH, TILE_HEIGHT)
@@ -839,18 +810,17 @@ public class HelloApplication extends Application {
                 .build()
         );
 
-        Stage areaChart = DTO_Tools.displayTile(
+        Stage areaChart = DTT_Tools.displayTile(
             TileBuilder.create()
                 .skinType(SkinType.SMOOTHED_CHART)
                 .chartType(ChartType.AREA)
                 .prefSize(TILE_WIDTH, TILE_HEIGHT)
                 .title("AreaChart Tile")
-
                 .series(series1)
                 .build()
         );
 
-        Stage smoothAreaChartTile = DTO_Tools.displayTile(
+        Stage smoothAreaChartTile = DTT_Tools.displayTile(
             TileBuilder.create().skinType(SkinType.SMOOTH_AREA_CHART)
                 .prefSize(TILE_WIDTH, TILE_HEIGHT)
                 .minValue(0)

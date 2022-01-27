@@ -7,10 +7,9 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class DTO_Tools {
+public class DTT_Tools {
 
-    public static Stage displayTile(Tile tile)
-    {
+    public static Stage displayTile(Tile tile) {
         //create Stage for tile to go onto
         Stage newStage = new Stage();
 
