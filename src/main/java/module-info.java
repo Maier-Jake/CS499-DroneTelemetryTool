@@ -9,6 +9,7 @@ module uah.cs499.drone.telemetry.dronetelemetryplayback {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires javafx.media;
 
     opens uah.cs499.drone.telemetry.dronetelemetryplayback to javafx.fxml;
     exports uah.cs499.drone.telemetry.dronetelemetryplayback;

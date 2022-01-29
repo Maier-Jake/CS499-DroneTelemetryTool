@@ -18,8 +18,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import javafx.scene.media.MediaPlayer;
 
+
+import java.io.File;
+import java.net.MalformedURLException;
 import java.util.Random;
 
 //import uah.cs499.drone.telemetry.dronetelemetryplayback.DTO_Tools;
@@ -753,6 +759,7 @@ public class MainApplication extends Application {
         smoothChartData3 = new ChartData("Item 3", 20, Tile.BLUE);
         smoothChartData4 = new ChartData("Item 4", 12, Tile.BLUE);
 
+        /*
         sliderTile = TileBuilder.create()
                 .skinType(SkinType.SLIDER)
                 .prefSize(TILE_WIDTH, TILE_HEIGHT)
@@ -793,7 +800,10 @@ public class MainApplication extends Application {
                 .unit("\u0025")
                 .threshold(60)
                 .build();
+        */
 
+
+        /*
         Stage mapTile = DTT_Tools.displayTile(
             TileBuilder.create()
                 .skinType(SkinType.MAP)
@@ -834,7 +844,9 @@ public class MainApplication extends Application {
                 .animated(true)
                 .build()
         );
+        */
 
+        /*
         lineChartTile = TileBuilder.create()
                 .skinType(SkinType.SMOOTHED_CHART)
                 .chartType(ChartType.LINE)
@@ -852,6 +864,7 @@ public class MainApplication extends Application {
                 .chartData(chartData1)
                 .build();
 
+        */
         //pane.getChildren().addAll(circle,rectangle);
         //pane.getChildren().addAll(testTile, testTile2);
 
@@ -863,6 +876,32 @@ public class MainApplication extends Application {
 
         //mapTile.addPoiLocation(new Location(51.85, 7.75, "Test"));
         //mapTile.removePoiLocation(new Location(51.85, 7.75, "Test"));
+
+
+        // Create the media source.
+        File mediaFile = new File("C:\\Users\\jaked\\OneDrive\\Pictures\\Alayna - 3 Years.mp4");
+        Media media = null;
+        try {
+            media = new Media(mediaFile.toURI().toURL().toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        // Create the player and set to play automatically.
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
+
+        MediaView mediaView = new MediaView(mediaPlayer);
+
+        Stage videoTile = DTT_Tools.displayTile(TileBuilder.create().skinType(SkinType.CUSTOM)
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .graphic(mediaView)
+                .title("Custom Tile - Media Player")
+                .text("idk")
+                .minValue(0)
+                .maxValue(40)
+                .build()
+        );
+
 
     }
 
