@@ -24,7 +24,7 @@ import java.util.Random;
 
 //import uah.cs499.drone.telemetry.dronetelemetryplayback.DTO_Tools;
 
-public class HelloApplication extends Application {
+public class MainApplication extends Application {
     private static final Random RND = new Random();
     private static final double TILE_WIDTH = 250;
     private static final double TILE_HEIGHT = 250;

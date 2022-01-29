@@ -113,7 +113,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                uah.cs499.drone.telemetry.dronetelemetryplayback/uah.cs499.drone.telemetry.dronetelemetryplayback.HelloApplication
+                                uah.cs499.drone.telemetry.dronetelemetryplayback/uah.cs499.drone.telemetry.dronetelemetryplayback.MainApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
