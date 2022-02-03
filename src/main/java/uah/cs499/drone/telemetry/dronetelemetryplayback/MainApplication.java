@@ -28,8 +28,6 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.util.Random;
 
-//import uah.cs499.drone.telemetry.dronetelemetryplayback.DTO_Tools;
-
 public class MainApplication extends Application {
     private static final Random RND = new Random();
     private static final double TILE_WIDTH = 250;
