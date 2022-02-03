@@ -22,6 +22,10 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.FileChooser;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+
 
 
 import java.io.File;
@@ -879,7 +883,27 @@ public class MainApplication extends Application {
 
 
         // Create the media source.
-        File mediaFile = new File("C:\\Users\\jaked\\OneDrive\\Pictures\\Alayna - 3 Years.mp4");
+
+        final FileChooser fileChooser = new FileChooser();
+
+        /*
+        new EventHandler<ActionEvent>() {
+            //@Override
+            public void handle(final ActionEvent e) {
+                File mediaFile = fileChooser.showOpenDialog(stage);
+                if (mediaFile != null) {
+                    openFile(mediaFile);
+                }
+            }
+        };
+         */
+
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("MP4", "*.mp4")
+        );
+        File mediaFile = fileChooser.showOpenDialog(stage);
+
         Media media = null;
         try {
             media = new Media(mediaFile.toURI().toURL().toString());
