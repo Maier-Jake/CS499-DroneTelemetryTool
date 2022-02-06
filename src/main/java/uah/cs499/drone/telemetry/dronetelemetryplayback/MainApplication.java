@@ -20,6 +20,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.media.MediaPlayer;
 
@@ -613,7 +614,8 @@ public class MainApplication extends Application {
                 .text("Java Champion")
                 .textAlignment(TextAlignment.CENTER)
                 .build();
-
+        */
+        /*
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
             @Override
@@ -678,11 +680,12 @@ public class MainApplication extends Application {
                 }
             }
         };
-         */
+        */
     }
 
     @Override
     public void start(Stage stage) {
+
         /*
         FlowGridPane pane = new FlowGridPane(7, 5,
                 percentageTile, clockTile, gaugeTile, sparkLineTile, areaChartTile,
@@ -694,21 +697,7 @@ public class MainApplication extends Application {
                 smoothAreaChartTile, countryTile, characterTile,
                 flipTile, switchSliderTile, dateTile, calendarTile,
                 matrixTile, radialPercentageTile, statusTile, imageTile);
-
-        pane.setHgap(5);
-        pane.setVgap(5);
-        pane.setAlignment(Pos.CENTER);
-        pane.setCenterShape(true);
-        pane.setPadding(new Insets(5));
-        //pane.setPrefSize(800, 600);
-        pane.setBackground(new Background(new BackgroundFill(Color.web("#101214"), CornerRadii.EMPTY, Insets.EMPTY)));
-
-        PerspectiveCamera camera = new PerspectiveCamera();
-        camera.setFieldOfView(10);
         */
-        init();
-        //Scene scene = new Scene(pane);
-        //scene.setCamera(camera);
 
         // LineChart Data
         XYChart.Series<String, Number> series1 = new XYChart.Series();
@@ -757,7 +746,7 @@ public class MainApplication extends Application {
         smoothChartData3 = new ChartData("Item 3", 20, Tile.BLUE);
         smoothChartData4 = new ChartData("Item 4", 12, Tile.BLUE);
 
-        /*
+
         sliderTile = TileBuilder.create()
                 .skinType(SkinType.SLIDER)
                 .prefSize(TILE_WIDTH, TILE_HEIGHT)
@@ -798,12 +787,9 @@ public class MainApplication extends Application {
                 .unit("\u0025")
                 .threshold(60)
                 .build();
-        */
 
 
-        /*
-        Stage mapTile = DTT_Tools.displayTile(
-            TileBuilder.create()
+        Tile mapTile = TileBuilder.create()
                 .skinType(SkinType.MAP)
                 .prefSize(TILE_WIDTH, TILE_HEIGHT)
                 .backgroundColor(TileColor.RED.color)
@@ -815,21 +801,18 @@ public class MainApplication extends Application {
                         new Location(51.912529, 7.631752, "POI 2", TileColor.BLUE.color),
                         new Location(51.923993, 7.628906, "POI 3", TileColor.YELLOW_ORANGE.color))
                 .mapProvider(MapProvider.TOPO)
-                .build()
-        );
+                .build();
 
-        Stage areaChart = DTT_Tools.displayTile(
-            TileBuilder.create()
+        Tile areaChart = TileBuilder.create()
                 .skinType(SkinType.SMOOTHED_CHART)
                 .chartType(ChartType.AREA)
                 .prefSize(TILE_WIDTH, TILE_HEIGHT)
                 .title("AreaChart Tile")
                 .series(series1)
-                .build()
-        );
+                .build();
 
-        Stage smoothAreaChartTile = DTT_Tools.displayTile(
-            TileBuilder.create().skinType(SkinType.SMOOTH_AREA_CHART)
+        Tile smoothAreaChart = TileBuilder.create()
+                .skinType(SkinType.SMOOTH_AREA_CHART)
                 .prefSize(TILE_WIDTH, TILE_HEIGHT)
                 .minValue(0)
                 .maxValue(40)
@@ -840,11 +823,8 @@ public class MainApplication extends Application {
                 //.chartData(smoothChartData1, smoothChartData2, smoothChartData3, smoothChartData4)
                 .tooltipText("")
                 .animated(true)
-                .build()
-        );
-        */
+                .build();
 
-        /*
         lineChartTile = TileBuilder.create()
                 .skinType(SkinType.SMOOTHED_CHART)
                 .chartType(ChartType.LINE)
@@ -862,22 +842,14 @@ public class MainApplication extends Application {
                 .chartData(chartData1)
                 .build();
 
-        */
-        //pane.getChildren().addAll(circle,rectangle);
-        //pane.getChildren().addAll(testTile, testTile2);
+        // Choose the file source
+        FileChooser videoFileChooser = new FileChooser();
 
-        // Calculate number of nodes
-        //calcNoOfNodes(pane);
-        //System.out.println(noOfNodes + " Nodes in SceneGraph");
-
-        //timer.start();
-
-        //mapTile.addPoiLocation(new Location(51.85, 7.75, "Test"));
-        //mapTile.removePoiLocation(new Location(51.85, 7.75, "Test"));
-
-
-        // Create the media source.
-        File mediaFile = new File("C:\\Users\\jaked\\OneDrive\\Pictures\\Alayna - 3 Years.mp4");
+        videoFileChooser.setTitle("Open Video File");
+        videoFileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("MP4", "*.mp4")
+        );
+        File mediaFile = videoFileChooser.showOpenDialog(stage);
         Media media = null;
         try {
             media = new Media(mediaFile.toURI().toURL().toString());
@@ -890,16 +862,34 @@ public class MainApplication extends Application {
 
         MediaView mediaView = new MediaView(mediaPlayer);
 
-        Stage videoTile = DTT_Tools.displayTile(TileBuilder.create().skinType(SkinType.CUSTOM)
-                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+        //mediaView.setPreserveRatio(true);
+        //mediaView.setFitHeight(TILE_HEIGHT);
+        //mediaView.setFitWidth(300);
+        Tile videoTile = TileBuilder.create()
+                .skinType(SkinType.CUSTOM)
                 .graphic(mediaView)
-                .title("Custom Tile - Media Player")
-                .text("idk")
+                //.prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .title("Flight Video")
+                //.text("idk")
                 .minValue(0)
-                .maxValue(40)
-                .build()
-        );
+                //.maxValue(40)
+                .build();
 
+        //Stage unifiedDTT = DTT_Tools.displayUnifiedDTT(videoTile, mapTile, areaChart, smoothAreaChart, lineChartTile, donutChartTile, sliderTile);
+        DTT_Tools.displaySeparateDTT(videoTile, mapTile, areaChart, smoothAreaChart, lineChartTile, donutChartTile, sliderTile);
+        //donutChartTile.setPrefSize(500,100);
+
+        //pane.getChildren().addAll(circle,rectangle);
+        //pane.getChildren().addAll(testTile, testTile2);
+
+        // Calculate number of nodes
+        //calcNoOfNodes(pane);
+        //System.out.println(noOfNodes + " Nodes in SceneGraph");
+
+        //timer.start();
+
+        //mapTile.addPoiLocation(new Location(51.85, 7.75, "Test"));
+        //mapTile.removePoiLocation(new Location(51.85, 7.75, "Test"));
 
     }
 
