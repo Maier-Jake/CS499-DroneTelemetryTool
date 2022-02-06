@@ -64,8 +64,8 @@ public class DTT_Tools {
 
         //newStage.setHeight(TILE_HEIGHT); newStage.setWidth(TILE_WIDTH);
 
-        newStage.setMinHeight(150);
-        newStage.setMinWidth(150);
+        newStage.setMinHeight(220); newStage.setMaxHeight(1000);
+        newStage.setMinWidth(220); newStage.setMaxWidth(1000);
 
         //add a change listener, to resize pane as needed as scene is resized.
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->
@@ -90,7 +90,7 @@ public class DTT_Tools {
 
         Tile vT = (Tile)videoTile;
         Stage videoStage = displayTile(vT);
-
+        videoStage.setMinHeight(360); videoStage.setMinWidth(640);
         MediaView mV = (MediaView)vT.getGraphic();
         mV.setFitWidth(videoStage.getScene().getWidth());
         mV.setFitHeight(videoStage.getScene().getHeight());

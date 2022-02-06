@@ -47,7 +47,7 @@ public class MainApplication extends Application {
             e.printStackTrace();
         }
 
-        Tile videoTile = DTT_TileBuilder.createVideoTile(media);
+        Tile videoTile = DTT_TileBuilder.createVideoTile(media, 1000, 562.5);
 
         Tile gaugeTile = DTT_TileBuilder.createSpeedGauge(270, 0, 1000);
 

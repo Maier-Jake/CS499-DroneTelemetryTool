@@ -46,6 +46,20 @@ public class DTT_TileBuilder {
                 .build();
         return newTile;
     }
+    public static Tile createVideoTile(Media media, double width, double height) {
+        // Create the MediaPlayer and set to play automatically.
+        MediaPlayer mediaPlayer = new MediaPlayer(media); mediaPlayer.setAutoPlay(true);
+        // Place the mediaPlayer into a MediaView
+        MediaView mediaView = new MediaView(mediaPlayer);
+        // Pass the mediaView into a new custom tile;
+        Tile newTile = TileBuilder.create()
+                .skinType(Tile.SkinType.CUSTOM)
+                .graphic(mediaView)
+                .prefSize(width, height)
+                .roundedCorners(false)
+                .build();
+        return newTile;
+    }
 
     public static Tile createSpeedGauge(int angleRange, int minVal, int maxVal) {
 
