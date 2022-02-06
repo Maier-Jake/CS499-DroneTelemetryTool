@@ -11,12 +11,40 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
+import java.net.MalformedURLException;
+
 public class DTT_Tools {
+
+    public static Media chooseVideo()
+    {
+        Stage newStage = new Stage();
+        FileChooser videoFileChooser = new FileChooser();
+
+        videoFileChooser.setTitle("Open Video File");
+        videoFileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("MP4", "*.mp4")
+        );
+        File mediaFile = videoFileChooser.showOpenDialog(newStage);
+        Media media = null;
+        try {
+            media = new Media(mediaFile.toURI().toURL().toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        return media;
+    }
+
+
+
 
     public static Stage displayTile(Tile tile) {
         //create Stage for tile to go onto
@@ -34,19 +62,23 @@ public class DTT_Tools {
         //make Stage Visible
         newStage.show();
 
+        //newStage.setHeight(TILE_HEIGHT); newStage.setWidth(TILE_WIDTH);
+
+        newStage.setMinHeight(150);
+        newStage.setMinWidth(150);
+
         //add a change listener, to resize pane as needed as scene is resized.
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->
                 tile.setPrefSize(scene.getWidth(), scene.getHeight());
 
         newStage.widthProperty().addListener(stageSizeListener);
         newStage.heightProperty().addListener(stageSizeListener);
-        newStage.setMinHeight(150);
-        newStage.setMinWidth(150);
 
         return newStage;
     }
 
     public static void displaySeparateDTT(final Node videoTile, final Node... NODES) {
+
         int NO_OF_NODES = NODES.length + 1;
         int NO_OF_COLS = 3; int NO_OF_ROWS = (int)Math.ceil((double)NO_OF_NODES / 3);
 
@@ -56,16 +88,20 @@ public class DTT_Tools {
         System.arraycopy(NODES, 1, NODESwVIDEO, 2, NODES.length - 1);
         */
 
-
         Tile vT = (Tile)videoTile;
         Stage videoStage = displayTile(vT);
+
+        MediaView mV = (MediaView)vT.getGraphic();
+        mV.setFitWidth(videoStage.getScene().getWidth());
+        mV.setFitHeight(videoStage.getScene().getHeight());
+
         //add a change listener, to resize pane as needed as scene is resized.
         ChangeListener<Number> videoSizeListener = (observable, oldValue, newValue) -> {
             vT.setPrefSize(videoStage.getScene().getWidth(), videoStage.getScene().getHeight());
-            MediaView mV = (MediaView)vT.getGraphic();
             mV.setFitWidth(videoStage.getScene().getWidth());
             mV.setFitHeight(videoStage.getScene().getHeight());
         };
+
         videoStage.widthProperty().addListener(videoSizeListener);
         videoStage.heightProperty().addListener(videoSizeListener);
 
