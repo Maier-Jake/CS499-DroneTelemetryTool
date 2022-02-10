@@ -6,7 +6,7 @@ import eu.hansolo.tilesfx.Tile.MapProvider;
 import eu.hansolo.tilesfx.Tile.SkinType;
 import eu.hansolo.tilesfx.Tile.TileColor;
 import eu.hansolo.tilesfx.TileBuilder;
-import eu.hansolo.tilesfx.chart.ChartData;;
+import eu.hansolo.tilesfx.chart.ChartData;
 import eu.hansolo.tilesfx.skins.BarChartItem;
 import eu.hansolo.tilesfx.skins.LeaderBoardItem;
 import eu.hansolo.tilesfx.tools.Location;
@@ -51,7 +51,9 @@ public class MainApplication extends Application {
 
         Tile gaugeTile = DTT_TileBuilder.createSpeedGauge(270, 0, 1000);
 
-        DTT_Tools.displaySeparateDTT(videoTile, gaugeTile);
+        Tile stopwatchTile = DTT_TileBuilder.createStopwatchGague();
+
+        DTT_Tools.displaySeparateDTT(videoTile, gaugeTile, stopwatchTile);
 
     }
 

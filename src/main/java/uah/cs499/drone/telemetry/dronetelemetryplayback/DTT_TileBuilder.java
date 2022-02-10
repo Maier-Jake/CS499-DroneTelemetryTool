@@ -2,7 +2,12 @@ package uah.cs499.drone.telemetry.dronetelemetryplayback;
 
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.TileBuilder;
+import eu.hansolo.tilesfx.events.TimeEvent;
+import eu.hansolo.tilesfx.events.TimeEventListener;
+import eu.hansolo.tilesfx.fonts.Fonts;
+import eu.hansolo.tilesfx.skins.TileSkin;
 import eu.hansolo.tilesfx.tools.FlowGridPane;
+import javafx.animation.AnimationTimer;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,11 +22,16 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Stop;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.LongSummaryStatistics;
 import java.util.Random;
 
 public class DTT_TileBuilder {
@@ -122,6 +132,28 @@ public class DTT_TileBuilder {
                 .build();
 
         newTile.setValue(100);
+        return newTile;
+    }
+
+
+    public static Tile createStopwatchGague() {
+        double timestamp = System.currentTimeMillis()/1000.00;
+        Tile newTile = TileBuilder.create()
+                .skinType(Tile.SkinType.CUSTOM)
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .build();
+
+        newTile.setText("0.00");
+        newTile.setTextVisible(true);
+        newTile.setCustomFontEnabled(true);
+        newTile.setCustomFont(Fonts.latoRegular(100));
+        newTile.setTextColor(Color.WHITE);
+
+        newTile.setOnTimeEvent(timeEvent -> {
+            if (timeEvent.TYPE == TimeEvent.TimeEventType.SECOND) {
+                newTile.setText(String.valueOf(timestamp));
+            }
+        });
         return newTile;
     }
 }
