@@ -13,6 +13,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -21,15 +23,20 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.LongSummaryStatistics;
 import java.util.Random;
@@ -135,25 +142,53 @@ public class DTT_TileBuilder {
         return newTile;
     }
 
-
-    public static Tile createStopwatchGague() {
-        double timestamp = System.currentTimeMillis()/1000.00;
+    public static Tile createCountdownGague() {
         Tile newTile = TileBuilder.create()
-                .skinType(Tile.SkinType.CUSTOM)
-                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .skinType(Tile.SkinType.COUNTDOWN_TIMER)
+                .timePeriod(Duration.ofSeconds(60))
                 .build();
 
-        newTile.setText("0.00");
-        newTile.setTextVisible(true);
-        newTile.setCustomFontEnabled(true);
-        newTile.setCustomFont(Fonts.latoRegular(100));
-        newTile.setTextColor(Color.WHITE);
+        newTile.setRunning(true);
+
+        return newTile;
+    }
+
+
+    public static Tile createStopwatchGague() {
+//        Image image = new Image("D:\\School\\CS499\\Resources\\stopwatch-gc3fa4e81c_1280.png");
+//        ImageView imageView = new ImageView();
+//        imageView.setImage(image);
+
+        Text text = new Text(Long.toString(0));
+        text.setFont(new Font("lato",69));
+        text.setFill(Paint.valueOf(String.valueOf(Color.BLUEVIOLET)));
+
+        Tile newTile = TileBuilder.create()
+                .skinType(Tile.SkinType.CUSTOM)
+                .backgroundColor(Color.BEIGE)
+                //.text("0")
+                //.textAlignment(TextAlignment.CENTER)
+                //.textColor(Color.BLUEVIOLET)
+                //.graphic(imageView)
+                .graphic(text)
+                //.textSize(Tile.TextSize.BIGGER)
+                .duration(LocalTime.MAX)
+                .timePeriod(ChronoUnit.FOREVER.getDuration())
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .value(0)
+                .build();
 
         newTile.setOnTimeEvent(timeEvent -> {
             if (timeEvent.TYPE == TimeEvent.TimeEventType.SECOND) {
-                newTile.setText(String.valueOf(timestamp));
+                if (Duration.ofSeconds((long) newTile.getValue()).compareTo(newTile.getTimePeriod()) < 0) {
+                    newTile.setValue(newTile.getValue()+1);
+                    text.setText(Double.toString(newTile.getValue()));
+                }
             }
         });
+
+        newTile.setRunning(true);
+
         return newTile;
     }
 }

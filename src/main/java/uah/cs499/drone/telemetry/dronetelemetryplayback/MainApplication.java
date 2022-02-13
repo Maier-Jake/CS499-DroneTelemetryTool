@@ -51,9 +51,11 @@ public class MainApplication extends Application {
 
         Tile gaugeTile = DTT_TileBuilder.createSpeedGauge(270, 0, 1000);
 
+        Tile countdownTile = DTT_TileBuilder.createCountdownGague();
+
         Tile stopwatchTile = DTT_TileBuilder.createStopwatchGague();
 
-        DTT_Tools.displaySeparateDTT(videoTile, gaugeTile, stopwatchTile);
+        DTT_Tools.displaySeparateDTT(videoTile, gaugeTile, countdownTile, stopwatchTile);
 
     }
 
