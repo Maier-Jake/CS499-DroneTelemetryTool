@@ -7,11 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="JAVAPROJ_IntelliJ_DroneTelemetry" />
-        <module name="CS499-G7-Drone-Telemetry" />
+        <module name="DroneTelemetryTool" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="CS499-G7-Drone-Telemetry" target="17" />
+      <module name="DroneTelemetryTool" target="17" />
       <module name="JAVAPROJ_IntelliJ_DroneTelemetry" target="17" />
     </bytecodeTargetLevel>
   </component>
