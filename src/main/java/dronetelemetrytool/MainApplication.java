@@ -24,6 +24,9 @@ public class MainApplication extends Application {
     private ChartData chartData1;
 
     private Tile barTile;
+    private Tile onOffTile;
+
+
     private long lastTimerCall;
     private AnimationTimer timer;
 
@@ -36,6 +39,8 @@ public class MainApplication extends Application {
                 new Stop(0.8, Bright.RED)));
 
         barTile = DTT_TileBuilder.createBarGauge(chartData1);
+        onOffTile = DTT_TileBuilder.createOnOffGauge();
+
         //lastStockCall = System.nanoTime();
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
@@ -53,6 +58,10 @@ public class MainApplication extends Application {
 
                     chartData1.setValue(RND.nextDouble() * 100);
                     chartData1.setFillColor(gradient.getColorAt(chartData1.getValue() / 100));
+
+
+
+                    onOffTile.setActive(!onOffTile.isActive());
 
                     /*
                     chartData2.setValue(RND.nextDouble() * 50);
@@ -86,6 +95,7 @@ public class MainApplication extends Application {
         //Tile videoTile = DTT_TileBuilder.createVideoTile(media, 1000, 562.5);
 
         DTT_Tools.displayTile(barTile);
+        DTT_Tools.displayTile(onOffTile);
 
         timer.start();
 

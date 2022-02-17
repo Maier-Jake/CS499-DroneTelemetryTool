@@ -122,6 +122,17 @@ public class DTT_TileBuilder {
         return newTile;
     }
 
+    public static Tile createOnOffGauge()
+    {
+        Tile onOffTile = TileBuilder.create()
+                .skinType(Tile.SkinType.LED)
+                .prefSize(TILE_SIZE, TILE_SIZE)
+                .title("OnOff Title")
+                .build();
+
+        return onOffTile;
+    }
+
     public static Tile createBarGauge(ChartData cD)
     {
 
