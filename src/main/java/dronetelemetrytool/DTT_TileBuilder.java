@@ -2,6 +2,9 @@ package dronetelemetrytool;
 
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.TileBuilder;
+import eu.hansolo.tilesfx.chart.ChartData;
+import eu.hansolo.tilesfx.colors.Bright;
+import eu.hansolo.toolboxfx.GradientLookup;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -14,10 +17,13 @@ import javafx.scene.text.Text;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 
 public class DTT_TileBuilder {
 
     //private static final Random RND = new Random();
+    private static final double TILE_SIZE = 350;
+
     private static final double TILE_WIDTH = 400;
     private static final double TILE_HEIGHT = 400;
     private static final double VIDEO_WIDTH = 640;
@@ -114,6 +120,28 @@ public class DTT_TileBuilder {
 
         newTile.setValue(100);
         return newTile;
+    }
+
+    public static Tile createBarGauge(ChartData cD)
+    {
+
+        GradientLookup gradient = new GradientLookup(Arrays.asList(
+                new Stop(0.0, Bright.GREEN),
+                new Stop(0.4, Bright.YELLOW),
+                new Stop(0.8, Bright.RED)));
+
+        cD.setFillColor(gradient.getColorAt(cD.getValue() / 100));
+
+        Tile barChartTile = TileBuilder.create()
+                .skinType(Tile.SkinType.CUSTOM)
+                .prefSize(TILE_SIZE, TILE_SIZE)
+                .title("Bar Title")
+                .chartData(cD)
+                .build();
+
+        barChartTile.setSkin(new SingleBarTileSkin(barChartTile));
+
+        return barChartTile;
     }
 
     public static Tile createCountdownGague() {

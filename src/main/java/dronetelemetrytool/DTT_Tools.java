@@ -43,17 +43,16 @@ public class DTT_Tools {
         return media;
     }
 
-
-
-
     public static Stage displayTile(Tile tile) {
         //create Stage for tile to go onto
         Stage newStage = new Stage();
 
         //create basic Pane with Tile on it, add to a new Scene
         Pane newPane = new Pane(tile);
+
         newPane.setStyle("-fx-background-color: black;");
         Scene scene = new Scene(newPane);
+
         //display Scene on Stage
         newStage.setScene(scene);
         //give Stage sample title, set it to only have 'X' button
@@ -64,8 +63,8 @@ public class DTT_Tools {
 
         //newStage.setHeight(TILE_HEIGHT); newStage.setWidth(TILE_WIDTH);
 
-        newStage.setMinHeight(220); newStage.setMaxHeight(1000);
-        newStage.setMinWidth(220); newStage.setMaxWidth(1000);
+        //newStage.setMinHeight(220); newStage.setMaxHeight(1000);
+        //newStage.setMinWidth(220); newStage.setMaxWidth(1000);
 
         //add a change listener, to resize pane as needed as scene is resized.
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->

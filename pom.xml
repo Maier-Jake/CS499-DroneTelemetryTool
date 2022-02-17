@@ -57,6 +57,16 @@
             <artifactId>toolbox</artifactId>
             <version>17.0.6</version>
         </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-javafx</artifactId>
+            <version>12.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-core</artifactId>
+            <version>12.2.0</version>
+        </dependency>
     </dependencies>
 
     <build>
