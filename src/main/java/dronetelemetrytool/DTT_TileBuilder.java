@@ -45,7 +45,7 @@ public class DTT_TileBuilder {
     }
     public static Tile createVideoTile(Media media, double width, double height) {
         // Create the MediaPlayer and set to play automatically.
-        MediaPlayer mediaPlayer = new MediaPlayer(media); mediaPlayer.setAutoPlay(true);
+        MediaPlayer mediaPlayer = new MediaPlayer(media); mediaPlayer.setAutoPlay(false);
         // Place the mediaPlayer into a MediaView
         MediaView mediaView = new MediaView(mediaPlayer);
         // Pass the mediaView into a new custom tile;
@@ -133,6 +133,19 @@ public class DTT_TileBuilder {
         return onOffTile;
     }
 
+    public static Tile createTextGauge(String text)
+    {
+        Tile textTile = TileBuilder.create()
+                .skinType(Tile.SkinType.CENTER_TEXT)
+                .prefSize(TILE_SIZE, TILE_SIZE)
+                .title("Text Title")
+                .text("bottom text")
+                .description(text)
+                .build();
+
+        return textTile;
+    }
+
     public static Tile createBarGauge(ChartData cD)
     {
 
@@ -151,6 +164,8 @@ public class DTT_TileBuilder {
                 .build();
 
         barChartTile.setSkin(new SingleBarTileSkin(barChartTile));
+
+
 
         return barChartTile;
     }
