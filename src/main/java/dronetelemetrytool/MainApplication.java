@@ -1,5 +1,6 @@
 package dronetelemetrytool;
 
+import dronetelemetrytool.gauges.*;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.chart.ChartData;
 import eu.hansolo.tilesfx.colors.Bright;
@@ -7,6 +8,7 @@ import eu.hansolo.toolboxfx.GradientLookup;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.chart.Chart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Stop;
@@ -15,6 +17,7 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -22,47 +25,44 @@ public class MainApplication extends Application {
 
     private static final double TILE_WIDTH = 250;
     private static final double TILE_HEIGHT = 250;
-    private static final Random RND = new Random();
-    private ChartData chartData1;
 
-    private Tile barTile;
-    private Tile onOffTile;
-    private Tile textTile;
+
+    private Media video;
     private Tile videoTile;
 
+    private ArrayList<Gauge> gauges;
+
     private long lastTimerCall;
-    private AnimationTimer timer;
     private long gaugeUpdateFrequency;
+    private int gaugeUpdateFrequencyModifier;
+    private AnimationTimer timer;
 
     @Override public void init() {
 
-        chartData1 = new ChartData("", Tile.YELLOW);
-        GradientLookup gradient = new GradientLookup(Arrays.asList(
-                new Stop(0.0, Bright.GREEN),
-                new Stop(0.4, Bright.YELLOW),
-                new Stop(0.8, Bright.RED)));
-
-        barTile = DTT_TileBuilder.createBarGauge(chartData1);
-        onOffTile = DTT_TileBuilder.createOnOffGauge();
-        textTile = DTT_TileBuilder.createTextGauge("Jake");
+        gauges = new ArrayList<Gauge>(10);
+        gauges.add(new CharacterGauge());
+        gauges.add(new ClusterBarGauge());
+        gauges.add(new OnOffGauge());
+        gauges.add(new TextGauge());
 
         File mediaFile = new File("src/main/resources/dronetelemetrytool/monopolyYES.mp4");
-        Media media = null;
+        video = null;
         try {
-            media = new Media(mediaFile.toURI().toURL().toString());
+            video = new Media(mediaFile.toURI().toURL().toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
-        videoTile = DTT_TileBuilder.createVideoTile(media, 1000, 562.5);
+        videoTile = DTT_TileBuilder.createVideoTile(video, 1000, 562.5);
         MediaView vi = (MediaView)(videoTile.getGraphic());
 
         //lastStockCall = System.nanoTime();
         final Duration[] timeStamp = {Duration.ZERO};
         System.out.println("TEST");
 
+        gaugeUpdateFrequencyModifier = 10;
+        gaugeUpdateFrequency = 1_000_000_000 / gaugeUpdateFrequencyModifier;
 
-        gaugeUpdateFrequency = 1_000_000_000/10;
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
             @Override
@@ -84,10 +84,13 @@ public class MainApplication extends Application {
                     //vi.getMediaPlayer().seek(timeStamp[0]);
                     //vi.getMediaPlayer().seek(Duration.seconds(2));
 
-                    chartData1.setValue(RND.nextDouble() * 100);
-                    chartData1.setFillColor(gradient.getColorAt(chartData1.getValue() / 100));
+                    //XYChart.Series<String, Number> series = xyGauge.tile.getSeries().get(0);
+                    //series.getData().forEach(data -> data.setYValue(RND.nextInt(100)));
 
-                    onOffTile.setActive(!onOffTile.isActive());
+                    // forEach method of ArrayList and
+                    gauges.forEach((n) -> n.update());
+
+                    //onOffTile.setActive(!onOffTile.isActive());
 
                     /*
                     chartData2.setValue(RND.nextDouble() * 50);
@@ -109,14 +112,13 @@ public class MainApplication extends Application {
     public void start(Stage stage) {
 
         // Choose the file source
-        //Media media = DTT_Tools.chooseVideo();
+        //video = DTT_Tools.chooseVideo();
 
 
+        gauges.forEach((n) -> n.display());
+        //xyGauge.display();
 
-        DTT_Tools.displayTile(barTile);
-        DTT_Tools.displayTile(onOffTile);
-        DTT_Tools.displayTile(textTile);
-        DTT_Tools.displayTile(videoTile);
+        //DTT_Tools.displaySeparateDTT(videoTile, barTile, onOffTile, textTile, characterTile);
 
         timer.start();
 

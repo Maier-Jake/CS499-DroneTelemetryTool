@@ -13,6 +13,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 import java.time.Duration;
 import java.time.LocalTime;
@@ -20,9 +21,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 
 public class DTT_TileBuilder {
-
-    //private static final Random RND = new Random();
-    private static final double TILE_SIZE = 350;
 
     private static final double TILE_WIDTH = 400;
     private static final double TILE_HEIGHT = 400;
@@ -122,53 +120,6 @@ public class DTT_TileBuilder {
         return newTile;
     }
 
-    public static Tile createOnOffGauge()
-    {
-        Tile onOffTile = TileBuilder.create()
-                .skinType(Tile.SkinType.LED)
-                .prefSize(TILE_SIZE, TILE_SIZE)
-                .title("OnOff Title")
-                .build();
-
-        return onOffTile;
-    }
-
-    public static Tile createTextGauge(String text)
-    {
-        Tile textTile = TileBuilder.create()
-                .skinType(Tile.SkinType.CENTER_TEXT)
-                .prefSize(TILE_SIZE, TILE_SIZE)
-                .title("Text Title")
-                .text("bottom text")
-                .description(text)
-                .build();
-
-        return textTile;
-    }
-
-    public static Tile createBarGauge(ChartData cD)
-    {
-
-        GradientLookup gradient = new GradientLookup(Arrays.asList(
-                new Stop(0.0, Bright.GREEN),
-                new Stop(0.4, Bright.YELLOW),
-                new Stop(0.8, Bright.RED)));
-
-        cD.setFillColor(gradient.getColorAt(cD.getValue() / 100));
-
-        Tile barChartTile = TileBuilder.create()
-                .skinType(Tile.SkinType.CUSTOM)
-                .prefSize(TILE_SIZE, TILE_SIZE)
-                .title("Bar Title")
-                .chartData(cD)
-                .build();
-
-        barChartTile.setSkin(new SingleBarTileSkin(barChartTile));
-
-
-
-        return barChartTile;
-    }
 
     public static Tile createCountdownGague() {
         Tile newTile = TileBuilder.create()

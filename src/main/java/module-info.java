@@ -6,4 +6,5 @@ module droneTelemetryTool {
     requires org.kordamp.ikonli.javafx;
 
     exports dronetelemetrytool;
+    exports dronetelemetrytool.gauges;
 }
