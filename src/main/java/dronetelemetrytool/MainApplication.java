@@ -44,6 +44,9 @@ public class MainApplication extends Application {
         gauges.add(new ClusterBarGauge());
         gauges.add(new OnOffGauge());
         gauges.add(new TextGauge());
+        gauges.add(new XYPlotGauge());
+        gauges.add(new XPlotGauge());
+
 
         File mediaFile = new File("src/main/resources/dronetelemetrytool/monopolyYES.mp4");
         video = null;
@@ -58,7 +61,6 @@ public class MainApplication extends Application {
 
         //lastStockCall = System.nanoTime();
         final Duration[] timeStamp = {Duration.ZERO};
-        System.out.println("TEST");
 
         gaugeUpdateFrequencyModifier = 10;
         gaugeUpdateFrequency = 1_000_000_000 / gaugeUpdateFrequencyModifier;
@@ -68,39 +70,17 @@ public class MainApplication extends Application {
             @Override
             public void handle(final long now) {
                 if (now > lastTimerCall + gaugeUpdateFrequency) {
-
-
+                    
                     //for each gauge CREATED, run an update.
+                    gauges.forEach((n) -> n.update());
 
                     //timeStamp[0] = timeStamp[0].add(Duration.millis(100));
-                    /*
-                    series1.getData().forEach(data -> data.setYValue(RND.nextInt(100)));
-                    series2.getData().forEach(data -> data.setYValue(RND.nextInt(30)));
-                    series3.getData().forEach(data -> data.setYValue(RND.nextInt(10)));
 
-                    barChartTile.getBarChartItems().get(RND.nextInt(3)).setValue(RND.nextDouble() * 80);
-                    */
                     //System.out.println(timeStamp[0]);
                     //vi.getMediaPlayer().seek(timeStamp[0]);
                     //vi.getMediaPlayer().seek(Duration.seconds(2));
 
-                    //XYChart.Series<String, Number> series = xyGauge.tile.getSeries().get(0);
-                    //series.getData().forEach(data -> data.setYValue(RND.nextInt(100)));
 
-                    // forEach method of ArrayList and
-                    gauges.forEach((n) -> n.update());
-
-                    //onOffTile.setActive(!onOffTile.isActive());
-
-                    /*
-                    chartData2.setValue(RND.nextDouble() * 50);
-                    chartData3.setValue(RND.nextDouble() * 50);
-                    chartData4.setValue(RND.nextDouble() * 50);
-                    chartData5.setValue(RND.nextDouble() * 50);
-                    chartData6.setValue(RND.nextDouble() * 50);
-                    chartData7.setValue(RND.nextDouble() * 50);
-                    chartData8.setValue(RND.nextDouble() * 50);
-                    */
 
                     lastTimerCall = now;
                 }
@@ -112,11 +92,10 @@ public class MainApplication extends Application {
     public void start(Stage stage) {
 
         // Choose the file source
-        //video = DTT_Tools.chooseVideo();
+        //DTT_Tools.chooseVideo();
 
 
         gauges.forEach((n) -> n.display());
-        //xyGauge.display();
 
         //DTT_Tools.displaySeparateDTT(videoTile, barTile, onOffTile, textTile, characterTile);
 

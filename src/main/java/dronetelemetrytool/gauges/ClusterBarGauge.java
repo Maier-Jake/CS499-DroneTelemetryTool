@@ -1,7 +1,6 @@
 package dronetelemetrytool.gauges;
 
 
-import dronetelemetrytool.SingleBarTileSkin;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.chart.ChartData;
 import eu.hansolo.tilesfx.colors.Bright;

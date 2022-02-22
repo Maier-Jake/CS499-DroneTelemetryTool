@@ -7,4 +7,5 @@ module droneTelemetryTool {
 
     exports dronetelemetrytool;
     exports dronetelemetrytool.gauges;
+    exports dronetelemetrytool.skins;
 }

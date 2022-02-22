@@ -1,4 +1,4 @@
-package dronetelemetrytool;
+package dronetelemetrytool.skins;
 
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.chart.ChartData;
