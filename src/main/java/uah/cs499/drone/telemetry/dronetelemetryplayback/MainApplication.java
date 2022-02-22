@@ -886,30 +886,31 @@ public class MainApplication extends Application {
 
         final FileChooser fileChooser = new FileChooser();
 
-        /*
-        new EventHandler<ActionEvent>() {
-            //@Override
-            public void handle(final ActionEvent e) {
-                File mediaFile = fileChooser.showOpenDialog(stage);
-                if (mediaFile != null) {
-                    openFile(mediaFile);
-                }
-            }
-        };
-         */
+        final Button openButton = new Button("Open a Picture...");
+
 
         fileChooser.setTitle("Open Resource File");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("MP4", "*.mp4")
+                new FileChooser.ExtensionFilter("MOV", "*.mov")
         );
         File mediaFile = fileChooser.showOpenDialog(stage);
 
+        openButton.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(final ActionEvent e) {
+                        new FileChooser.ExtensionFilter("MOV", "*.mov");
+                        File mediaFile = fileChooser.showOpenDialog(stage);
+                    }
+                });
+
         Media media = null;
-        try {
+        /*try {
             media = new Media(mediaFile.toURI().toURL().toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        */
         // Create the player and set to play automatically.
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
