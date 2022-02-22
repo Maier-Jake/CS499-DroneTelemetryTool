@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/CS499-G7-Drone-Telemetry.iml" filepath="$PROJECT_DIR$/.idea/CS499-G7-Drone-Telemetry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DroneTelemetryTool.iml" filepath="$PROJECT_DIR$/DroneTelemetryTool.iml" />
     </modules>
   </component>
 </project>
