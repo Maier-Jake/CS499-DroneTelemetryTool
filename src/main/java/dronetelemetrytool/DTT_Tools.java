@@ -54,7 +54,7 @@ public class DTT_Tools {
         Scene s = new Scene(borderPane);
 
         // Create the MediaPlayer and set to play automatically.
-        MediaPlayer mediaPlayer = new MediaPlayer(media); mediaPlayer.setAutoPlay(true);
+        MediaPlayer mediaPlayer = new MediaPlayer(media); mediaPlayer.setAutoPlay(false);
         // Place the mediaPlayer into a MediaView
         MediaView mediaView = new MediaView(mediaPlayer);
         // Pass the mediaView into a new custom tile;
@@ -143,6 +143,7 @@ public class DTT_Tools {
         System.arraycopy(NODES, 1, NODESwVIDEO, 2, NODES.length - 1);
         */
 
+        /*
         Tile vT = (Tile)videoTile;
         Stage videoStage = displayTile(vT);
         videoStage.setMinHeight(360); videoStage.setMinWidth(640);
@@ -157,9 +158,10 @@ public class DTT_Tools {
             mV.setFitHeight(videoStage.getScene().getHeight());
         };
 
+
         videoStage.widthProperty().addListener(videoSizeListener);
         videoStage.heightProperty().addListener(videoSizeListener);
-
+        */
         int j = -1;
         for (int i = 0; i < NODES.length; i++)
         {
@@ -175,50 +177,5 @@ public class DTT_Tools {
 
 
 
-    }
-
-    public static Stage displayUnifiedDTT(final Node videoTile, final Node... NODES) {
-
-        int NO_OF_NODES = NODES.length + 1;
-        Node[] NODESwVIDEO = new Node[NO_OF_NODES];
-        NODESwVIDEO[0] = NODES[0]; NODESwVIDEO[1] = videoTile;
-        System.arraycopy(NODES, 1, NODESwVIDEO, 2, NODES.length - 1);
-            /* System.arraycopy same as...
-            for(int i = 1; i < NODES.length; i++) {
-                NODESwVIDEO[i+1] = NODES[i];
-            }*/
-
-        int NO_OF_COLS = 3; int NO_OF_ROWS = (int)Math.ceil((double)NO_OF_NODES / 3);
-
-        //create Stage for tile to go onto
-        Stage DTTStage = new Stage();
-        //create FlowGridPane from TilesFX, add to a new scene.
-        FlowGridPane DTTPane = new FlowGridPane(NO_OF_COLS, NO_OF_ROWS, NODESwVIDEO);
-        DTTPane.setStyle("-fx-background-color: black;");
-        Scene DTTScene = new Scene(DTTPane);
-        DTTStage.setScene(DTTScene);
-
-        //Set some params for flowgridpane
-        DTTPane.setHgap(5); DTTPane.setVgap(5);
-        DTTPane.setAlignment(Pos.CENTER);
-        DTTPane.setCenterShape(true);
-        DTTPane.setPadding(new Insets(5));
-        //DTTPane.setPrefSize(1200, 720);
-        DTTPane.setBackground(new Background(new BackgroundFill(Color.web("#101214"), CornerRadii.EMPTY, Insets.EMPTY)));
-
-        DTTStage.initStyle(StageStyle.UTILITY);
-        DTTStage.setTitle("Drone Telemetry Tool");
-
-        //resize video
-        Tile vT = (Tile)videoTile;
-        vT.setPrefSize(400,500);
-        MediaView mV = (MediaView)vT.getGraphic();
-
-        mV.setFitWidth(400);
-
-        //make Stage Visible
-        DTTStage.show();
-
-       return DTTStage;
     }
 }

@@ -26,16 +26,14 @@ public class MainApplication extends Application {
     private static final double TILE_WIDTH = 250;
     private static final double TILE_HEIGHT = 250;
 
+    private static Media video;
 
-    private Media video;
-    //private Tile videoTile;
+    private static ArrayList<Gauge> gauges;
 
-    private ArrayList<Gauge> gauges;
-
-    private long lastTimerCall;
-    private long gaugeUpdateFrequency;
-    private int gaugeUpdateFrequencyModifier;
-    private AnimationTimer timer;
+    private static long lastTimerCall;
+    private static long gaugeUpdateFrequency;
+    private static int gaugeUpdateFrequencyModifier;
+    private static AnimationTimer timer;
 
     @Override public void init() {
 
@@ -59,8 +57,6 @@ public class MainApplication extends Application {
             e.printStackTrace();
         }
 
-        //videoTile = DTT_TileBuilder.createVideoTile(video, 1000, 562.5);
-        //MediaView vi = (MediaView)(videoTile.getGraphic());
 
         //lastStockCall = System.nanoTime();
         final Duration[] timeStamp = {Duration.ZERO};
@@ -87,7 +83,6 @@ public class MainApplication extends Application {
     public void start(Stage stage) {
 
         gauges.forEach((n) -> n.display());
-
         DTT_Tools.displayVideo(video);
 
         timer.start();
@@ -99,8 +94,6 @@ public class MainApplication extends Application {
     public void stop() {
         System.exit(0);
     }
-
-
     public static void main(String[] args) {
         launch(args);
     }
