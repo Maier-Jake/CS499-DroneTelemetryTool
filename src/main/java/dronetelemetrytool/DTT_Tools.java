@@ -34,6 +34,7 @@ public class DTT_Tools {
         );
         File mediaFile = videoFileChooser.showOpenDialog(newStage);
         Media media = null;
+
         try {
             media = new Media(mediaFile.toURI().toURL().toString());
         } catch (MalformedURLException e) {

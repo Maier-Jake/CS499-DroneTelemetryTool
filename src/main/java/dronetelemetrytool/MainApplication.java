@@ -21,6 +21,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+
 public class MainApplication extends Application {
 
     private static final double TILE_WIDTH = 250;
@@ -109,10 +116,21 @@ public class MainApplication extends Application {
     }
 
     @Override
-    public void start(Stage stage) {
+    public void start(final Stage stage) {
 
-        // Choose the file source
-        //video = DTT_Tools.chooseVideo();
+        // Button code here will eventually be moved to a tile later
+        final Button videoButton = new Button("Open an Mp4");
+        videoButton.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(final ActionEvent e) {
+                        // Choose the file source
+                        video = DTT_Tools.chooseVideo();
+                        Tile v = DTT_TileBuilder.createVideoTile(video);
+                        DTT_Tools.displayTile(v);
+                    }
+                }
+        );
 
 
         gauges.forEach((n) -> n.display());
@@ -124,6 +142,20 @@ public class MainApplication extends Application {
 
     }
 
+    final GridPane inputGridPane = new GridPane();
+
+        GridPane.setConstraints(videoButton, 0, 0);
+        inputGridPane.setHgap(6);
+        inputGridPane.setVgap(6);
+        inputGridPane.getChildren().addAll(videoButton);
+
+    final Pane rootGroup = new VBox(12);
+        rootGroup.getChildren().addAll(inputGridPane);
+        rootGroup.setPadding(new Insets(12, 12, 12, 12));
+
+        stage.setScene(new Scene(rootGroup));
+        stage.show();
+
     @Override
     public void stop() {
         System.exit(0);
@@ -134,4 +166,3 @@ public class MainApplication extends Application {
         launch(args);
     }
 }
-
