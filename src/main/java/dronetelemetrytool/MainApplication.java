@@ -40,12 +40,15 @@ public class MainApplication extends Application {
     @Override public void init() {
 
         gauges = new ArrayList<Gauge>(10);
-        gauges.add(new CharacterGauge());
-        gauges.add(new ClusterBarGauge());
-        gauges.add(new OnOffGauge());
-        gauges.add(new TextGauge());
+        //gauges.add(new CharacterGauge());
+        //gauges.add(new ClusterBarGauge());
+        //gauges.add(new OnOffGauge());
+        //gauges.add(new TextGauge());
         gauges.add(new XYPlotGauge());
         gauges.add(new XPlotGauge());
+        //gauges.add(new Circle90Gauge());
+        //gauges.add(new ClockGauge());
+        gauges.add(new TimestampGauge());
 
 
         File mediaFile = new File("src/main/resources/dronetelemetrytool/monopolyYES.mp4");
@@ -57,12 +60,12 @@ public class MainApplication extends Application {
         }
 
         videoTile = DTT_TileBuilder.createVideoTile(video, 1000, 562.5);
-        MediaView vi = (MediaView)(videoTile.getGraphic());
+        //MediaView vi = (MediaView)(videoTile.getGraphic());
 
         //lastStockCall = System.nanoTime();
         final Duration[] timeStamp = {Duration.ZERO};
 
-        gaugeUpdateFrequencyModifier = 10;
+        gaugeUpdateFrequencyModifier = 1;
         gaugeUpdateFrequency = 1_000_000_000 / gaugeUpdateFrequencyModifier;
 
         lastTimerCall = System.nanoTime();
@@ -70,17 +73,9 @@ public class MainApplication extends Application {
             @Override
             public void handle(final long now) {
                 if (now > lastTimerCall + gaugeUpdateFrequency) {
-                    
+
                     //for each gauge CREATED, run an update.
                     gauges.forEach((n) -> n.update());
-
-                    //timeStamp[0] = timeStamp[0].add(Duration.millis(100));
-
-                    //System.out.println(timeStamp[0]);
-                    //vi.getMediaPlayer().seek(timeStamp[0]);
-                    //vi.getMediaPlayer().seek(Duration.seconds(2));
-
-
 
                     lastTimerCall = now;
                 }
@@ -91,13 +86,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) {
 
-        // Choose the file source
-        //DTT_Tools.chooseVideo();
-
-
         gauges.forEach((n) -> n.display());
-
-        //DTT_Tools.displaySeparateDTT(videoTile, barTile, onOffTile, textTile, characterTile);
 
         timer.start();
 
