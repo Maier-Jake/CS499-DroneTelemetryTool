@@ -7,13 +7,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.Button;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -41,6 +42,61 @@ public class DTT_Tools {
         }
 
         return media;
+    }
+
+    public static Stage displayVideo(Media media)
+    {
+        //create Stage for tile to go onto
+        Stage newStage = new Stage();
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.setStyle("-fx-background-color: black;");
+        Scene s = new Scene(borderPane);
+
+        // Create the MediaPlayer and set to play automatically.
+        MediaPlayer mediaPlayer = new MediaPlayer(media); mediaPlayer.setAutoPlay(true);
+        // Place the mediaPlayer into a MediaView
+        MediaView mediaView = new MediaView(mediaPlayer);
+        // Pass the mediaView into a new custom tile;
+
+        Text saveLayoutText = new Text("Save Layout");
+        saveLayoutText.setFont(Font.font("Lato", 25));
+        Text reverseText = new Text("◀");
+        reverseText.setFont(Font.font("Lato", 25));
+        Text playText = new Text("⏯");
+        playText.setFont(Font.font("Lato", 25));
+        Text forwardText = new Text("▶");
+        forwardText.setFont(Font.font("Lato", 25));
+        Text fivespeedText = new Text("⏭ 5x");
+        fivespeedText.setFont(Font.font("Lato", 25));
+        Text tenspeedText = new Text("⏭ 10x");
+        tenspeedText.setFont(Font.font("Lato", 25));
+
+        Button saveLayout = new Button("", saveLayoutText);
+        Button reverse = new Button("", reverseText);
+        Button play = new Button("", playText);
+        Button forward = new Button("", forwardText);
+        Button fivespeed = new Button("", fivespeedText);
+        Button tenspeed = new Button("", tenspeedText);
+
+        saveLayout.setPrefSize(200,50);
+        reverse.setPrefSize(200,50);
+        play.setPrefSize(200,50);
+        forward.setPrefSize(200,50);
+        fivespeed.setPrefSize(200,50);
+        tenspeed.setPrefSize(200,50);
+
+        HBox hBox = new HBox(saveLayout,reverse,play,forward,fivespeed,tenspeed);
+
+        borderPane.setCenter(mediaView);
+        borderPane.setBottom(hBox);
+        borderPane.setAlignment(hBox, Pos.BOTTOM_CENTER);
+
+        newStage.setTitle("Drone Telemetry Tool");
+        newStage.setScene(s);
+        newStage.show();
+
+        return newStage;
     }
 
     public static Stage displayTile(Tile tile) {

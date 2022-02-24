@@ -28,7 +28,7 @@ public class MainApplication extends Application {
 
 
     private Media video;
-    private Tile videoTile;
+    //private Tile videoTile;
 
     private ArrayList<Gauge> gauges;
 
@@ -59,7 +59,7 @@ public class MainApplication extends Application {
             e.printStackTrace();
         }
 
-        videoTile = DTT_TileBuilder.createVideoTile(video, 1000, 562.5);
+        //videoTile = DTT_TileBuilder.createVideoTile(video, 1000, 562.5);
         //MediaView vi = (MediaView)(videoTile.getGraphic());
 
         //lastStockCall = System.nanoTime();
@@ -88,7 +88,10 @@ public class MainApplication extends Application {
 
         gauges.forEach((n) -> n.display());
 
+        DTT_Tools.displayVideo(video);
+
         timer.start();
+
 
     }
 
