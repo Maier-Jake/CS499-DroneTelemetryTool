@@ -58,7 +58,6 @@ public class MainApplication extends Application {
             @Override
             public void handle(final long now) {
                 if (now > lastTimerCall + gaugeUpdateFrequency) {
-
                     //for each gauge CREATED, run an update.
                     gauges.forEach(Gauge::update);
                     lastTimerCall = now;
@@ -71,7 +70,7 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         //gauges.forEach((n) -> n.display());
-        DTT_Tools.displayVideo(video);
+        //DTT_Tools.displayVideo(video);
         timer.start();
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/barGaugeCreator_view.fxml"));
@@ -80,7 +79,8 @@ public class MainApplication extends Application {
         stage.setTitle("DTT - Gauge Creation Tool");
         stage.setScene(scene);
         stage.show();
-
+        stage.setMaxHeight(600);
+        stage.setMaxWidth(1200);
     }
 
     @Override

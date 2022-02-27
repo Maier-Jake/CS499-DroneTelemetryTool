@@ -83,6 +83,9 @@ public class barGaugeCreator implements Initializable {
         FIELD_GreenT.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
         FIELD_YellowT.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
         FIELD_RedT.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
+
+
+
     }
 
 
@@ -161,6 +164,5 @@ public class barGaugeCreator implements Initializable {
 
         MainApplication.gauges.add(newGauge);
         newGauge.display();
-
     }
 }

@@ -1,42 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"-->
-<!--      fx:controller="dronetelemetrytool.fxml.barGaugeCreator">-->
-<!--    <padding>-->
-<!--        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>-->
-<!--    </padding>-->
-<!--    <Label fx:id="welcomeText"/>-->
-<!--    <Button text="Hello!" onAction="#onHelloButtonClick"/>-->
-<!--</VBox>-->
-
 <?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<!--</BorderPane>-->
-<!--<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"-->
-<!--      fx:controller="dronetelemetrytool.fxml.barGaugeCreator">-->
-<!--    <padding>-->
-<!--        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>-->
-<!--    </padding>-->
-<!--&lt;!&ndash;    <Text styleClass="header-section" text="Bar Gauge Creation Tool"/>&ndash;&gt;-->
-<!--    <Label text="User Name:"/>-->
-<!--    <TextField/>-->
-<!--    <Button text="Hello!" onAction="#onHelloButtonClick"/>-->
-<!--</VBox>-->
-<!--    <Label text="User Name:"-->
-<!--           GridPane.columnIndex="0" GridPane.rowIndex="1"/>-->
-<!--    <TextField-->
-<!--            GridPane.columnIndex="1" GridPane.rowIndex="1"/>-->
-<!--    <Label text="Password:"-->
-<!--           GridPane.columnIndex="0" GridPane.rowIndex="2"/>-->
-<!--    <PasswordField fx:id="passwordField"-->
-<!--                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>-->
-<!--</GridPane>-->
-
-<HBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.barGaugeCreator">
+<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.barGaugeCreator">
     <stylesheets>
         <URL value="@DTT_Style.css" />
     </stylesheets>
@@ -65,7 +35,7 @@
                     <Region prefHeight="28" prefWidth="150" styleClass="green" />
                     <Region prefHeight="28" prefWidth="150" styleClass="yellow" />
                     <Region prefHeight="28" prefWidth="150" styleClass="red" />
-                    <Region prefHeight="28" prefWidth="88.0" />
+                    <Region prefHeight="28" prefWidth="88" />
                 </HBox>
                 <HBox>
                     <Region prefHeight="28" prefWidth="38.0" />

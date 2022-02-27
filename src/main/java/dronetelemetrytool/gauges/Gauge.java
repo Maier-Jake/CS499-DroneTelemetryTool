@@ -46,9 +46,8 @@ public abstract class Gauge {
         //make Stage Visible
         newStage.show();
 
-        //newStage.setHeight(TILE_HEIGHT); newStage.setWidth(TILE_WIDTH);
-        //newStage.setMinHeight(220); newStage.setMaxHeight(1000);
-        //newStage.setMinWidth(220); newStage.setMaxWidth(1000);
+//        newStage.setMinHeight(220); newStage.setMaxHeight(1000);
+//        newStage.setMinWidth(220); newStage.setMaxWidth(1000);
 
         //add a change listener, to resize pane as needed as scene is resized.
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->

@@ -186,11 +186,13 @@ public class DTT_Tools {
     }
 
     public static Stage popup(Stage parent, String error) throws IOException {
+
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UTILITY);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/popup_view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(MainApplication.class.getResource("fxml/DTT_Style.css").toExternalForm());
+
         stage.setTitle("DTT - Error");
         stage.setScene(scene);
 

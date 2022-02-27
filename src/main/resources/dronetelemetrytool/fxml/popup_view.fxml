@@ -17,7 +17,7 @@
 
     <Label fx:id="errorText" alignment="CENTER_LEFT"  textAlignment="CENTER"> <padding> <Insets left="5" right="5" bottom="10"/> </padding> </Label>
 
-    <Button fx:id="BUTTON_Close"  onAction="#onCloseClick" text="Okay" ButtonBar.buttonData="LEFT">
+    <Button fx:id="BUTTON_Close"  onAction="#onCloseClick" text="Okay">
         <cancelButton>true</cancelButton>
     </Button>
 
