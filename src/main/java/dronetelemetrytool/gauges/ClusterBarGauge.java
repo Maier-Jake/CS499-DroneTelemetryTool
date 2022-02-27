@@ -13,14 +13,14 @@ import java.util.Arrays;
 public class ClusterBarGauge extends Gauge{
 
     private ChartData data;
-    private String dataName;
     private GradientLookup gradient;
 
-    public ClusterBarGauge()
+    public ClusterBarGauge(String title)
     {
         super();
-
         tile.setPrefSize(TILE_SIZE*2, TILE_SIZE);
+        tile.setSkinType(Tile.SkinType.CLUSTER_MONITOR);
+        tile.setTitle(title);
 
         gradient = new GradientLookup(Arrays.asList(
                 new Stop(0.0, Bright.BLUE),
@@ -28,20 +28,20 @@ public class ClusterBarGauge extends Gauge{
                 new Stop(0.6, Bright.YELLOW),
                 new Stop(0.9, Bright.RED)));
 
-        dataName = "";
-        data = new ChartData(dataName, Tile.YELLOW);
-        data.setFormatString("%.1f kWh");
+
+        data = new ChartData("", Tile.YELLOW);
+        data.setFormatString("%.1f");
         tile.addChartData(data);
-
-        tile.setSkinType(Tile.SkinType.CLUSTER_MONITOR);
-
-        tile.setTitle("Bar Gauge");
-        data.setFillColor(gradient.getColorAt(data.getValue() / 100));
 
     }
     @Override
     public void update() {
-        data.setValue(RND.nextDouble() * 100);
-        data.setFillColor(gradient.getColorAt(data.getValue() / 100));
+        data.setValue(RND.nextDouble() * data.getMaxValue());
+        data.setFillColor(gradient.getColorAt(data.getValue() / data.getMaxValue()));
+    }
+
+    public void setGradient(GradientLookup g)
+    {
+        gradient = g;
     }
 }

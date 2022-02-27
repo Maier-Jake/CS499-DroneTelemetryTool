@@ -57,6 +57,8 @@ public class DTT_Tools {
         MediaPlayer mediaPlayer = new MediaPlayer(media); mediaPlayer.setAutoPlay(false);
         // Place the mediaPlayer into a MediaView
         MediaView mediaView = new MediaView(mediaPlayer);
+        mediaView.setFitHeight(500);
+
         // Pass the mediaView into a new custom tile;
 
         Text saveLayoutText = new Text("Save Layout");
@@ -90,7 +92,7 @@ public class DTT_Tools {
 
         borderPane.setCenter(mediaView);
         borderPane.setBottom(hBox);
-        borderPane.setAlignment(hBox, Pos.BOTTOM_CENTER);
+        BorderPane.setAlignment(hBox, Pos.BOTTOM_CENTER);
 
         newStage.setTitle("Drone Telemetry Tool");
         newStage.setScene(s);
@@ -177,5 +179,15 @@ public class DTT_Tools {
 
 
 
+    }
+
+
+    public static double normalize(double inputS, double inputE, double val)
+    {
+        double newVal = 0.0;
+
+        newVal = (val - inputS) / (inputE - inputS);
+
+        return newVal;
     }
 }
