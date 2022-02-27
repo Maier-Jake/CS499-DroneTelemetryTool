@@ -6,15 +6,20 @@ import dronetelemetrytool.gauges.ClusterBarGauge;
 import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.paint.Stop;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
@@ -82,7 +87,7 @@ public class barGaugeCreator implements Initializable {
 
 
     @FXML
-    protected void onCompletedClick() {
+    protected void onCompletedClick() throws IOException {
         //welcomeText.setText("Welcome to JavaFX Application!");
 
         String title = FIELD_Title.textProperty().getValueSafe();
@@ -103,38 +108,37 @@ public class barGaugeCreator implements Initializable {
                         if (minVal < maxVal)
                         {
                             createBarGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold);
-
                             Stage stage = (Stage) BUTTON_Close.getScene().getWindow();
                             stage.close();
                         }
                         else
                         {
                             //warn user what the problem is
-                            return;
+                            Stage popup = DTT_Tools.popup((Stage) BUTTON_Close.getScene().getWindow(), "Minimum Value must be less than the Maximum Value");
                         }
                     }
                     else
                     {
                         //warn user what the problem is
-                        return;
+                        Stage popup = DTT_Tools.popup((Stage) BUTTON_Close.getScene().getWindow(), "Red Threshold must be less than the Maximum Value.");
                     }
                 }
                 else
                 {
                     //warn user what the problem is
-                    return;
+                    Stage popup = DTT_Tools.popup((Stage) BUTTON_Close.getScene().getWindow(), "Yellow Threshold must be less than the Red Threshold.");
                 }
             }
             else
             {
                 //warn user what the problem is
-                return;
+                Stage popup = DTT_Tools.popup((Stage) BUTTON_Close.getScene().getWindow(), "Green Threshold must be less than the Yellow Threshold.");
             }
         }
         else
         {
             //warn user what the problem is
-            return;
+            Stage popup = DTT_Tools.popup((Stage) BUTTON_Close.getScene().getWindow(), "Minimum Value must be less than the Green Threshold.");
         }
 
     }
