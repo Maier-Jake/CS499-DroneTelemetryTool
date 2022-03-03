@@ -1,6 +1,6 @@
 package dronetelemetrytool;
 
-import dronetelemetrytool.gauges.Gauge;
+import dronetelemetrytool.gauges.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -29,17 +29,17 @@ public class MainApplication extends Application {
 
         gauges = new ArrayList<Gauge>(10);
 
-        //gauges.add(new CharacterGauge());
-        //gauges.add(new ClusterBarGauge());
-        //gauges.add(new OnOffGauge());
-        //gauges.add(new TextGauge());
-        //gauges.add(new XYPlotGauge());
-        //gauges.add(new XPlotGauge());
-        //gauges.add(new Circle90Gauge());
-        //gauges.add(new ClockGauge());
-        //gauges.add(new TimestampGauge());
+        gauges.add(new CharacterGauge());
+        gauges.add(new ClusterBarGauge());
+        gauges.add(new OnOffGauge());
+        gauges.add(new TextGauge());
+        gauges.add(new XYPlotGauge());
+        gauges.add(new XPlotGauge());
+        gauges.add(new Circle90Gauge());
+        gauges.add(new ClockGauge());
+        gauges.add(new TimestampGauge());
 
-        File mediaFile = new File("src/main/resources/dronetelemetrytool/monopolyYES.mp4");
+        File mediaFile = new File("src/main/resources/dronetelemetrytool/DJI_0001.mp4");
         video = null;
         try {
             video = new Media(mediaFile.toURI().toURL().toString());
@@ -69,7 +69,8 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        //gauges.forEach((n) -> n.display());
+        //gauges.forEach((Gauge n) -> n.display());
+        //video = DTT_Tools.chooseVideo();
         //DTT_Tools.displayVideo(video);
         timer.start();
 
@@ -81,6 +82,7 @@ public class MainApplication extends Application {
         stage.show();
         stage.setMaxHeight(600);
         stage.setMaxWidth(1200);
+
     }
 
     @Override

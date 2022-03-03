@@ -15,6 +15,26 @@ public class ClusterBarGauge extends Gauge{
     private ChartData data;
     private GradientLookup gradient;
 
+    public ClusterBarGauge()
+    {
+        super();
+        tile.setPrefSize(TILE_SIZE*2, TILE_SIZE);
+        tile.setSkinType(Tile.SkinType.CLUSTER_MONITOR);
+        tile.setTitle("");
+
+        gradient = new GradientLookup(Arrays.asList(
+                new Stop(0.0, Bright.BLUE),
+                new Stop(0.3, Bright.GREEN),
+                new Stop(0.6, Bright.YELLOW),
+                new Stop(0.9, Bright.RED)));
+
+
+        data = new ChartData("", Tile.YELLOW);
+        data.setFormatString("%.1f");
+        tile.addChartData(data);
+
+    }
+
     public ClusterBarGauge(String title)
     {
         super();
