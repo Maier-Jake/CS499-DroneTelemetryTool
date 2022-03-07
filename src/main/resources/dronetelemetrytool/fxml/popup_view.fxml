@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 
 <?import javafx.scene.text.Text?>
-<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.popupCreator" fx:id="popup">
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.PopupCreator" fx:id="popup">
     <stylesheets>
         <URL value="@DTT_Style.css" />
     </stylesheets>
