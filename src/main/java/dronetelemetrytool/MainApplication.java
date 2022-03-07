@@ -74,7 +74,7 @@ public class MainApplication extends Application {
         //DTT_Tools.displayVideo(video);
         timer.start();
 
-        DTT_GUI.onOffGaugeCreator();
+        DTT_GUI.characterGaugeCreator();
 
     }
 
