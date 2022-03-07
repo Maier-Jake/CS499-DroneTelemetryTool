@@ -29,17 +29,17 @@ public class MainApplication extends Application {
 
         gauges = new ArrayList<Gauge>(10);
 
-        gauges.add(new CharacterGauge());
+        //gauges.add(new CharacterGauge());
         gauges.add(new ClusterBarGauge());
-        gauges.add(new OnOffGauge());
-        gauges.add(new TextGauge());
+        //gauges.add(new OnOffGauge());
+        //gauges.add(new TextGauge());
         gauges.add(new XYPlotGauge());
         gauges.add(new XPlotGauge());
         gauges.add(new Circle90Gauge());
-        gauges.add(new ClockGauge());
-        gauges.add(new TimestampGauge());
+        //gauges.add(new ClockGauge());
+        //gauges.add(new TimestampGauge());
 
-        File mediaFile = new File("src/main/resources/dronetelemetrytool/DJI_0001.mp4");
+        File mediaFile = new File("src/main/resources/dronetelemetrytool/monopolyYES.mp4");
         video = null;
         try {
             video = new Media(mediaFile.toURI().toURL().toString());
@@ -74,14 +74,7 @@ public class MainApplication extends Application {
         //DTT_Tools.displayVideo(video);
         timer.start();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/barGaugeCreator_view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().add(getClass().getResource("fxml/DTT_Style.css").toExternalForm());
-        stage.setTitle("DTT - Gauge Creation Tool");
-        stage.setScene(scene);
-        stage.show();
-        stage.setMaxHeight(600);
-        stage.setMaxWidth(1200);
+        DTT_GUI.onOffGaugeCreator();
 
     }
 

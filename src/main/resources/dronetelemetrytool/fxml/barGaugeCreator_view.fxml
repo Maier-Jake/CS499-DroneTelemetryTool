@@ -6,17 +6,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.barGaugeCreator">
+<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.BarGaugeCreator">
     <stylesheets>
         <URL value="@DTT_Style.css" />
     </stylesheets>
     <VBox>
         <alignment>TOP_CENTER</alignment>
-        <Label styleClass="subtitle">
+        <Label styleClass="header2">
             <text>Statistics</text>
         </Label>
     </VBox>
-   <Line endY="0" startY="-500.0" />
+   <Line endY="0" startY="-440.0" />
     <BorderPane>
         <top>
             <VBox>
@@ -79,6 +79,18 @@
                 <HBox alignment="CENTER">
                     <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
                     <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>Format String</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <ComboBox fx:id="COMBO_Format" prefWidth="250.0" promptText="choose"/>
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>km/h? %? mi/h? m/s?</text>
+                    </Label>
+                </HBox>
+
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">
                         <text>Minimum Value</text>
                         <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
                     </Label>
@@ -135,6 +147,8 @@
                         <text>Highest value you want displayed</text>
                     </Label>
                 </HBox>
+
+
             </VBox>
         </center>
         <bottom>
