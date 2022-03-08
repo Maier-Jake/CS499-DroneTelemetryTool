@@ -1,52 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"-->
-<!--      fx:controller="dronetelemetrytool.fxml.barGaugeCreator">-->
-<!--    <padding>-->
-<!--        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>-->
-<!--    </padding>-->
-<!--    <Label fx:id="welcomeText"/>-->
-<!--    <Button text="Hello!" onAction="#onHelloButtonClick"/>-->
-<!--</VBox>-->
-
 <?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<!--</BorderPane>-->
-<!--<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"-->
-<!--      fx:controller="dronetelemetrytool.fxml.barGaugeCreator">-->
-<!--    <padding>-->
-<!--        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>-->
-<!--    </padding>-->
-<!--&lt;!&ndash;    <Text styleClass="header-section" text="Bar Gauge Creation Tool"/>&ndash;&gt;-->
-<!--    <Label text="User Name:"/>-->
-<!--    <TextField/>-->
-<!--    <Button text="Hello!" onAction="#onHelloButtonClick"/>-->
-<!--</VBox>-->
-<!--    <Label text="User Name:"-->
-<!--           GridPane.columnIndex="0" GridPane.rowIndex="1"/>-->
-<!--    <TextField-->
-<!--            GridPane.columnIndex="1" GridPane.rowIndex="1"/>-->
-<!--    <Label text="Password:"-->
-<!--           GridPane.columnIndex="0" GridPane.rowIndex="2"/>-->
-<!--    <PasswordField fx:id="passwordField"-->
-<!--                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>-->
-<!--</GridPane>-->
-
-<HBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.barGaugeCreator">
+<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.BarGaugeCreator">
     <stylesheets>
         <URL value="@DTT_Style.css" />
     </stylesheets>
     <VBox>
         <alignment>TOP_CENTER</alignment>
-        <Label styleClass="subtitle">
+        <Label styleClass="header2">
             <text>Statistics</text>
         </Label>
     </VBox>
-   <Line endY="0" startY="-500.0" />
+   <Line endY="0" startY="-440.0" />
     <BorderPane>
         <top>
             <VBox>
@@ -65,7 +35,7 @@
                     <Region prefHeight="28" prefWidth="150" styleClass="green" />
                     <Region prefHeight="28" prefWidth="150" styleClass="yellow" />
                     <Region prefHeight="28" prefWidth="150" styleClass="red" />
-                    <Region prefHeight="28" prefWidth="88.0" />
+                    <Region prefHeight="28" prefWidth="88" />
                 </HBox>
                 <HBox>
                     <Region prefHeight="28" prefWidth="38.0" />
@@ -103,6 +73,18 @@
                     <TextField fx:id="FIELD_Title" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
                     <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
                         <text>Title of the gauge</text>
+                    </Label>
+                </HBox>
+
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>Format String</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <ComboBox fx:id="COMBO_Format" prefWidth="250.0" promptText="choose"/>
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>km/h? %? mi/h? m/s?</text>
                     </Label>
                 </HBox>
 
@@ -165,6 +147,8 @@
                         <text>Highest value you want displayed</text>
                     </Label>
                 </HBox>
+
+
             </VBox>
         </center>
         <bottom>

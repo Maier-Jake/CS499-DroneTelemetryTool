@@ -6,17 +6,10 @@ import dronetelemetrytool.gauges.ClusterBarGauge;
 import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.scene.paint.Stop;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
@@ -26,7 +19,7 @@ import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
-public class barGaugeCreator implements Initializable {
+public class BarGaugeCreator implements Initializable {
     @FXML
     private Label HEADER;
     @FXML
@@ -44,6 +37,10 @@ public class barGaugeCreator implements Initializable {
     @FXML
     private Button BUTTON_Close;
 
+    @FXML // fx:id="COMBO_Format"
+    private ComboBox<String> COMBO_Format;
+
+
     @FXML
     protected void onCancelClick() {
         //welcomeText.setText("Welcome to JavaFX Application!");
@@ -52,6 +49,10 @@ public class barGaugeCreator implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+
+
+        // populate the combo box with string format choices.
+        COMBO_Format.getItems().setAll("m/s", "%", "m", "ft");
 
         Pattern validEditingState = Pattern.compile("-?(([1-9][0-9]*)|0)?(\\.[0-9]*)?");
         UnaryOperator<TextFormatter.Change> doubleFilter = c -> {
@@ -83,6 +84,7 @@ public class barGaugeCreator implements Initializable {
         FIELD_GreenT.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
         FIELD_YellowT.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
         FIELD_RedT.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
+
     }
 
 
@@ -96,6 +98,7 @@ public class barGaugeCreator implements Initializable {
         double greenThreshold = Double.parseDouble(FIELD_GreenT.textProperty().getValueSafe());
         double yellowThreshold = Double.parseDouble(FIELD_YellowT.textProperty().getValueSafe());
         double redThreshold = Double.parseDouble(FIELD_RedT.textProperty().getValueSafe());
+        String format = COMBO_Format.getValue();
 
         if (minVal <= greenThreshold)
         {
@@ -107,7 +110,7 @@ public class barGaugeCreator implements Initializable {
                     {
                         if (minVal < maxVal)
                         {
-                            createBarGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold);
+                            createBarGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, format);
                             Stage stage = (Stage) BUTTON_Close.getScene().getWindow();
                             stage.close();
                         }
@@ -143,10 +146,10 @@ public class barGaugeCreator implements Initializable {
 
     }
 
-    private void createBarGauge(String title, double min, double max, double green, double yellow, double red)
+    private void createBarGauge(String title, double min, double max, double green, double yellow, double red, String format)
     {
-        System.out.println("Heyo");
-        ClusterBarGauge newGauge = new ClusterBarGauge(title);
+        ClusterBarGauge newGauge = new ClusterBarGauge();
+        newGauge.setTitle(title);
 
         GradientLookup gradient = new GradientLookup(Arrays.asList(
                 new Stop(0.0, Bright.BLUE),
@@ -159,8 +162,26 @@ public class barGaugeCreator implements Initializable {
         newGauge.tile.getChartData().get(0).setMaxValue(max);
         newGauge.tile.getChartData().get(0).setMinValue(min);
 
+        switch(format)
+        {
+            case "%":
+                newGauge.tile.getChartData().get(0).setFormatString("%.1f" + "%%");
+                break;
+            case "m/s":
+                newGauge.tile.getChartData().get(0).setFormatString("%.1f" + " m/s");
+                break;
+            case "ft":
+                newGauge.tile.getChartData().get(0).setFormatString("%.1f" + " ft");
+                break;
+            case "m":
+                newGauge.tile.getChartData().get(0).setFormatString("%.1f" + " m");
+                break;
+            default:
+                break;
+        }
+
+
         MainApplication.gauges.add(newGauge);
         newGauge.display();
-
     }
 }

@@ -1,6 +1,6 @@
 package dronetelemetrytool;
 
-import dronetelemetrytool.gauges.Gauge;
+import dronetelemetrytool.gauges.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -30,12 +30,12 @@ public class MainApplication extends Application {
         gauges = new ArrayList<Gauge>(10);
 
         //gauges.add(new CharacterGauge());
-        //gauges.add(new ClusterBarGauge());
+        gauges.add(new ClusterBarGauge());
         //gauges.add(new OnOffGauge());
         //gauges.add(new TextGauge());
-        //gauges.add(new XYPlotGauge());
-        //gauges.add(new XPlotGauge());
-        //gauges.add(new Circle90Gauge());
+        gauges.add(new XYPlotGauge());
+        gauges.add(new XPlotGauge());
+        gauges.add(new Circle90Gauge());
         //gauges.add(new ClockGauge());
         //gauges.add(new TimestampGauge());
 
@@ -58,7 +58,6 @@ public class MainApplication extends Application {
             @Override
             public void handle(final long now) {
                 if (now > lastTimerCall + gaugeUpdateFrequency) {
-
                     //for each gauge CREATED, run an update.
                     gauges.forEach(Gauge::update);
                     lastTimerCall = now;
@@ -70,16 +69,12 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        //gauges.forEach((n) -> n.display());
-        DTT_Tools.displayVideo(video);
+        //gauges.forEach((Gauge n) -> n.display());
+        //video = DTT_Tools.chooseVideo();
+        //DTT_Tools.displayVideo(video);
         timer.start();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/barGaugeCreator_view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().add(getClass().getResource("fxml/DTT_Style.css").toExternalForm());
-        stage.setTitle("DTT - Gauge Creation Tool");
-        stage.setScene(scene);
-        stage.show();
+        DTT_GUI.characterGaugeCreator();
 
     }
 

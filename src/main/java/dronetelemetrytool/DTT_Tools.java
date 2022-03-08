@@ -1,11 +1,9 @@
 package dronetelemetrytool;
 
-import dronetelemetrytool.fxml.popupCreator;
+import dronetelemetrytool.fxml.PopupCreator;
 import eu.hansolo.tilesfx.Tile;
-import eu.hansolo.tilesfx.tools.FlowGridPane;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -14,7 +12,6 @@ import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -186,15 +183,17 @@ public class DTT_Tools {
     }
 
     public static Stage popup(Stage parent, String error) throws IOException {
+
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UTILITY);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/popup_view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(MainApplication.class.getResource("fxml/DTT_Style.css").toExternalForm());
+
         stage.setTitle("DTT - Error");
         stage.setScene(scene);
 
-        popupCreator popup = fxmlLoader.getController();
+        PopupCreator popup = fxmlLoader.getController();
         popup.initData(error);
 
         stage.initOwner(parent);

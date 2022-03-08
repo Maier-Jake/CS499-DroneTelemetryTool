@@ -47,10 +47,7 @@
     -fx-background-radius: 5;
     -fx-border-radius: 5;
     -fx-cursor: hand;
-    -fx-pref-height: 40px;
-    -fx-pref-width: 160px;
 }
-
 .button:hover {
     -fx-background-color: #bfdfdf;
 }
@@ -83,4 +80,12 @@
 }
 .red {
     -fx-background-color: #e5504c;
+}
+
+.color-picker {
+    -fx-border-radius:0;
+    -fx-background-radius:0;
+}
+.color-picker .color-picker-label .text {
+    -fx-fill: rgb(0,1,0);
 }

@@ -19,10 +19,10 @@ public abstract class Gauge {
     public Gauge()
     {
         tile = TileBuilder.create()
-                .skinType(Tile.SkinType.CUSTOM)
-                .prefSize(TILE_SIZE, TILE_SIZE)
-                .title("Gauge")
-                .build();
+            .skinType(Tile.SkinType.CUSTOM)
+            .prefSize(TILE_SIZE, TILE_SIZE)
+            .title("Gauge")
+            .build();
     }
 
     public void display()
@@ -46,10 +46,6 @@ public abstract class Gauge {
         //make Stage Visible
         newStage.show();
 
-        //newStage.setHeight(TILE_HEIGHT); newStage.setWidth(TILE_WIDTH);
-        //newStage.setMinHeight(220); newStage.setMaxHeight(1000);
-        //newStage.setMinWidth(220); newStage.setMaxWidth(1000);
-
         //add a change listener, to resize pane as needed as scene is resized.
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->
                 tile.setPrefSize(scene.getWidth(), scene.getHeight());
@@ -58,6 +54,11 @@ public abstract class Gauge {
         newStage.heightProperty().addListener(stageSizeListener);
 
         newStage.show();
+    }
+
+    public void setTitle(String tit)
+    {
+        tile.setTitle(tit);
     }
 
     public abstract void update();
