@@ -12,4 +12,5 @@ module droneTelemetryTool {
     exports dronetelemetrytool.gauges;
     exports dronetelemetrytool.skins;
     exports dronetelemetrytool.fxml;
+    exports dronetelemetrytool.gaugeselection;
 }

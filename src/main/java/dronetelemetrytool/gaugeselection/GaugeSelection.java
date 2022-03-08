@@ -1,5 +1,8 @@
-package dronetelemetrytool.gaugeselection
+package dronetelemetrytool.gaugeselection;
 
+import dronetelemetrytool.fxml.ChooserController;
+import dronetelemetrytool.MainApplication;
+import dronetelemetrytool.fxml.TextGaugeCreator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,7 +17,7 @@ public class GaugeSelection extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         csvStage = stage;
-        fxmlLoader = new FXMLLoader(GaugeSelection.class.getResource("Chooser.fxml"));
+        fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/csvChooser.fxml"));
        // Parent root = fxmlLoader.load();
 
         scene = new Scene(fxmlLoader.load(), 320, 240, Color.DARKSLATEGRAY);

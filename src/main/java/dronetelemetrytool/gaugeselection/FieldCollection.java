@@ -1,4 +1,4 @@
-package dronetelemetrytool.gaugeselection
+package dronetelemetrytool.gaugeselection;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;

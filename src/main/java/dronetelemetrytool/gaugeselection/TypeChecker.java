@@ -1,4 +1,4 @@
-package dronetelemetrytool.gaugeselection
+package dronetelemetrytool.gaugeselection;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,9 +11,10 @@ public class TypeChecker {
         Pattern intPattern = Pattern.compile("[+-]?\\d");
     }
     private boolean tryDate(String datum) {
-
+        return true;
     }
     private boolean tryNumber(String datum) {
+        return true;
 
     }
 }
