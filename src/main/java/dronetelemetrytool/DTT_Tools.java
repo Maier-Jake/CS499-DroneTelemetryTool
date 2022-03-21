@@ -211,4 +211,9 @@ public class DTT_Tools {
 
         return newVal;
     }
+    
+    public static double map (double value, double iStart, double iStop, double oStart, double oStop)
+    {
+        return oStart + (oStop - oStart) * ((value - iStart) / (iStop - iStart));
+    }
 }
