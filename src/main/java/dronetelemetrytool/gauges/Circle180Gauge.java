@@ -1,6 +1,7 @@
 package dronetelemetrytool.gauges;
 
 import dronetelemetrytool.DTT_Tools;
+import dronetelemetrytool.skins.Circle180TileSkin;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.chart.ChartData;
 import eu.hansolo.tilesfx.colors.Bright;
@@ -16,8 +17,9 @@ public class Circle180Gauge extends Gauge {
     public Circle180Gauge()
     {
         super();
-        tile.setSkinType(Tile.SkinType.GAUGE2);
-
+        //tile.setSkinType(Tile.SkinType.GAUGE2);
+        tile.setUnit("d");
+        tile.setSkin(new Circle180TileSkin(tile));
         //AngleRange is used to change how much of the circle is usable. 0-360.
         tile.setAngleRange(180);
 

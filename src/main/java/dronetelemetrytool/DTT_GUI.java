@@ -85,4 +85,15 @@ public class DTT_GUI {
         newStage.setMaxHeight(600); newStage.setMinHeight(470);
         newStage.setMaxWidth(1000); newStage.setMinWidth(800);
     }
+    public static void circle90GaugeCreator() throws IOException {
+        Stage newStage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/circle90GaugeCreator_view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        scene.getStylesheets().add(MainApplication.class.getResource("fxml/DTT_Style.css").toExternalForm());
+        newStage.setTitle("DTT - Gauge Creation Tool");
+        newStage.setScene(scene);
+        newStage.show();
+        newStage.setMaxHeight(600); newStage.setMinHeight(470);
+        newStage.setMaxWidth(1000); newStage.setMinWidth(800);
+    }
 }

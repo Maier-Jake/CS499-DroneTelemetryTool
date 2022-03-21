@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<?import com.sun.javafx.scene.control.CustomColorDialog.ColorRectPane?>
+<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.Circle90GaugeCreator">
+    <stylesheets>
+        <URL value="@DTT_Style.css" />
+    </stylesheets>
+    <VBox>
+        <alignment>TOP_CENTER</alignment>
+        <Label styleClass="header2">
+            <text>Statistics</text>
+        </Label>
+    </VBox>
+   <Line endY="0" startY="-440.0" />
+    <BorderPane>
+        <top>
+            <VBox>
+                <alignment>CENTER</alignment>
+                <Label fx:id="HEADER" styleClass="header1">
+                    <alignment>CENTER</alignment>
+                    <text>Gauge Settings</text>
+                </Label>
+                <Label styleClass="header2">
+                    <alignment>CENTER</alignment>
+                    <text>Circle 90 Gauge</text>
+                </Label>
+                <HBox>
+                    <Region prefHeight="28" prefWidth="88" />
+                    <Region prefHeight="28" prefWidth="150" styleClass="blue" />
+                    <Region prefHeight="28" prefWidth="150" styleClass="green" />
+                    <Region prefHeight="28" prefWidth="150" styleClass="yellow" />
+                    <Region prefHeight="28" prefWidth="150" styleClass="red" />
+                    <Region prefHeight="28" prefWidth="88" />
+                </HBox>
+                <HBox>
+                    <Region prefHeight="28" prefWidth="38.0" />
+                    <Label alignment="CENTER" prefHeight="28.0" prefWidth="100.0" textAlignment="RIGHT">
+                        <text>Minimum</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <Label alignment="CENTER" prefHeight="28.0" prefWidth="155.0" textAlignment="RIGHT">
+                        <text>Green Threshold</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <Label alignment="CENTER" prefHeight="28.0" prefWidth="175.0" textAlignment="RIGHT">
+                        <text>Yellow Threshold</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <Label alignment="CENTER" prefHeight="28.0" prefWidth="125.0" textAlignment="RIGHT">
+                        <text>Red Threshold</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <Label alignment="CENTER" prefHeight="28.0" prefWidth="180.0" textAlignment="RIGHT">
+                        <text>Maximum</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                </HBox>
+            </VBox>
+        </top>
+        <center>
+            <VBox alignment = "CENTER">
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>Gauge Title</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <TextField fx:id="FIELD_Title" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Title of the gauge</text>
+                    </Label>
+                </HBox>
+
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>Format String</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <ComboBox fx:id="COMBO_Format" prefWidth="250.0" promptText="choose"/>
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>km/h? %? mi/h? m/s?</text>
+                    </Label>
+                </HBox>
+
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>Minimum Value</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <TextField fx:id="FIELD_Minimum" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Lowest value you want displayed</text>
+                    </Label>
+                </HBox>
+
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>Green Threshold</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <TextField fx:id="FIELD_GreenT" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Value to transition the bar to green</text>
+                    </Label>
+                </HBox>
+
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>Yellow Threshold</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <TextField fx:id="FIELD_YellowT" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Value to transition the bar to yellow</text>
+                    </Label>
+                </HBox>
+
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>Red Threshold</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <TextField fx:id="FIELD_RedT" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Value to transition the bar to red</text>
+                    </Label>
+                </HBox>
+
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>Maximum Value</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <TextField fx:id="FIELD_Maximum" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Highest value you want displayed</text>
+                    </Label>
+                </HBox>
+
+            </VBox>
+        </center>
+        <bottom>
+            <ButtonBar>
+                <padding>
+                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                </padding>
+                <buttons>
+                    <Button onAction="#onCancelClick" text="Cancel" ButtonBar.buttonData="LEFT">
+                        <cancelButton>true</cancelButton>
+                    </Button>
+                    <Button fx:id="BUTTON_Close" onAction="#onCompletedClick" text="Complete Gauge" ButtonBar.buttonData="RIGHT" />
+                </buttons>
+            </ButtonBar>
+        </bottom>
+
+
+    </BorderPane>
+
+
+</HBox>

@@ -3,16 +3,12 @@ package dronetelemetrytool.fxml;
 import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.gauges.Circle180Gauge;
-import dronetelemetrytool.gauges.Circle90Gauge;
-import dronetelemetrytool.gauges.ClockGauge;
-import dronetelemetrytool.gauges.ClusterBarGauge;
 import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.paint.Stop;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -40,7 +36,6 @@ public class Circle180GaugeCreator implements Initializable {
     private TextField FIELD_Maximum;
     @FXML
     private Button BUTTON_Close;
-
     @FXML // fx:id="COMBO_Format"
     private ComboBox<String> COMBO_Format;
 
@@ -154,10 +149,11 @@ public class Circle180GaugeCreator implements Initializable {
         newGauge.setTitle(title);
 
         GradientLookup gradient = new GradientLookup(Arrays.asList(
-                new Stop(0.25, Bright.BLUE),
-                new Stop(0.25 + DTT_Tools.normalize(min, max, green), Bright.GREEN),
-                new Stop(0.25 + DTT_Tools.normalize(min, max, yellow), Bright.YELLOW),
-                new Stop(0.25 + DTT_Tools.normalize(min, max, red), Bright.RED)));
+                new Stop(0, Bright.BLUE_GREEN),
+                new Stop (DTT_Tools.map(green,min,max,0,1), Bright.GREEN),
+                new Stop(DTT_Tools.map(yellow,min,max,0,1), Bright.YELLOW),
+                new Stop(DTT_Tools.map(red,min,max,0,1), Bright.ORANGE),
+                new Stop(1, Bright.RED)));
 
         newGauge.tile.setMaxValue(max);
         newGauge.tile.setMinValue(min);

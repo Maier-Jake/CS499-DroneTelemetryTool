@@ -35,7 +35,7 @@ public class MainApplication extends Application {
         //gauges.add(new TextGauge());
         gauges.add(new XYPlotGauge());
         gauges.add(new XPlotGauge());
-        gauges.add(new Circle90Gauge());
+        //gauges.add(new Circle90Gauge());
         //gauges.add(new ClockGauge());
         //gauges.add(new TimestampGauge());
 
@@ -74,7 +74,7 @@ public class MainApplication extends Application {
         //DTT_Tools.displayVideo(video);
         timer.start();
 
-        DTT_GUI.circle180GaugeCreator();
+        DTT_GUI.circle90GaugeCreator();
 
     }
 
