@@ -40,7 +40,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Circle360TileSkin extends TileSkin {
+public class CircleTileSkin extends TileSkin {
     private double               angleRange;
     private double               angleStep;
     private double               oldValue;
@@ -64,7 +64,7 @@ public class Circle360TileSkin extends TileSkin {
 
 
     // ******************** Constructors **************************************
-    public Circle360TileSkin(final Tile TILE) {
+    public CircleTileSkin(final Tile TILE) {
         super(TILE);
         handleCurrentValue(tile.getValue());
     }
@@ -174,7 +174,6 @@ public class Circle360TileSkin extends TileSkin {
             needle.setFill(tile.getNeedleColor());
             bar.setStroke(tile.getBarColor());
         }
-
         if (tile.getShortenNumbers()) {
             valueText.setText(Helper.shortenNumber((long) VALUE));
         } else if (tile.getCustomDecimalFormatEnabled()) {
@@ -215,7 +214,7 @@ public class Circle360TileSkin extends TileSkin {
         List<Stop> stops = tile.getGradientStops();
         Map<Double, Color> stopAngleMap = new HashMap<>(stops.size());
         for (Stop stop : stops) { stopAngleMap.put(stop.getOffset() * angleRange, stop.getColor()); }
-        double offsetFactor = (180);
+        double offsetFactor = ((360-angleRange)/2 + 180);
         conicalGradient = new AngleConicalGradient(barBounds.getX() * barBounds.getWidth() * 0.5, barBounds.getY() * barBounds.getHeight() * 0.5, offsetFactor, stopAngleMap);
     }
 

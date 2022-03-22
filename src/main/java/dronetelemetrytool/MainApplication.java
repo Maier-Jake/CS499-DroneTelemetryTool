@@ -29,16 +29,6 @@ public class MainApplication extends Application {
 
         gauges = new ArrayList<Gauge>(10);
 
-        //gauges.add(new CharacterGauge());
-        gauges.add(new ClusterBarGauge());
-        //gauges.add(new OnOffGauge());
-        //gauges.add(new TextGauge());
-        gauges.add(new XYPlotGauge());
-        gauges.add(new XPlotGauge());
-        //gauges.add(new Circle90Gauge());
-        //gauges.add(new ClockGauge());
-        //gauges.add(new TimestampGauge());
-
         File mediaFile = new File("src/main/resources/dronetelemetrytool/monopolyYES.mp4");
         video = null;
         try {
@@ -74,7 +64,7 @@ public class MainApplication extends Application {
         //DTT_Tools.displayVideo(video);
         timer.start();
 
-        DTT_GUI.circle360GaugeCreator();
+        DTT_GUI.circle180GaugeCreator();
 
     }
 
