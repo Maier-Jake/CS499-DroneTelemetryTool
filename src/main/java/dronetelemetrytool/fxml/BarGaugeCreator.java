@@ -44,7 +44,6 @@ public class BarGaugeCreator implements Initializable {
     @FXML
     protected void onCancelClick() {
         System.out.println("Cancelled creating this gauge.");
-
         //Finished, close this Gauge Creation window.
         Stage stage = (Stage) BUTTON_Close.getScene().getWindow();
         stage.close();
@@ -113,7 +112,14 @@ public class BarGaugeCreator implements Initializable {
                     {
                         if (minVal < maxVal)
                         {
-                            createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, format);
+                            if (format != null)
+                            {
+                                createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, format);
+                            }
+                            else
+                            {
+                                createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, "");
+                            }
                             Stage stage = (Stage) BUTTON_Close.getScene().getWindow();
                             stage.close();
                         }

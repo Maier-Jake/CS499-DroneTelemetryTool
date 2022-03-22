@@ -108,7 +108,14 @@ public class Circle180GaugeCreator implements Initializable {
                     {
                         if (minVal < maxVal)
                         {
-                            createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, format);
+                            if (format != null)
+                            {
+                                createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, format);
+                            }
+                            else
+                            {
+                                createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, "");
+                            }
                             Stage stage = (Stage) BUTTON_Close.getScene().getWindow();
                             stage.close();
                         }
@@ -164,22 +171,19 @@ public class Circle180GaugeCreator implements Initializable {
         {
             case "%":
                 newGauge.tile.setUnit("%");
-                //newGauge.tile.getChartData().get(0).setFormatString("%.1f" + "%%");
                 break;
             case "m/s":
                 newGauge.tile.setUnit("m/s");
-//                newGauge.tile.getChartData().get(0).setFormatString("%.1f" + " m/s");
                 break;
             case "ft":
                 newGauge.tile.setUnit("ft");
-//                newGauge.tile.getChartData().get(0).setFormatString("%.1f" + " ft");
                 break;
             case "m":
                 newGauge.tile.setUnit("m");
-//                newGauge.tile.getChartData().get(0).setFormatString("%.1f" + " m");
                 break;
             default:
-
+                newGauge.tile.setUnit("");
+                break;
         }
 
         MainApplication.gauges.add(newGauge);
