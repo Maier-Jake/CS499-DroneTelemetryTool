@@ -153,7 +153,7 @@ public class Circle90GaugeCreator implements Initializable {
                 new Stop(0, Bright.BLUE_GREEN),
                 new Stop (DTT_Tools.map(green,min,max,0,1), Bright.GREEN),
                 new Stop(DTT_Tools.map(yellow,min,max,0,1), Bright.YELLOW),
-                new Stop(DTT_Tools.map(red,min,max,0,1), Bright.ORANGE),
+                new Stop(DTT_Tools.map(red,min,max,0,1), Bright.ORANGE_RED),
                 new Stop(1, Bright.RED)));
 
         newGauge.tile.setMaxValue(max);
