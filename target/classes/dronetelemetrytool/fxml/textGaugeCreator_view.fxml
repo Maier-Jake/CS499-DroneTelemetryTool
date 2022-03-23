@@ -19,20 +19,19 @@
     </VBox>
    <Line endY="0" startY="-440.0" />
     <BorderPane>
+
         <top>
             <VBox>
                 <alignment>CENTER</alignment>
                 <Label fx:id="HEADER" styleClass="header1">
-                    <alignment>CENTER</alignment>
                     <text>Gauge Settings</text>
                 </Label>
                 <Label styleClass="header2">
-                    <alignment>CENTER</alignment>
                     <text>Text Gauge</text>
                 </Label>
-
             </VBox>
         </top>
+
         <center>
             <VBox alignment = "CENTER">
                 <HBox alignment="CENTER">

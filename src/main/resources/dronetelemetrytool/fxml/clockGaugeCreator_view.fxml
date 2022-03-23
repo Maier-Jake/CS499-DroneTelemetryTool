@@ -30,7 +30,6 @@
                     <alignment>CENTER</alignment>
                     <text>Clock Gauge</text>
                 </Label>
-
             </VBox>
         </top>
         <center>
