@@ -1,30 +1,28 @@
 package dronetelemetrytool.gauges;
 
 import dronetelemetrytool.DTT_Tools;
-import dronetelemetrytool.skins.CircleTileSkin;
+import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
 import javafx.scene.paint.Stop;
 
 import java.util.Arrays;
 
-public class Circle270Gauge extends Gauge {
+public class CircleGauge extends Gauge {
 
     private GradientLookup gradient;
 
-    public Circle270Gauge()
+    public CircleGauge(int angleRange)
     {
         super();
-        //tile.setSkinType(Tile.SkinType.GAUGE2);
+        tile.setSkinType(Tile.SkinType.GAUGE2);
         tile.setUnit("d");
-        tile.setSkin(new CircleTileSkin(tile));
-        //AngleRange is used to change how much of the circle is usable. 0-360.
-        tile.setAngleRange(270);
+        tile.setAngleRange(angleRange);
 
         //Min and Max Values determine the range of possible values for the gauge
         tile.setMinValue(0);
-        tile.setMaxValue(270);
-        tile.setValue(270);
+        tile.setMaxValue(angleRange);
+        tile.setValue(angleRange);
 
         tile.setMinValueVisible(false); tile.setMaxValueVisible(false);
 

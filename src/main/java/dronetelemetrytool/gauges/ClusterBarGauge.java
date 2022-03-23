@@ -6,7 +6,6 @@ import eu.hansolo.tilesfx.chart.ChartData;
 import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
 import javafx.scene.paint.Stop;
-import javafx.scene.text.TextAlignment;
 
 import java.util.Arrays;
 

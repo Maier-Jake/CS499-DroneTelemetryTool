@@ -2,8 +2,6 @@ package dronetelemetrytool.gauges;
 
 import eu.hansolo.tilesfx.Tile;
 
-import java.util.Random;
-
 public class TimestampGauge extends Gauge{
 
     public TimestampGauge()

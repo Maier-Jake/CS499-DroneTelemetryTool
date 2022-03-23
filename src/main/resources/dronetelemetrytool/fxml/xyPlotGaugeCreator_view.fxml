@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.XYPlotGaugeCreator">
+    <stylesheets>
+        <URL value="@DTT_Style.css" />
+    </stylesheets>
+    <VBox>
+        <alignment>TOP_CENTER</alignment>
+        <Label styleClass="header2">
+            <text>Statistics</text>
+        </Label>
+    </VBox>
+   <Line endY="0" startY="-440.0" />
+    <BorderPane>
+        <top>
+            <VBox>
+                <alignment>CENTER</alignment>
+                <Label fx:id="HEADER" styleClass="header1">
+                    <alignment>CENTER</alignment>
+                    <text>Gauge Settings</text>
+                </Label>
+                <Label styleClass="header2">
+                    <alignment>CENTER</alignment>
+                    <text>ScatterPlot Gauge</text>
+                </Label>
+            </VBox>
+        </top>
+        <center>
+            <VBox>
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="165.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>Gauge Title</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <TextField fx:id="FIELD_Title" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Title of the gauge</text>
+                    </Label>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="165.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>HORO-Axis Label</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <TextField fx:id="FIELD_XLabel" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Label for the Horizontal Axis (units!)</text>
+                    </Label>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="165.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>HORO-Minimum Value</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <TextField fx:id="FIELD_XMinimum" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Lowest value you want on the Horizontal Axis</text>
+                    </Label>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="165.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>HORO-Maximum Value</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <TextField fx:id="FIELD_XMaximum" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Highest value you want on the Horizontal Axis</text>
+                    </Label>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="165.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>HORO-Tick Unit</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <TextField fx:id="FIELD_XTickUnit" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Distance between 'ticks' on Horizontal Axis</text>
+                    </Label>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="165.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>VERT-Axis Label</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <TextField fx:id="FIELD_YLabel" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Label for the Vertical Axis (units!)</text>
+                    </Label>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="165.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>VERT-Minimum Value</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <TextField fx:id="FIELD_YMinimum" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Lowest value you want on the Vertical Axis</text>
+                    </Label>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="165.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>VERT-Maximum Value</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <TextField fx:id="FIELD_YMaximum" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Highest value you want on the Vertical Axis</text>
+                    </Label>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="165.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>VERT-Tick Unit</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <TextField fx:id="FIELD_YTickUnit" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Distance between 'ticks' on Vertical Axis</text>
+                    </Label>
+                </HBox>
+
+            </VBox>
+        </center>
+        <bottom>
+            <ButtonBar>
+                <padding>
+                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                </padding>
+                <buttons>
+                    <Button onAction="#onCancelClick" text="Cancel" ButtonBar.buttonData="LEFT">
+                        <cancelButton>true</cancelButton>
+                    </Button>
+                    <Button fx:id="BUTTON_Close" onAction="#onCompletedClick" text="Complete Gauge" ButtonBar.buttonData="RIGHT" />
+                </buttons>
+            </ButtonBar>
+        </bottom>
+
+
+    </BorderPane>
+
+
+</HBox>

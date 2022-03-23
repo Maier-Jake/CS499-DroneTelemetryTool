@@ -20,7 +20,7 @@ public class XPlotGauge extends Gauge {
 
         series = new XYChart.Series();
 
-        tile.setTitle("XPlot Gauge");
+        tile.setTitle("Line Plot Gauge");
 
         tile.setAnimated(true);
         tile.setRunning(true);
@@ -28,9 +28,7 @@ public class XPlotGauge extends Gauge {
 
         tile.setMaxValue(upperBound);
         tile.setMinValue(lowerBound);
-        
-        
-        
+
         primaryAxis = new NumberAxis(lowerBound, upperBound, tickUnit);
         subAxis = new NumberAxis(0, 2, 0);
 

@@ -1,7 +1,6 @@
 package dronetelemetrytool.gauges;
 
 import eu.hansolo.tilesfx.Tile;
-import eu.hansolo.tilesfx.TileBuilder;
 
 import java.util.Random;
 

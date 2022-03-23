@@ -16,7 +16,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.8.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.8.1" level="project" />
-    <orderEntry type="library" name="Maven: eu.hansolo:tilesfx:17.1.5" level="project" />
+    <orderEntry type="library" name="Maven: eu.hansolo:tilesfx:17.1.9" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:17.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:17.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:17.0.2" level="project" />

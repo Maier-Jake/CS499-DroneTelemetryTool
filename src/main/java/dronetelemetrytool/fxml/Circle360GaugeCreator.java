@@ -2,7 +2,7 @@ package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
-import dronetelemetrytool.gauges.Circle360Gauge;
+import dronetelemetrytool.gauges.CircleGauge;
 import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
 import javafx.fxml.FXML;
@@ -152,7 +152,7 @@ public class Circle360GaugeCreator implements Initializable {
 
     private static void createGauge(String title, double min, double max, double green, double yellow, double red, String format)
     {
-        Circle360Gauge newGauge = new Circle360Gauge();
+        CircleGauge newGauge = new CircleGauge(360);
         newGauge.setTitle(title);
 
         GradientLookup gradient = new GradientLookup(Arrays.asList(

@@ -64,6 +64,12 @@ public class DTT_GUI {
         createStage(newStage, fxmlLoader);
     }
 
+    public static void xyPlotGaugeCreator() throws IOException {
+        Stage newStage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/xyPlotGaugeCreator_view.fxml"));
+        createStage(newStage, fxmlLoader);
+    }
+
     private static void createStage(Stage s, FXMLLoader fxmlLoader) throws IOException {
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(MainApplication.class.getResource("fxml/DTT_Style.css").toExternalForm());
@@ -73,4 +79,6 @@ public class DTT_GUI {
         s.setMaxHeight(600); s.setMinHeight(470);
         s.setMaxWidth(1000); s.setMinWidth(800);
     }
+
+
 }

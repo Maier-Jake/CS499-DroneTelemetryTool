@@ -2,8 +2,6 @@ package dronetelemetrytool.gauges;
 
 import eu.hansolo.tilesfx.Tile;
 
-import java.util.Random;
-
 public class ClockGauge extends Gauge{
 
     public ClockGauge()

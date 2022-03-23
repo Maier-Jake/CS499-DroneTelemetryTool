@@ -30,7 +30,7 @@
         <dependency>
             <groupId>eu.hansolo</groupId>
             <artifactId>tilesfx</artifactId>
-            <version>17.1.5</version>
+            <version>17.1.9</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>

@@ -1,5 +1,6 @@
 package dronetelemetrytool.gauges;
 
+import dronetelemetrytool.DTT_Tools;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
@@ -12,7 +13,7 @@ public class XYPlotGauge extends Gauge {
     private NumberAxis yAxis;
     private ScatterChart<Number,Number> scatterChart;
 
-    public XYPlotGauge()
+    public XYPlotGauge(double xMin, double xMax, double xTick, double yMin, double yMax, double yTick)
     {
         super();
 
@@ -25,18 +26,12 @@ public class XYPlotGauge extends Gauge {
         tile.setRunning(true);
         tile.setActive(true);
 
-        xAxis = new NumberAxis(0, 10, 1);
-        yAxis = new NumberAxis(-100, 500, 100);
+        xAxis = new NumberAxis(xMin, xMax, xTick);
+        yAxis = new NumberAxis(yMin, yMax, yTick);
+        xAxis.setLabel("X");
+        yAxis.setLabel("Y");
 
         scatterChart = new ScatterChart<Number,Number>(xAxis,yAxis);
-        xAxis.setLabel("X Axis Label");
-        yAxis.setLabel("Y Axis Label");
-        //scatterChart.setTitle("Scatter Chart Title");
-
-        series.setName("Data Points");
-        series.getData().add(new XYChart.Data(4.2, 193.2));
-        series.getData().add(new XYChart.Data(2.8, 33.6));
-
         scatterChart.getData().addAll(series);
 
         tile.setGraphic(scatterChart);
@@ -44,12 +39,25 @@ public class XYPlotGauge extends Gauge {
     }
     @Override
     public void update() {
-        series.getData().add(new XYChart.Data(RND.nextDouble()*10, RND.nextDouble()*500));
-        /*
-        XYChart.Series s = new XYChart.Series();
-        s.getData().add(new XYChart.Data(RND.nextDouble()*10, RND.nextDouble()*500));
-        scatterChart.getData().add(s);
-        */
 
+        double yRange = yAxis.getUpperBound() - yAxis.getLowerBound();
+        double xRange = xAxis.getUpperBound() - xAxis.getLowerBound();
+        double newVal;
+        newVal = RND.nextDouble() * xRange;
+        double newXVal = DTT_Tools.map(newVal, 0, xRange, xAxis.getLowerBound(), xAxis.getUpperBound());
+        newVal = RND.nextDouble() * yRange;
+        double newYVal = DTT_Tools.map(newVal, 0, yRange, yAxis.getLowerBound(), yAxis.getUpperBound());
+
+        series.getData().add(new XYChart.Data(newXVal, newYVal));
+        if(series.getData().size() > 5)
+        {
+            series.getData().remove(0);
+        }
     }
+
+    public void setXLabel(String label)
+    {
+        xAxis.setLabel(label);
+    }
+    public void setYLabel(String label) { yAxis.setLabel(label); }
 }
