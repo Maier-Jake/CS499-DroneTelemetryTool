@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PopupCreator implements Initializable {
+public class PopupController implements Initializable {
 
     @FXML
     private Button BUTTON_Close;

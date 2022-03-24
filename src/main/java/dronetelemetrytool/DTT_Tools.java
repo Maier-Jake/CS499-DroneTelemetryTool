@@ -1,6 +1,6 @@
 package dronetelemetrytool;
 
-import dronetelemetrytool.fxml.PopupCreator;
+import dronetelemetrytool.fxml.PopupController;
 import eu.hansolo.tilesfx.Tile;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
@@ -193,7 +193,7 @@ public class DTT_Tools {
         stage.setTitle("DTT - Error");
         stage.setScene(scene);
 
-        PopupCreator popup = fxmlLoader.getController();
+        PopupController popup = fxmlLoader.getController();
         popup.initData(error);
 
         stage.initOwner(parent);

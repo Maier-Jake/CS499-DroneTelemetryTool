@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.GaugeSelector">
+    <stylesheets>
+        <URL value="@DTT_Style.css" />
+    </stylesheets>
+    <BorderPane>
+        <top>
+            <VBox>
+                <alignment>CENTER</alignment>
+                <Label styleClass="header1">
+                    <text>Gauge Selection</text>
+                </Label>
+                <Label styleClass="header2">
+                    <text>Select your desired gauge to display the selected field.</text>
+                </Label>
+            </VBox>
+        </top>
+        <center>
+            <GridPane hgap="30" vgap="15">
+                <alignment>CENTER</alignment>
+                <Button onAction="#circle90Click" styleClass="imageButton" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <graphic>
+                        <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../pictures/circle90.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#circle180Click" styleClass="imageButton" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <graphic>
+                        <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../pictures/circle180.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#circle270Click" styleClass="imageButton" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <graphic>
+                        <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../pictures/circle270.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#circle360Click" styleClass="imageButton" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <graphic>
+                        <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../pictures/circle360.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#clockClick" styleClass="imageButton" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                    <graphic>
+                        <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../pictures/clock.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#barClick" styleClass="imageButton" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <graphic>
+                        <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../pictures/bar.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#textClick" styleClass="imageButton" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <graphic>
+                        <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../pictures/text.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#characterClick" styleClass="imageButton" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <graphic>
+                        <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../pictures/character.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#boolClick" styleClass="imageButton" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                    <graphic>
+                        <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../pictures/bool.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#xPlotClick" styleClass="imageButton" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                    <graphic>
+                        <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../pictures/xPlot.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#xyPlotClick" styleClass="imageButton" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <graphic>
+                        <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../pictures/xyPlot.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#timestampClick" styleClass="imageButton" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                    <graphic>
+                        <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../pictures/timestamp.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </GridPane>
+        </center>
+        <bottom>
+            <ButtonBar>
+                <padding>
+                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                </padding>
+                <buttons>
+                    <Button onAction="#onCancelClick" text="Cancel" ButtonBar.buttonData="LEFT">
+                        <cancelButton>true</cancelButton>
+                    </Button>
+                </buttons>
+            </ButtonBar>
+        </bottom>
+
+
+    </BorderPane>
+
+
+</HBox>

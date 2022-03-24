@@ -54,6 +54,13 @@
 
 .button:focused { }
 
+.imageButton {
+    -fx-background-color: #dfdfdfff;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-cursor: hand;
+}
+
 .optionLabel {
     -fx-background-color: #dfdfdf;
     -fx-background-radius: 0;

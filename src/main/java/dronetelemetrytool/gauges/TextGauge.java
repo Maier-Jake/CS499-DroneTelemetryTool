@@ -15,9 +15,10 @@ public class TextGauge extends Gauge{
     }
     @Override
     public void update() {
-        Random r = new Random();
-        char c = (char)(r.nextInt(26) + 'a');
-        tile.setDescription(String.valueOf(c));
+//        Random r = new Random();
+//        char c = (char)(r.nextInt(26) + 'a');
+//        tile.setDescription(String.valueOf(c));
+        tile.setDescription("Text");
     }
 }
 

@@ -157,10 +157,13 @@
                     <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                 </padding>
                 <buttons>
-                    <Button onAction="#onCancelClick" text="Cancel" ButtonBar.buttonData="LEFT">
+                    <Button onAction="#onCancelClick" ButtonBar.buttonData="LEFT">
+                        <text>Cancel</text>
                         <cancelButton>true</cancelButton>
                     </Button>
-                    <Button fx:id="BUTTON_Close" onAction="#onCompletedClick" text="Complete Gauge" ButtonBar.buttonData="RIGHT" />
+                    <Button fx:id="BUTTON_Close" onAction="#onCompletedClick" ButtonBar.buttonData="RIGHT">
+                        <text>Complete Gauge</text>
+                    </Button>
                 </buttons>
             </ButtonBar>
         </bottom>
