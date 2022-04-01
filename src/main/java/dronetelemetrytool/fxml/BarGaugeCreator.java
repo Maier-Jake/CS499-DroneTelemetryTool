@@ -37,9 +37,11 @@ public class BarGaugeCreator implements Initializable {
     @FXML
     private Button BUTTON_Close;
 
-    @FXML // fx:id="COMBO_Format"
+    @FXML
     private ComboBox<String> COMBO_Format;
 
+    @FXML
+    private ComboBox<String> COMBO_Alarm;
 
     @FXML
     protected void onCancelClick() {
@@ -55,6 +57,8 @@ public class BarGaugeCreator implements Initializable {
 
         // populate the combo box with string format choices.
         COMBO_Format.getItems().setAll("m/s", "%", "m", "ft");
+        // populate the combo box with string format choices.
+        COMBO_Alarm.getItems().setAll("Chirp", "Siren", "Scream");
 
         Pattern validEditingState = Pattern.compile("-?(([1-9][0-9]*)|0)?(\\.[0-9]*)?");
         UnaryOperator<TextFormatter.Change> doubleFilter = c -> {
@@ -101,6 +105,7 @@ public class BarGaugeCreator implements Initializable {
         double yellowThreshold = Double.parseDouble(FIELD_YellowT.textProperty().getValueSafe());
         double redThreshold = Double.parseDouble(FIELD_RedT.textProperty().getValueSafe());
         String format = COMBO_Format.getValue();
+        String sAlarm = COMBO_Alarm.getValue();
 
         if (minVal <= greenThreshold)
         {
@@ -114,11 +119,25 @@ public class BarGaugeCreator implements Initializable {
                         {
                             if (format != null)
                             {
-                                createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, format);
+                                if (sAlarm != null)
+                                {
+                                    createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, format, sAlarm);
+                                }
+                                else
+                                {
+                                    createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, format, "");
+                                }
                             }
                             else
                             {
-                                createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, "");
+                                if (sAlarm != null)
+                                {
+                                    createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, "", sAlarm);
+                                }
+                                else
+                                {
+                                    createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, "", "");
+                                }
                             }
                             Stage stage = (Stage) BUTTON_Close.getScene().getWindow();
                             stage.close();
@@ -155,10 +174,15 @@ public class BarGaugeCreator implements Initializable {
 
     }
 
-    private static void createGauge(String title, double min, double max, double green, double yellow, double red, String format)
+    private static void createGauge(String title, double min, double max, double green, double yellow, double red, String unit, String sAlarm)
     {
         ClusterBarGauge newGauge = new ClusterBarGauge();
         newGauge.setTitle(title);
+
+        newGauge.tile.getChartData().get(0).setMaxValue(max);
+        newGauge.tile.getChartData().get(0).setMinValue(min);
+        newGauge.tile.setMaxValue(max);
+        newGauge.tile.setMinValue(min);
 
         GradientLookup gradient = new GradientLookup(Arrays.asList(
                 new Stop(0.0, Bright.BLUE),
@@ -168,10 +192,7 @@ public class BarGaugeCreator implements Initializable {
 
         newGauge.setGradient(gradient);
 
-        newGauge.tile.getChartData().get(0).setMaxValue(max);
-        newGauge.tile.getChartData().get(0).setMinValue(min);
-
-        switch(format)
+        switch(unit)
         {
             case "%":
                 newGauge.tile.getChartData().get(0).setFormatString("%.1f" + "%%");
@@ -188,8 +209,21 @@ public class BarGaugeCreator implements Initializable {
             default:
                 break;
         }
-
-
+        switch(sAlarm)
+        {
+            case "Chirp":
+                newGauge.setAlarm(1);
+                System.out.println("ran set alarm (1)");
+                break;
+            case "Siren":
+                newGauge.setAlarm(2);
+                break;
+            case "Scream":
+                newGauge.setAlarm(3);
+                break;
+            default:
+                break;
+        }
         MainApplication.gauges.add(newGauge);
         newGauge.display();
     }
