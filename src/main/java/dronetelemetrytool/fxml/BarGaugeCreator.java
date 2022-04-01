@@ -54,10 +54,7 @@ public class BarGaugeCreator implements Initializable {
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
 
-
-        // populate the combo box with string format choices.
         COMBO_Format.getItems().setAll("m/s", "%", "m", "ft");
-        // populate the combo box with string format choices.
         COMBO_Alarm.getItems().setAll("Chirp", "Siren", "Scream");
 
         Pattern validEditingState = Pattern.compile("-?(([1-9][0-9]*)|0)?(\\.[0-9]*)?");
@@ -185,10 +182,11 @@ public class BarGaugeCreator implements Initializable {
         newGauge.tile.setMinValue(min);
 
         GradientLookup gradient = new GradientLookup(Arrays.asList(
-                new Stop(0.0, Bright.BLUE),
-                new Stop(DTT_Tools.normalize(min, max, green), Bright.GREEN),
-                new Stop(DTT_Tools.normalize(min, max, yellow), Bright.YELLOW),
-                new Stop(DTT_Tools.normalize(min, max, red), Bright.RED)));
+                new Stop(0, Bright.BLUE),
+                new Stop(DTT_Tools.map(green,min,max,0,1), Bright.GREEN),
+                new Stop(DTT_Tools.map(yellow,min,max,0,1), Bright.YELLOW),
+                new Stop(DTT_Tools.map(red,min,max,0,1), Bright.RED),
+                new Stop(1, Bright.RED)));
 
         newGauge.setGradient(gradient);
 
