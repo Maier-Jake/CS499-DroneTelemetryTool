@@ -177,8 +177,8 @@ public class Circle360GaugeCreator implements Initializable {
         newGauge.tile.setMinValue(min);
 
         GradientLookup gradient = new GradientLookup(Arrays.asList(
-                new Stop(0, Bright.BLUE_GREEN),
-                new Stop(0.005, Bright.BLUE_GREEN),
+                new Stop(0, Bright.BLUE),
+                new Stop(0.01, Bright.BLUE),
                 new Stop(DTT_Tools.map(green,min,max,0,1), Bright.GREEN),
                 new Stop(DTT_Tools.map(yellow,min,max,0,1), Bright.YELLOW),
                 new Stop(DTT_Tools.map(red,min,max,0,1), Bright.RED),
