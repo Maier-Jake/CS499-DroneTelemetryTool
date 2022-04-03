@@ -12,11 +12,11 @@ import javafx.stage.Stage;
 public class GaugeSelection extends Application {
     FXMLLoader fxmlLoader;
     Scene scene;
-    Stage csvStage;
+    Stage fileStage;
 
     @Override
     public void start(Stage stage) throws Exception {
-        csvStage = stage;
+        fileStage = stage;
         fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/csvChooser.fxml"));
        // Parent root = fxmlLoader.load();
 
@@ -25,9 +25,9 @@ public class GaugeSelection extends Application {
 
         csvControl.anounce();
 
-        csvStage.setTitle("CSV Selection");
-        csvStage.setScene(scene);
-        csvControl.setStage(csvStage);
+        fileStage.setTitle("File Selection");
+        fileStage.setScene(scene);
+        csvControl.setStage(fileStage);
 
         //fileMenu = new Menu("File");
         //item = new MenuItem("Open Csv");

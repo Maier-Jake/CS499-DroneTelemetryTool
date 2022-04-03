@@ -19,4 +19,5 @@
    <BorderPane prefHeight="65.0" prefWidth="657.0" />
 
     <Button fx:id="selectCSVButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" prefWidth="89.0" text="Select CSV" />
+    <Button fx:id="selectVideoButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" prefWidth="89.0" text="Select MP4" />
 </VBox>

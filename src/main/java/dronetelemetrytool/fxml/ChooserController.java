@@ -22,7 +22,9 @@ import java.io.FileNotFoundException;
 public class ChooserController{
     @FXML private Text welcomeText;
     @FXML private Button selectCSVButton;
+    @FXML private Button selectVideoButton;
     FileChooser fileChooser;
+    FileChooser fileChooserV;   // This one is for video selection
     File selectedFile;
     private Stage csvStage;
     private FieldCollection myFieldCollection;
@@ -52,6 +54,28 @@ public class ChooserController{
                 }});
 
 
+        fileChooserV = new FileChooser();
+        // Set the file chooser button string
+        fileChooserV.setTitle("Open Video file");
+        // Set the types of files accepted
+        fileChooserV.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP4 Files", "*.mp4"));
+        selectVideoButton.setOnAction( new EventHandler<ActionEvent> () {
+            public void handle(ActionEvent event) {
+                selectedFile = fileChooserV.showOpenDialog(csvStage);
+                if (selectedFile != null) {
+                    myFieldCollection = new FieldCollection();
+                    String path = selectedFile.toPath().toString();
+                    /*
+                    try {
+                        FileReader reader = new FileReader(path);
+                        myFieldCollection.loadCSV(reader);
+                    } catch (FileNotFoundException noCSV) {
+                        System.out.println("File not found: ");
+                    }
+                    */
+
+                }
+            }});
     }
 
     public void anounce(){
