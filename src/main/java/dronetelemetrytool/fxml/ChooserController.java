@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
@@ -35,23 +36,22 @@ public class ChooserController{
         fileChooser.setTitle("Open CSV file");
         // Set the types of files accepted
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
-            selectCSVButton.setOnAction( new EventHandler<ActionEvent> () {
-                public void handle(ActionEvent event) {
-                    selectedFile = fileChooser.showOpenDialog(csvStage);
-                    if (selectedFile != null) {
-                        myFieldCollection = new FieldCollection();
-                        String path = selectedFile.toPath().toString();
-                        try {
-                            FileReader reader = new FileReader(path);
-                            myFieldCollection.loadCSV(reader);
-                        } catch (FileNotFoundException noCSV) {
-                            System.out.println("File not found: ");
-                        }
-
+        // Show the file selection window, and read the fields for the selected file.
+        selectCSVButton.setOnAction( new EventHandler<ActionEvent> () {
+            public void handle(ActionEvent event) {
+                selectedFile = fileChooser.showOpenDialog(csvStage);
+                if (selectedFile != null) {
+                    myFieldCollection = new FieldCollection();
+                    String path = selectedFile.toPath().toString();
+                    try {
+                        FileReader reader = new FileReader(path);
+                        myFieldCollection.loadCSV(reader);
+                    } catch (FileNotFoundException noCSV) {
+                        System.out.println("File not found: ");
                     }
-                }});
 
-
+                }
+            }});
     }
 
     public void anounce(){
