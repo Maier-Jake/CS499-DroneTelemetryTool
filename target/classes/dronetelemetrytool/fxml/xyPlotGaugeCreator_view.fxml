@@ -10,14 +10,33 @@
     <stylesheets>
         <URL value="@DTT_Style.css" />
     </stylesheets>
-    <VBox>
+    <VBox prefWidth="300">
         <alignment>TOP_CENTER</alignment>
         <Label styleClass="header2">
             <text>Statistics</text>
         </Label>
+        <Label>
+            <text>Data Field 1</text>
+        </Label>
+        <HBox>
+            <Label text="Minimum" prefWidth="175"/>
+            <TextField fx:id="STAT_min" editable="false"/>
+        </HBox>
+        <HBox>
+            <Label text="Maximum" prefWidth="175"/>
+            <TextField fx:id="STAT_max" editable="false"/>
+        </HBox>
+        <HBox>
+            <Label text="Average" prefWidth="175"/>
+            <TextField fx:id="STAT_avg" editable="false"/>
+        </HBox>
+        <HBox>
+            <Label text="Standard Deviation" prefWidth="175"/>
+            <TextField fx:id="STAT_stddev" editable="false"/>
+        </HBox>
     </VBox>
    <Line endY="0" startY="-440.0" />
-    <BorderPane>
+    <BorderPane prefWidth="800">
         <top>
             <VBox>
                 <alignment>CENTER</alignment>
@@ -151,6 +170,31 @@
 
 
     </BorderPane>
+    <VBox prefWidth="300">
+        <alignment>TOP_CENTER</alignment>
+        <Label styleClass="header2">
+            <text>Statistics</text>
+        </Label>
+        <Label>
+            <text>Data Field 2</text>
+        </Label>
+        <HBox>
+            <Label text="Minimum" prefWidth="175"/>
+            <TextField fx:id="STAT_min2" editable="false"/>
+        </HBox>
+        <HBox>
+            <Label text="Maximum" prefWidth="175"/>
+            <TextField fx:id="STAT_max2" editable="false"/>
+        </HBox>
+        <HBox>
+            <Label text="Average" prefWidth="175"/>
+            <TextField fx:id="STAT_avg2" editable="false"/>
+        </HBox>
+        <HBox>
+            <Label text="Standard Deviation" prefWidth="175"/>
+            <TextField fx:id="STAT_stddev2" editable="false"/>
+        </HBox>
+    </VBox>
 
 
 </HBox>

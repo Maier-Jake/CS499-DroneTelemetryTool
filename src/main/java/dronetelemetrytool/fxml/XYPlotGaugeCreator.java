@@ -40,6 +40,22 @@ public class XYPlotGaugeCreator implements Initializable {
     private TextField FIELD_YMaximum;
     @FXML
     private Button BUTTON_Close;
+    @FXML
+    private TextField STAT_max;
+    @FXML
+    private TextField STAT_min;
+    @FXML
+    private TextField STAT_avg;
+    @FXML
+    private TextField STAT_stddev;
+    @FXML
+    private TextField STAT_max2;
+    @FXML
+    private TextField STAT_min2;
+    @FXML
+    private TextField STAT_avg2;
+    @FXML
+    private TextField STAT_stddev2;
 
     @FXML
     protected void onCancelClick() {
@@ -85,6 +101,28 @@ public class XYPlotGaugeCreator implements Initializable {
         FIELD_YMaximum.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
         FIELD_YMinimum.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
         FIELD_YTickUnit.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
+
+        STAT_min.setText("10");
+        STAT_max.setText("20");
+        STAT_avg.setText("12");
+        STAT_stddev.setText("2");
+
+        //so focus will start on first editable textfield
+        STAT_min.setFocusTraversable(false);
+        STAT_max.setFocusTraversable(false);
+        STAT_avg.setFocusTraversable(false);
+        STAT_stddev.setFocusTraversable(false);
+
+        STAT_min2.setText("13");
+        STAT_max2.setText("13");
+        STAT_avg2.setText("15");
+        STAT_stddev2.setText("3");
+
+        //so focus will start on first editable textfield
+        STAT_min2.setFocusTraversable(false);
+        STAT_max2.setFocusTraversable(false);
+        STAT_avg2.setFocusTraversable(false);
+        STAT_stddev2.setFocusTraversable(false);
     }
 
 
