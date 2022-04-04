@@ -2,21 +2,13 @@ package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.gauges.TextGauge;
-import dronetelemetrytool.gaugeselection.FieldCollection;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

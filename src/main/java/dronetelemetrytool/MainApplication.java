@@ -58,12 +58,11 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-
         //gauges.forEach((Gauge n) -> n.display());
         //video = DTT_Tools.chooseVideo();
         //DTT_Tools.displayVideo(video);
         timer.start();
-        DTT_GUI.gaugeSelector();
+        DTT_GUI.inputSelector();
 
     }
 

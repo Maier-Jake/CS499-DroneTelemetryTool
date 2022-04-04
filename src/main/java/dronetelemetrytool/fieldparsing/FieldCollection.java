@@ -1,12 +1,9 @@
-package dronetelemetrytool.gaugeselection;
+package dronetelemetrytool.fieldparsing;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import java.util.List;
-import java.util.Dictionary;
-import java.util.Hashtable;
 
-import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 

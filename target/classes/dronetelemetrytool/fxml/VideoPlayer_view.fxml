@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.media.MediaPlayer?>
+<?import javafx.scene.media.Media?>
+<?import javafx.scene.Scene?>
+
+
+<VBox fx:id="vBox" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.VideoPlayer">
+    <stylesheets>
+        <URL value="@DTT_Style.css" />
+    </stylesheets>
+    <HBox alignment="CENTER" prefHeight="600" prefWidth="1000">
+        <MediaView fx:id="mediaView" fitHeight="600" fitWidth="1000">
+<!--            <mediaPlayer>-->
+<!--                <MediaPlayer autoPlay="true">-->
+<!--                    <media>-->
+<!--                        <Media source="D:/Videos/190301_1_25_11.mp4"/>-->
+<!--                    </media>-->
+<!--                </MediaPlayer>-->
+<!--            </mediaPlayer>-->
+        </MediaView>
+    </HBox>
+    <HBox fx:id="buttonBox" alignment="BASELINE_CENTER">
+        <Button styleClass="button" text="◀"/>
+        <Button styleClass="button" text="⏯"/>
+        <Button styleClass="button" text="▶"/>
+        <Button styleClass="button" text="⏭ 5x"/>
+        <Button styleClass="button" text="⏭ 10x"/>
+    </HBox>
+</VBox>
+
