@@ -101,6 +101,12 @@ public class BarGaugeCreator implements Initializable {
         STAT_avg.setText("12");
         STAT_stddev.setText("2");
 
+        //so focus will start on first editable textfield
+        STAT_min.setFocusTraversable(false);
+        STAT_max.setFocusTraversable(false);
+        STAT_avg.setFocusTraversable(false);
+        STAT_stddev.setFocusTraversable(false);
+
 
     }
 
