@@ -36,6 +36,15 @@ public class BarGaugeCreator implements Initializable {
     private TextField FIELD_Maximum;
     @FXML
     private Button BUTTON_Close;
+    @FXML
+    private TextField STAT_max;
+    @FXML
+    private TextField STAT_min;
+    @FXML
+    private TextField STAT_avg;
+    @FXML
+    private TextField STAT_stddev;
+
 
     @FXML // fx:id="COMBO_Format"
     private ComboBox<String> COMBO_Format;
@@ -86,6 +95,12 @@ public class BarGaugeCreator implements Initializable {
         FIELD_GreenT.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
         FIELD_YellowT.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
         FIELD_RedT.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
+
+        STAT_min.setText("10");
+        STAT_max.setText("20");
+        STAT_avg.setText("12");
+        STAT_stddev.setText("2");
+
 
     }
 
