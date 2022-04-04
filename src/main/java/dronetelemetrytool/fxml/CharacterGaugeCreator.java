@@ -24,6 +24,14 @@ public class CharacterGaugeCreator implements Initializable {
     private TextField FIELD_Title;
     @FXML
     private Button BUTTON_Close;
+    @FXML
+    private TextField STAT_max;
+    @FXML
+    private TextField STAT_min;
+    @FXML
+    private TextField STAT_avg;
+    @FXML
+    private TextField STAT_stddev;
 
     @FXML
     protected void onCancelClick() {
@@ -37,7 +45,16 @@ public class CharacterGaugeCreator implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        STAT_min.setText("10");
+        STAT_max.setText("20");
+        STAT_avg.setText("12");
+        STAT_stddev.setText("2");
 
+        //so focus will start on first editable textfield
+        STAT_min.setFocusTraversable(false);
+        STAT_max.setFocusTraversable(false);
+        STAT_avg.setFocusTraversable(false);
+        STAT_stddev.setFocusTraversable(false);
     }
 
 

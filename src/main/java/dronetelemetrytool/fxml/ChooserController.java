@@ -3,15 +3,12 @@ package dronetelemetrytool.fxml;
 import dronetelemetrytool.gaugeselection.FieldCollection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
-import javafx.scene.control.Button;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
@@ -28,6 +25,14 @@ public class ChooserController{
     File selectedFile;
     private Stage csvStage;
     private FieldCollection myFieldCollection;
+    @FXML
+    private TextField STAT_max;
+    @FXML
+    private TextField STAT_min;
+    @FXML
+    private TextField STAT_avg;
+    @FXML
+    private TextField STAT_stddev;
 
     @FXML
     public void initialize() throws FileNotFoundException {
@@ -76,6 +81,16 @@ public class ChooserController{
 
                 }
             }});
+        STAT_min.setText("10");
+        STAT_max.setText("20");
+        STAT_avg.setText("12");
+        STAT_stddev.setText("2");
+
+        //so focus will start on first editable textfield
+        STAT_min.setFocusTraversable(false);
+        STAT_max.setFocusTraversable(false);
+        STAT_avg.setFocusTraversable(false);
+        STAT_stddev.setFocusTraversable(false);
     }
 
     public void anounce(){
