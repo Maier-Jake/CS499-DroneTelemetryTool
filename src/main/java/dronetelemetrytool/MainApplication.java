@@ -62,7 +62,7 @@ public class MainApplication extends Application {
         //video = DTT_Tools.chooseVideo();
         //DTT_Tools.displayVideo(video);
         timer.start();
-        DTT_GUI.inputSelector();
+        DTT_GUI.circle180GaugeCreator();
 
     }
 
