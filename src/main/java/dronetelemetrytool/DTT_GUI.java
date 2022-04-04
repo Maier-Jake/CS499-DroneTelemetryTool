@@ -95,7 +95,7 @@ public class DTT_GUI {
         s.setScene(scene);
         s.show();
         s.setMaxHeight(1000); s.setMinHeight(470);
-        s.setMaxWidth(1000); s.setMinWidth(400);
+        s.setMaxWidth(1500); s.setMinWidth(400);
     }
 
 

@@ -10,7 +10,7 @@
     <stylesheets>
         <URL value="@DTT_Style.css" />
     </stylesheets>
-    <VBox>
+    <VBox prefWidth="300">
         <alignment>TOP_CENTER</alignment>
         <Label styleClass="header2">
             <text>Statistics</text>
@@ -36,7 +36,7 @@
         </HBox>
     </VBox>
    <Line endY="0" startY="-440.0" />
-    <BorderPane>
+    <BorderPane prefWidth="800">
         <top>
             <VBox>
                 <alignment>CENTER</alignment>
@@ -170,7 +170,7 @@
 
 
     </BorderPane>
-    <VBox>
+    <VBox prefWidth="300">
         <alignment>TOP_CENTER</alignment>
         <Label styleClass="header2">
             <text>Statistics</text>
