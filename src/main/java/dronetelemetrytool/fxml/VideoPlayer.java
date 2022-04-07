@@ -39,7 +39,7 @@ public class VideoPlayer implements Initializable {
     @FXML
     private Button fiveSpeedButton;
     @FXML
-    private Button eigthSpeedButton;
+    private Button eightSpeedButton;
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
