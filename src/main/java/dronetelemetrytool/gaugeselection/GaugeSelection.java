@@ -20,7 +20,7 @@ public class GaugeSelection extends Application {
         fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/csvChooser.fxml"));
        // Parent root = fxmlLoader.load();
 
-        scene = new Scene(fxmlLoader.load(), 320, 240, Color.DARKSLATEGRAY);
+        scene = new Scene(fxmlLoader.load(), 800, 600, Color.DARKSLATEGRAY);
         ChooserController csvControl = fxmlLoader.getController();
 
         csvControl.anounce();
