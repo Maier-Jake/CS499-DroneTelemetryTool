@@ -95,6 +95,12 @@ public class DTT_GUI {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/inputsSelector_view.fxml"));
         createStage(newStage, fxmlLoader);
     }
+    public static void videoPlayer() throws IOException {
+        Stage newStage = new Stage();
+        newStage.setTitle("DTT");
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/VideoPlayer_view.fxml"));
+        createStage(newStage, fxmlLoader);
+    }
 
     private static void createStage(Stage s, FXMLLoader fxmlLoader) throws IOException {
         Scene scene = new Scene(fxmlLoader.load());

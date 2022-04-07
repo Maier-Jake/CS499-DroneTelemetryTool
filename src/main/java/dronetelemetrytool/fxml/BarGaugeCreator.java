@@ -107,10 +107,7 @@ public class BarGaugeCreator implements Initializable {
         STAT_max.setFocusTraversable(false);
         STAT_avg.setFocusTraversable(false);
         STAT_stddev.setFocusTraversable(false);
-
-
     }
-
 
     @FXML
     protected void onCompletedClick() throws IOException {
