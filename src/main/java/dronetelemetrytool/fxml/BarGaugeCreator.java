@@ -45,7 +45,6 @@ public class BarGaugeCreator implements Initializable {
     @FXML
     private TextField STAT_stddev;
 
-
     @FXML
     private ComboBox<String> COMBO_Format;
 

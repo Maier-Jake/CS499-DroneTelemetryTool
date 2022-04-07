@@ -43,7 +43,6 @@ public class InputsSelector {
                         } catch (FileNotFoundException noCSV) {
                             System.out.println("File not found: ");
                         }
-
                     }
                 }});
 
