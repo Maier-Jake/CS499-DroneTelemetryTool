@@ -1,8 +1,7 @@
-package dronetelemetrytool.gaugeselection;
+package dronetelemetrytool.fieldparsing;
 
-import dronetelemetrytool.fxml.ChooserController;
+import dronetelemetrytool.fxml.InputsSelector;
 import dronetelemetrytool.MainApplication;
-import dronetelemetrytool.fxml.TextGaugeCreator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,11 +16,11 @@ public class GaugeSelection extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         fileStage = stage;
-        fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/csvChooser.fxml"));
+        fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/inputsSelector_view.fxml"));
        // Parent root = fxmlLoader.load();
 
-        scene = new Scene(fxmlLoader.load(), 800, 600, Color.DARKSLATEGRAY);
-        ChooserController csvControl = fxmlLoader.getController();
+        scene = new Scene(fxmlLoader.load(), 320, 240, Color.DARKSLATEGRAY);
+        InputsSelector csvControl = fxmlLoader.getController();
 
         csvControl.anounce();
 
@@ -39,8 +38,8 @@ public class GaugeSelection extends Application {
     }
 
     public static void main(String[] args) {
-        Long myLong = Long.parseLong("422345");
-        System.out.println(myLong);
+//        Long myLong = Long.parseLong("422345");
+//        System.out.println(myLong);
         launch();
     }
 

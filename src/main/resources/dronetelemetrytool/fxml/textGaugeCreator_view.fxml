@@ -16,6 +16,22 @@
         <Label styleClass="header2">
             <text>Statistics</text>
         </Label>
+        <HBox>
+            <Label text="Minimum" prefWidth="175"/>
+            <TextField fx:id="STAT_min" editable="false"/>
+        </HBox>
+        <HBox>
+            <Label text="Maximum" prefWidth="175"/>
+            <TextField fx:id="STAT_max" editable="false"/>
+        </HBox>
+        <HBox>
+            <Label text="Average" prefWidth="175"/>
+            <TextField fx:id="STAT_avg" editable="false"/>
+        </HBox>
+        <HBox>
+            <Label text="Standard Deviation" prefWidth="175"/>
+            <TextField fx:id="STAT_stddev" editable="false"/>
+        </HBox>
     </VBox>
    <Line endY="0" startY="-440.0" />
     <BorderPane>

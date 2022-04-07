@@ -1,25 +1,19 @@
 package dronetelemetrytool.fxml;
 
-import dronetelemetrytool.gaugeselection.FieldCollection;
+import dronetelemetrytool.fieldparsing.FieldCollection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.event.EventHandler;
-import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
-import javafx.scene.control.Button;
-import javafx.scene.Node;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 
-public class ChooserController{
+public class InputsSelector {
     @FXML private Text welcomeText;
     @FXML private Button selectCSVButton;
     @FXML private Button selectVideoButton;
