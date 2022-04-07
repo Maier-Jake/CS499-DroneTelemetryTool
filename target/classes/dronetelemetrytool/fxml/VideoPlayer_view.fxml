@@ -17,22 +17,14 @@
         <URL value="@DTT_Style.css" />
     </stylesheets>
     <HBox alignment="CENTER" prefHeight="600" prefWidth="1000">
-        <MediaView fx:id="mediaView" fitHeight="600" fitWidth="1000">
-<!--            <mediaPlayer>-->
-<!--                <MediaPlayer autoPlay="true">-->
-<!--                    <media>-->
-<!--                        <Media source="D:/Videos/190301_1_25_11.mp4"/>-->
-<!--                    </media>-->
-<!--                </MediaPlayer>-->
-<!--            </mediaPlayer>-->
-        </MediaView>
+        <MediaView fx:id="mediaView" fitHeight="600" fitWidth="1000"/>
     </HBox>
     <HBox fx:id="buttonBox" alignment="BASELINE_CENTER">
-        <Button styleClass="button" text="◀"/>
-        <Button styleClass="button" text="⏯"/>
-        <Button styleClass="button" text="▶"/>
-        <Button styleClass="button" text="⏭ 5x"/>
-        <Button styleClass="button" text="⏭ 10x"/>
+        <Button fx:id="reverseButton" styleClass="button" text="◀" onAction="#reverseClick"/>
+        <Button fx:id="pauseButton" styleClass="button" text="⏸" onAction="#pauseClick"/>
+        <Button fx:id="forwardButton" styleClass="button" text="▶" onAction="#forwardClick"/>
+        <Button fx:id="fiveSpeedButton" styleClass="button" text="⏭ 5x" onAction="#fiveSpeedClick"/>
+        <Button fx:id="eightSpeedButton" styleClass="button" text="⏭ 8x" onAction="#eightSpeedClick"/>
     </HBox>
 </VBox>
 
