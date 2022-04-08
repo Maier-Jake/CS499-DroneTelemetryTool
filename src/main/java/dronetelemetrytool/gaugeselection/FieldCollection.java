@@ -92,16 +92,56 @@ public class FieldCollection {
                     break;
             }
             System.out.println("Loaded "+tmpField.myName+" as type "+type);
+            /*
             if (type == 1) {
                 TimeField tf = new TimeField(tmpField);
                 System.out.println(tmpField.myName);
-                /*
                 for (int i=0 ; i<20 ; i++) {
                     tf.printAt(i);
                 }
-                */
             }
+            */
         }
+    }
+
+    public ArrayList<NumberField> getNumberFields() {
+        ArrayList<NumberField> nfs = new ArrayList<>();
+        for ( Field nf : typedFields.get(0)) {
+            nfs.add((NumberField) nf);
+        }
+        return nfs;
+    }
+
+    public ArrayList<TimeField> getTimeFields() {
+        ArrayList<TimeField> tfs = new ArrayList<>();
+        for ( Field tf : typedFields.get(1)) {
+            tfs.add((TimeField) tf);
+        }
+        return tfs;
+    }
+
+    public ArrayList<BoolField> getBoolFields() {
+        ArrayList<BoolField> bfs = new ArrayList<>();
+        for ( Field bf : typedFields.get(2)) {
+            bfs.add((BoolField) bf);
+        }
+        return bfs;
+    }
+
+    public ArrayList<StringField> getStringFields() {
+        ArrayList<StringField> sfs = new ArrayList<>();
+        for ( Field sf : typedFields.get(3)) {
+            sfs.add((StringField) sf);
+        }
+        return sfs;
+    }
+
+    public ArrayList<NullField> getNullFields() {
+        ArrayList<NullField> nfs = new ArrayList<>();
+        for ( Field nf : typedFields.get(4)) {
+            nfs.add((NullField) nf);
+        }
+        return nfs;
     }
 
     public void loadFieldTypes() {
