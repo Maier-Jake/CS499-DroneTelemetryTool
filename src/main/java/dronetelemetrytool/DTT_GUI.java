@@ -96,14 +96,21 @@ public class DTT_GUI {
         createStage(newStage, fxmlLoader);
     }
 
+    public static void fieldSelectionCreator() throws IOException {
+        Stage newStage = new Stage();
+        newStage.setTitle("DTT - Field Selection Tool");
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/fieldSelection_view.fxml"));
+        createStage(newStage, fxmlLoader);
+    }
+
     private static void createStage(Stage s, FXMLLoader fxmlLoader) throws IOException {
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(MainApplication.class.getResource("fxml/DTT_Style.css").toExternalForm());
         s.setScene(scene);
         s.show();
-        s.setMaxHeight(1000); s.setMinHeight(470);
-        s.setMaxWidth(1500); s.setMinWidth(400);
+        s.setMaxHeight(1000);
+        s.setMinHeight(470);
+        s.setMaxWidth(1500);
+        s.setMinWidth(400);
     }
-
-
 }
