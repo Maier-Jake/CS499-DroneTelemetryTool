@@ -9,25 +9,28 @@
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <VBox alignment="CENTER" prefHeight="509.0" prefWidth="697.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="dronetelemetrytool.fxml.InputsSelector">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-
     <stylesheets>
         <URL value="@DTT_Style.css" />
     </stylesheets>
-
-    <Label styleClass="header2">
-        <text>Welcome to Group 7's Drone Telemetry Tool</text>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <Label styleClass="header1">
+        <text>Drone Telemetry Tool</text>
     </Label>
-   <BorderPane prefHeight="65.0" prefWidth="657.0" />
+<!--   <BorderPane prefHeight="65.0" prefWidth="657.0" />-->
+    <HBox alignment="CENTER">
+        <TextField editable="false" focusTraversable="false" text="Hey" fx:id="CSVaddress" prefWidth="310"/>
+        <Region prefWidth="10" />
+        <Button onAction="#onCSVClick" text="Select CSV" prefWidth="110"/>
+    </HBox>
+    <HBox alignment="CENTER">
+        <TextField editable="false" focusTraversable="false" text="Hey" fx:id="VIDEOaddress" prefWidth="310"/>
+        <Region prefWidth="10" />
+        <Button onAction="#onVideoClick" text="Select Video" prefWidth="110"/>
+    </HBox>
 
-    <Button onAction="#onCSVClick" text="Select CSV" ButtonBar.buttonData="LEFT">
-
-    </Button>
-
-    <Button onAction="#onVideoClick" text="Select Video" ButtonBar.buttonData="RIGHT">
-
-    </Button>
 </VBox>
