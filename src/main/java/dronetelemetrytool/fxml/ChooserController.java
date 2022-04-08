@@ -3,19 +3,12 @@ package dronetelemetrytool.fxml;
 import dronetelemetrytool.gaugeselection.FieldCollection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.event.EventHandler;
-import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
-import javafx.scene.Node;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
@@ -49,12 +42,11 @@ public class ChooserController{
                     } catch (FileNotFoundException noCSV) {
                         System.out.println("File not found: ");
                     }
-
                 }
             }});
     }
 
-    public void anounce(){
+    public void announce(){
         System.out.println("Controller accessed.");
     }
 

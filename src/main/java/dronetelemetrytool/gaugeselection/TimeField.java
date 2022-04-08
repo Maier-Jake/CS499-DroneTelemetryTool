@@ -6,19 +6,20 @@ import java.util.ArrayList;
 import java.lang.Long;
 import java.util.List;
 
-public class TimeField {
+public class TimeField extends Field {
     SimpleDateFormat timeTemplate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     SimpleDateFormat decimalTimeTemplate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS");
     List<Long> myTimes = new ArrayList<>();
-    Field myField;
+    int nullCounter = 0;
 
     public TimeField(Field myField) {
-        this.myField = myField;
+        super(myField.myName);
+        super.rawData = myField.rawData;
         parseTimeField();
     }
 
     private void parseTimeField() {
-        for (String time : myField.getDataList()) {
+        for (String time : super.getRawData()) {
             try {
                 myTimes.add(decimalTimeTemplate.parse(time).getTime());
             } catch (ParseException e) {
@@ -26,7 +27,7 @@ public class TimeField {
                     myTimes.add(timeTemplate.parse(time).getTime());
                 } catch (ParseException ex) {
                     e.printStackTrace();
-                    System.out.println("Error parsing time "+time+"; adding a null value.");
+                    nullCounter++;
                     myTimes.add(null);
                     return;
                 }
@@ -35,7 +36,7 @@ public class TimeField {
         }
     }
 
-    void printTimeAt(int index) {
+    public void printDataAt(int index) {
         System.out.println(myTimes.get(index));
     }
 }

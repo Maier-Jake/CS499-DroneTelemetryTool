@@ -2,7 +2,6 @@ package dronetelemetrytool.gaugeselection;
 
 import dronetelemetrytool.fxml.ChooserController;
 import dronetelemetrytool.MainApplication;
-import dronetelemetrytool.fxml.TextGaugeCreator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,7 +22,7 @@ public class GaugeSelection extends Application {
         scene = new Scene(fxmlLoader.load(), 320, 240, Color.DARKSLATEGRAY);
         ChooserController csvControl = fxmlLoader.getController();
 
-        csvControl.anounce();
+        csvControl.announce();
 
         csvStage.setTitle("CSV Selection");
         csvStage.setScene(scene);

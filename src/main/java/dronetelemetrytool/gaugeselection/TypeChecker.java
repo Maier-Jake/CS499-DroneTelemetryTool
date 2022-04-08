@@ -29,7 +29,7 @@ public class TypeChecker {
         float tolerance = .05f;
 
         // Count the occurrences of each type in the Field.
-        for ( String datum : tmpField.getDataList() ) {
+        for ( String datum : tmpField.getRawData() ) {
             if (nullPattern.matcher(datum).matches()) { counts[4]++; }
             else if (floatPattern.matcher(datum).matches() || intPattern.matcher(datum).matches()) {
                 counts[0]++;

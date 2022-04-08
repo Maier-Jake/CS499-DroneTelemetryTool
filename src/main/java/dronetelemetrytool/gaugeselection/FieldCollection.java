@@ -7,10 +7,24 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class FieldCollection {
+    // After a subset of Fields is selected and typed, the typedFields array
+    // holds an array for each of the Field subtypes with their data as the
+    // appropriate type. Each type is indexed by its type code.
+    List<ArrayList<Field>> typedFields = new ArrayList<>();
+    // fields attribute stores each column of the CSV as untyped
+    // Field() object with an array of String data and a title
     List<Field> fields;
     String[] fieldNames;
     int rowCount;
     TypeChecker myTypeChecker = new TypeChecker();
+
+    public FieldCollection() {
+        typedFields.add(new ArrayList<Field>()); // Number type
+        typedFields.add(new ArrayList<Field>()); // Time type
+        typedFields.add(new ArrayList<Field>()); // Boolean type
+        typedFields.add(new ArrayList<Field>()); // String type
+        typedFields.add(new ArrayList<Field>()); // Null type
+    }
 
     public void loadCSV(FileReader csvFileReader) {
         CSVReader reader = new CSVReaderBuilder(csvFileReader).build();
@@ -34,7 +48,7 @@ public class FieldCollection {
                 // Add the appropriate data points to the Field corresponding to each row.
                 index = 0;
                 while (index < row.length) {
-                    fields.get(index).addDatum(row[index]);
+                    fields.get(index).addRawDatum(row[index]);
                     index++;
                 }
                 rowCount++;
@@ -48,13 +62,42 @@ public class FieldCollection {
 
         loadFieldTypes();
 
+        ArrayList<String> selectedFields = new ArrayList<String>();
+        selectedFields.add(fields.get(0).myName);
+        selectedFields.add(fields.get(3).myName);
+        selectedFields.add(fields.get(22).myName);
+        selectedFields.add(fields.get(26).myName);
+
+        System.out.println(selectedFields);
+        // Get the type of each selected field and cast it to the appropriate type Field.
+        int type;
         for (Field tmpField : fields ) {
-            if (tmpField.getType() == 1) {
+            if (!selectedFields.contains(tmpField.myName)) { continue; }
+            type = tmpField.getType();
+            switch(type) {
+                case 0:
+                    typedFields.get(0).add(new NumberField(tmpField));
+                    break;
+                case 1:
+                    typedFields.get(1).add(new TimeField(tmpField));
+                    break;
+                case 2:
+                    typedFields.get(2).add(new BoolField(tmpField));
+                    break;
+                case 3:
+                    typedFields.get(3).add(new StringField(tmpField));
+                    break;
+                case 4:
+                    typedFields.get(4).add(new NullField(tmpField));
+                    break;
+            }
+            System.out.println("Loaded "+tmpField.myName+" as type "+type);
+            if (type == 1) {
                 TimeField tf = new TimeField(tmpField);
                 System.out.println(tmpField.myName);
                 /*
                 for (int i=0 ; i<20 ; i++) {
-                    tf.printTimeAt(i);
+                    tf.printAt(i);
                 }
                 */
             }
