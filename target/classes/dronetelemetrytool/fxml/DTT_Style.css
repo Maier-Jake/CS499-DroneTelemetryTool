@@ -96,3 +96,15 @@
 .color-picker .color-picker-label .text {
     -fx-fill: rgb(0,1,0);
 }
+
+.right-border {
+    -fx-border-color: black;
+    -fx-border-width: 0 2 0 0;
+    -fx-border-style: solid;
+}
+
+.left-border {
+    -fx-border-color: black;
+    -fx-border-width: 0 0 0 2;
+    -fx-border-style: solid;
+}
