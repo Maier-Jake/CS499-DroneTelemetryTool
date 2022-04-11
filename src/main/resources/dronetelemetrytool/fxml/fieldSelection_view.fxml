@@ -25,12 +25,19 @@
 
     <HBox alignment="CENTER">
         <VBox alignment="CENTER">
+            <HBox alignment="CENTER">
+                <Region prefHeight="50" />
+                <ListView fx:id="leftView" focusTraversable="false"/>
+            </HBox>
 
-            <TextField editable="true" focusTraversable="false" text="Search..." fx:id="CSVaddress" prefWidth="250"/>
-            <Region prefWidth="10" />
+            <HBox alignment="CENTER">
+                <Region prefHeight="100" />
+                <TextField editable="true" focusTraversable="true" text="Search..." fx:id="CSVaddress" prefWidth="250"/>
+            </HBox>
         </VBox>
 
         <VBox alignment="CENTER">
+            <Region prefWidth="150" />
             <HBox alignment="CENTER">
                 <Region prefHeight="50" />
                 <Button onAction="#onCreateClick" text="Remove" prefWidth="110"/>
@@ -44,14 +51,18 @@
 
         <VBox alignment="CENTER">
             <HBox alignment="CENTER">
+                <ListView fx:id="rightView" focusTraversable="false"/>
+            </HBox>
+
+            <HBox alignment="CENTER">
+                <Region prefHeight="100" />
                 <HBox alignment="CENTER">
-                    <Region prefWidth="10" />
-                    <Button onAction="#onSaveClick" text="Save" prefWidth="110"/>
+                    <Button onAction="#onSaveClick" text="Save" prefWidth="120"/>
                 </HBox>
 
                 <HBox alignment="CENTER">
-                    <Region prefWidth="10" />
-                    <Button onAction="#onContinueClick" text="Continue" prefWidth="110"/>
+                    <Region prefWidth="5" />
+                    <Button onAction="#onContinueClick" text="Continue" prefWidth="120"/>
                 </HBox>
             </HBox>
         </VBox>
