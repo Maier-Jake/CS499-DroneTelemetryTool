@@ -24,27 +24,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 public class DTT_Tools {
-
-    public static Media chooseVideo()
-    {
-        Stage newStage = new Stage();
-        FileChooser videoFileChooser = new FileChooser();
-
-        videoFileChooser.setTitle("Open Video File");
-        videoFileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("MP4", "*.mp4")
-        );
-        File mediaFile = videoFileChooser.showOpenDialog(newStage);
-        Media media = null;
-        try {
-            media = new Media(mediaFile.toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        return media;
-    }
-
+    
     public static Stage displayVideo(Media media)
     {
         //create Stage for tile to go onto

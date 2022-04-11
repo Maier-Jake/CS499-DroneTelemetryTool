@@ -11,30 +11,51 @@
 
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<?import eu.hansolo.tilesfx.tools.FlowGridPane?>
 
-<VBox alignment="CENTER" prefHeight="509.0" prefWidth="697.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="dronetelemetrytool.fxml.InputsSelector">
+
+<BorderPane prefHeight="509.0" prefWidth="697.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="dronetelemetrytool.fxml.InputsSelector">
     <stylesheets>
         <URL value="@DTT_Style.css" />
     </stylesheets>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-    <Label styleClass="header1">
-        <text>Drone Telemetry Tool</text>
-    </Label>
-<!--   <BorderPane prefHeight="65.0" prefWidth="657.0" />-->
-    <HBox alignment="CENTER">
-        <TextField editable="false" disable="true" text="Hey" fx:id="CSVaddress" prefWidth="500"/>
-        <Region prefWidth="10" />
-        <Button onAction="#onCSVClick" text="Select CSV" prefWidth="110"/>
-    </HBox>
-    <HBox alignment="CENTER">
-        <TextField editable="false" disable="true" text="Hey" fx:id="VIDEOaddress" prefWidth="500"/>
-        <Region prefWidth="10" />
-        <Button onAction="#onVideoClick" text="Select Video" prefWidth="110"/>
-    </HBox>
-    <Button onAction="#onContinueClick" text="Continue" prefWidth="110"/>
-    <FlowGridPane fx:id="Fields"/>
+    <top>
+        <VBox alignment="CENTER">
+            <Label styleClass="header1" text="Drone Telemetry Tool"/>
+        </VBox>
+    </top>
+    <center>
+        <VBox alignment="CENTER">
+            <HBox alignment="CENTER">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+                <TextField editable="false" disable="true" text="" fx:id="CSVaddress" prefWidth="500"/>
+                <Region prefWidth="10" />
+                <Button onAction="#onCSVClick" text="Select CSV" prefWidth="110"/>
+            </HBox>
+            <HBox alignment="CENTER">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+                <TextField editable="false" disable="true" text="" fx:id="VIDEOaddress" prefWidth="500"/>
+                <Region prefWidth="10" />
+                <Button onAction="#onVideoClick" text="Select Video" prefWidth="110"/>
+            </HBox>
+        </VBox>
+    </center>
+    <bottom>
+        <ButtonBar>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <buttons>
+                <Button fx:id="continueButton" onAction="#onContinueClick" text="Continue" prefWidth="110" ButtonBar.buttonData="RIGHT"/>
+            </buttons>
+        </ButtonBar>
 
-</VBox>
+    </bottom>
+
+<!--   <BorderPane prefHeight="65.0" prefWidth="657.0" />-->
+</BorderPane>

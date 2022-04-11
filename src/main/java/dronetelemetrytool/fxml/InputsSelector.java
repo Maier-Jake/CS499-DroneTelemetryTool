@@ -1,5 +1,7 @@
 package dronetelemetrytool.fxml;
 
+import dronetelemetrytool.DTT_GUI;
+import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.FieldCollection;
 import eu.hansolo.tilesfx.tools.FlowGridPane;
 import javafx.event.ActionEvent;
@@ -10,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.event.EventHandler;
@@ -19,6 +22,9 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Paths;
 
 public class InputsSelector {
     @FXML
@@ -26,81 +32,78 @@ public class InputsSelector {
     @FXML
     public TextField CSVaddress;
     @FXML
-    public FlowGridPane Fields;
-
-    FileChooser fileChooser;
-    FileChooser fileChooserV;   // This one is for video selection
-    File selectedFile;
-    private Stage csvStage;
-    private FieldCollection myFieldCollection;
+    public Button continueButton;
 
     @FXML
     protected void onCSVClick() {
-        selectedFile = fileChooser.showOpenDialog(csvStage);
+
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Select Drone's Telemetry CSV file");
+        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+        String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
+        chooser.setInitialDirectory(new File(currentPath));
+        File selectedFile = chooser.showOpenDialog(new Stage());
+
         if (selectedFile != null) {
             String path = selectedFile.toPath().toString();
             CSVaddress.setText(path);
-            myFieldCollection = new FieldCollection();
+            FieldCollection collection = new FieldCollection();
             try {
                 FileReader reader = new FileReader(path);
-                myFieldCollection.loadCSV(reader);
+                collection.loadCSV(reader);
+                MainApplication.fields = collection;
             } catch (FileNotFoundException noCSV) {
                 System.out.println("File not found: ");
+            }
+
+            //check to see if video loaded. if so, activate the continue button.
+            if(VIDEOaddress.getText() != "")
+            {
+                continueButton.setDisable(false);
             }
         }
     }
 
     @FXML
     protected void onVideoClick() {
-        selectedFile = fileChooserV.showOpenDialog(csvStage);
+
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Select Drone's Video file correlated to Telemetry file");
+        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP4 Files", "*.mp4"));
+
+        String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
+        chooser.setInitialDirectory(new File(currentPath));
+        File selectedFile = chooser.showOpenDialog(new Stage());
+
         if (selectedFile != null) {
             String path = selectedFile.toPath().toString();
             VIDEOaddress.setText(path);
+            Media tempMed = null;
+            try {
+                tempMed = new Media(selectedFile.toURI().toURL().toString());
+                MainApplication.video = tempMed;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
+            //check to see if csv telemetry loaded. if so, activate the continue button.
+            if(CSVaddress.getText() != "")
+            {
+                continueButton.setDisable(false);
+            }
         }
     }
 
     @FXML
-    protected void onContinueClick() {
-
+    protected void onContinueClick() throws IOException {
+        Stage stage = (Stage) continueButton.getScene().getWindow();
+        stage.close();
+        DTT_GUI.fieldSelectionCreator();
     }
 
     @FXML
     public void initialize() throws FileNotFoundException {
-        System.out.println("Initializing Controller");
-        fileChooser = new FileChooser();
-        // Set the file chooser button string
-        fileChooser.setTitle("Open CSV file");
-        // Set the types of files accepted
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
-
-        fileChooserV = new FileChooser();
-        // Set the file chooser button string
-        fileChooserV.setTitle("Open Video file");
-        // Set the types of files accepted
-        fileChooserV.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP4 Files", "*.mp4"));
+        continueButton.setDisable(true);
     }
-
-    public void setStage(Stage stage) {
-        csvStage = stage;
-        Fields = new FlowGridPane(8, 6);
-        Fields.setHgap(5);
-        Fields.setVgap(5);
-        Fields.setAlignment(Pos.CENTER);
-        Fields.setCenterShape(true);
-        Fields.setPadding(new Insets(5));
-        //pane.setPrefSize(800, 600);
-        Fields.setBackground(new Background(new BackgroundFill(Color.web("#101214"), CornerRadii.EMPTY, Insets.EMPTY)));
-    }
-
-
-    /*
-    @FXML
-    protected void onCSVButton(ActionEvent ae) {
-        Node eventNode = (Node) ae.getSource();
-        stage = (Stage) eventNode.getScene().getWindow();
-        selectedFile = fileChooser.showOpenDialog(stage);
-        System.out.println(selectedFile.toPath());
-    }
-    */
-
 }
