@@ -59,7 +59,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         timer.start();
-        DTT_GUI.inputSelector();
+        DTT_GUI.gaugeSelector();
 
     }
 

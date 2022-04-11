@@ -17,19 +17,19 @@
         </Label>
         <HBox>
             <Label text="Minimum" prefWidth="175"/>
-            <TextField fx:id="STAT_min" editable="false"/>
+            <TextField fx:id="STAT_min" editable="false" disable="true"/>
         </HBox>
         <HBox>
             <Label text="Maximum" prefWidth="175"/>
-            <TextField fx:id="STAT_max" editable="false"/>
+            <TextField fx:id="STAT_max" editable="false" disable="true"/>
         </HBox>
         <HBox>
             <Label text="Average" prefWidth="175"/>
-            <TextField fx:id="STAT_avg" editable="false"/>
+            <TextField fx:id="STAT_avg" editable="false" disable="true"/>
         </HBox>
         <HBox>
             <Label text="Standard Deviation" prefWidth="175"/>
-            <TextField fx:id="STAT_stddev" editable="false"/>
+            <TextField fx:id="STAT_stddev" editable="false" disable="true"/>
         </HBox>
     </VBox>
    <Line endY="0" startY="-440.0" />

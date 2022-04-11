@@ -108,6 +108,8 @@ public class BarGaugeCreator implements Initializable {
         STAT_stddev.setFocusTraversable(false);
 
 
+
+
     }
 
 
