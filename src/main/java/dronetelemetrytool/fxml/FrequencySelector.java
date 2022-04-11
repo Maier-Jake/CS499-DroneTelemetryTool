@@ -3,36 +3,31 @@ package dronetelemetrytool.fxml;
 import dronetelemetrytool.DTT_GUI;
 import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.FieldCollection;
-import eu.hansolo.tilesfx.tools.FlowGridPane;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.*;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
-import javafx.event.EventHandler;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
 
-public class InputsSelector {
+public class FrequencySelector {
     @FXML
     public TextField VIDEOaddress;
     @FXML
     public TextField CSVaddress;
     @FXML
     public Button continueButton;
+
+    @FXML
+    public ListView listView;
 
     @FXML
     protected void onCSVClick() {

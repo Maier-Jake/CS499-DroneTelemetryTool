@@ -49,6 +49,8 @@ public class Circle90GaugeCreator implements Initializable {
     @FXML
     private ComboBox<String> COMBO_Alarm;
 
+
+
     @FXML
     protected void onCancelClick() {
         System.out.println("Cancelled creating this gauge.");

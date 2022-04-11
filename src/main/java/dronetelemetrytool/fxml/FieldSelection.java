@@ -1,10 +1,12 @@
 package dronetelemetrytool.fxml;
 
+import dronetelemetrytool.DTT_GUI;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
@@ -12,8 +14,10 @@ import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -26,10 +30,15 @@ public class FieldSelection implements Initializable {
 
     @FXML
     public ListView rightView;
+    public Button createButton;
+    public Button removeButton;
 
     @FXML
-    protected void onCreateClick() {
-
+    protected void onCreateClick() throws IOException {
+        Stage stage = (Stage) createButton.getScene().getWindow();
+        stage.close();
+        leftView.getSelectionModel().getSelectedIndices();
+        DTT_GUI.gaugeSelector();
     }
 
     @FXML

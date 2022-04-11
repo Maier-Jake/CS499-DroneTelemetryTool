@@ -1,5 +1,6 @@
 package dronetelemetrytool.gauges;
 
+import dronetelemetrytool.fieldparsing.Field;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.TileBuilder;
 import javafx.beans.value.ChangeListener;

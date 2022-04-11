@@ -32,4 +32,31 @@ public class NumberField extends Field {
     public void printDataAt(int index) {
         System.out.println(myNumbers.get(index));
     }
+
+
+    public float getNext()
+    {
+        if (myNumbers.get(currentIndex) != null)
+        {
+            return myNumbers.get(currentIndex++);
+        }
+        else
+        {
+            currentIndex++;
+            return -1;
+        }
+    }
+
+    public float getPrev()
+    {
+        if (myNumbers.get(--currentIndex) != null)
+        {
+            return myNumbers.get(currentIndex);
+        }
+        else
+        {
+            --currentIndex;
+            return -1;
+        }
+    }
 }

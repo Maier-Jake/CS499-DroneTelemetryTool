@@ -7,11 +7,13 @@ import java.util.List;
 public class Field {
     String myName;
     List<String> rawData;
+    int currentIndex;
     int type;
 
     public Field(String name) {
         myName = name;
         rawData = new ArrayList<String>();
+        currentIndex = 0;
     }
 
     void addRawDatum(String datum) { rawData.add(datum); }
@@ -54,5 +56,28 @@ public class Field {
             }
         }
         System.out.println();
+    }
+
+    public boolean hasNext()
+    {
+        if (currentIndex < rawData.size())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public boolean hasPrev()
+    {
+        if (currentIndex > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class StringField extends Field{
     List<String> myStrings = new ArrayList<>();
     int nullCounter = 0;
+
     public StringField(Field myField) {
         super(myField.myName);
         super.rawData = myField.rawData;
@@ -25,6 +26,5 @@ public class StringField extends Field{
 
     public void printDataAt(int index) {
         System.out.println(myStrings.get(index));
-
     }
 }

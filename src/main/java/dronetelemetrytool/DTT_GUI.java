@@ -96,7 +96,7 @@ public class DTT_GUI {
         createStage(newStage, fxmlLoader);
     }
 
-    public static void fieldSelectionCreator() throws IOException {
+    public static void fieldSelection() throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Field Selection Tool");
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/fieldSelection_view.fxml"));

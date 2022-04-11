@@ -1,6 +1,7 @@
 package dronetelemetrytool.gauges;
 
 import dronetelemetrytool.DTT_Tools;
+import dronetelemetrytool.fieldparsing.NumberField;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
@@ -14,6 +15,7 @@ import java.util.Arrays;
 
 public class CircleGauge extends Gauge {
 
+    private NumberField field;
     private GradientLookup gradient;
     private Media alarm;
     private MediaPlayer mediaPlayer;
@@ -52,8 +54,13 @@ public class CircleGauge extends Gauge {
 
     @Override
     public void update() {
-        double newVal = RND.nextDouble() * tile.getRange();
+//        double newVal = RND.nextDouble() * tile.getRange();
+
+        float newVal = field.getNext();
+
+
         double newValInRange = DTT_Tools.map(newVal, 0, tile.getRange(), tile.getMinValue(), tile.getMaxValue());
+
         tile.setValue(newValInRange);
         //tile.setValue(tile.getMaxValue());
         double mappedVal = DTT_Tools.map(tile.getValue(), tile.getMinValue(), tile.getMaxValue(), 0, tile.getRange());
