@@ -33,17 +33,35 @@ public class FieldSelection implements Initializable {
     public Button createButton;
     public Button removeButton;
 
+    ArrayList<String> leftSet = new ArrayList<>();
+    ObservableList<String> leftFields = FXCollections.observableArrayList();
+    ArrayList<String> rightSet = new ArrayList<>();
+    ObservableList<String> rightFields = FXCollections.observableArrayList();
+
     @FXML
     protected void onCreateClick() throws IOException {
-        Stage stage = (Stage) createButton.getScene().getWindow();
-        stage.close();
         leftView.getSelectionModel().getSelectedIndices();
         DTT_GUI.gaugeSelector();
+        // Checks if right list length is <10
+        if (rightSet.size() < 10 && leftView.getSelectionModel().getSelectedIndex() != -1) {
+            // Adds item to right
+            rightSet.add(leftSet.get(leftView.getSelectionModel().getSelectedIndex()));
+            // Removes item from left
+            leftSet.remove(leftSet.get(leftView.getSelectionModel().getSelectedIndex()));
+            // Update the observable lists
+            leftFields.setAll(leftSet);
+            rightFields.setAll(rightSet);
+        }
     }
 
     @FXML
     protected void onRemoveClick() {
-
+        if ( rightView.getSelectionModel().getSelectedIndex() != -1 ) {
+            leftSet.add(rightSet.get(rightView.getSelectionModel().getSelectedIndex()));
+            rightSet.remove(rightSet.get(rightView.getSelectionModel().getSelectedIndex()));
+            leftFields.setAll(leftSet);
+            rightFields.setAll(rightSet);
+        }
     }
 
     @FXML
@@ -58,25 +76,26 @@ public class FieldSelection implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<String> leftFields = FXCollections.observableArrayList();
-
-        ArrayList<String> leftSet = new ArrayList<>();
         leftSet.add("String 1");
         leftSet.add("String 2");
         leftSet.add("String 3");
         leftSet.add("String 4");
+        leftSet.add("String 5");
+        leftSet.add("String 6");
+        leftSet.add("String 7");
+        leftSet.add("String 8");
+        leftSet.add("String 9");
+        leftSet.add("String 10");
+        leftSet.add("String 11");
+        leftSet.add("String 12");
+
         leftFields.setAll(leftSet);
-
         leftView.setItems(leftFields);
-        //leftView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        leftView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
-        ObservableList<String> rightFields = FXCollections.observableArrayList();
-        ArrayList<String> rightSet = new ArrayList<>();
         rightFields.setAll(rightSet);
-
         rightView.setItems(rightFields);
-
-        //rightView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        rightView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 }
