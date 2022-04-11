@@ -7,7 +7,9 @@ import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Stop;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -48,6 +50,12 @@ public class Circle90GaugeCreator implements Initializable {
     private TextField STAT_stddev;
     @FXML
     private ComboBox<String> COMBO_Alarm;
+    @FXML
+    private ComboBox<String> unitTypeComboBox;
+    @FXML
+    private ComboBox<String> currentUnitComboBox;
+    @FXML
+    private ComboBox<String> desiredUnitComboBox;
 
     @FXML
     protected void onCancelClick() {
@@ -105,6 +113,10 @@ public class Circle90GaugeCreator implements Initializable {
         STAT_max.setFocusTraversable(false);
         STAT_avg.setFocusTraversable(false);
         STAT_stddev.setFocusTraversable(false);
+
+        unitTypeComboBox.getItems().setAll("speed", "length");
+        currentUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
+        desiredUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
     }
 
 
