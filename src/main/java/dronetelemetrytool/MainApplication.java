@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class MainApplication extends Application {
 
     private static Media video;
-
     public static ArrayList<Gauge> gauges;
 
     private static long lastTimerCall;
@@ -25,7 +24,8 @@ public class MainApplication extends Application {
     private static int gaugeUpdateFrequencyModifier;
     private static AnimationTimer timer;
 
-    @Override public void init() {
+    @Override
+    public void init() {
 
         gauges = new ArrayList<Gauge>(10);
 
@@ -58,9 +58,6 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        //gauges.forEach((Gauge n) -> n.display());
-        //video = DTT_Tools.chooseVideo();
-        //DTT_Tools.displayVideo(video);
         timer.start();
         DTT_GUI.inputSelector();
 
