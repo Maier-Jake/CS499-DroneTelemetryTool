@@ -56,6 +56,18 @@ public class XYPlotGaugeCreator implements Initializable {
     private TextField STAT_avg2;
     @FXML
     private TextField STAT_stddev2;
+    @FXML
+    private ComboBox<String> unitTypeComboBox;
+    @FXML
+    private ComboBox<String> currentUnitComboBox;
+    @FXML
+    private ComboBox<String> desiredUnitComboBox;
+    @FXML
+    private ComboBox<String> unitTypeComboBox2;
+    @FXML
+    private ComboBox<String> currentUnitComboBox2;
+    @FXML
+    private ComboBox<String> desiredUnitComboBox2;
 
     @FXML
     protected void onCancelClick() {
@@ -123,6 +135,14 @@ public class XYPlotGaugeCreator implements Initializable {
         STAT_max2.setFocusTraversable(false);
         STAT_avg2.setFocusTraversable(false);
         STAT_stddev2.setFocusTraversable(false);
+
+        unitTypeComboBox.getItems().setAll("speed", "length");
+        currentUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
+        desiredUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
+
+        unitTypeComboBox2.getItems().setAll("speed", "length");
+        currentUnitComboBox2.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
+        desiredUnitComboBox2.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
     }
 
 

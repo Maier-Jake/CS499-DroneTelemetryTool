@@ -31,6 +31,18 @@
             <Label text="Standard Deviation" prefWidth="175"/>
             <TextField fx:id="STAT_stddev" editable="false" disable="true"/>
         </HBox>
+        <HBox>
+            <Label text="Unit Type" prefWidth="175"/>
+            <ComboBox fx:id="unitTypeComboBox"/>
+        </HBox>
+        <HBox>
+            <Label text="Current Unit" prefWidth="175"/>
+            <ComboBox fx:id="currentUnitComboBox"/>
+        </HBox>
+        <HBox>
+            <Label text="Desired Unit" prefWidth="175"/>
+            <ComboBox fx:id="desiredUnitComboBox"/>
+        </HBox>
     </VBox>
    <Line endY="0" startY="-440.0" />
     <BorderPane>

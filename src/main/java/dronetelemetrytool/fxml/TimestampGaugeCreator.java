@@ -6,6 +6,7 @@ import dronetelemetrytool.gauges.TimestampGauge;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -29,6 +30,12 @@ public class TimestampGaugeCreator implements Initializable {
     private TextField STAT_avg;
     @FXML
     private TextField STAT_stddev;
+    @FXML
+    private ComboBox<String> unitTypeComboBox;
+    @FXML
+    private ComboBox<String> currentUnitComboBox;
+    @FXML
+    private ComboBox<String> desiredUnitComboBox;
 
     @FXML
     protected void onCancelClick() {
@@ -51,6 +58,10 @@ public class TimestampGaugeCreator implements Initializable {
         STAT_max.setFocusTraversable(false);
         STAT_avg.setFocusTraversable(false);
         STAT_stddev.setFocusTraversable(false);
+
+        unitTypeComboBox.getItems().setAll("speed", "length");
+        currentUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
+        desiredUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
     }
 
 

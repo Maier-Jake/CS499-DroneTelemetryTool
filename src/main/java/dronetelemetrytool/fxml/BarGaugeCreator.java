@@ -50,6 +50,12 @@ public class BarGaugeCreator implements Initializable {
 
     @FXML
     private ComboBox<String> COMBO_Alarm;
+    @FXML
+    private ComboBox<String> unitTypeComboBox;
+    @FXML
+    private ComboBox<String> currentUnitComboBox;
+    @FXML
+    private ComboBox<String> desiredUnitComboBox;
 
     @FXML
     protected void onCancelClick() {
@@ -107,7 +113,9 @@ public class BarGaugeCreator implements Initializable {
         STAT_avg.setFocusTraversable(false);
         STAT_stddev.setFocusTraversable(false);
 
-
+        unitTypeComboBox.getItems().setAll("speed", "length");
+        currentUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
+        desiredUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
 
 
     }
