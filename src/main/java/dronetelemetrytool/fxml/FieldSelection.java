@@ -8,10 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.cell.CheckBoxListCell;
-import javafx.scene.control.cell.ComboBoxListCell;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Callback;
 
 import java.net.URL;
@@ -34,8 +30,8 @@ public class FieldSelection implements Initializable {
 
     @FXML
     protected void onCreateClick() {
-        // Checks if right list length is <10, if so,
-        if (rightSet.size() < 10) {
+        // Checks if right list length is <10
+        if (rightSet.size() < 10 && leftView.getSelectionModel().getSelectedIndex() != -1) {
             // Adds item to right
             rightSet.add(leftSet.get(leftView.getSelectionModel().getSelectedIndex()));
             // Removes item from left
@@ -48,10 +44,12 @@ public class FieldSelection implements Initializable {
 
     @FXML
     protected void onRemoveClick() {
-        leftSet.add(rightSet.get(rightView.getSelectionModel().getSelectedIndex()));
-        rightSet.remove(rightSet.get(rightView.getSelectionModel().getSelectedIndex()));
-        leftFields.setAll(leftSet);
-        rightFields.setAll(rightSet);
+        if ( rightView.getSelectionModel().getSelectedIndex() != -1 ) {
+            leftSet.add(rightSet.get(rightView.getSelectionModel().getSelectedIndex()));
+            rightSet.remove(rightSet.get(rightView.getSelectionModel().getSelectedIndex()));
+            leftFields.setAll(leftSet);
+            rightFields.setAll(rightSet);
+        }
     }
 
     @FXML
@@ -66,7 +64,6 @@ public class FieldSelection implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-
         leftSet.add("String 1");
         leftSet.add("String 2");
         leftSet.add("String 3");
@@ -79,15 +76,14 @@ public class FieldSelection implements Initializable {
         leftSet.add("String 10");
         leftSet.add("String 11");
         leftSet.add("String 12");
-        leftFields.setAll(leftSet);
 
+        leftFields.setAll(leftSet);
         leftView.setItems(leftFields);
-        //leftView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        leftView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
         rightFields.setAll(rightSet);
         rightView.setItems(rightFields);
-
-        //rightView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        rightView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 }
