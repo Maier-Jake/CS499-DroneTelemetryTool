@@ -34,7 +34,7 @@
         <Region prefWidth="10" />
         <Button onAction="#onVideoClick" text="Select Video" prefWidth="110"/>
     </HBox>
-    
+    <Button onAction="#onContinueClick" text="Continue" prefWidth="110"/>
     <FlowGridPane fx:id="Fields"/>
 
 </VBox>

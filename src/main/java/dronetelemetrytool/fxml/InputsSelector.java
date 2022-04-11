@@ -60,6 +60,11 @@ public class InputsSelector {
     }
 
     @FXML
+    protected void onContinueClick() {
+
+    }
+
+    @FXML
     public void initialize() throws FileNotFoundException {
         System.out.println("Initializing Controller");
         fileChooser = new FileChooser();
@@ -86,6 +91,8 @@ public class InputsSelector {
         //pane.setPrefSize(800, 600);
         Fields.setBackground(new Background(new BackgroundFill(Color.web("#101214"), CornerRadii.EMPTY, Insets.EMPTY)));
     }
+
+
     /*
     @FXML
     protected void onCSVButton(ActionEvent ae) {

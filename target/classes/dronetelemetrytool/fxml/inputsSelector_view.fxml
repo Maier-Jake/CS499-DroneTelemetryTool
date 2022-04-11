@@ -34,16 +34,7 @@
         <Region prefWidth="10" />
         <Button onAction="#onVideoClick" text="Select Video" prefWidth="110"/>
     </HBox>
-    <FlowGridPane fx:id="Fields">
-<!--        <noOfCols>3</noOfCols>-->
-<!--        <noOfRows>3</noOfRows>-->
-<!--        <hgap>5</hgap>-->
-<!--        <vgap>5</vgap>-->
-<!--        <alignment>Pos.CENTER</alignment>-->
-<!--        <centerShape>true</centerShape>-->
-<!--        <padding>-->
-<!--            <Insets>5</Insets>-->
-<!--        </padding>-->
-    </FlowGridPane>
+    <Button onAction="#onContinueClick" text="Continue" prefWidth="110"/>
+    <FlowGridPane fx:id="Fields"/>
 
 </VBox>
