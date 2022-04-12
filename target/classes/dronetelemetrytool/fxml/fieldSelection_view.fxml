@@ -40,12 +40,12 @@
             <Region prefWidth="150" />
             <HBox alignment="CENTER">
                 <Region prefHeight="50" />
-                <Button onAction="#onCreateClick" text="Remove" prefWidth="110"/>
+                <Button onAction="#onCreateClick" text="Create" prefWidth="110" fx:id="createButton"/>
             </HBox>
 
             <HBox alignment="CENTER">
                 <Region prefHeight="50" />
-                <Button onAction="#onRemoveClick" text="Create" prefWidth="110"/>
+                <Button onAction="#onRemoveClick" text="Remove" prefWidth="110" fx:id="removeButton"/>
             </HBox>
         </VBox>
 

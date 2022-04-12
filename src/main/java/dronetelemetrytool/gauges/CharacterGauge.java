@@ -15,7 +15,7 @@ public class CharacterGauge extends Gauge{
     public CharacterGauge()
     {
         super();
-        field = MainApplication.fields.getStringFields().get(0);
+//        field = MainApplication.fields.getStringFields().get(0);
 
         tile.setSkinType(Tile.SkinType.CHARACTER);
         tile.setTitle("Character Gauge");

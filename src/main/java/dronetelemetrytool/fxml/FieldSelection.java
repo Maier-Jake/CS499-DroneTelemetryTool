@@ -1,11 +1,18 @@
 package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.DTT_GUI;
+import dronetelemetrytool.DTT_Tools;
+import dronetelemetrytool.MainApplication;
+import dronetelemetrytool.fieldparsing.Field;
+import dronetelemetrytool.fieldparsing.NumberField;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -39,46 +46,97 @@ public class FieldSelection implements Initializable {
     ObservableList<String> rightFields = FXCollections.observableArrayList();
 
     ObservableList<Integer> indices;
-    ArrayList<String> items = new ArrayList<>();
+
 
     @FXML
     protected void onCreateClick() throws IOException {
-        leftView.getSelectionModel().getSelectedIndices();
-        DTT_GUI.gaugeSelector();
+
         // Checks if right list length is <10
         indices = leftView.getSelectionModel().getSelectedIndices();
-        System.out.println(indices.size());
-        if (indices.size() > 0 && rightSet.size() + indices.size() <= 10) {
-            for (int i = 0; i < indices.size(); i++) {
-                items.add(leftSet.get(indices.get(i)));
+//        System.out.println(indices.size());
+        //if (selected > 0 , and selected + already made <= 10)
+        if (indices.size() > 2)
+        {
+            //error because we cannot create any gauges from >2 fields.
+            Stage popup = DTT_Tools.popup((Stage) createButton.getScene().getWindow(), "Cannot create any valid gauges from > 2 fields.");
+        }
+        else
+        {
+            if (indices.size() > 0) {
+                if (rightSet.size() < 10) {
+                    ArrayList<String> items = new ArrayList<>();
+                    for (int i = 0; i < indices.size(); i++) {
+                        items.add(leftSet.get(indices.get(i)));
+                    }
+                    if(items.size() == 1) {
+                        //creating gauge w/ 1 field
+                        String fieldName = items.get(0);
+                        Field relatedField = null;
+                        for (Field f : MainApplication.fields.getFields()) {
+                            if (f.myName == fieldName)
+                            {
+                                relatedField = f;
+                            }
+                        }
+                        if (relatedField != null)
+                        {
+                            DTT_GUI.gaugeSelector(relatedField);
+                        }
+                        else
+                        {
+                            System.out.println("Error... field not found");
+                        }
+                    }
+                    else {
+                        //creating gauge w/ 2 fields
+                        //both have to be number fields.
+                        Field field1;
+                        Field field2;
+                    }
+                }
+                else {
+                    //error because we cannot create any more gauges
+                    Stage popup = DTT_Tools.popup((Stage) createButton.getScene().getWindow(), "Cannot create more than 10 gauges.");
+                }
             }
-            for (int i = 0; i < indices.size(); i++) {
-                rightSet.add(items.get(i));
-                leftSet.remove(items.get(i));
+            else {
+                //error because nothing selected
+                Stage popup = DTT_Tools.popup((Stage) createButton.getScene().getWindow(), "No field(s) selected.");
             }
-            leftFields.setAll(leftSet);
-            rightFields.setAll(rightSet);
-            items.clear();
-            leftView.getSelectionModel().clearSelection();
+//            if (indices.size() > 0 && (indices.size() + rightSet.size()) <= 10) {
+//                ArrayList<String> items = new ArrayList<>();
+//                for (int i = 0; i < indices.size(); i++) {
+//                    items.add(leftSet.get(indices.get(i)));
+//                }
+//                for (int i = 0; i < indices.size(); i++) {
+//                    rightSet.add(items.get(i));
+//                    leftSet.remove(items.get(i));
+//                }
+//                leftFields.setAll(leftSet);
+//                rightFields.setAll(rightSet);
+//                items.clear();
+//                leftView.getSelectionModel().clearSelection();
+//            }
         }
     }
 
     @FXML
     protected void onRemoveClick() {
-        indices = rightView.getSelectionModel().getSelectedIndices();
-        if ( indices.size() > 0 ) {
-            for (int i = 0; i < indices.size(); i++) {
-                items.add(rightSet.get(indices.get(i)));
-            }
-            for (int i = 0; i < indices.size(); i++) {
-                leftSet.add(items.get(i));
-                rightSet.remove(items.get(i));
-            }
-            leftFields.setAll(leftSet);
-            rightFields.setAll(rightSet);
-            items.clear();
-            rightView.getSelectionModel().clearSelection();
-        }
+//        indices = rightView.getSelectionModel().getSelectedIndices();
+//        if ( indices.size() > 0 ) {
+//            ArrayList<String> items = new ArrayList<>();
+//            for (int i = 0; i < indices.size(); i++) {
+//                items.add(rightSet.get(indices.get(i)));
+//            }
+//            for (int i = 0; i < indices.size(); i++) {
+//                leftSet.add(items.get(i));
+//                rightSet.remove(items.get(i));
+//            }
+//            leftFields.setAll(leftSet);
+//            rightFields.setAll(rightSet);
+//            items.clear();
+//            rightView.getSelectionModel().clearSelection();
+//        }
     }
 
     @FXML
@@ -93,18 +151,23 @@ public class FieldSelection implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        leftSet.add("String 1");
-        leftSet.add("String 2");
-        leftSet.add("String 3");
-        leftSet.add("String 4");
-        leftSet.add("String 5");
-        leftSet.add("String 6");
-        leftSet.add("String 7");
-        leftSet.add("String 8");
-        leftSet.add("String 9");
-        leftSet.add("String 10");
-        leftSet.add("String 11");
-        leftSet.add("String 12");
+
+        for (String s: MainApplication.fields.getHeaders()) {
+            leftSet.add(s);
+        }
+
+//        leftSet.add("String 1");
+//        leftSet.add("String 2");
+//        leftSet.add("String 3");
+//        leftSet.add("String 4");
+//        leftSet.add("String 5");
+//        leftSet.add("String 6");
+//        leftSet.add("String 7");
+//        leftSet.add("String 8");
+//        leftSet.add("String 9");
+//        leftSet.add("String 10");
+//        leftSet.add("String 11");
+//        leftSet.add("String 12");
 
         leftFields.setAll(leftSet);
         leftView.setItems(leftFields);

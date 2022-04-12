@@ -1,27 +1,50 @@
 package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.DTT_GUI;
-import dronetelemetrytool.DTT_Tools;
-import dronetelemetrytool.MainApplication;
-import dronetelemetrytool.gauges.XYPlotGauge;
+import dronetelemetrytool.fieldparsing.Field;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.function.UnaryOperator;
-import java.util.regex.Pattern;
 
 public class GaugeSelector implements Initializable {
+
+    private Field field;
+
     @FXML
-    private Button BUTTON_Close;
+    public Button buttonTimestamp;
+    @FXML
+    public Button buttonXYPlot;
+    @FXML
+    public Button buttonXPlot;
+    @FXML
+    public Button buttonBool;
+    @FXML
+    public Button buttonCharacter;
+    @FXML
+    public Button buttonText;
+    @FXML
+    public Button buttonBar;
+    @FXML
+    public Button buttonClock;
+    @FXML
+    public Button buttonCircle360;
+    @FXML
+    public Button buttonCircle270;
+    @FXML
+    public Button buttonCircle180;
+    @FXML
+    public Button buttonCircle90;
+    @FXML
+    public Label fieldName;
+
+    @FXML
+    public Button buttonClose;
 
     @FXML
     protected void onCancelClick() {
@@ -75,14 +98,113 @@ public class GaugeSelector implements Initializable {
     protected void boolClick() throws IOException {
         DTT_GUI.onOffGaugeCreator();
     }
+
+    public void limitOptions()
+    {
+        if (field != null)
+        {
+            fieldName.setText(field.myName);
+
+            switch (field.type)
+            {
+                case 0:
+                    //number field;
+//                    buttonCircle90.setDisable(true);
+//                    buttonCircle180.setDisable(true);
+//                    buttonCircle270.setDisable(true);
+//                    buttonCircle360.setDisable(true);
+                    buttonClock.setDisable(true);
+//                    buttonBar.setDisable(true);
+//                    buttonText.setDisable(true);
+                    buttonCharacter.setDisable(true);
+                    buttonBool.setDisable(true);
+//                    buttonXPlot.setDisable(true);
+                    buttonXYPlot.setDisable(true);
+                    buttonTimestamp.setDisable(true);
+                    break;
+                case 1:
+                    //time field;
+                    buttonCircle90.setDisable(true);
+                    buttonCircle180.setDisable(true);
+                    buttonCircle270.setDisable(true);
+                    buttonCircle360.setDisable(true);
+//                    buttonClock.setDisable(true);
+                    buttonBar.setDisable(true);
+//                    buttonText.setDisable(true);
+                    buttonCharacter.setDisable(true);
+                    buttonBool.setDisable(true);
+                    buttonXPlot.setDisable(true);
+                    buttonXYPlot.setDisable(true);
+//                    buttonTimestamp.setDisable(true);
+                    break;
+                case 2:
+                    //boolean field;
+                    buttonCircle90.setDisable(true);
+                    buttonCircle180.setDisable(true);
+                    buttonCircle270.setDisable(true);
+                    buttonCircle360.setDisable(true);
+                    buttonClock.setDisable(true);
+                    buttonBar.setDisable(true);
+//                    buttonText.setDisable(true);
+                    buttonCharacter.setDisable(true);
+//                    buttonBool.setDisable(true);
+                    buttonXPlot.setDisable(true);
+                    buttonXYPlot.setDisable(true);
+                    buttonTimestamp.setDisable(true);
+
+                    break;
+                case 3:
+                    //string field;
+                    buttonCircle90.setDisable(true);
+                    buttonCircle180.setDisable(true);
+                    buttonCircle270.setDisable(true);
+                    buttonCircle360.setDisable(true);
+                    buttonClock.setDisable(true);
+                    buttonBar.setDisable(true);
+//                    buttonText.setDisable(true);
+                    buttonCharacter.setDisable(true);
+                    buttonBool.setDisable(true);
+                    buttonXPlot.setDisable(true);
+                    buttonXYPlot.setDisable(true);
+                    buttonTimestamp.setDisable(true);
+                    break;
+                case 4:
+                    //null field;
+                    buttonCircle90.setDisable(true);
+                    buttonCircle180.setDisable(true);
+                    buttonCircle270.setDisable(true);
+                    buttonCircle360.setDisable(true);
+                    buttonClock.setDisable(true);
+                    buttonBar.setDisable(true);
+                    buttonText.setDisable(true);
+                    buttonCharacter.setDisable(true);
+                    buttonBool.setDisable(true);
+                    buttonXPlot.setDisable(true);
+                    buttonXYPlot.setDisable(true);
+                    buttonTimestamp.setDisable(true);
+                    break;
+                default:
+                    //fieldName not found in saved FieldCollection
+                    break;
+            }
+        }
+    }
+
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
 
     }
 
-
     @FXML
     protected void onCompletedClick() throws IOException {
 
+    }
+
+    public Field getField() {
+        return field;
+    }
+
+    public void setField(Field field) {
+        this.field = field;
     }
 }

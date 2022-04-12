@@ -64,7 +64,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         timer.start();
-        DTT_GUI.fieldSelection();
+        DTT_GUI.inputSelector();
 
     }
 

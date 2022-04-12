@@ -13,7 +13,7 @@ public class FieldCollection {
     List<ArrayList<Field>> typedFields = new ArrayList<>();
     // fields attribute stores each column of the CSV as untyped
     // Field() object with an array of String data and a title
-    List<Field> fields;
+    private List<Field> fields;
     String[] fieldNames;
     int rowCount;
     TypeChecker myTypeChecker = new TypeChecker();
@@ -24,6 +24,11 @@ public class FieldCollection {
         typedFields.add(new ArrayList<Field>()); // Boolean type
         typedFields.add(new ArrayList<Field>()); // String type
         typedFields.add(new ArrayList<Field>()); // Null type
+    }
+
+    public List<Field> getFields()
+    {
+        return fields;
     }
 
     public void loadCSV(FileReader csvFileReader) {
@@ -102,6 +107,15 @@ public class FieldCollection {
             }
             */
         }
+    }
+
+    public ArrayList<String> getHeaders()
+    {
+        ArrayList<String> temp = new ArrayList<>();
+        for (String s: fieldNames) {
+            temp.add(s);
+        }
+        return temp;
     }
 
     public ArrayList<NumberField> getNumberFields() {

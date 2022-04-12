@@ -5,10 +5,10 @@ import java.util.List;
 
 
 public class Field {
-    String myName;
-    List<String> rawData;
-    int currentIndex;
-    int type;
+    public String myName;
+    public List<String> rawData;
+    public int currentIndex;
+    public int type;
 
     public Field(String name) {
         myName = name;
