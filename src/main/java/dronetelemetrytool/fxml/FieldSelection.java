@@ -28,27 +28,44 @@ public class FieldSelection implements Initializable {
     ArrayList<String> rightSet = new ArrayList<>();
     ObservableList<String> rightFields = FXCollections.observableArrayList();
 
+    ObservableList<Integer> indices;
+    ArrayList<String> items = new ArrayList<>();
+
     @FXML
     protected void onCreateClick() {
         // Checks if right list length is <10
-        if (rightSet.size() < 10 && leftView.getSelectionModel().getSelectedIndex() != -1) {
-            // Adds item to right
-            rightSet.add(leftSet.get(leftView.getSelectionModel().getSelectedIndex()));
-            // Removes item from left
-            leftSet.remove(leftSet.get(leftView.getSelectionModel().getSelectedIndex()));
-            // Update the observable lists
+        indices = leftView.getSelectionModel().getSelectedIndices();
+        System.out.println(indices.size());
+        if (indices.size() > 0 && rightSet.size() + indices.size() <= 10) {
+            for (int i = 0; i < indices.size(); i++) {
+                items.add(leftSet.get(indices.get(i)));
+            }
+            for (int i = 0; i < indices.size(); i++) {
+                rightSet.add(items.get(i));
+                leftSet.remove(items.get(i));
+            }
             leftFields.setAll(leftSet);
             rightFields.setAll(rightSet);
+            items.clear();
+            leftView.getSelectionModel().clearSelection();
         }
     }
 
     @FXML
     protected void onRemoveClick() {
-        if ( rightView.getSelectionModel().getSelectedIndex() != -1 ) {
-            leftSet.add(rightSet.get(rightView.getSelectionModel().getSelectedIndex()));
-            rightSet.remove(rightSet.get(rightView.getSelectionModel().getSelectedIndex()));
+        indices = rightView.getSelectionModel().getSelectedIndices();
+        if ( indices.size() > 0 ) {
+            for (int i = 0; i < indices.size(); i++) {
+                items.add(rightSet.get(indices.get(i)));
+            }
+            for (int i = 0; i < indices.size(); i++) {
+                leftSet.add(items.get(i));
+                rightSet.remove(items.get(i));
+            }
             leftFields.setAll(leftSet);
             rightFields.setAll(rightSet);
+            items.clear();
+            rightView.getSelectionModel().clearSelection();
         }
     }
 
