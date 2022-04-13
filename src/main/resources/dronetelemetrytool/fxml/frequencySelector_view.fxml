@@ -34,6 +34,8 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                     </padding>
                     <TextField fx:id="frequencyINPUT" prefWidth="200"/>
+                    <Region prefHeight="5"/>
+                    <Label text="Time in seconds between updates"/>
                 </VBox>
             </HBox>
 
