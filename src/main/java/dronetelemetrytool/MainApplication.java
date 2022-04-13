@@ -1,6 +1,7 @@
 package dronetelemetrytool;
 
 import dronetelemetrytool.fieldparsing.FieldCollection;
+import dronetelemetrytool.fieldparsing.TimeField;
 import dronetelemetrytool.gauges.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -20,6 +21,8 @@ public class MainApplication extends Application {
     public static ArrayList<Gauge> gauges;
     public static Media video;
     public static FieldCollection fields;
+    public static TimeField timestampField;
+    public static float frequency;
 
     private static long lastTimerCall;
     private static long gaugeUpdateFrequency;
@@ -33,6 +36,8 @@ public class MainApplication extends Application {
         gauges = new ArrayList<Gauge>(10);
         video = null;
         fields = null;
+        timestampField = null;
+        frequency = -1.0f;
 
 //        File mediaFile = new File("src/main/resources/dronetelemetrytool/monopolyYES.mp4");
 //        video = null;

@@ -99,7 +99,7 @@ public class InputsSelector {
     protected void onContinueClick() throws IOException {
         Stage stage = (Stage) continueButton.getScene().getWindow();
         stage.close();
-        DTT_GUI.fieldSelection();
+        DTT_GUI.frequencySelector();
     }
 
     @FXML

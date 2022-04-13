@@ -73,7 +73,7 @@ public class FieldCollection {
         selectedFields.add(fields.get(22).myName);
         selectedFields.add(fields.get(26).myName);
 
-        System.out.println(selectedFields);
+//        System.out.println(selectedFields);
         // Get the type of each selected field and cast it to the appropriate type Field.
         int type;
         for (Field tmpField : fields ) {
@@ -96,7 +96,7 @@ public class FieldCollection {
                     typedFields.get(4).add(new NullField(tmpField));
                     break;
             }
-            System.out.println("Loaded "+tmpField.myName+" as type "+type);
+//            System.out.println("Loaded "+tmpField.myName+" as type "+type);
             /*
             if (type == 1) {
                 TimeField tf = new TimeField(tmpField);
@@ -167,7 +167,7 @@ public class FieldCollection {
     }
 
     public void getDataSample(int start, int depth, int length) {
-        System.out.println("Got "+rowCount+" rows.");
+//        System.out.println("Got "+rowCount+" rows.");
         for (int i = start ; i<depth ; i++) {
             fields.get(i).printData(length);
         }

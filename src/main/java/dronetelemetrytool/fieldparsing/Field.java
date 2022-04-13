@@ -25,7 +25,7 @@ public class Field {
     List<String> getRawData() { return rawData; }
 
     public void printDataAt(int index) {
-        System.out.println(rawData.get(index));
+//        System.out.println(rawData.get(index));
     }
     public void printDataLength() { printData(rawData.size()); }
 
@@ -49,13 +49,13 @@ public class Field {
         for (int j=0 ; j<len ; j++) {
             String tmp = rawData.get(j);
             if (tmp=="") {
-                System.out.print("NULL,");
+//                System.out.print("NULL,");
             }
             else {
-                System.out.print(rawData.get(j)+",");
+//                System.out.print(rawData.get(j)+",");
             }
         }
-        System.out.println();
+//        System.out.println();
     }
 
     public boolean hasNext()

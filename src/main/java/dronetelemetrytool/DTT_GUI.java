@@ -100,6 +100,13 @@ public class DTT_GUI {
         createStage(newStage, fxmlLoader);
     }
 
+    public static void frequencySelector() throws IOException {
+        Stage newStage = new Stage();
+        newStage.setTitle("DTT - Frequency Selector Tool");
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/frequencySelector_view.fxml"));
+        createStage(newStage, fxmlLoader);
+    }
+
     public static void gaugeSelector() throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Selector Tool");
