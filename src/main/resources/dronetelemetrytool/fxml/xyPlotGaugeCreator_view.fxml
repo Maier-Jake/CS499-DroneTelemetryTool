@@ -10,14 +10,52 @@
     <stylesheets>
         <URL value="@DTT_Style.css" />
     </stylesheets>
-    <VBox>
+    <VBox prefWidth="300" styleClass="right-border">
         <alignment>TOP_CENTER</alignment>
         <Label styleClass="header2">
             <text>Statistics</text>
         </Label>
+        <Label>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <text>Data Field 1</text>
+        </Label>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Minimum" prefWidth="175"/>
+            <TextField fx:id="STAT_min" editable="false" disable="true"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Maximum" prefWidth="175"/>
+            <TextField fx:id="STAT_max" editable="false" disable="true"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Average" prefWidth="175"/>
+            <TextField fx:id="STAT_avg" editable="false" disable="true"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Standard Deviation" prefWidth="175"/>
+            <TextField fx:id="STAT_stddev" editable="false" disable="true"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Unit Type" prefWidth="175"/>
+            <ComboBox fx:id="unitTypeComboBox"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Current Unit" prefWidth="175"/>
+            <ComboBox fx:id="currentUnitComboBox"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Desired Unit" prefWidth="175"/>
+            <ComboBox fx:id="desiredUnitComboBox"/>
+        </HBox>
     </VBox>
-   <Line endY="0" startY="-440.0" />
-    <BorderPane>
+    <BorderPane prefWidth="800">
         <top>
             <VBox>
                 <alignment>CENTER</alignment>
@@ -151,6 +189,51 @@
 
 
     </BorderPane>
+    <VBox prefWidth="300" styleClass="left-border">
+        <alignment>TOP_CENTER</alignment>
+        <Label styleClass="header2">
+            <text>Statistics</text>
+        </Label>
+        <Label>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <text>Data Field 2</text>
+        </Label>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Minimum" prefWidth="175"/>
+            <TextField fx:id="STAT_min2" editable="false" disable="true"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Maximum" prefWidth="175"/>
+            <TextField fx:id="STAT_max2" editable="false" disable="true"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Average" prefWidth="175"/>
+            <TextField fx:id="STAT_avg2" editable="false" disable="true"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Standard Deviation" prefWidth="175"/>
+            <TextField fx:id="STAT_stddev2" editable="false" disable="true"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Unit Type" prefWidth="175"/>
+            <ComboBox fx:id="unitTypeComboBox2"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Current Unit" prefWidth="175"/>
+            <ComboBox fx:id="currentUnitComboBox2"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Desired Unit" prefWidth="175"/>
+            <ComboBox fx:id="desiredUnitComboBox2"/>
+        </HBox>
+    </VBox>
 
 
 </HBox>

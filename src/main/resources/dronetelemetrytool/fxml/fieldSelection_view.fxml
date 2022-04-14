@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" prefHeight="509.0" prefWidth="697.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="dronetelemetrytool.fxml.FieldSelection">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <stylesheets>
+        <URL value="@DTT_Style.css" />
+    </stylesheets>
+
+    <Label styleClass="header2">
+        <text>Field Selection</text>
+    </Label>
+    <BorderPane prefHeight="65.0" prefWidth="657.0" />
+
+    <HBox alignment="CENTER">
+        <VBox alignment="CENTER">
+            <HBox alignment="CENTER">
+                <Region prefHeight="50" />
+                <ListView fx:id="leftView" focusTraversable="false"/>
+            </HBox>
+
+            <HBox alignment="CENTER">
+                <Region prefHeight="100" />
+                <TextField editable="true" focusTraversable="true" text="Search..." fx:id="CSVaddress" prefWidth="250"/>
+            </HBox>
+        </VBox>
+
+        <VBox alignment="CENTER">
+            <Region prefWidth="150" />
+            <HBox alignment="CENTER">
+                <Region prefHeight="50" />
+                <Button onAction="#onCreateClick" text="Create" prefWidth="110" fx:id="createButton"/>
+            </HBox>
+
+            <HBox alignment="CENTER">
+                <Region prefHeight="50" />
+                <Button onAction="#onRemoveClick" text="Remove" prefWidth="110" fx:id="removeButton"/>
+            </HBox>
+        </VBox>
+
+        <VBox alignment="CENTER">
+            <HBox alignment="CENTER">
+                <ListView fx:id="rightView" focusTraversable="false"/>
+            </HBox>
+
+            <HBox alignment="CENTER">
+                <Region prefHeight="100" />
+                <HBox alignment="CENTER">
+                    <Button onAction="#onSaveClick" text="Save" prefWidth="120"/>
+                </HBox>
+
+                <HBox alignment="CENTER">
+                    <Region prefWidth="5" />
+                    <Button onAction="#onContinueClick" text="Continue" prefWidth="120"/>
+                </HBox>
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>

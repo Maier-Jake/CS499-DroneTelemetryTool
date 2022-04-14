@@ -2,21 +2,14 @@ package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.gauges.TextGauge;
-import dronetelemetrytool.gaugeselection.FieldCollection;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,6 +21,20 @@ public class TextGaugeCreator implements Initializable {
     private TextField FIELD_Title;
     @FXML
     private Button BUTTON_Close;
+    @FXML
+    private TextField STAT_max;
+    @FXML
+    private TextField STAT_min;
+    @FXML
+    private TextField STAT_avg;
+    @FXML
+    private TextField STAT_stddev;
+    @FXML
+    private ComboBox<String> unitTypeComboBox;
+    @FXML
+    private ComboBox<String> currentUnitComboBox;
+    @FXML
+    private ComboBox<String> desiredUnitComboBox;
 
     @FXML
     protected void onCancelClick() {
@@ -41,7 +48,20 @@ public class TextGaugeCreator implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        STAT_min.setText("10");
+        STAT_max.setText("20");
+        STAT_avg.setText("12");
+        STAT_stddev.setText("2");
 
+        //so focus will start on first editable textfield
+        STAT_min.setFocusTraversable(false);
+        STAT_max.setFocusTraversable(false);
+        STAT_avg.setFocusTraversable(false);
+        STAT_stddev.setFocusTraversable(false);
+
+        unitTypeComboBox.getItems().setAll("speed", "length");
+        currentUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
+        desiredUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
     }
 
 

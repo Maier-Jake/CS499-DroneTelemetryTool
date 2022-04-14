@@ -11,13 +11,47 @@
     <stylesheets>
         <URL value="@DTT_Style.css" />
     </stylesheets>
-    <VBox>
+    <VBox styleClass="right-border">
         <alignment>TOP_CENTER</alignment>
         <Label styleClass="header2">
             <text>Statistics</text>
         </Label>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Minimum" prefWidth="175"/>
+            <TextField fx:id="STAT_min" editable="false" disable="true"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Maximum" prefWidth="175"/>
+            <TextField fx:id="STAT_max" editable="false" disable="true"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Average" prefWidth="175"/>
+            <TextField fx:id="STAT_avg" editable="false" disable="true"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Standard Deviation" prefWidth="175"/>
+            <TextField fx:id="STAT_stddev" editable="false" disable="true"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Unit Type" prefWidth="175"/>
+            <ComboBox fx:id="unitTypeComboBox"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Current Unit" prefWidth="175"/>
+            <ComboBox fx:id="currentUnitComboBox"/>
+        </HBox>
+        <HBox>
+            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
+            <Label text="Desired Unit" prefWidth="175"/>
+            <ComboBox fx:id="desiredUnitComboBox"/>
+        </HBox>
     </VBox>
-   <Line endY="0" startY="-440.0" />
     <BorderPane>
         <top>
             <VBox>
@@ -64,7 +98,7 @@
             </VBox>
         </top>
         <center>
-            <VBox alignment = "CENTER">
+            <VBox>
                 <HBox alignment="CENTER">
                     <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
                     <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">
@@ -72,7 +106,7 @@
                         <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
                     </Label>
                     <TextField fx:id="FIELD_Title" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
-                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
                         <text>Title of the gauge</text>
                     </Label>
                 </HBox>
@@ -80,12 +114,12 @@
                 <HBox alignment="CENTER">
                     <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
                     <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">
-                        <text>Format String</text>
+                        <text>Units</text>
                         <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
                     </Label>
                     <ComboBox fx:id="COMBO_Format" prefWidth="250.0" promptText="choose"/>
-                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
-                        <text>km/h? %? mi/h? m/s?</text>
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Units of the data</text>
                     </Label>
                 </HBox>
 
@@ -96,7 +130,7 @@
                         <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
                     </Label>
                     <TextField fx:id="FIELD_Minimum" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
-                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
                         <text>Lowest value you want displayed</text>
                     </Label>
                 </HBox>
@@ -108,8 +142,8 @@
                         <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
                     </Label>
                     <TextField fx:id="FIELD_GreenT" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
-                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
-                        <text>Value to transition the bar to green</text>
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Value to reach green (from blue)</text>
                     </Label>
                 </HBox>
 
@@ -120,8 +154,8 @@
                         <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
                     </Label>
                     <TextField fx:id="FIELD_YellowT" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
-                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
-                        <text>Value to transition the bar to yellow</text>
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Value to reach yellow (from green)</text>
                     </Label>
                 </HBox>
 
@@ -132,8 +166,8 @@
                         <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
                     </Label>
                     <TextField fx:id="FIELD_RedT" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
-                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
-                        <text>Value to transition the bar to red</text>
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Value to reach red (from yellow)</text>
                     </Label>
                 </HBox>
 
@@ -144,8 +178,20 @@
                         <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
                     </Label>
                     <TextField fx:id="FIELD_Maximum" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
-                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="230.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
                         <text>Highest value you want displayed</text>
+                    </Label>
+                </HBox>
+
+                <HBox alignment="CENTER">
+                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">
+                        <text>Warning Sound</text>
+                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
+                    </Label>
+                    <ComboBox fx:id="COMBO_Alarm" prefWidth="250.0" promptText="choose"/>
+                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
+                        <text>Alarm when data surpasses Red Threshold</text>
                     </Label>
                 </HBox>
 

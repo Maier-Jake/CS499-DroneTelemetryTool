@@ -1,5 +1,7 @@
 package dronetelemetrytool;
 
+import dronetelemetrytool.fieldparsing.FieldCollection;
+import dronetelemetrytool.fieldparsing.TimeField;
 import dronetelemetrytool.gauges.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -16,26 +18,34 @@ import java.util.ArrayList;
 
 public class MainApplication extends Application {
 
-    private static Media video;
-
     public static ArrayList<Gauge> gauges;
+    public static Media video;
+    public static FieldCollection fields;
+    public static TimeField timestampField;
+    public static float frequency;
 
     private static long lastTimerCall;
     private static long gaugeUpdateFrequency;
     private static int gaugeUpdateFrequencyModifier;
     private static AnimationTimer timer;
 
-    @Override public void init() {
+
+    @Override
+    public void init() {
 
         gauges = new ArrayList<Gauge>(10);
-
-        File mediaFile = new File("src/main/resources/dronetelemetrytool/monopolyYES.mp4");
         video = null;
-        try {
-            video = new Media(mediaFile.toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        fields = null;
+        timestampField = null;
+        frequency = -1.0f;
+
+//        File mediaFile = new File("src/main/resources/dronetelemetrytool/monopolyYES.mp4");
+//        video = null;
+//        try {
+//            video = new Media(mediaFile.toURI().toURL().toString());
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
 
         //lastStockCall = System.nanoTime();
         final Duration[] timeStamp = {Duration.ZERO};
@@ -58,12 +68,8 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-
-        //gauges.forEach((Gauge n) -> n.display());
-        //video = DTT_Tools.chooseVideo();
-        //DTT_Tools.displayVideo(video);
         timer.start();
-        DTT_GUI.gaugeSelector();
+        DTT_GUI.inputSelector();
 
     }
 

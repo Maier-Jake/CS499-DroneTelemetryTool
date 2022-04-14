@@ -1,6 +1,10 @@
 package dronetelemetrytool;
 
+import dronetelemetrytool.fieldparsing.Field;
+import dronetelemetrytool.fieldparsing.NumberField;
+import dronetelemetrytool.fxml.GaugeSelector;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -82,6 +86,27 @@ public class DTT_GUI {
         createStage(newStage, fxmlLoader);
     }
 
+    public static void inputSelector() throws IOException {
+        Stage newStage = new Stage();
+        newStage.setTitle("DTT - Input Data Selector Tool");
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/inputsSelector_view.fxml"));
+        createStage(newStage, fxmlLoader);
+    }
+
+    public static void fieldSelection() throws IOException {
+        Stage newStage = new Stage();
+        newStage.setTitle("DTT - Field Selection Tool");
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/fieldSelection_view.fxml"));
+        createStage(newStage, fxmlLoader);
+    }
+
+    public static void frequencySelector() throws IOException {
+        Stage newStage = new Stage();
+        newStage.setTitle("DTT - Frequency Selector Tool");
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/frequencySelector_view.fxml"));
+        createStage(newStage, fxmlLoader);
+    }
+
     public static void gaugeSelector() throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Selector Tool");
@@ -89,14 +114,34 @@ public class DTT_GUI {
         createStage(newStage, fxmlLoader);
     }
 
-    private static void createStage(Stage s, FXMLLoader fxmlLoader) throws IOException {
+    public static void gaugeSelector(Field relatedField) throws IOException {
+        Stage newStage = new Stage();
+        newStage.setTitle("DTT - Gauge Selector Tool");
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/gaugeSelector_view.fxml"));
+
+        GaugeSelector controller = new GaugeSelector();
+        controller.setField(relatedField);
+        fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().add(MainApplication.class.getResource("fxml/DTT_Style.css").toExternalForm());
-        s.setScene(scene);
-        s.show();
-        s.setMaxHeight(1000); s.setMinHeight(470);
-        s.setMaxWidth(1000); s.setMinWidth(400);
+        controller.limitOptions();
+
+        newStage.setScene(scene);
+        createStage(newStage);
     }
 
+    private static void createStage(Stage s, FXMLLoader fxmlLoader) throws IOException {
+        Scene scene = new Scene(fxmlLoader.load());
+        s.setScene(scene);
+        createStage(s);
+    }
+    private static void createStage(Stage s) throws IOException {
+        Scene scene = s.getScene();
+        scene.getStylesheets().add(MainApplication.class.getResource("fxml/DTT_Style.css").toExternalForm());
+        s.show();
+        s.setMaxHeight(1000);
+        s.setMinHeight(470);
+        s.setMaxWidth(1500);
+        s.setMinWidth(400);
+    }
 
 }

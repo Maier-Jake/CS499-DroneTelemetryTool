@@ -7,7 +7,9 @@ import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Stop;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -36,8 +38,26 @@ public class Circle90GaugeCreator implements Initializable {
     private TextField FIELD_Maximum;
     @FXML
     private Button BUTTON_Close;
-    @FXML // fx:id="COMBO_Format"
+    @FXML
     private ComboBox<String> COMBO_Format;
+    @FXML
+    private TextField STAT_max;
+    @FXML
+    private TextField STAT_min;
+    @FXML
+    private TextField STAT_avg;
+    @FXML
+    private TextField STAT_stddev;
+    @FXML
+    private ComboBox<String> COMBO_Alarm;
+    @FXML
+    private ComboBox<String> unitTypeComboBox;
+    @FXML
+    private ComboBox<String> currentUnitComboBox;
+    @FXML
+    private ComboBox<String> desiredUnitComboBox;
+
+
 
     @FXML
     protected void onCancelClick() {
@@ -52,6 +72,7 @@ public class Circle90GaugeCreator implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // populate the combo box with string format choices.
         COMBO_Format.getItems().setAll("m/s", "%", "m", "ft");
+        COMBO_Alarm.getItems().setAll("Chirp", "Siren", "Scream");
 
         Pattern validEditingState = Pattern.compile("-?(([1-9][0-9]*)|0)?(\\.[0-9]*)?");
         UnaryOperator<TextFormatter.Change> doubleFilter = c -> {
@@ -83,6 +104,21 @@ public class Circle90GaugeCreator implements Initializable {
         FIELD_GreenT.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
         FIELD_YellowT.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
         FIELD_RedT.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
+
+        STAT_min.setText("10");
+        STAT_max.setText("20");
+        STAT_avg.setText("12");
+        STAT_stddev.setText("2");
+
+        //so focus will start on first editable textfield
+        STAT_min.setFocusTraversable(false);
+        STAT_max.setFocusTraversable(false);
+        STAT_avg.setFocusTraversable(false);
+        STAT_stddev.setFocusTraversable(false);
+
+        unitTypeComboBox.getItems().setAll("speed", "length");
+        currentUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
+        desiredUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
     }
 
 
@@ -96,6 +132,7 @@ public class Circle90GaugeCreator implements Initializable {
         double yellowThreshold = Double.parseDouble(FIELD_YellowT.textProperty().getValueSafe());
         double redThreshold = Double.parseDouble(FIELD_RedT.textProperty().getValueSafe());
         String format = COMBO_Format.getValue();
+        String sAlarm = COMBO_Alarm.getValue();
 
 
         if (minVal <= greenThreshold)
@@ -110,11 +147,25 @@ public class Circle90GaugeCreator implements Initializable {
                         {
                             if (format != null)
                             {
-                                createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, format);
+                                if (sAlarm != null)
+                                {
+                                    createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, format, sAlarm);
+                                }
+                                else
+                                {
+                                    createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, format, "");
+                                }
                             }
                             else
                             {
-                                createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, "");
+                                if (sAlarm != null)
+                                {
+                                    createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, "", sAlarm);
+                                }
+                                else
+                                {
+                                    createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, "", "");
+                                }
                             }
                             Stage stage = (Stage) BUTTON_Close.getScene().getWindow();
                             stage.close();
@@ -150,20 +201,20 @@ public class Circle90GaugeCreator implements Initializable {
         }
     }
 
-    private static void createGauge(String title, double min, double max, double green, double yellow, double red, String format)
+    private static void createGauge(String title, double min, double max, double green, double yellow, double red, String format, String sAlarm)
     {
         CircleGauge newGauge = new CircleGauge(90);
         newGauge.setTitle(title);
 
-        GradientLookup gradient = new GradientLookup(Arrays.asList(
-                new Stop(0, Bright.BLUE_GREEN),
-                new Stop (DTT_Tools.map(green,min,max,0,1), Bright.GREEN),
-                new Stop(DTT_Tools.map(yellow,min,max,0,1), Bright.YELLOW),
-                new Stop(DTT_Tools.map(red,min,max,0,1), Bright.ORANGE_RED),
-                new Stop(1, Bright.RED)));
-
         newGauge.tile.setMaxValue(max);
         newGauge.tile.setMinValue(min);
+
+        GradientLookup gradient = new GradientLookup(Arrays.asList(
+                new Stop(0, Bright.BLUE),
+                new Stop(DTT_Tools.map(green,min,max,0,1), Bright.GREEN),
+                new Stop(DTT_Tools.map(yellow,min,max,0,1), Bright.YELLOW),
+                new Stop(DTT_Tools.map(red,min,max,0,1), Bright.RED),
+                new Stop(1, Bright.RED)));
 
         newGauge.setGradient(gradient);
 
@@ -183,6 +234,21 @@ public class Circle90GaugeCreator implements Initializable {
                 break;
             default:
                 newGauge.tile.setUnit("");
+                break;
+        }
+        switch(sAlarm)
+        {
+            case "Chirp":
+                newGauge.setAlarm(1);
+                System.out.println("ran set alarm (1)");
+                break;
+            case "Siren":
+                newGauge.setAlarm(2);
+                break;
+            case "Scream":
+                newGauge.setAlarm(3);
+                break;
+            default:
                 break;
         }
 

@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.GaugeSelector">
+<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" >
     <stylesheets>
         <URL value="@DTT_Style.css" />
     </stylesheets>
@@ -23,12 +23,13 @@
                 <Label styleClass="header2">
                     <text>Select your desired gauge to display the selected field.</text>
                 </Label>
+                <Label fx:id="fieldName" styleClass="header2" text=""/>
             </VBox>
         </top>
         <center>
             <GridPane hgap="30" vgap="15">
                 <alignment>CENTER</alignment>
-                <Button onAction="#circle90Click" styleClass="imageButton" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Button fx:id="buttonCircle90" onAction="#circle90Click" styleClass="imageButton" GridPane.columnIndex="0" GridPane.rowIndex="0">
                     <graphic>
                         <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -37,7 +38,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button onAction="#circle180Click" styleClass="imageButton" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Button fx:id="buttonCircle180" onAction="#circle180Click" styleClass="imageButton" GridPane.columnIndex="1" GridPane.rowIndex="0">
                     <graphic>
                         <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -46,7 +47,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button onAction="#circle270Click" styleClass="imageButton" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Button fx:id="buttonCircle270" onAction="#circle270Click" styleClass="imageButton" GridPane.columnIndex="0" GridPane.rowIndex="1">
                     <graphic>
                         <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -55,7 +56,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button onAction="#circle360Click" styleClass="imageButton" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Button fx:id="buttonCircle360" onAction="#circle360Click" styleClass="imageButton" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <graphic>
                         <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -64,7 +65,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button onAction="#clockClick" styleClass="imageButton" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                <Button fx:id="buttonClock" onAction="#clockClick" styleClass="imageButton" GridPane.columnIndex="2" GridPane.rowIndex="0">
                     <graphic>
                         <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -73,7 +74,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button onAction="#barClick" styleClass="imageButton" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <Button fx:id="buttonBar" onAction="#barClick" styleClass="imageButton" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <graphic>
                         <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -82,7 +83,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button onAction="#textClick" styleClass="imageButton" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <Button fx:id="buttonText" onAction="#textClick" styleClass="imageButton" GridPane.columnIndex="0" GridPane.rowIndex="2">
                     <graphic>
                         <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -91,7 +92,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button onAction="#characterClick" styleClass="imageButton" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Button fx:id="buttonCharacter" onAction="#characterClick" styleClass="imageButton" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <graphic>
                         <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -100,7 +101,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button onAction="#boolClick" styleClass="imageButton" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                <Button fx:id="buttonBool" onAction="#boolClick" styleClass="imageButton" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <graphic>
                         <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -109,7 +110,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button onAction="#xPlotClick" styleClass="imageButton" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                <Button fx:id="buttonXPlot" onAction="#xPlotClick" styleClass="imageButton" GridPane.columnIndex="0" GridPane.rowIndex="3">
                     <graphic>
                         <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -118,7 +119,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button onAction="#xyPlotClick" styleClass="imageButton" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <Button fx:id="buttonXYPlot" onAction="#xyPlotClick" styleClass="imageButton" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <graphic>
                         <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -127,7 +128,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button onAction="#timestampClick" styleClass="imageButton" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                <Button fx:id="buttonTimestamp" onAction="#timestampClick" styleClass="imageButton" GridPane.columnIndex="2" GridPane.rowIndex="3">
                     <graphic>
                         <ImageView fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -144,7 +145,7 @@
                     <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                 </padding>
                 <buttons>
-                    <Button onAction="#onCancelClick" text="Cancel" ButtonBar.buttonData="LEFT">
+                    <Button fx:id="buttonClose" onAction="#onCancelClick" text="Cancel" ButtonBar.buttonData="LEFT">
                         <cancelButton>true</cancelButton>
                     </Button>
                 </buttons>
