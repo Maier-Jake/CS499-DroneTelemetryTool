@@ -43,6 +43,8 @@ public class Field {
 
     int getType() { return this.type; }
 
+    public String getName() { return this.myName; }
+
     // Print the first n data points of the array.
     public void printData(int n) {
         for (int j=0 ; j<n ; j++) {

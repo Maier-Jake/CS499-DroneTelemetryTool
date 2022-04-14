@@ -16,8 +16,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 
-import dronetelemetrytool.gaugeselection.Field;
-import dronetelemetrytool.gaugeselection.UnitConverter;
+import dronetelemetrytool.gaugeselection.*;
 
 public class ChooserController{
     @FXML private Text welcomeText;
@@ -29,7 +28,7 @@ public class ChooserController{
     private FieldCollection myFieldCollection;
 
     @FXML
-    public void initialize() throws FileNotFoundException {
+    public void initialize() {
         System.out.println("Initializing Controller");
         fileChooser = new FileChooser();
         // Set the file chooser button string
@@ -49,11 +48,35 @@ public class ChooserController{
                         // Should run the field selection process.
                         // Pass n
                     } catch (FileNotFoundException noCSV) {
+                        // Handle this with a dialogue window?
                         System.out.println("File not found: ");
+                        noCSV.printStackTrace();
                     }
-                    List<ArrayList<Field>> typedFields = myFieldCollection.getTypedFields();
+                    testDriver();
                 }
             }});
+    }
+
+    private void testDriver() {
+        // TESTING
+        ArrayList<TimeField> tmpTimeFields= this.myFieldCollection.getTimeFields();
+        ArrayList<NumberField> tmpNumberFields= this.myFieldCollection.getNumberFields();
+
+        System.out.println("Got "+tmpTimeFields.size()+" time fields.");
+        System.out.print("\t");
+        for (TimeField tf : tmpTimeFields)
+            System.out.print(tf.getName()+", ");
+        System.out.println();
+
+        System.out.println("NumberField Statistics:");
+        for (NumberField nf : tmpNumberFields) {
+            System.out.print("\t"+nf.getName());
+            System.out.print(" max:"+nf.getMaxValue());
+            System.out.print(" min:"+nf.getMinValue());
+            System.out.print(" std:"+nf.getStandardDeviation());;
+            System.out.println();
+        }
+        // TESTING
     }
 
     public void announce(){
