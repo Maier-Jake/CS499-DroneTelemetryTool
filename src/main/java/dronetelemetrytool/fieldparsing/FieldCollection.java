@@ -132,7 +132,7 @@ public class FieldCollection {
         {
             if (f.type == 1)
             {
-                tfs.add((TimeField) f);
+                tfs.add(new TimeField(f));
             }
         }
         return tfs;
@@ -141,6 +141,7 @@ public class FieldCollection {
     public ArrayList<BoolField> getBoolFields() {
         ArrayList<BoolField> bfs = new ArrayList<>();
         for ( Field bf : typedFields.get(2)) {
+
             bfs.add((BoolField) bf);
         }
         return bfs;
