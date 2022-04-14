@@ -7,6 +7,8 @@ import java.lang.Boolean;
 public class BoolField extends Field{
     List<Boolean> myBools = new ArrayList<>();
     int nullCounter = 0;
+    private int i;
+    private int j;
 
     public BoolField(Field myField) {
         super(myField.myName);
@@ -24,6 +26,23 @@ public class BoolField extends Field{
                 myBools.add(null);
             }
         }
+    }
+
+    // Set the iteration index of the BoolField; returns True if successful.
+    // The index parameter refers to the next data point that will be returned
+    // if the update is successful.
+    public boolean setIndex(int index) {
+        if (0<=index && index<myBools.size()) {
+            this.i = index;
+            return true;
+        } else { return false; }
+    }
+
+    // Get the next Bool value in the Field from the current index.
+    public Boolean getNext() {
+        this.j = this.i;
+        this.i = (this.i+1)%myBools.size();
+        return this.myBools.get(this.j);
     }
 
     public void printDataAt(int index) { System.out.println(myBools.get(index)); }

@@ -43,8 +43,9 @@ public class Field {
 
     int getType() { return this.type; }
 
-    public void printData(int len) {
-        for (int j=0 ; j<len ; j++) {
+    // Print the first n data points of the array.
+    public void printData(int n) {
+        for (int j=0 ; j<n ; j++) {
             String tmp = rawData.get(j);
             if (tmp=="") {
                 System.out.print("NULL,");
@@ -55,4 +56,10 @@ public class Field {
         }
         System.out.println();
     }
+
+    // Shell function for Field subclasses that don't need to implement an index.
+    public boolean setIndex(int index) { return true; }
+
+    // Shell functions for Null Fields.
+    public Object getNext() { return null; }
 }

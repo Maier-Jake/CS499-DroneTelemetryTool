@@ -92,17 +92,10 @@ public class FieldCollection {
                     break;
             }
             System.out.println("Loaded "+tmpField.myName+" as type "+type);
-            /*
-            if (type == 1) {
-                TimeField tf = new TimeField(tmpField);
-                System.out.println(tmpField.myName);
-                for (int i=0 ; i<20 ; i++) {
-                    tf.printAt(i);
-                }
-            }
-            */
         }
     }
+
+    public List<ArrayList<Field>> getTypedFields() { return this.typedFields; }
 
     public ArrayList<NumberField> getNumberFields() {
         ArrayList<NumberField> nfs = new ArrayList<>();

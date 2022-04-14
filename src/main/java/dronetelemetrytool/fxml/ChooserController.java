@@ -9,15 +9,22 @@ import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
+
+import dronetelemetrytool.gaugeselection.Field;
+import dronetelemetrytool.gaugeselection.UnitConverter;
 
 public class ChooserController{
     @FXML private Text welcomeText;
     @FXML private Button selectCSVButton;
     FileChooser fileChooser;
-    File selectedFile;
+    private File selectedFile;
+    private UnitConverter uc = new UnitConverter();
     private Stage csvStage;
     private FieldCollection myFieldCollection;
 
@@ -39,9 +46,12 @@ public class ChooserController{
                     try {
                         FileReader reader = new FileReader(path);
                         myFieldCollection.loadCSV(reader);
+                        // Should run the field selection process.
+                        // Pass n
                     } catch (FileNotFoundException noCSV) {
                         System.out.println("File not found: ");
                     }
+                    List<ArrayList<Field>> typedFields = myFieldCollection.getTypedFields();
                 }
             }});
     }
