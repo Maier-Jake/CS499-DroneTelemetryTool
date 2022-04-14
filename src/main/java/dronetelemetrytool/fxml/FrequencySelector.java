@@ -50,7 +50,7 @@ public class FrequencySelector implements Initializable {
 
     @FXML
     public void initialize() throws FileNotFoundException {
-//        continueButton.setDisable(true);
+
         Pattern validEditingState = Pattern.compile("-?(([1-9][0-9]*)|0)?(\\.[0-9]*)?");
         UnaryOperator<TextFormatter.Change> floatFilter = c -> {
             String text = c.getControlNewText();
@@ -134,9 +134,15 @@ public class FrequencySelector implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        for (String s: MainApplication.fields.getHeaders()) {
-            listSet.add(s);
+
+        //get only time fields
+        ArrayList<TimeField> timeFields = MainApplication.fields.getTimeFields();
+
+        for (TimeField f : timeFields)
+        {
+            listSet.add(f.myName);
         }
+
         listFields.setAll(listSet);
         listView.setItems(listFields);
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);

@@ -128,8 +128,12 @@ public class FieldCollection {
 
     public ArrayList<TimeField> getTimeFields() {
         ArrayList<TimeField> tfs = new ArrayList<>();
-        for ( Field tf : typedFields.get(1)) {
-            tfs.add((TimeField) tf);
+        for(Field f : fields)
+        {
+            if (f.type == 1)
+            {
+                tfs.add((TimeField) f);
+            }
         }
         return tfs;
     }
