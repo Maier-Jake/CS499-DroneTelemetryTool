@@ -1,7 +1,10 @@
 package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.DTT_GUI;
+import dronetelemetrytool.fieldparsing.BoolField;
 import dronetelemetrytool.fieldparsing.Field;
+import dronetelemetrytool.fieldparsing.NumberField;
+import dronetelemetrytool.fieldparsing.StringField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -52,23 +55,23 @@ public class GaugeSelector implements Initializable {
     }
     @FXML
     protected void circle90Click() throws IOException {
-        DTT_GUI.circle90GaugeCreator();
+        DTT_GUI.circle90GaugeCreator((NumberField) field);
     }
     @FXML
     protected void circle180Click() throws IOException {
-        DTT_GUI.circle180GaugeCreator();
+        DTT_GUI.circle180GaugeCreator((NumberField) field);
     }
     @FXML
     protected void circle270Click() throws IOException {
-        DTT_GUI.circle270GaugeCreator();
+        DTT_GUI.circle270GaugeCreator((NumberField) field);
     }
     @FXML
     protected void circle360Click() throws IOException {
-        DTT_GUI.circle360GaugeCreator();
+        DTT_GUI.circle360GaugeCreator((NumberField) field);
     }
     @FXML
     protected void barClick() throws IOException {
-        DTT_GUI.barGaugeCreator();
+        DTT_GUI.barGaugeCreator((NumberField) field);
     }
     @FXML
     protected void timestampClick() throws IOException {
@@ -76,7 +79,7 @@ public class GaugeSelector implements Initializable {
     }
     @FXML
     protected void textClick() throws IOException {
-        DTT_GUI.textGaugeCreator();
+        DTT_GUI.textGaugeCreator((StringField) field);
     }
     @FXML
     protected void characterClick() throws IOException {
@@ -84,28 +87,30 @@ public class GaugeSelector implements Initializable {
     }
     @FXML
     protected void xPlotClick() throws IOException {
-        DTT_GUI.xPlotGaugeCreator();
+        DTT_GUI.xPlotGaugeCreator((NumberField) field);
     }
+
+    // todo: add second field to xyPlotClock
     @FXML
     protected void xyPlotClick() throws IOException {
-        DTT_GUI.xyPlotGaugeCreator();
+        DTT_GUI.xyPlotGaugeCreator((NumberField) field);
     }
     @FXML
     protected void clockClick() throws IOException {
-        DTT_GUI.clockGaugeCreator();
+        DTT_GUI.clockGaugeCreator((NumberField) field);
     }
     @FXML
     protected void boolClick() throws IOException {
-        DTT_GUI.onOffGaugeCreator();
+        DTT_GUI.onOffGaugeCreator((BoolField) field);
     }
 
     public void limitOptions()
     {
         if (field != null)
         {
-            fieldName.setText(field.myName);
+            fieldName.setText(field.getName());
 
-            switch (field.type)
+            switch (field.getType())
             {
                 case 0:
                     //number field;

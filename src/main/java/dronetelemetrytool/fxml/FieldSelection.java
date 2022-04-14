@@ -73,7 +73,7 @@ public class FieldSelection implements Initializable {
                         String fieldName = items.get(0);
                         Field relatedField = null;
                         for (Field f : MainApplication.fields.getFields()) {
-                            if (f.myName == fieldName)
+                            if (f.getName() == fieldName)
                             {
                                 relatedField = f;
                             }

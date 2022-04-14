@@ -1,67 +1,14 @@
-package dronetelemetrytool.gaugeselection;
+package dronetelemetrytool.fieldparsing;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
-class Unit {
-    String si;
-    String name;
-    List<String> subunits = new ArrayList<String>();
-    Dictionary<String, Float> factors = new Hashtable<>();
-    Dictionary<String, Float> constants = new Hashtable<>();
-    public Unit(String name, String standard) {
-        this.name = name;
-        this.si = standard;
-        this.subunits.add(this.si);
-        this.factors.put(this.name, 1f);
-        this.constants.put(this.name, 0f);
-    }
-
-    public String getName() { return this.name; }
-    public List<String> getSubunits(){ return this.subunits; }
-
-    // Subunit setter for constant-coefficient conversions;
-    // this_subunit = factor*base_unit+constant.
-    void addSubunit(String name, float factor) {
-        subunits.add(name);
-        factors.put(name, factor);
-        constants.put(name, 0f);
-    }
-
-    // Subunit setter with optional added constant
-    // this_subunit = factor*base_unit+constant.
-    void addSubunit(String name, float factor, float constant) {
-        subunits.add(name);
-        factors.put(name, factor);
-        constants.put(name, constant);
-    }
-
-    // Use this Unit and its defined subunits to convert a
-    public Float convert(String from, String to, Float value) {
-        // If ( x = s*a+b; y = s*c+d ) such that s is the base unit and x,y are
-        // linear subunits and a/c, b/d are the conversion factors and consants
-        // respectively, x=((y-d)/c)*a+b
-        Float a,b,c,d;
-        if (subunits.contains(from) && subunits.contains(to)) {
-            a = factors.get(to);
-            b = constants.get(to);
-            c = factors.get(from);
-            d = constants.get(from);
-            return ((value-d)/c)*a+b;
-        } else { return null; }
-    }
-}
-
 public class UnitConverter {
     private List<String> unit_names = new ArrayList<>();
     private List<Unit> unit_array = new ArrayList<>();
     private Dictionary<String, List<String>> subunits = new Hashtable<>();
-    private Unit speed;
-    private Unit power;
-    private Unit distance;
-    private Unit temperature;
 
     public UnitConverter() {
         String tmpName;
@@ -107,4 +54,31 @@ public class UnitConverter {
 
     public List<String> getUnitNames() { return this.unit_names; }
 
+    // Attempts to convert input array with a unit of type 'type' between
+    // the provided to/from subtypes. Returns null if unsuccessful.
+    public List<Double> convert(String type, String to, String from, List<Double> input) {
+        Unit tmp_unit = null;
+        List<String> tmp_subunits;
+        List<Double> converted_array = new ArrayList<>();
+        for (Unit u : unit_array) {
+            if (u.getName()==type)
+                tmp_unit = u;
+        }
+
+        if (tmp_unit==null)
+            return null;
+
+        tmp_subunits = tmp_unit.getSubunits();
+
+        if (!tmp_subunits.contains(to) || !tmp_subunits.contains(from))
+            return null;
+
+        for (Double d : input) {
+            if (d!=null)
+                converted_array.add(tmp_unit.convert(from, to, d));
+            else
+                converted_array.add(null);
+        }
+        return converted_array;
+    }
 }

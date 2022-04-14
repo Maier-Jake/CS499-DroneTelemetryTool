@@ -86,7 +86,7 @@ public class FrequencySelector implements Initializable {
             String fieldName = (String) listView.getSelectionModel().getSelectedItem();
             TimeField relatedField = null;
             for (TimeField f : MainApplication.fields.getTimeFields()) {
-                if (f.myName == fieldName)
+                if (f.getName() == fieldName)
                 {
                     relatedField = f;
                 }
@@ -140,7 +140,7 @@ public class FrequencySelector implements Initializable {
 
         for (TimeField f : timeFields)
         {
-            listSet.add(f.myName);
+            listSet.add(f.getName());
         }
 
         listFields.setAll(listSet);
