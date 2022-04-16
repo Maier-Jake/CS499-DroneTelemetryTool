@@ -1,10 +1,7 @@
 package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.DTT_GUI;
-import dronetelemetrytool.fieldparsing.BoolField;
-import dronetelemetrytool.fieldparsing.Field;
-import dronetelemetrytool.fieldparsing.NumberField;
-import dronetelemetrytool.fieldparsing.StringField;
+import dronetelemetrytool.fieldparsing.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -55,53 +52,53 @@ public class GaugeSelector implements Initializable {
     }
     @FXML
     protected void circle90Click() throws IOException {
-        DTT_GUI.circle90GaugeCreator((NumberField) field);
+        DTT_GUI.circle90GaugeCreator(new NumberField(field));
     }
     @FXML
     protected void circle180Click() throws IOException {
-        DTT_GUI.circle180GaugeCreator((NumberField) field);
+        DTT_GUI.circle180GaugeCreator(new NumberField(field));
     }
     @FXML
     protected void circle270Click() throws IOException {
-        DTT_GUI.circle270GaugeCreator((NumberField) field);
+        DTT_GUI.circle270GaugeCreator(new NumberField(field));
     }
     @FXML
     protected void circle360Click() throws IOException {
-        DTT_GUI.circle360GaugeCreator((NumberField) field);
+        DTT_GUI.circle360GaugeCreator(new NumberField(field));
     }
     @FXML
     protected void barClick() throws IOException {
-        DTT_GUI.barGaugeCreator((NumberField) field);
+        DTT_GUI.barGaugeCreator(new NumberField(field));
     }
     @FXML
     protected void timestampClick() throws IOException {
-        DTT_GUI.timestampGaugeCreator();
+        DTT_GUI.timestampGaugeCreator(new TimeField(field));
     }
     @FXML
     protected void textClick() throws IOException {
-        DTT_GUI.textGaugeCreator((StringField) field);
+        DTT_GUI.textGaugeCreator(new StringField(field));
     }
     @FXML
     protected void characterClick() throws IOException {
-        DTT_GUI.characterGaugeCreator();
+        DTT_GUI.characterGaugeCreator(new StringField(field));
     }
     @FXML
     protected void xPlotClick() throws IOException {
-        DTT_GUI.xPlotGaugeCreator((NumberField) field);
+        DTT_GUI.xPlotGaugeCreator(new NumberField(field));
     }
 
     // todo: add second field to xyPlotClock
     @FXML
     protected void xyPlotClick() throws IOException {
-        DTT_GUI.xyPlotGaugeCreator((NumberField) field);
+        DTT_GUI.xyPlotGaugeCreator(new NumberField(field));
     }
     @FXML
     protected void clockClick() throws IOException {
-        DTT_GUI.clockGaugeCreator((NumberField) field);
+        DTT_GUI.clockGaugeCreator(new NumberField(field));
     }
     @FXML
     protected void boolClick() throws IOException {
-        DTT_GUI.onOffGaugeCreator((BoolField) field);
+        DTT_GUI.onOffGaugeCreator(new BoolField(field));
     }
 
     public void limitOptions()
