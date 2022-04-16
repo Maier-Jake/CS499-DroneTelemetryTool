@@ -2,6 +2,7 @@ package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
+import dronetelemetrytool.fieldparsing.NumberField;
 import dronetelemetrytool.gauges.ClusterBarGauge;
 import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
@@ -20,6 +21,9 @@ import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
 public class BarGaugeCreator implements Initializable {
+
+    private NumberField field;
+
     @FXML
     private Label HEADER;
     @FXML
@@ -254,5 +258,18 @@ public class BarGaugeCreator implements Initializable {
         }
         MainApplication.gauges.add(newGauge);
         newGauge.display();
+    }
+
+    public void setField(NumberField relatedField) {
+        field = relatedField;
+        FIELD_Title.setText(field.getName());
+        STAT_max.setText(String.valueOf(field.getMaxValue()));
+        STAT_min.setText(String.valueOf(field.getMinValue()));
+        STAT_avg.setText(String.valueOf(field.getMean()));
+        STAT_stddev.setText(String.valueOf(field.getStandardDeviation()));
+    }
+
+    public NumberField getField() {
+        return field;
     }
 }
