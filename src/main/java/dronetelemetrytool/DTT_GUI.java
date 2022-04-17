@@ -15,85 +15,107 @@ public class DTT_GUI {
     public static void barGaugeCreator(Stage parent, NumberField relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");
+        newStage.initOwner(parent);
+        newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/barGaugeCreator_view.fxml"));
-
         BarGaugeCreator controller = new BarGaugeCreator();
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load());
         controller.setField(relatedField);
         newStage.setScene(scene);
-        newStage.initOwner(parent);
-        newStage.initModality(Modality.APPLICATION_MODAL);
+
         createStage(newStage);
     }
-    public static void onOffGaugeCreator(BoolField relatedField) throws IOException {
+    public static void onOffGaugeCreator(Stage parent, BoolField relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");
+        newStage.initOwner(parent);
+        newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/onOffGaugeCreator_view.fxml"));
         createStage(newStage, fxmlLoader);
     }
-    public static void characterGaugeCreator(StringField relatedField) throws IOException {
+    public static void characterGaugeCreator(Stage parent, StringField relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");
+        newStage.initOwner(parent);
+        newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/characterGaugeCreator_view.fxml"));
         createStage(newStage, fxmlLoader);
     }
-    public static void textGaugeCreator(StringField relatedField) throws IOException {
+    public static void textGaugeCreator(Stage parent, StringField relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");
+        newStage.initOwner(parent);
+        newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/textGaugeCreator_view.fxml"));
         createStage(newStage, fxmlLoader);
     }
-    public static void timestampGaugeCreator(TimeField relatedField) throws IOException {
+    public static void timestampGaugeCreator(Stage parent, TimeField relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");
+        newStage.initOwner(parent);
+        newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/timestampGaugeCreator_view.fxml"));
         createStage(newStage, fxmlLoader);
     }
-    public static void clockGaugeCreator(NumberField relatedField) throws IOException {
+    public static void clockGaugeCreator(Stage parent, NumberField relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");
+        newStage.initOwner(parent);
+        newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/clockGaugeCreator_view.fxml"));
         createStage(newStage, fxmlLoader);
     }
-    public static void circle180GaugeCreator(NumberField relatedField) throws IOException {
+    public static void circle180GaugeCreator(Stage parent, NumberField relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");
+        newStage.initOwner(parent);
+        newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/circle180GaugeCreator_view.fxml"));
         createStage(newStage, fxmlLoader);
     }
-    public static void circle90GaugeCreator(NumberField relatedField) throws IOException {
+    public static void circle90GaugeCreator(Stage parent, NumberField relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");
+        newStage.initOwner(parent);
+        newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/circle90GaugeCreator_view.fxml"));
         createStage(newStage, fxmlLoader);
     }
-    public static void circle270GaugeCreator(NumberField relatedField) throws IOException {
+    public static void circle270GaugeCreator(Stage parent, NumberField relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");
+        newStage.initOwner(parent);
+        newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/circle270GaugeCreator_view.fxml"));
         createStage(newStage, fxmlLoader);
     }
-    public static void circle360GaugeCreator(NumberField relatedField) throws IOException {
+    public static void circle360GaugeCreator(Stage parent, NumberField relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");
+        newStage.initOwner(parent);
+        newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/circle360GaugeCreator_view.fxml"));
         createStage(newStage, fxmlLoader);
     }
 
     // Using this gauge as a proof-of-concept for passing Fields down the pipeline
     // and setting values like statistics and units.
-    public static void xPlotGaugeCreator(NumberField relatedField) throws IOException {
+    public static void xPlotGaugeCreator(Stage parent, NumberField relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");
+        newStage.initOwner(parent);
+        newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/xPlotGaugeCreator_view.fxml"));
         createStage(newStage, fxmlLoader);
     }
 
     // todo: add second field parameter
-    public static void xyPlotGaugeCreator(NumberField relatedField) throws IOException {
+    public static void xyPlotGaugeCreator(Stage parent, NumberField relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");
+        newStage.initOwner(parent);
+        newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/xyPlotGaugeCreator_view.fxml"));
         createStage(newStage, fxmlLoader);
     }
@@ -129,6 +151,8 @@ public class DTT_GUI {
     public static void gaugeSelector(Stage parent, Field relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Selector Tool");
+        newStage.initOwner(parent);
+        newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/gaugeSelector_view.fxml"));
 
         GaugeSelector controller = new GaugeSelector();
@@ -137,8 +161,6 @@ public class DTT_GUI {
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load());
         controller.limitOptions();
-        newStage.initOwner(parent);
-        newStage.initModality(Modality.APPLICATION_MODAL);
 
         newStage.setScene(scene);
         createStage(newStage);
