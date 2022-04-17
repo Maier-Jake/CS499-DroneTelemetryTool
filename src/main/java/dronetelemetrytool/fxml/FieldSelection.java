@@ -60,7 +60,7 @@ public class FieldSelection implements Initializable {
                 if (rightSet.size() < 10) {
                     ArrayList<String> items = new ArrayList<>();
                     for (int i = 0; i < indices.size(); i++) {
-                        items.add(leftSet.get(indices.get(i)));
+                        items.add(leftFilter.get(indices.get(i)));
                     }
                     if(items.size() == 1) {
                         //creating gauge w/ 1 field
@@ -145,18 +145,10 @@ public class FieldSelection implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-//        leftSet.add("United States of America");
-//        leftSet.add("Free American Empire");
-//        leftSet.add("Communist States of America");
-//        leftSet.add("America");
-//        leftSet.add("British Empire");
-//        leftSet.add("Great Britain");
-//        leftSet.add("British Commune");
-//        leftSet.add("England");
-//        leftSet.add("String 9");
-//        leftSet.add("String 10");
-//        leftSet.add("String 11");
-//        leftSet.add("String 12");
+
+        for (String s: MainApplication.fields.getHeaders()) {
+            leftSet.add(s);
+        }
 
         leftFields.setAll(leftSet);
         leftView.setItems(leftFilter);
@@ -176,5 +168,11 @@ public class FieldSelection implements Initializable {
                 leftFilter.setPredicate(s -> s.toLowerCase().contains(filter.toLowerCase()));
             }
         });
+    }
+
+    public void addToRightSet(String gaugeName)
+    {
+        //add to the right set
+
     }
 }
