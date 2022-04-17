@@ -25,8 +25,6 @@ public class BarGaugeCreator implements Initializable {
     private NumberField field;
 
     @FXML
-    private Label HEADER;
-    @FXML
     private TextField FIELD_Title;
     @FXML
     private TextField FIELD_GreenT;
