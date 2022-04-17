@@ -29,8 +29,6 @@ public class MainApplication extends Application {
     private static long gaugeUpdateFrequency;
     private static int gaugeUpdateFrequencyModifier;
 
-
-
     @Override
     public void init() {
 
