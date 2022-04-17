@@ -3,11 +3,14 @@ package dronetelemetrytool.fxml;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 import java.net.URL;
@@ -23,8 +26,13 @@ public class FieldSelection implements Initializable {
     @FXML
     public ListView rightView;
 
+    @FXML
+    public TextField SearchBar;
+
     ArrayList<String> leftSet = new ArrayList<>();
     ObservableList<String> leftFields = FXCollections.observableArrayList();
+    String Filter = new String();
+    FilteredList<String> leftFilter = new FilteredList<String>(leftFields, s -> true);
     ArrayList<String> rightSet = new ArrayList<>();
     ObservableList<String> rightFields = FXCollections.observableArrayList();
 
@@ -81,26 +89,36 @@ public class FieldSelection implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        leftSet.add("String 1");
-        leftSet.add("String 2");
-        leftSet.add("String 3");
-        leftSet.add("String 4");
-        leftSet.add("String 5");
-        leftSet.add("String 6");
-        leftSet.add("String 7");
-        leftSet.add("String 8");
+        leftSet.add("United States of America");
+        leftSet.add("Free American Empire");
+        leftSet.add("Communist States of America");
+        leftSet.add("America");
+        leftSet.add("British Empire");
+        leftSet.add("Great Britain");
+        leftSet.add("British Commune");
+        leftSet.add("England");
         leftSet.add("String 9");
         leftSet.add("String 10");
         leftSet.add("String 11");
         leftSet.add("String 12");
 
         leftFields.setAll(leftSet);
-        leftView.setItems(leftFields);
+        leftView.setItems(leftFilter);
         leftView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
         rightFields.setAll(rightSet);
         rightView.setItems(rightFields);
         rightView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        SearchBar.textProperty().addListener(obs->{
+            String filter = SearchBar.getText();
+            if(filter == null || filter.length() == 0) {
+                leftFilter.setPredicate(s -> true);
+            }
+            else {
+                leftFilter.setPredicate(s -> s.contains(filter));
+            }
+        });
     }
 }
