@@ -54,22 +54,22 @@ public class GaugeSelector implements Initializable {
 
     @FXML
     protected void circle90Click() throws IOException {
-        DTT_GUI.circle90GaugeCreator(new NumberField(field));
+        DTT_GUI.circle90GaugeCreator(parent, new NumberField(field));
         ((Stage) buttonCircle90.getScene().getWindow()).close();
     }
     @FXML
     protected void circle180Click() throws IOException {
-        DTT_GUI.circle180GaugeCreator(new NumberField(field));
+        DTT_GUI.circle180GaugeCreator(parent, new NumberField(field));
         ((Stage) buttonCircle180.getScene().getWindow()).close();
     }
     @FXML
     protected void circle270Click() throws IOException {
-        DTT_GUI.circle270GaugeCreator(new NumberField(field));
+        DTT_GUI.circle270GaugeCreator(parent, new NumberField(field));
         ((Stage) buttonCircle270.getScene().getWindow()).close();
     }
     @FXML
     protected void circle360Click() throws IOException {
-        DTT_GUI.circle360GaugeCreator(new NumberField(field));
+        DTT_GUI.circle360GaugeCreator(parent, new NumberField(field));
         ((Stage) buttonCircle360.getScene().getWindow()).close();
     }
     @FXML
@@ -79,39 +79,39 @@ public class GaugeSelector implements Initializable {
     }
     @FXML
     protected void timestampClick() throws IOException {
-        DTT_GUI.timestampGaugeCreator(new TimeField(field));
+        DTT_GUI.timestampGaugeCreator(parent, new TimeField(field));
         ((Stage) buttonTimestamp.getScene().getWindow()).close();
     }
     @FXML
     protected void textClick() throws IOException {
-        DTT_GUI.textGaugeCreator(new StringField(field));
+        DTT_GUI.textGaugeCreator(parent, new StringField(field));
         ((Stage) buttonText.getScene().getWindow()).close();
     }
     @FXML
     protected void characterClick() throws IOException {
-        DTT_GUI.characterGaugeCreator(new StringField(field));
+        DTT_GUI.characterGaugeCreator(parent, new StringField(field));
         ((Stage) buttonCharacter.getScene().getWindow()).close();
     }
     @FXML
     protected void xPlotClick() throws IOException {
-        DTT_GUI.xPlotGaugeCreator(new NumberField(field));
+        DTT_GUI.xPlotGaugeCreator(parent, new NumberField(field));
         ((Stage) buttonXPlot.getScene().getWindow()).close();
     }
 
     // todo: add second field to xyPlotClock
     @FXML
     protected void xyPlotClick() throws IOException {
-        DTT_GUI.xyPlotGaugeCreator(new NumberField(field));
+        DTT_GUI.xyPlotGaugeCreator(parent, new NumberField(field));
         ((Stage) buttonXYPlot.getScene().getWindow()).close();
     }
     @FXML
     protected void clockClick() throws IOException {
-        DTT_GUI.clockGaugeCreator(new NumberField(field));
+        DTT_GUI.clockGaugeCreator(parent, new NumberField(field));
         ((Stage) buttonClock.getScene().getWindow()).close();
     }
     @FXML
     protected void boolClick() throws IOException {
-        DTT_GUI.onOffGaugeCreator(new BoolField(field));
+        DTT_GUI.onOffGaugeCreator(parent, new BoolField(field));
         ((Stage) buttonBool.getScene().getWindow()).close();
     }
 

@@ -38,15 +38,6 @@ public class MainApplication extends Application {
         timestampField = null;
         frequency = -1.0f;
 
-//        File mediaFile = new File("src/main/resources/dronetelemetrytool/monopolyYES.mp4");
-//        video = null;
-//        try {
-//            video = new Media(mediaFile.toURI().toURL().toString());
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
-
-        //lastStockCall = System.nanoTime();
         final Duration[] timeStamp = {Duration.ZERO};
 
         gaugeUpdateFrequencyModifier = 1;
@@ -63,6 +54,7 @@ public class MainApplication extends Application {
                 }
             }
         };
+
     }
 
     @Override
