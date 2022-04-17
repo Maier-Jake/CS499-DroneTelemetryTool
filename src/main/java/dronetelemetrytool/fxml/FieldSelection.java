@@ -4,35 +4,21 @@ import dronetelemetrytool.DTT_GUI;
 import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.Field;
-import dronetelemetrytool.fieldparsing.NumberField;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.cell.CheckBoxListCell;
-import javafx.scene.control.cell.ComboBoxListCell;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
-import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 public class FieldSelection implements Initializable {
 
@@ -45,15 +31,13 @@ public class FieldSelection implements Initializable {
     public Button removeButton;
 
     @FXML
-    public TextField SearchBar;
+    public TextField searchBar;
 
     ArrayList<String> leftSet = new ArrayList<>();
     ObservableList<String> leftFields = FXCollections.observableArrayList();
-    String Filter = new String();
     FilteredList<String> leftFilter = new FilteredList<String>(leftFields, s -> true);
     ArrayList<String> rightSet = new ArrayList<>();
     ObservableList<String> rightFields = FXCollections.observableArrayList();
-
     ObservableList<Integer> indices;
 
 
@@ -161,18 +145,18 @@ public class FieldSelection implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        leftSet.add("United States of America");
-        leftSet.add("Free American Empire");
-        leftSet.add("Communist States of America");
-        leftSet.add("America");
-        leftSet.add("British Empire");
-        leftSet.add("Great Britain");
-        leftSet.add("British Commune");
-        leftSet.add("England");
-        leftSet.add("String 9");
-        leftSet.add("String 10");
-        leftSet.add("String 11");
-        leftSet.add("String 12");
+//        leftSet.add("United States of America");
+//        leftSet.add("Free American Empire");
+//        leftSet.add("Communist States of America");
+//        leftSet.add("America");
+//        leftSet.add("British Empire");
+//        leftSet.add("Great Britain");
+//        leftSet.add("British Commune");
+//        leftSet.add("England");
+//        leftSet.add("String 9");
+//        leftSet.add("String 10");
+//        leftSet.add("String 11");
+//        leftSet.add("String 12");
 
         leftFields.setAll(leftSet);
         leftView.setItems(leftFilter);
@@ -183,8 +167,8 @@ public class FieldSelection implements Initializable {
         rightView.setItems(rightFields);
         rightView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        SearchBar.textProperty().addListener(obs->{
-            String filter = SearchBar.getText();
+        searchBar.textProperty().addListener(obs->{
+            String filter = searchBar.getText();
             if(filter == null || filter.length() == 0) {
                 leftFilter.setPredicate(s -> true);
             }
