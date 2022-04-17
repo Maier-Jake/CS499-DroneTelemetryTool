@@ -50,9 +50,6 @@ public class BarGaugeCreator implements Initializable {
     private TextField STAT_stddev;
 
     @FXML
-    private ComboBox<String> COMBO_Format;
-
-    @FXML
     private ComboBox<String> COMBO_Alarm;
     @FXML
     private ComboBox<String> unitTypeComboBox;
@@ -72,7 +69,6 @@ public class BarGaugeCreator implements Initializable {
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
 
-        COMBO_Format.getItems().setAll("m/s", "%", "m", "ft");
         COMBO_Alarm.getItems().setAll("Chirp", "Siren", "Scream");
 
         Pattern validEditingState = Pattern.compile("-?(([1-9][0-9]*)|0)?(\\.[0-9]*)?");
@@ -135,7 +131,6 @@ public class BarGaugeCreator implements Initializable {
         double greenThreshold = Double.parseDouble(FIELD_GreenT.textProperty().getValueSafe());
         double yellowThreshold = Double.parseDouble(FIELD_YellowT.textProperty().getValueSafe());
         double redThreshold = Double.parseDouble(FIELD_RedT.textProperty().getValueSafe());
-        String format = COMBO_Format.getValue();
         String sAlarm = COMBO_Alarm.getValue();
 
         if (minVal <= greenThreshold)
@@ -148,27 +143,13 @@ public class BarGaugeCreator implements Initializable {
                     {
                         if (minVal < maxVal)
                         {
-                            if (format != null)
+                            if (sAlarm != null)
                             {
-                                if (sAlarm != null)
-                                {
-                                    createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, format, sAlarm);
-                                }
-                                else
-                                {
-                                    createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, format, "");
-                                }
+                                createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, sAlarm);
                             }
                             else
                             {
-                                if (sAlarm != null)
-                                {
-                                    createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, "", sAlarm);
-                                }
-                                else
-                                {
-                                    createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, "", "");
-                                }
+                                createGauge(title, minVal, maxVal, greenThreshold, yellowThreshold, redThreshold, "");
                             }
                             Stage stage = (Stage) BUTTON_Close.getScene().getWindow();
                             stage.close();
@@ -205,7 +186,7 @@ public class BarGaugeCreator implements Initializable {
 
     }
 
-    private void createGauge(String title, double min, double max, double green, double yellow, double red, String unit, String sAlarm)
+    private void createGauge(String title, double min, double max, double green, double yellow, double red, String sAlarm)
     {
         ClusterBarGauge newGauge = new ClusterBarGauge();
         newGauge.setTitle(title);
@@ -224,23 +205,23 @@ public class BarGaugeCreator implements Initializable {
 
         newGauge.setGradient(gradient);
 
-        switch(unit)
-        {
-            case "%":
-                newGauge.tile.getChartData().get(0).setFormatString("%.1f" + "%%");
-                break;
-            case "m/s":
-                newGauge.tile.getChartData().get(0).setFormatString("%.1f" + " m/s");
-                break;
-            case "ft":
-                newGauge.tile.getChartData().get(0).setFormatString("%.1f" + " ft");
-                break;
-            case "m":
-                newGauge.tile.getChartData().get(0).setFormatString("%.1f" + " m");
-                break;
-            default:
-                break;
-        }
+//        switch(unit)
+//        {
+//            case "%":
+//                newGauge.tile.getChartData().get(0).setFormatString("%.1f" + "%%");
+//                break;
+//            case "m/s":
+//                newGauge.tile.getChartData().get(0).setFormatString("%.1f" + " m/s");
+//                break;
+//            case "ft":
+//                newGauge.tile.getChartData().get(0).setFormatString("%.1f" + " ft");
+//                break;
+//            case "m":
+//                newGauge.tile.getChartData().get(0).setFormatString("%.1f" + " m");
+//                break;
+//            default:
+//                break;
+//        }
         switch(sAlarm)
         {
             case "Chirp":
