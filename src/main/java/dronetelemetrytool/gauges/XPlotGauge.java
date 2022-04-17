@@ -1,12 +1,15 @@
 package dronetelemetrytool.gauges;
 
 import dronetelemetrytool.DTT_Tools;
+import dronetelemetrytool.fieldparsing.NumberField;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 
 
 public class XPlotGauge extends Gauge {
+
+    private NumberField field;
 
     private XYChart.Series<Number, Number> series;
     private NumberAxis primaryAxis;
@@ -82,5 +85,13 @@ public class XPlotGauge extends Gauge {
     public void setLabel(String label)
     {
         primaryAxis.setLabel(label);
+    }
+
+    public NumberField getField() {
+        return field;
+    }
+
+    public void setField(NumberField field) {
+        this.field = field;
     }
 }

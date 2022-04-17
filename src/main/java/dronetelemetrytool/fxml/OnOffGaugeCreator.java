@@ -1,6 +1,7 @@
 package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.MainApplication;
+import dronetelemetrytool.fieldparsing.BoolField;
 import dronetelemetrytool.gauges.OnOffGauge;
 import eu.hansolo.tilesfx.colors.Bright;
 import javafx.fxml.FXML;
@@ -17,6 +18,9 @@ import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
 public class OnOffGaugeCreator implements Initializable {
+
+    private BoolField field;
+
     @FXML
     private TextField FIELD_Title;
     @FXML
@@ -55,12 +59,11 @@ public class OnOffGaugeCreator implements Initializable {
     {
         String title = FIELD_Title.textProperty().getValueSafe();
         OnOffGauge newGauge = new OnOffGauge();
+        newGauge.setField(field);
         newGauge.setTitle(title);
-
 
         Color on = COLOR_on.getValue();
         newGauge.tile.setActiveColor(on);
-
 
         MainApplication.gauges.add(newGauge);
         newGauge.display();

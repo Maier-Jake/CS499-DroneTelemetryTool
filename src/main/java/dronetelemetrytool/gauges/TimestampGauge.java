@@ -1,8 +1,11 @@
 package dronetelemetrytool.gauges;
 
+import dronetelemetrytool.fieldparsing.TimeField;
 import eu.hansolo.tilesfx.Tile;
 
 public class TimestampGauge extends Gauge{
+
+    private TimeField field;
 
     public TimestampGauge()
     {
@@ -15,6 +18,14 @@ public class TimestampGauge extends Gauge{
     @Override
     public void update() {
 
+    }
+
+    public TimeField getField() {
+        return field;
+    }
+
+    public void setField(TimeField field) {
+        this.field = field;
     }
 }
 

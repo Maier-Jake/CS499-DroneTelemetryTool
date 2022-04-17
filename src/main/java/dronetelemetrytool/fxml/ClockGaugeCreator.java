@@ -1,6 +1,7 @@
 package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.MainApplication;
+import dronetelemetrytool.fieldparsing.TimeField;
 import dronetelemetrytool.gauges.ClockGauge;
 import dronetelemetrytool.gauges.TimestampGauge;
 import javafx.fxml.FXML;
@@ -16,6 +17,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ClockGaugeCreator implements Initializable {
+
+    private TimeField field;
+
     @FXML
     private TextField FIELD_Title;
     @FXML
@@ -52,6 +56,7 @@ public class ClockGaugeCreator implements Initializable {
         String title = FIELD_Title.textProperty().getValueSafe();
 
         ClockGauge newGauge = new ClockGauge();
+        newGauge.setField(field);
         newGauge.setTitle(title);
         
         MainApplication.gauges.add(newGauge);

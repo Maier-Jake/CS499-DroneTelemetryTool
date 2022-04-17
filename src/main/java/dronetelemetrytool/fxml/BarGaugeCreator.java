@@ -187,6 +187,7 @@ public class BarGaugeCreator implements Initializable {
     private void createGauge(String title, double min, double max, double green, double yellow, double red, String sAlarm)
     {
         ClusterBarGauge newGauge = new ClusterBarGauge();
+        newGauge.setField(field);
         newGauge.setTitle(title);
 
         newGauge.tile.getChartData().get(0).setMaxValue(max);
