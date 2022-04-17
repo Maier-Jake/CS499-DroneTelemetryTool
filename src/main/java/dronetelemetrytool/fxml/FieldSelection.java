@@ -15,6 +15,7 @@ import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -117,7 +118,7 @@ public class FieldSelection implements Initializable {
                 leftFilter.setPredicate(s -> true);
             }
             else {
-                leftFilter.setPredicate(s -> s.contains(filter));
+                leftFilter.setPredicate(s -> s.toLowerCase().contains(filter.toLowerCase()));
             }
         });
     }
