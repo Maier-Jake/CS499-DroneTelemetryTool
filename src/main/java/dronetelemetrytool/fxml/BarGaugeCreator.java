@@ -205,7 +205,7 @@ public class BarGaugeCreator implements Initializable {
 
     }
 
-    private static void createGauge(String title, double min, double max, double green, double yellow, double red, String unit, String sAlarm)
+    private void createGauge(String title, double min, double max, double green, double yellow, double red, String unit, String sAlarm)
     {
         ClusterBarGauge newGauge = new ClusterBarGauge();
         newGauge.setTitle(title);
@@ -245,7 +245,6 @@ public class BarGaugeCreator implements Initializable {
         {
             case "Chirp":
                 newGauge.setAlarm(1);
-                System.out.println("ran set alarm (1)");
                 break;
             case "Siren":
                 newGauge.setAlarm(2);
@@ -257,7 +256,8 @@ public class BarGaugeCreator implements Initializable {
                 break;
         }
         MainApplication.gauges.add(newGauge);
-        newGauge.display();
+        Stage stage = (Stage) FIELD_Title.getScene().getWindow();
+        stage.close();
     }
 
     public void setField(NumberField relatedField) {

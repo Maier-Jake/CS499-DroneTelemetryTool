@@ -70,6 +70,7 @@ public class FieldSelection implements Initializable {
         }
         else
         {
+            Stage parent = (Stage) createButton.getScene().getWindow();
             if (indices.size() > 0) {
                 if (rightSet.size() < 10) {
                     ArrayList<String> items = new ArrayList<>();
@@ -88,7 +89,7 @@ public class FieldSelection implements Initializable {
                         }
                         if (relatedField != null)
                         {
-                            DTT_GUI.gaugeSelector(relatedField);
+                            DTT_GUI.gaugeSelector(parent, relatedField);
                         }
                         else
                         {
