@@ -27,8 +27,9 @@ import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
 public class XPlotGaugeCreator implements Initializable {
-    @FXML
-    private Label HEADER;
+
+    private NumberField field;
+
     @FXML
     private TextField FIELD_Title;
     @FXML
@@ -59,7 +60,6 @@ public class XPlotGaugeCreator implements Initializable {
     @FXML
     private ComboBox<String> desiredUnitComboBox;
     private UnitConverter uc = new UnitConverter();
-    private NumberField field;
 
     @FXML
     protected void onCancelClick() {
@@ -190,5 +190,16 @@ public class XPlotGaugeCreator implements Initializable {
         newGauge.display();
     }
 
-    public void setField(NumberField nf) { this.field = nf; }
+    public void setField(NumberField relatedField) {
+        field = relatedField;
+        FIELD_Title.setText(field.getName());
+        STAT_max.setText(String.valueOf(field.getMaxValue()));
+        STAT_min.setText(String.valueOf(field.getMinValue()));
+        STAT_avg.setText(String.valueOf(field.getMean()));
+        STAT_stddev.setText(String.valueOf(field.getStandardDeviation()));
+    }
+
+    public NumberField getField() {
+        return field;
+    }
 }

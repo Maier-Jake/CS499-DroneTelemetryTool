@@ -1,6 +1,8 @@
 package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.MainApplication;
+import dronetelemetrytool.fieldparsing.NumberField;
+import dronetelemetrytool.fieldparsing.StringField;
 import dronetelemetrytool.gauges.CharacterGauge;
 import dronetelemetrytool.gauges.OnOffGauge;
 import eu.hansolo.tilesfx.colors.Bright;
@@ -15,8 +17,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CharacterGaugeCreator implements Initializable {
-    @FXML
-    private Label HEADER;
+
+    private StringField field;
+
     @FXML
     private TextField FIELD_Title;
     @FXML
@@ -56,5 +59,15 @@ public class CharacterGaugeCreator implements Initializable {
 
         MainApplication.gauges.add(newGauge);
         newGauge.display();
+    }
+
+    public void setField(StringField relatedField) {
+        field = relatedField;
+        FIELD_Title.setText(field.getName());
+
+    }
+
+    public StringField getField() {
+        return field;
     }
 }

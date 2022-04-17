@@ -2,6 +2,7 @@ package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
+import dronetelemetrytool.fieldparsing.NumberField;
 import dronetelemetrytool.gauges.GaugeOrient;
 import dronetelemetrytool.gauges.XPlotGauge;
 import dronetelemetrytool.gauges.XYPlotGauge;
@@ -18,8 +19,10 @@ import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
 public class XYPlotGaugeCreator implements Initializable {
-    @FXML
-    private Label HEADER;
+
+    private NumberField xField;
+    private NumberField yField;
+
     @FXML
     private TextField FIELD_Title;
     @FXML

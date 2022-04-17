@@ -1,6 +1,9 @@
 package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.MainApplication;
+import dronetelemetrytool.fieldparsing.Field;
+import dronetelemetrytool.fieldparsing.NumberField;
+import dronetelemetrytool.fieldparsing.StringField;
 import dronetelemetrytool.gauges.TextGauge;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +18,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TextGaugeCreator implements Initializable {
+
+    private Field field;
+
     @FXML
     private TextField FIELD_Title;
     @FXML
@@ -54,6 +60,15 @@ public class TextGaugeCreator implements Initializable {
         
         MainApplication.gauges.add(newGauge);
         newGauge.display();
+    }
+
+    public void setField(StringField relatedField) {
+        field = relatedField;
+        FIELD_Title.setText(field.getName());
+    }
+
+    public Field getField() {
+        return field;
     }
 
 }
