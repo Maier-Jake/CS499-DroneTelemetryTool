@@ -55,6 +55,7 @@ public class CharacterGaugeCreator implements Initializable {
     {
         String title = FIELD_Title.textProperty().getValueSafe();
         CharacterGauge newGauge = new CharacterGauge();
+        newGauge.setField(field);
         newGauge.setTitle(title);
 
         MainApplication.gauges.add(newGauge);

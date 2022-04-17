@@ -10,13 +10,12 @@ import java.util.Random;
 
 public class CharacterGauge extends Gauge{
 
-
+    private StringField field;
 
     public CharacterGauge()
     {
         super();
-//        field = MainApplication.fields.getStringFields().get(0);
-
+        field = null;
         tile.setSkinType(Tile.SkinType.CHARACTER);
         tile.setTitle("Character Gauge");
         tile.setTitleAlignment(TextAlignment.CENTER);
@@ -29,5 +28,13 @@ public class CharacterGauge extends Gauge{
 //        char c = (char)(r.nextInt(26) + 'a');
 
 //        tile.setDescription(temp);
+    }
+
+    public StringField getField() {
+        return field;
+    }
+
+    public void setField(StringField field) {
+        this.field = field;
     }
 }

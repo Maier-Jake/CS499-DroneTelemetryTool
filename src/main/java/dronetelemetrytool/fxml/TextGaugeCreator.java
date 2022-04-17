@@ -56,6 +56,7 @@ public class TextGaugeCreator implements Initializable {
         String title = FIELD_Title.textProperty().getValueSafe();
 
         TextGauge newGauge = new TextGauge();
+        newGauge.setField(field);
         newGauge.setTitle(title);
         
         MainApplication.gauges.add(newGauge);

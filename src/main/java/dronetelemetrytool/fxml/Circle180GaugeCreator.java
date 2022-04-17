@@ -181,9 +181,10 @@ public class Circle180GaugeCreator implements Initializable {
         }
     }
 
-    private static void createGauge(String title, double min, double max, double green, double yellow, double red, String sAlarm)
+    private void createGauge(String title, double min, double max, double green, double yellow, double red, String sAlarm)
     {
         CircleGauge newGauge = new CircleGauge(180);
+        newGauge.setField(field);
         newGauge.setTitle(title);
 
         newGauge.tile.setMaxValue(max);

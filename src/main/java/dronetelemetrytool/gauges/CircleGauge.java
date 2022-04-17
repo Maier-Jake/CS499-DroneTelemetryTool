@@ -24,6 +24,7 @@ public class CircleGauge extends Gauge {
     public CircleGauge(int angleRange)
     {
         super();
+        field = null;
         tile.setSkinType(Tile.SkinType.GAUGE2);
         tile.setUnit("d");
         tile.setAngleRange(angleRange);
@@ -117,5 +118,14 @@ public class CircleGauge extends Gauge {
                 //no alarm
                 break;
         }
+    }
+
+    public NumberField getField()
+    {
+        return field;
+    }
+
+    public void setField(NumberField field) {
+        this.field = field;
     }
 }
