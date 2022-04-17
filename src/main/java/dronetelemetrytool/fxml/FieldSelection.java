@@ -160,23 +160,18 @@ public class FieldSelection implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-
-        for (String s: MainApplication.fields.getHeaders()) {
-            leftSet.add(s);
-        }
-
-//        leftSet.add("String 1");
-//        leftSet.add("String 2");
-//        leftSet.add("String 3");
-//        leftSet.add("String 4");
-//        leftSet.add("String 5");
-//        leftSet.add("String 6");
-//        leftSet.add("String 7");
-//        leftSet.add("String 8");
-//        leftSet.add("String 9");
-//        leftSet.add("String 10");
-//        leftSet.add("String 11");
-//        leftSet.add("String 12");
+        leftSet.add("United States of America");
+        leftSet.add("Free American Empire");
+        leftSet.add("Communist States of America");
+        leftSet.add("America");
+        leftSet.add("British Empire");
+        leftSet.add("Great Britain");
+        leftSet.add("British Commune");
+        leftSet.add("England");
+        leftSet.add("String 9");
+        leftSet.add("String 10");
+        leftSet.add("String 11");
+        leftSet.add("String 12");
 
         leftFields.setAll(leftSet);
         leftView.setItems(leftFilter);
