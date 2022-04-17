@@ -23,11 +23,12 @@ public class MainApplication extends Application {
     public static FieldCollection fields;
     public static TimeField timestampField;
     public static float frequency;
+    public static AnimationTimer timer;
 
     private static long lastTimerCall;
     private static long gaugeUpdateFrequency;
     private static int gaugeUpdateFrequencyModifier;
-    private static AnimationTimer timer;
+
 
 
     @Override
@@ -68,7 +69,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        timer.start();
+//        timer.start();
         DTT_GUI.inputSelector();
 
     }
