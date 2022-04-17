@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class TextGauge extends Gauge{
 
-    private StringField field;
+    private Field field;
 
     public TextGauge()
     {
@@ -25,11 +25,11 @@ public class TextGauge extends Gauge{
         tile.setDescription("Text");
     }
 
-    public StringField getField() {
+    public Field getField() {
         return field;
     }
 
-    public void setField(StringField field) {
+    public void setField(Field field) {
         this.field = field;
     }
 }
