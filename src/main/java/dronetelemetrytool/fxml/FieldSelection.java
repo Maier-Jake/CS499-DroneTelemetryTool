@@ -8,6 +8,7 @@ import dronetelemetrytool.fieldparsing.NumberField;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,6 +23,8 @@ import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -40,8 +43,13 @@ public class FieldSelection implements Initializable {
     public Button createButton;
     public Button removeButton;
 
+    @FXML
+    public TextField SearchBar;
+
     ArrayList<String> leftSet = new ArrayList<>();
     ObservableList<String> leftFields = FXCollections.observableArrayList();
+    String Filter = new String();
+    FilteredList<String> leftFilter = new FilteredList<String>(leftFields, s -> true);
     ArrayList<String> rightSet = new ArrayList<>();
     ObservableList<String> rightFields = FXCollections.observableArrayList();
 
@@ -170,12 +178,22 @@ public class FieldSelection implements Initializable {
 //        leftSet.add("String 12");
 
         leftFields.setAll(leftSet);
-        leftView.setItems(leftFields);
+        leftView.setItems(leftFilter);
         leftView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
         rightFields.setAll(rightSet);
         rightView.setItems(rightFields);
         rightView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        SearchBar.textProperty().addListener(obs->{
+            String filter = SearchBar.getText();
+            if(filter == null || filter.length() == 0) {
+                leftFilter.setPredicate(s -> true);
+            }
+            else {
+                leftFilter.setPredicate(s -> s.contains(filter));
+            }
+        });
     }
 }
