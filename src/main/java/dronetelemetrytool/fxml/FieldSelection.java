@@ -46,6 +46,9 @@ public class FieldSelection implements Initializable {
     @FXML
     public TextField SearchBar;
 
+    @FXML
+    public TextField SearchBar;
+
     ArrayList<String> leftSet = new ArrayList<>();
     ObservableList<String> leftFields = FXCollections.observableArrayList();
     String Filter = new String();
