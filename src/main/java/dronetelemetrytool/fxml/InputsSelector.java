@@ -43,7 +43,8 @@ public class InputsSelector {
 
         String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
         chooser.setInitialDirectory(new File(currentPath));
-        File selectedFile = chooser.showOpenDialog(new Stage());
+        Stage stage = (Stage) continueButton.getScene().getWindow();
+        File selectedFile = chooser.showOpenDialog(stage);
 
         if (selectedFile != null) {
             String path = selectedFile.toPath().toString();
@@ -74,7 +75,8 @@ public class InputsSelector {
 
         String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
         chooser.setInitialDirectory(new File(currentPath));
-        File selectedFile = chooser.showOpenDialog(new Stage());
+        Stage stage = (Stage) continueButton.getScene().getWindow();
+        File selectedFile = chooser.showOpenDialog(stage);
 
         if (selectedFile != null) {
             String path = selectedFile.toPath().toString();
