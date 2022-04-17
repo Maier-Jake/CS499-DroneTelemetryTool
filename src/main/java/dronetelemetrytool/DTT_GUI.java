@@ -4,6 +4,7 @@ import dronetelemetrytool.fieldparsing.*;
 import dronetelemetrytool.fxml.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class DTT_GUI {
 
-    public static void barGaugeCreator(NumberField relatedField) throws IOException {
+    public static void barGaugeCreator(Stage parent, NumberField relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/barGaugeCreator_view.fxml"));
@@ -21,8 +22,9 @@ public class DTT_GUI {
         Scene scene = new Scene(fxmlLoader.load());
         controller.setField(relatedField);
         newStage.setScene(scene);
+        newStage.initOwner(parent);
+        newStage.initModality(Modality.APPLICATION_MODAL);
         createStage(newStage);
-
     }
     public static void onOffGaugeCreator(BoolField relatedField) throws IOException {
         Stage newStage = new Stage();
@@ -124,16 +126,19 @@ public class DTT_GUI {
         createStage(newStage, fxmlLoader);
     }
 
-    public static void gaugeSelector(Field relatedField) throws IOException {
+    public static void gaugeSelector(Stage parent, Field relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Selector Tool");
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/gaugeSelector_view.fxml"));
 
         GaugeSelector controller = new GaugeSelector();
         controller.setField(relatedField);
+        controller.setParent(parent);
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load());
         controller.limitOptions();
+        newStage.initOwner(parent);
+        newStage.initModality(Modality.APPLICATION_MODAL);
 
         newStage.setScene(scene);
         createStage(newStage);
