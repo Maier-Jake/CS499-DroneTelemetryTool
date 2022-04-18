@@ -4,6 +4,7 @@ import dronetelemetrytool.DTT_GUI;
 import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.Field;
+import dronetelemetrytool.gauges.Gauge;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -27,8 +28,12 @@ public class FieldSelection implements Initializable {
 
     @FXML
     public ListView rightView;
-    public Button createButton;
-    public Button removeButton;
+    @FXML
+    public Button buttonCreate;
+    @FXML
+    public Button buttonRemove;
+    @FXML
+    public Button buttonContinue;
 
     @FXML
     public TextField searchBar;
@@ -51,11 +56,11 @@ public class FieldSelection implements Initializable {
         if (indices.size() > 2)
         {
             //error because we cannot create any gauges from >2 fields.
-            Stage popup = DTT_Tools.popup((Stage) createButton.getScene().getWindow(), "Cannot create any valid gauges from > 2 fields.");
+            Stage popup = DTT_Tools.popup((Stage) buttonCreate.getScene().getWindow(), "Cannot create any valid gauges from > 2 fields.");
         }
         else
         {
-            Stage parent = (Stage) createButton.getScene().getWindow();
+            Stage parent = (Stage) buttonCreate.getScene().getWindow();
             if (indices.size() > 0) {
                 if (rightSet.size() < 10) {
                     ArrayList<String> items = new ArrayList<>();
@@ -90,12 +95,12 @@ public class FieldSelection implements Initializable {
                 }
                 else {
                     //error because we cannot create any more gauges
-                    Stage popup = DTT_Tools.popup((Stage) createButton.getScene().getWindow(), "Cannot create more than 10 gauges.");
+                    Stage popup = DTT_Tools.popup((Stage) buttonCreate.getScene().getWindow(), "Cannot create more than 10 gauges.");
                 }
             }
             else {
                 //error because nothing selected
-                Stage popup = DTT_Tools.popup((Stage) createButton.getScene().getWindow(), "No field(s) selected.");
+                Stage popup = DTT_Tools.popup((Stage) buttonCreate.getScene().getWindow(), "No field(s) selected.");
             }
 //            if (indices.size() > 0 && (indices.size() + rightSet.size()) <= 10) {
 //                ArrayList<String> items = new ArrayList<>();
@@ -139,7 +144,15 @@ public class FieldSelection implements Initializable {
     }
 
     @FXML
-    protected void onContinueClick() {
+    protected void onContinueClick() throws IOException {
+        for (Gauge g : MainApplication.gauges)
+        {
+            g.display();
+        }
+        MainApplication.timer.start();
+        ((Stage) buttonContinue.getScene().getWindow()).close();
+
+        DTT_GUI.videoPlayer();
 
     }
 
@@ -154,6 +167,12 @@ public class FieldSelection implements Initializable {
         leftView.setItems(leftFilter);
         leftView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
+        rightSet.add("Altitude");
+        rightSet.add("xSpeed");
+        rightSet.add("ySpeed");
+        rightSet.add("Timestamp");
+        rightSet.add("Battery Life");
+        rightSet.add("Is propeller Catapult?");
 
         rightFields.setAll(rightSet);
         rightView.setItems(rightFields);

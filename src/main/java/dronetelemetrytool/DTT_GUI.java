@@ -12,6 +12,13 @@ import java.util.List;
 
 public class DTT_GUI {
 
+    public static void videoPlayer() throws IOException {
+        Stage newStage = new Stage();
+        newStage.setTitle("DTT - Video Playback");
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/videoPlayer_view.fxml"));
+        createStage(newStage, fxmlLoader);
+    }
+
     public static void barGaugeCreator(Stage parent, NumberField relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");

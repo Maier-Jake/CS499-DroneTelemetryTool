@@ -21,49 +21,41 @@
     <Label styleClass="header2">
         <text>Field Selection</text>
     </Label>
-    <BorderPane prefHeight="65.0" prefWidth="657.0" />
 
     <HBox alignment="CENTER">
         <VBox alignment="CENTER">
-            <HBox alignment="CENTER">
-                <Region prefHeight="50" />
+            <Label alignment="CENTER" text="Parsed Headers from Telemetry Data"/>
+            <HBox>
+                <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
                 <ListView fx:id="leftView" focusTraversable="false"/>
             </HBox>
-
-            <HBox alignment="CENTER">
-                <Region prefHeight="100" />
-                <TextField editable="true" focusTraversable="true" text="Search..." fx:id="searchBar" prefWidth="250"/>
-            </HBox>
-        </VBox>
-
-        <VBox alignment="CENTER">
-            <Region prefWidth="150" />
-            <HBox alignment="CENTER">
-                <Region prefHeight="50" />
-                <Button onAction="#onCreateClick" text="Create" prefWidth="110" fx:id="createButton"/>
-            </HBox>
-
-            <HBox alignment="CENTER">
-                <Region prefHeight="50" />
-                <Button onAction="#onRemoveClick" text="Remove" prefWidth="110" fx:id="removeButton"/>
-            </HBox>
+            <TextField editable="true" focusTraversable="true" text="Search..." fx:id="searchBar" prefWidth="250"/>
         </VBox>
 
         <VBox alignment="CENTER">
             <HBox alignment="CENTER">
+                <Region prefHeight="50" />
+                <Button onAction="#onCreateClick" text="Create" prefWidth="110" fx:id="buttonCreate"/>
+            </HBox>
+
+            <HBox alignment="CENTER">
+                <Region prefHeight="50" />
+                <Button onAction="#onRemoveClick" text="Remove" prefWidth="110" fx:id="buttonRemove"/>
+            </HBox>
+        </VBox>
+
+        <VBox alignment="CENTER">
+            <Label alignment="CENTER" text="Created Gauges (no more than 10)"/>
+            <HBox>
+                <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
                 <ListView fx:id="rightView" focusTraversable="false"/>
             </HBox>
 
             <HBox alignment="CENTER">
                 <Region prefHeight="100" />
-                <HBox alignment="CENTER">
-                    <Button onAction="#onSaveClick" text="Save" prefWidth="120"/>
-                </HBox>
-
-                <HBox alignment="CENTER">
-                    <Region prefWidth="5" />
-                    <Button onAction="#onContinueClick" text="Continue" prefWidth="120"/>
-                </HBox>
+                <Button onAction="#onSaveClick" text="Save" prefWidth="120" fx:id="buttonSave"/>
+                <Region prefWidth="5" />
+                <Button onAction="#onContinueClick" text="Continue" prefWidth="120" fx:id="buttonContinue"/>
             </HBox>
         </VBox>
     </HBox>

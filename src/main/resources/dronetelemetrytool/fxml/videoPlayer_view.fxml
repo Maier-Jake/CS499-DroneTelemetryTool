@@ -27,7 +27,7 @@
 <!--            </mediaPlayer>-->
         </MediaView>
     </HBox>
-    <HBox fx:id="buttonBox" alignment="BASELINE_CENTER">
+    <HBox fx:id="buttonBox" alignment="CENTER">
         <Button styleClass="button" text="◀"/>
         <Button styleClass="button" text="⏯"/>
         <Button styleClass="button" text="▶"/>
