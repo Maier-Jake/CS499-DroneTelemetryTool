@@ -235,8 +235,10 @@ public class BarGaugeCreator implements Initializable {
             default:
                 break;
         }
+
         MainApplication.gauges.add(newGauge);
         Stage stage = (Stage) FIELD_Title.getScene().getWindow();
+        newGauge.display();
         stage.close();
     }
 

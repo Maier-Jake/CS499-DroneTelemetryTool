@@ -32,7 +32,7 @@
 
             <HBox alignment="CENTER">
                 <Region prefHeight="100" />
-                <TextField editable="true" focusTraversable="true" text="Search..." fx:id="CSVaddress" prefWidth="250"/>
+                <TextField editable="true" focusTraversable="true" text="Search..." fx:id="searchBar" prefWidth="250"/>
             </HBox>
         </VBox>
 

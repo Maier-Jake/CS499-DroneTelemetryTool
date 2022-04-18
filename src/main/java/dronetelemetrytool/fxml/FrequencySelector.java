@@ -84,8 +84,8 @@ public class FrequencySelector implements Initializable {
         if (indices.size() == 1) {
             //creating gauge w/ 1 field
             String fieldName = (String) listView.getSelectionModel().getSelectedItem();
-            TimeField relatedField = null;
-            for (TimeField f : MainApplication.fields.getTimeFields()) {
+            Field relatedField = null;
+            for (Field f : MainApplication.fields.getFields()) {
                 if (f.getName() == fieldName)
                 {
                     relatedField = f;
@@ -93,7 +93,7 @@ public class FrequencySelector implements Initializable {
             }
             if (relatedField != null)
             {
-                MainApplication.timestampField = relatedField;
+//                MainApplication.timestampField = relatedField;
                 DTT_GUI.fieldSelection();
                 Stage stage = (Stage) listView.getScene().getWindow();
                 stage.close();
@@ -136,9 +136,9 @@ public class FrequencySelector implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         //get only time fields
-        ArrayList<TimeField> timeFields = MainApplication.fields.getTimeFields();
+//        ArrayList<TimeField> timeFields = MainApplication.fields.getTimeFields();
 
-        for (TimeField f : timeFields)
+        for (Field f : MainApplication.fields.getFields())
         {
             listSet.add(f.getName());
         }

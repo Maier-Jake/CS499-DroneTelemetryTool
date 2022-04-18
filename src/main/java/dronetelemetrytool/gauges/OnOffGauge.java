@@ -19,8 +19,9 @@ public class OnOffGauge extends Gauge{
     }
     @Override
     public void update() {
-        Random r = new Random();
-        tile.setActive(r.nextBoolean());
+//        Random r = new Random();
+//        tile.setActive(r.nextBoolean());
+        tile.setActive(field.getNext());
     }
 
     public void setField(BoolField field) {

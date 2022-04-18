@@ -1,6 +1,7 @@
 package dronetelemetrytool.gauges;
 
 
+import dronetelemetrytool.fieldparsing.Field;
 import dronetelemetrytool.fieldparsing.NumberField;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.chart.ChartData;
@@ -27,12 +28,10 @@ public class ClusterBarGauge extends Gauge{
     public ClusterBarGauge()
     {
         super();
-        field = null;
         tile.setPrefSize(TILE_SIZE*2, TILE_SIZE);
         tile.setSkinType(Tile.SkinType.CLUSTER_MONITOR);
         tile.setTitle("");
-        tile.setMinValue(0);
-        tile.setMaxValue(100);
+
 
         gradient = new GradientLookup(Arrays.asList(
                 new Stop(0.0, Bright.BLUE),
@@ -53,7 +52,8 @@ public class ClusterBarGauge extends Gauge{
 
     @Override
     public void update() {
-        data.setValue(RND.nextDouble() * data.getMaxValue());
+        //data.setValue(RND.nextDouble() * data.getMaxValue());
+        data.setValue(field.getNext());
         data.setFillColor(gradient.getColorAt(data.getValue() / data.getMaxValue()));
 
         if (mediaPlayer != null)
@@ -114,5 +114,7 @@ public class ClusterBarGauge extends Gauge{
 
     public void setField(NumberField field) {
         this.field = field;
+        tile.setMinValue(field.getMinValue());
+        tile.setMaxValue(field.getMaxValue());
     }
 }

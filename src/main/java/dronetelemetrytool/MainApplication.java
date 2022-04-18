@@ -1,7 +1,6 @@
 package dronetelemetrytool;
 
-import dronetelemetrytool.fieldparsing.FieldCollection;
-import dronetelemetrytool.fieldparsing.TimeField;
+import dronetelemetrytool.fieldparsing.*;
 import dronetelemetrytool.gauges.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -15,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainApplication extends Application {
 
@@ -40,7 +40,7 @@ public class MainApplication extends Application {
 
         final Duration[] timeStamp = {Duration.ZERO};
 
-        gaugeUpdateFrequencyModifier = 1;
+        gaugeUpdateFrequencyModifier = 10;
         gaugeUpdateFrequency = 1_000_000_000 / gaugeUpdateFrequencyModifier;
 
         lastTimerCall = System.nanoTime();
@@ -59,8 +59,14 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-//        timer.start();
-        DTT_GUI.inputSelector();
+       timer.start();
+//        Field f = new Field("data");
+//        NumberField nf = new NumberField(f);
+//        DTT_GUI.xyPlotGaugeCreator();
+       DTT_GUI.inputSelector();
+//        XPlotGauge ga = new XPlotGauge(GaugeOrient.HORIZONTAL, 0, 10, 1);
+//        ga.display();
+
 
     }
 
