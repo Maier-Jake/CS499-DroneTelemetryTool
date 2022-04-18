@@ -1,6 +1,7 @@
 package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.MainApplication;
+import dronetelemetrytool.fieldparsing.TimeField;
 import dronetelemetrytool.gauges.TextGauge;
 import dronetelemetrytool.gauges.TimestampGauge;
 import javafx.fxml.FXML;
@@ -16,6 +17,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TimestampGaugeCreator implements Initializable {
+
+    private TimeField field;
+
     @FXML
     private TextField FIELD_Title;
     @FXML
@@ -55,5 +59,13 @@ public class TimestampGaugeCreator implements Initializable {
         
         MainApplication.gauges.add(newGauge);
         newGauge.display();
+    }
+
+    public TimeField getField() {
+        return field;
+    }
+
+    public void setField(TimeField field) {
+        this.field = field;
     }
 }

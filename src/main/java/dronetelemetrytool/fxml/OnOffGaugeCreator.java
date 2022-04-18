@@ -68,4 +68,8 @@ public class OnOffGaugeCreator implements Initializable {
         MainApplication.gauges.add(newGauge);
         newGauge.display();
     }
+
+    public void setField(BoolField field) {
+        this.field = field;
+    }
 }
