@@ -55,6 +55,7 @@ public class TimestampGaugeCreator implements Initializable {
         String title = FIELD_Title.textProperty().getValueSafe();
 
         TimestampGauge newGauge = new TimestampGauge();
+        newGauge.setField(field);
         newGauge.setTitle(title);
         
         MainApplication.gauges.add(newGauge);
