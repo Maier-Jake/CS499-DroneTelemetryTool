@@ -20,7 +20,7 @@ public class ClusterBarGauge extends Gauge{
     private NumberField field;
 
     private ChartData data;
-    private GradientLookup gradient;
+//    private GradientLookup gradient;
     private Media alarm;
     private MediaPlayer mediaPlayer;
     private double redThresh;
@@ -28,22 +28,22 @@ public class ClusterBarGauge extends Gauge{
     public ClusterBarGauge()
     {
         super();
+        field = null;
         tile.setPrefSize(TILE_SIZE*2, TILE_SIZE);
-        tile.setSkinType(Tile.SkinType.CLUSTER_MONITOR);
+
         tile.setTitle("");
+        tile.setMinValue(0);
+        tile.setMaxValue(100);
+        tile.setFillWithGradient(true);
 
 
-        gradient = new GradientLookup(Arrays.asList(
-                new Stop(0.0, Bright.BLUE),
-                new Stop(0.3, Bright.GREEN),
-                new Stop(0.6, Bright.YELLOW),
-                new Stop(0.9, Bright.RED)));
+//        gradient = new GradientLookup(Arrays.asList(
+//                new Stop(0.0, Bright.BLUE),
+//                new Stop(0.3, Bright.GREEN),
+//                new Stop(0.6, Bright.YELLOW),
+//                new Stop(0.9, Bright.RED)));
 
         redThresh = 0.9 * tile.getMaxValue();
-
-        data = new ChartData("", Tile.YELLOW);
-        data.setFormatString("%.1f");
-        tile.addChartData(data);
 
         alarm = null;
         mediaPlayer = null;
@@ -54,7 +54,7 @@ public class ClusterBarGauge extends Gauge{
     public void update() {
         //data.setValue(RND.nextDouble() * data.getMaxValue());
         data.setValue(field.getNext());
-        data.setFillColor(gradient.getColorAt(data.getValue() / data.getMaxValue()));
+//        data.setFillColor(gradient.getColorAt(data.getValue() / data.getMaxValue()));
 
         if (mediaPlayer != null)
         {
@@ -72,12 +72,6 @@ public class ClusterBarGauge extends Gauge{
                 }
             }
         }
-    }
-
-    public void setGradient(GradientLookup g)
-    {
-        gradient = g;
-        redThresh = g.getStops().get(3).getOffset() * tile.getRange();
     }
 
     public void setAlarm(int i) {
@@ -114,7 +108,14 @@ public class ClusterBarGauge extends Gauge{
 
     public void setField(NumberField field) {
         this.field = field;
-        tile.setMinValue(field.getMinValue());
-        tile.setMaxValue(field.getMaxValue());
+//        tile.setMinValue(field.getMinValue());
+//        tile.setMaxValue(field.getMaxValue());
+    }
+
+    public void setData(ChartData data) {
+        this.data = data;
+        redThresh = data.getGradientLookup().getStops().get(3).getOffset() * tile.getRange();
+        tile.addChartData(data);
+        tile.setSkinType(Tile.SkinType.CLUSTER_MONITOR);
     }
 }
