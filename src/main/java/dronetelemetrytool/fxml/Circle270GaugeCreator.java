@@ -234,7 +234,9 @@ public class Circle270GaugeCreator implements Initializable {
         }
 
         MainApplication.gauges.add(newGauge);
-        newGauge.display();
+        FieldSelection.addToRight(title);
+        Stage stage = (Stage) FIELD_Title.getScene().getWindow();
+        stage.close();
     }
 
     public void setField(NumberField relatedField) {

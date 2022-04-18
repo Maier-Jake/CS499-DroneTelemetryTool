@@ -57,9 +57,11 @@ public class TimestampGaugeCreator implements Initializable {
         TimestampGauge newGauge = new TimestampGauge();
         newGauge.setField(field);
         newGauge.setTitle(title);
-        
+
         MainApplication.gauges.add(newGauge);
-        newGauge.display();
+        FieldSelection.addToRight(title);
+        Stage stage = (Stage) FIELD_Title.getScene().getWindow();
+        stage.close();
     }
 
     public TimeField getField() {

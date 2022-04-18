@@ -38,20 +38,15 @@ public class FieldSelection implements Initializable {
     @FXML
     public TextField searchBar;
 
-    ArrayList<String> leftSet = new ArrayList<>();
-    ObservableList<String> leftFields = FXCollections.observableArrayList();
+    public static ObservableList<String> leftFields = FXCollections.observableArrayList();
+    public static ObservableList<String> rightFields = FXCollections.observableArrayList();
     FilteredList<String> leftFilter = new FilteredList<String>(leftFields, s -> true);
-    ArrayList<String> rightSet = new ArrayList<>();
-    ObservableList<String> rightFields = FXCollections.observableArrayList();
-    ObservableList<Integer> indices;
-
 
     @FXML
     protected void onCreateClick() throws IOException {
 
-        // Checks if right list length is <10
-        indices = leftView.getSelectionModel().getSelectedIndices();
-//        System.out.println(indices.size());
+        ObservableList<Integer> indices = leftView.getSelectionModel().getSelectedIndices();
+
         //if (selected > 0 , and selected + already made <= 10)
         if (indices.size() > 2)
         {
@@ -62,7 +57,7 @@ public class FieldSelection implements Initializable {
         {
             Stage parent = (Stage) buttonCreate.getScene().getWindow();
             if (indices.size() > 0) {
-                if (rightSet.size() < 10) {
+                if (rightFields.size() < 10) {
                     ArrayList<String> items = new ArrayList<>();
                     for (int i = 0; i < indices.size(); i++) {
                         items.add(leftFilter.get(indices.get(i)));
@@ -160,21 +155,12 @@ public class FieldSelection implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         for (String s: MainApplication.fields.getHeaders()) {
-            leftSet.add(s);
+            leftFields.add(s);
         }
 
-        leftFields.setAll(leftSet);
         leftView.setItems(leftFilter);
         leftView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        rightSet.add("Altitude");
-        rightSet.add("xSpeed");
-        rightSet.add("ySpeed");
-        rightSet.add("Timestamp");
-        rightSet.add("Battery Life");
-        rightSet.add("Is propeller Catapult?");
-
-        rightFields.setAll(rightSet);
         rightView.setItems(rightFields);
         rightView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
@@ -189,9 +175,9 @@ public class FieldSelection implements Initializable {
         });
     }
 
-    public void addToRightSet(String gaugeName)
+    public static void addToRight(String gaugeName)
     {
-        //add to the right set
+        rightFields.add(gaugeName);
 
     }
 }

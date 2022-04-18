@@ -178,15 +178,18 @@ public class XYPlotGaugeCreator implements Initializable {
         }
     }
 
-    private static void createGauge(String title, double xMin, double xMax, double xTick, String xLabel, double yMin, double yMax, double yTick, String yLabel)
+    private void createGauge(String title, double xMin, double xMax, double xTick, String xLabel, double yMin, double yMax, double yTick, String yLabel)
     {
 
         XYPlotGauge newGauge = new XYPlotGauge(xMin, xMax, xTick, yMin, yMax, yTick);
         newGauge.setTitle(title);
         newGauge.setXLabel(xLabel);
         newGauge.setYLabel(yLabel);
+
         MainApplication.gauges.add(newGauge);
-        newGauge.display();
+        FieldSelection.addToRight(title);
+        Stage stage = (Stage) FIELD_Title.getScene().getWindow();
+        stage.close();
     }
 
     public NumberField getxField() {

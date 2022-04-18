@@ -59,7 +59,9 @@ public class CharacterGaugeCreator implements Initializable {
         newGauge.setTitle(title);
 
         MainApplication.gauges.add(newGauge);
-        newGauge.display();
+        FieldSelection.addToRight(title);
+        Stage stage = (Stage) FIELD_Title.getScene().getWindow();
+        stage.close();
     }
 
     public void setField(StringField relatedField) {

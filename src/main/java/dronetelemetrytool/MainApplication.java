@@ -59,15 +59,8 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-       timer.start();
-//        Field f = new Field("data");
-//        NumberField nf = new NumberField(f);
-//        DTT_GUI.xyPlotGaugeCreator();
-       DTT_GUI.inputSelector();
-//        XPlotGauge ga = new XPlotGauge(GaugeOrient.HORIZONTAL, 0, 10, 1);
-//        ga.display();
-
-
+//        timer.start();
+        DTT_GUI.inputSelector();
     }
 
     @Override

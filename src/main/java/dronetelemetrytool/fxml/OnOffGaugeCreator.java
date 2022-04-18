@@ -66,7 +66,9 @@ public class OnOffGaugeCreator implements Initializable {
         newGauge.tile.setActiveColor(on);
 
         MainApplication.gauges.add(newGauge);
-        newGauge.display();
+        FieldSelection.addToRight(title);
+        Stage stage = (Stage) FIELD_Title.getScene().getWindow();
+        stage.close();
     }
 
     public void setField(BoolField field) {

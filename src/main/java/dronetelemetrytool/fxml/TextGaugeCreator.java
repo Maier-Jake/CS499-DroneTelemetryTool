@@ -58,9 +58,11 @@ public class TextGaugeCreator implements Initializable {
         TextGauge newGauge = new TextGauge();
         newGauge.setField(field);
         newGauge.setTitle(title);
-        
+
         MainApplication.gauges.add(newGauge);
-        newGauge.display();
+        FieldSelection.addToRight(title);
+        Stage stage = (Stage) FIELD_Title.getScene().getWindow();
+        stage.close();
     }
 
     public void setField(StringField relatedField) {

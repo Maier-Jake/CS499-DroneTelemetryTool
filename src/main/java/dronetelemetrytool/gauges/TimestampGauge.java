@@ -10,11 +10,15 @@ import java.util.TimeZone;
 
 public class TimestampGauge extends Gauge{
 
+    private DateFormat formatter;
     private TimeField field;
 
     public TimestampGauge()
     {
         super();
+        formatter = new SimpleDateFormat("HH:mm:ss.SSS");
+        formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+
         tile.setTitle("Timestamp Gauge");
         tile.setDescription("03:17");
         tile.setText("time elapsed");
@@ -22,9 +26,7 @@ public class TimestampGauge extends Gauge{
     }
     @Override
     public void update() {
-        Date date = new Date(field.getNext());
-        DateFormat formatter = new SimpleDateFormat("HH:mm:ss.SSS");
-        formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date date = field.getNextDate();
         String dateFormatted = formatter.format(date);
         tile.setDescription(dateFormatted);
     }

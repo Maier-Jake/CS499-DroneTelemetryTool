@@ -58,9 +58,11 @@ public class ClockGaugeCreator implements Initializable {
         ClockGauge newGauge = new ClockGauge();
         newGauge.setField(field);
         newGauge.setTitle(title);
-        
+
         MainApplication.gauges.add(newGauge);
-        newGauge.display();
+        FieldSelection.addToRight(title);
+        Stage stage = (Stage) FIELD_Title.getScene().getWindow();
+        stage.close();
     }
 
     public void setField(TimeField field) {

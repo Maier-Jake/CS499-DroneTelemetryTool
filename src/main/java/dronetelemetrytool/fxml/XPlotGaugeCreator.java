@@ -184,14 +184,16 @@ public class XPlotGaugeCreator implements Initializable {
         }
     }
 
-    private static void createGauge(String title, double min, double max, double tickUnit, String label, GaugeOrient orient)
+    private void createGauge(String title, double min, double max, double tickUnit, String label, GaugeOrient orient)
     {
 
         XPlotGauge newGauge = new XPlotGauge(orient, min, max, tickUnit);
         newGauge.setTitle(title);
         newGauge.setLabel(label);
         MainApplication.gauges.add(newGauge);
-        newGauge.display();
+        FieldSelection.addToRight(title);
+        Stage stage = (Stage) FIELD_Title.getScene().getWindow();
+        stage.close();
     }
 
     public void setField(NumberField relatedField) {

@@ -1,5 +1,6 @@
 package dronetelemetrytool.fxml;
 
+import dronetelemetrytool.MainApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -31,18 +32,10 @@ public class VideoPlayer implements Initializable {
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            System.out.println("1");
-            Media media = new Media("D:/School/CS499/Data/newVid.mp4");
-            System.out.println("2");
-            MediaPlayer mediaPlayer = new MediaPlayer(media);
-            System.out.println("3");
-            mediaView = new MediaView(mediaPlayer);
-        } catch (MediaException e) {
-            System.out.println("Error1");
-        } catch (UnsupportedOperationException f) {
-            System.out.println("Error2");
-        }
+
+        MediaPlayer mediaPlayer = new MediaPlayer(MainApplication.video);
+        mediaView.setMediaPlayer(mediaPlayer);
+
     }
 
 }
