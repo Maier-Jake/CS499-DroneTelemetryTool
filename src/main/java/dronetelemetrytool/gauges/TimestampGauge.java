@@ -3,6 +3,11 @@ package dronetelemetrytool.gauges;
 import dronetelemetrytool.fieldparsing.TimeField;
 import eu.hansolo.tilesfx.Tile;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class TimestampGauge extends Gauge{
 
     private TimeField field;
@@ -17,7 +22,11 @@ public class TimestampGauge extends Gauge{
     }
     @Override
     public void update() {
-
+        Date date = new Date(field.getNext());
+        DateFormat formatter = new SimpleDateFormat("HH:mm:ss.SSS");
+        formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+        String dateFormatted = formatter.format(date);
+        tile.setDescription(dateFormatted);
     }
 
     public TimeField getField() {

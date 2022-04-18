@@ -10,6 +10,7 @@ import dronetelemetrytool.fieldparsing.FieldCollection;
 import dronetelemetrytool.fieldparsing.UnitConverter;
 import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -122,11 +123,14 @@ public class XPlotGaugeCreator implements Initializable {
 
         String default_unit = this.uc.getUnitNames().get(0);
         List<String> default_subunits = this.uc.getSubunits(default_unit);
-        unitTypeComboBox.setItems((ObservableList<String>) this.uc.getUnitNames());
+        //unitTypeComboBox.setItems((ObservableList<String>) this.uc.getUnitNames());
+        unitTypeComboBox.setItems(FXCollections.observableArrayList(this.uc.getUnitNames()));
         unitTypeComboBox.setValue(default_unit);
-        currentUnitComboBox.setItems((ObservableList<String>) default_subunits);
+//        currentUnitComboBox.setItems((ObservableList<String>) default_subunits);
+        currentUnitComboBox.setItems(FXCollections.observableList(default_subunits));
         currentUnitComboBox.setValue(default_subunits.get(0));
-        desiredUnitComboBox.setItems((ObservableList<String>) default_subunits);
+//        desiredUnitComboBox.setItems((ObservableList<String>) default_subunits);
+        desiredUnitComboBox.setItems(FXCollections.observableList(default_subunits));
         desiredUnitComboBox.setValue(default_subunits.get(0));
     }
 

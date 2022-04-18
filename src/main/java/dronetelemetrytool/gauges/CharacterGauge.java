@@ -26,7 +26,7 @@ public class CharacterGauge extends Gauge{
     public void update() {
 //        Random r = new Random();
 //        char c = (char)(r.nextInt(26) + 'a');
-
+          tile.setDescription(field.getNext());
 //        tile.setDescription(temp);
     }
 

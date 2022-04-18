@@ -1,10 +1,18 @@
 package dronetelemetrytool.gauges;
 
 import dronetelemetrytool.DTT_Tools;
+import dronetelemetrytool.fieldparsing.Field;
 import dronetelemetrytool.fieldparsing.NumberField;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
+
+import javax.swing.text.Element;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class XPlotGauge extends Gauge {
@@ -21,6 +29,14 @@ public class XPlotGauge extends Gauge {
     {
         super();
 
+
+
+//        ArrayList<XYChart.Data> list = new ArrayList<>();
+//        ArrayList<Double> doubles = new ArrayList<>(field.getNumberData());
+//        for (Double d : doubles) {
+//            list.add(new XYChart.Data(d, 1));
+//        }
+//        ObservableList<XYChart.Data> observableList = FXCollections.observableList(list);
         series = new XYChart.Series();
 
         tile.setTitle("Line Plot Gauge");
@@ -65,7 +81,7 @@ public class XPlotGauge extends Gauge {
     }
     @Override
     public void update() {
-        double newVal = RND.nextDouble() * tile.getRange();
+        double newVal = field.getNext();
         double newValInRange = DTT_Tools.map(newVal, 0, tile.getRange(), tile.getMinValue(), tile.getMaxValue());
         switch (orient)
         {

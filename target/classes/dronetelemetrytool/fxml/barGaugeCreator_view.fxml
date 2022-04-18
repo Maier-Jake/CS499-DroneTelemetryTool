@@ -110,17 +110,17 @@
                     </Label>
                 </HBox>
 
-                <HBox alignment="CENTER">
-                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
-                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">
-                        <text>Units</text>
-                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
-                    </Label>
-                    <ComboBox fx:id="COMBO_Format" prefWidth="250.0" promptText="choose"/>
-                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
-                        <text>Units of the data</text>
-                    </Label>
-                </HBox>
+<!--                <HBox alignment="CENTER">-->
+<!--                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>-->
+<!--                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">-->
+<!--                        <text>Units</text>-->
+<!--                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>-->
+<!--                    </Label>-->
+<!--                    <ComboBox fx:id="COMBO_Format" prefWidth="250.0" promptText="choose"/>-->
+<!--                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>-->
+<!--                        <text>Units of the data</text>-->
+<!--                    </Label>-->
+<!--                </HBox>-->
 
                 <HBox alignment="CENTER">
                     <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
