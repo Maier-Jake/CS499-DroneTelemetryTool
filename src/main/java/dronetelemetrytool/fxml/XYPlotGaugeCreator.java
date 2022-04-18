@@ -188,4 +188,20 @@ public class XYPlotGaugeCreator implements Initializable {
         MainApplication.gauges.add(newGauge);
         newGauge.display();
     }
+
+    public NumberField getxField() {
+        return xField;
+    }
+
+    public void setxField(NumberField xField) {
+        this.xField = xField;
+    }
+
+    public NumberField getyField() {
+        return yField;
+    }
+
+    public void setyField(NumberField yField) {
+        this.yField = yField;
+    }
 }

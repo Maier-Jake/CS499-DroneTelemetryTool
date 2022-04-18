@@ -23,7 +23,6 @@ public class DTT_GUI {
         Scene scene = new Scene(fxmlLoader.load());
         controller.setField(relatedField);
         newStage.setScene(scene);
-
         createStage(newStage);
     }
     public static void onOffGaugeCreator(Stage parent, BoolField relatedField) throws IOException {
@@ -32,7 +31,12 @@ public class DTT_GUI {
         newStage.initOwner(parent);
         newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/onOffGaugeCreator_view.fxml"));
-        createStage(newStage, fxmlLoader);
+        OnOffGaugeCreator controller = new OnOffGaugeCreator();
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load());
+        controller.setField(relatedField);
+        newStage.setScene(scene);
+        createStage(newStage);
     }
     public static void characterGaugeCreator(Stage parent, StringField relatedField) throws IOException {
         Stage newStage = new Stage();
@@ -40,7 +44,12 @@ public class DTT_GUI {
         newStage.initOwner(parent);
         newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/characterGaugeCreator_view.fxml"));
-        createStage(newStage, fxmlLoader);
+        CharacterGaugeCreator controller = new CharacterGaugeCreator();
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load());
+        controller.setField(relatedField);
+        newStage.setScene(scene);
+        createStage(newStage);
     }
     public static void textGaugeCreator(Stage parent, StringField relatedField) throws IOException {
         Stage newStage = new Stage();
@@ -48,7 +57,12 @@ public class DTT_GUI {
         newStage.initOwner(parent);
         newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/textGaugeCreator_view.fxml"));
-        createStage(newStage, fxmlLoader);
+        TextGaugeCreator controller = new TextGaugeCreator();
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load());
+        controller.setField(relatedField);
+        newStage.setScene(scene);
+        createStage(newStage);
     }
     public static void timestampGaugeCreator(Stage parent, TimeField relatedField) throws IOException {
         Stage newStage = new Stage();
@@ -56,15 +70,25 @@ public class DTT_GUI {
         newStage.initOwner(parent);
         newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/timestampGaugeCreator_view.fxml"));
-        createStage(newStage, fxmlLoader);
+        TimestampGaugeCreator controller = new TimestampGaugeCreator();
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load());
+        controller.setField(relatedField);
+        newStage.setScene(scene);
+        createStage(newStage);
     }
-    public static void clockGaugeCreator(Stage parent, NumberField relatedField) throws IOException {
+    public static void clockGaugeCreator(Stage parent, TimeField relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");
         newStage.initOwner(parent);
         newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/clockGaugeCreator_view.fxml"));
-        createStage(newStage, fxmlLoader);
+        ClockGaugeCreator controller = new ClockGaugeCreator();
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load());
+        controller.setField(relatedField);
+        newStage.setScene(scene);
+        createStage(newStage);
     }
     public static void circle180GaugeCreator(Stage parent, NumberField relatedField) throws IOException {
         Stage newStage = new Stage();
@@ -72,7 +96,12 @@ public class DTT_GUI {
         newStage.initOwner(parent);
         newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/circle180GaugeCreator_view.fxml"));
-        createStage(newStage, fxmlLoader);
+        Circle180GaugeCreator controller = new Circle180GaugeCreator();
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load());
+        controller.setField(relatedField);
+        newStage.setScene(scene);
+        createStage(newStage);
     }
     public static void circle90GaugeCreator(Stage parent, NumberField relatedField) throws IOException {
         Stage newStage = new Stage();
@@ -80,7 +109,12 @@ public class DTT_GUI {
         newStage.initOwner(parent);
         newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/circle90GaugeCreator_view.fxml"));
-        createStage(newStage, fxmlLoader);
+        Circle90GaugeCreator controller = new Circle90GaugeCreator();
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load());
+        controller.setField(relatedField);
+        newStage.setScene(scene);
+        createStage(newStage);
     }
     public static void circle270GaugeCreator(Stage parent, NumberField relatedField) throws IOException {
         Stage newStage = new Stage();
@@ -88,7 +122,12 @@ public class DTT_GUI {
         newStage.initOwner(parent);
         newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/circle270GaugeCreator_view.fxml"));
-        createStage(newStage, fxmlLoader);
+        Circle270GaugeCreator controller = new Circle270GaugeCreator();
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load());
+        controller.setField(relatedField);
+        newStage.setScene(scene);
+        createStage(newStage);
     }
     public static void circle360GaugeCreator(Stage parent, NumberField relatedField) throws IOException {
         Stage newStage = new Stage();
@@ -96,7 +135,12 @@ public class DTT_GUI {
         newStage.initOwner(parent);
         newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/circle360GaugeCreator_view.fxml"));
-        createStage(newStage, fxmlLoader);
+        Circle360GaugeCreator controller = new Circle360GaugeCreator();
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load());
+        controller.setField(relatedField);
+        newStage.setScene(scene);
+        createStage(newStage);
     }
 
     // Using this gauge as a proof-of-concept for passing Fields down the pipeline
@@ -107,7 +151,12 @@ public class DTT_GUI {
         newStage.initOwner(parent);
         newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/xPlotGaugeCreator_view.fxml"));
-        createStage(newStage, fxmlLoader);
+        XPlotGaugeCreator controller = new XPlotGaugeCreator();
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load());
+        controller.setField(relatedField);
+        newStage.setScene(scene);
+        createStage(newStage);
     }
 
     // todo: add second field parameter
@@ -117,7 +166,12 @@ public class DTT_GUI {
         newStage.initOwner(parent);
         newStage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/xyPlotGaugeCreator_view.fxml"));
-        createStage(newStage, fxmlLoader);
+        XYPlotGaugeCreator controller = new XYPlotGaugeCreator();
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load());
+        controller.setxField(relatedField);
+        newStage.setScene(scene);
+        createStage(newStage);
     }
 
     public static void inputSelector() throws IOException {

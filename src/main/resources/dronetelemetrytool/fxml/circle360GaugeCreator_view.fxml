@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 
 <?import com.sun.javafx.scene.control.CustomColorDialog.ColorRectPane?>
-<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.Circle360GaugeCreator">
+<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@DTT_Style.css" />
     </stylesheets>

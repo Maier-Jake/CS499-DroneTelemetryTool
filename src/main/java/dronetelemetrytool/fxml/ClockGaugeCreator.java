@@ -62,4 +62,8 @@ public class ClockGaugeCreator implements Initializable {
         MainApplication.gauges.add(newGauge);
         newGauge.display();
     }
+
+    public void setField(TimeField field) {
+        this.field = field;
+    }
 }

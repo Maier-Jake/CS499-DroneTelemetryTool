@@ -106,7 +106,7 @@ public class GaugeSelector implements Initializable {
     }
     @FXML
     protected void clockClick() throws IOException {
-        DTT_GUI.clockGaugeCreator(parent, new NumberField(field));
+        DTT_GUI.clockGaugeCreator(parent, new TimeField(field));
         ((Stage) buttonClock.getScene().getWindow()).close();
     }
     @FXML
