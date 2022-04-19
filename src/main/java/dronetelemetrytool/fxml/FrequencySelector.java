@@ -94,6 +94,9 @@ public class FrequencySelector implements Initializable {
             if (relatedField != null)
             {
                 MainApplication.timestampField = relatedField;
+                MainApplication.code = 1;
+                MainApplication.prevTime = MainApplication.timestampField.getNext();
+                MainApplication.currentTime = MainApplication.timestampField.getNext();
                 DTT_GUI.fieldSelection();
                 Stage stage = (Stage) listView.getScene().getWindow();
                 stage.close();
@@ -114,7 +117,9 @@ public class FrequencySelector implements Initializable {
         if (frequencyINPUT.getText() != "")
         {
             try{
-                MainApplication.frequency = Float.parseFloat(frequencyINPUT.getText());
+                MainApplication.frequency = Long.parseLong(frequencyINPUT.getText());
+                MainApplication.code = 0;
+                MainApplication.gaugeUpdateFrequency = 1_000_000_000 * MainApplication.frequency;
                 DTT_GUI.fieldSelection();
                 Stage stage = (Stage) listView.getScene().getWindow();
                 stage.close();
