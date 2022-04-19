@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,10 +25,18 @@ public class MainApplication extends Application {
     public static TimeField timestampField;
     public static float frequency;
     public static AnimationTimer timer;
+    private static double gaugeUpdateFrequencyModifier;
 
     private static long lastTimerCall;
     private static long gaugeUpdateFrequency;
-    private static int gaugeUpdateFrequencyModifier;
+
+    public static void setGaugeUpdateFrequencyModifier(double val)
+    {
+        gaugeUpdateFrequencyModifier = val;
+        gaugeUpdateFrequency = (long)( (double) 1000000000 / gaugeUpdateFrequencyModifier);
+        System.out.println(gaugeUpdateFrequency);
+    }
+
 
     @Override
     public void init() {
@@ -41,7 +50,7 @@ public class MainApplication extends Application {
         final Duration[] timeStamp = {Duration.ZERO};
 
         gaugeUpdateFrequencyModifier = 10;
-        gaugeUpdateFrequency = 1_000_000_000 / gaugeUpdateFrequencyModifier;
+        gaugeUpdateFrequency = (long)( (double) 1000000000 / gaugeUpdateFrequencyModifier);
 
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
@@ -64,11 +73,11 @@ public class MainApplication extends Application {
     }
 
     @Override
-    public void stop() {
-        System.exit(0);
-    }
+    public void stop(){System.exit(0);}
     public static void main(String[] args) {
         launch(args);
     }
+
+
 }
 
