@@ -25,24 +25,24 @@ public class MainApplication extends Application {
     public static Media video;
     
     public static TimeField timestampField;
-    private static float frequency;
-    private static float frequencyOriginal;
+    private static long frequency;
+    private static double frequencyOriginal;
     
     public static AnimationTimer timer;
-    private static long lastTimerCall;
+//    private static long lastTimerCall;
 
     public static int code = -1;
     public static long prevTime;
     public static long currentTime;
 
     public static void setFrequency(float parseFloat) {
-        parseFloat *= 100;
-        frequency = parseFloat;
+//        parseFloat *= 100;
+//        frequency = parseFloat;
         frequencyOriginal = parseFloat;
     }
 
-    public static void setSpeed(float rate) {
-        frequency = frequencyOriginal * rate;
+    public static void setSpeed(int rate) {
+        frequency = (long)((frequencyOriginal / rate) * 1_000_000_000);
     }
 
     @Override
@@ -52,27 +52,31 @@ public class MainApplication extends Application {
         video = null;
         fields = null;
         timestampField = null;
-        frequency = (long) -0.1;
+        frequencyOriginal = 0.1;
+        frequency = 100_000_000;
 
         final Duration[] timeStamp = {Duration.ZERO};
 
 //        gaugeUpdateFrequencyModifier = 10;
 //        gaugeUpdateFrequency = (long)( (double) 1000000000 / gaugeUpdateFrequencyequencyModifier);
 
-        lastTimerCall = System.nanoTime();
+//        lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
+            private long lastUpdate = 0 ;
             @Override
             public void handle(final long now) {
                 if (code == 0) {
-                    if (now > lastTimerCall + frequency) {
+
+                    if (now - lastUpdate >= frequency) {
+                        System.out.println("update");
                         //for each gauge CREATED, run an update.
                         gauges.forEach(Gauge::update);
-                        lastTimerCall = now;
+                        lastUpdate = now;
                     }
                 } else if (code == 1) {
-                    if (now > lastTimerCall + (currentTime - prevTime)) {
+                    if (now - lastUpdate >= (currentTime - prevTime)) {
                         gauges.forEach(Gauge::update);
-                        lastTimerCall = now;
+                        lastUpdate = now;
                         prevTime = currentTime;
                         currentTime = timestampField.getNext();
                     }

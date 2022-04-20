@@ -63,7 +63,7 @@ public class VideoPlayer implements Initializable {
         MainApplication.timer.stop();
         mediaView.getMediaPlayer().pause();
         mediaView.getMediaPlayer().setRate(1.0);
-        MainApplication.setSpeed(1.0f);
+        MainApplication.setSpeed(1);
         MainApplication.timer.start();
         mediaView.getMediaPlayer().play();
     }
@@ -72,7 +72,7 @@ public class VideoPlayer implements Initializable {
         MainApplication.timer.stop();
         mediaView.getMediaPlayer().pause();
         mediaView.getMediaPlayer().setRate(5.0);
-        MainApplication.setSpeed(5.0f);
+        MainApplication.setSpeed(5);
         MainApplication.timer.start();
         mediaView.getMediaPlayer().play();
     }
@@ -81,7 +81,7 @@ public class VideoPlayer implements Initializable {
         MainApplication.timer.stop();
         mediaView.getMediaPlayer().pause();
         mediaView.getMediaPlayer().setRate(8.0);
-        MainApplication.setSpeed(8.0f);
+        MainApplication.setSpeed(8);
         mediaView.getMediaPlayer().play();
         MainApplication.timer.start();
 
