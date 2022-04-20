@@ -19,21 +19,12 @@
     <HBox alignment="CENTER" prefHeight="600" prefWidth="1000">
         <MediaView fx:id="mediaView" fitHeight="600" fitWidth="1000"/>
     </HBox>
-<<<<<<< HEAD
-    <HBox fx:id="buttonBox" alignment="CENTER">
-        <Button styleClass="button" text="◀"/>
-        <Button styleClass="button" text="⏯"/>
-        <Button styleClass="button" text="▶"/>
-        <Button styleClass="button" text="⏭ 5x"/>
-        <Button styleClass="button" text="⏭ 10x"/>
-=======
     <HBox alignment="CENTER">
         <Button fx:id="reverseButton" styleClass="button" text="◀" onAction="#reverseClick"/>
         <Button fx:id="pauseButton" styleClass="button" text="⏸" onAction="#pauseClick"/>
         <Button fx:id="forwardButton" styleClass="button" text="▶" onAction="#forwardClick"/>
         <Button fx:id="fiveSpeedButton" styleClass="button" text="⏭ 5x" onAction="#fiveSpeedClick"/>
         <Button fx:id="eightSpeedButton" styleClass="button" text="⏭ 8x" onAction="#eightSpeedClick"/>
->>>>>>> Video-convert-to-mp4
     </HBox>
 </VBox>
 

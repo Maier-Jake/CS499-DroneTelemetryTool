@@ -45,10 +45,6 @@ public class MainApplication extends Application {
         frequency = frequencyOriginal * rate;
     }
 
-    public static int code = -1;
-    public static long prevTime;
-    public static long currentTime;
-
     @Override
     public void init() {
 
