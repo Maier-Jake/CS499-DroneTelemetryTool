@@ -144,7 +144,7 @@ public class FieldSelection implements Initializable {
         {
             g.display();
         }
-        MainApplication.timer.start();
+//        MainApplication.timer.start();
         ((Stage) buttonContinue.getScene().getWindow()).close();
 
         DTT_GUI.videoPlayer();

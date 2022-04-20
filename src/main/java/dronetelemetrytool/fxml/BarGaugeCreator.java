@@ -4,8 +4,6 @@ import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.NumberField;
 import dronetelemetrytool.gauges.ClusterBarGauge;
-import eu.hansolo.tilesfx.Tile;
-import eu.hansolo.tilesfx.chart.ChartData;
 import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
 import javafx.fxml.FXML;
@@ -123,7 +121,6 @@ public class BarGaugeCreator implements Initializable {
 
     @FXML
     protected void onCompletedClick() throws IOException {
-        //welcomeText.setText("Welcome to JavaFX Application!");
 
         String title = FIELD_Title.textProperty().getValueSafe();
         double minVal = Double.parseDouble(FIELD_Minimum.textProperty().getValueSafe());
@@ -188,26 +185,20 @@ public class BarGaugeCreator implements Initializable {
 
     private void createGauge(String title, double min, double max, double green, double yellow, double red, String sAlarm)
     {
-        ClusterBarGauge newGauge = new ClusterBarGauge();
+        ClusterBarGauge newGauge = new ClusterBarGauge(title, min, max, green, yellow, red, desiredUnitComboBox.getValue());
         newGauge.setField(field);
         newGauge.setTitle(title);
-
-        GradientLookup gradient = new GradientLookup(Arrays.asList(
-                new Stop(0, Bright.BLUE),
-                new Stop(DTT_Tools.map(green,min,max,0,1), Bright.GREEN),
-                new Stop(DTT_Tools.map(yellow,min,max,0,1), Bright.YELLOW),
-                new Stop(DTT_Tools.map(red,min,max,0,1), Bright.RED),
-                new Stop(1, Bright.RED)));
-
-        ChartData data = new ChartData("", Tile.YELLOW);
-        data.setFormatString("%.1f");
-        data.setMaxValue(max);
-        data.setMinValue(min);
-        data.setGradientLookup(gradient);
-        newGauge.tile.setMaxValue(max);
-        newGauge.tile.setMinValue(min);
-        newGauge.setData(data);
-
+//        newGauge.tile.getChartData().get(0).setMaxValue(max);
+//        newGauge.tile.getChartData().get(0).setMinValue(min);
+//        newGauge.tile.setMaxValue(max);
+//        newGauge.tile.setMinValue(min);
+//        GradientLookup gradient = new GradientLookup(Arrays.asList(
+//                new Stop(0, Bright.BLUE),
+//                new Stop(DTT_Tools.map(green,min,max,0,1), Bright.GREEN),
+//                new Stop(DTT_Tools.map(yellow,min,max,0,1), Bright.YELLOW),
+//                new Stop(DTT_Tools.map(red,min,max,0,1), Bright.RED),
+//                new Stop(1, Bright.RED)));
+//
 //        newGauge.setGradient(gradient);
 
 //        switch(unit)

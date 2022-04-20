@@ -6,6 +6,7 @@ module droneTelemetryTool {
     requires org.kordamp.ikonli.javafx;
     requires javafx.fxml;
     requires com.opencsv;
+    requires org.apache.commons.io;
 
     opens dronetelemetrytool.fxml to javafx.fxml;
     exports dronetelemetrytool;

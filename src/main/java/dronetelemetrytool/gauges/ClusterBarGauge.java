@@ -1,8 +1,9 @@
 package dronetelemetrytool.gauges;
 
 
-import dronetelemetrytool.fieldparsing.Field;
+import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.fieldparsing.NumberField;
+import dronetelemetrytool.skins.SingleBarTileSkin;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.chart.ChartData;
 import eu.hansolo.tilesfx.colors.Bright;
@@ -25,26 +26,32 @@ public class ClusterBarGauge extends Gauge{
     private MediaPlayer mediaPlayer;
     private double redThresh;
 
-    public ClusterBarGauge()
+    public ClusterBarGauge(String title, double min, double max, double green, double yellow, double red, String unit)
     {
         super();
         field = null;
         tile.setPrefSize(TILE_SIZE*2, TILE_SIZE);
-
-        tile.setTitle("");
-        tile.setMinValue(0);
-        tile.setMaxValue(100);
+        tile.setTitle(title);
+        tile.setMaxValue(max);
+        tile.setMinValue(min);
         tile.setFillWithGradient(true);
 
+        data = new ChartData("");
+        data.setFormatString("%.1f " + unit);
+        data.setMinValue(min);
+        data.setMaxValue(max);
+        data.setGradientLookup(new GradientLookup((Arrays.asList(
+                new Stop(0, Bright.BLUE),
+                new Stop(DTT_Tools.map(green,min,max,0,1), Bright.GREEN),
+                new Stop(DTT_Tools.map(yellow,min,max,0,1), Bright.YELLOW),
+                new Stop(DTT_Tools.map(red,min,max,0,1), Bright.RED),
+                new Stop(1, Bright.RED)))));
+        tile.addChartData(data);
 
-//        gradient = new GradientLookup(Arrays.asList(
-//                new Stop(0.0, Bright.BLUE),
-//                new Stop(0.3, Bright.GREEN),
-//                new Stop(0.6, Bright.YELLOW),
-//                new Stop(0.9, Bright.RED)));
+        tile.setSkin(new SingleBarTileSkin(tile));
 
+//        tile.setSkinType(Tile.SkinType.CLUSTER_MONITOR);
         redThresh = 0.9 * tile.getMaxValue();
-
         alarm = null;
         mediaPlayer = null;
     }
@@ -54,6 +61,8 @@ public class ClusterBarGauge extends Gauge{
     public void update() {
         //data.setValue(RND.nextDouble() * data.getMaxValue());
         data.setValue(field.getNext());
+//        System.out.println(tile.getTitle());
+//        System.out.println(tile.getTitleColor());
 //        data.setFillColor(gradient.getColorAt(data.getValue() / data.getMaxValue()));
 
         if (mediaPlayer != null)
@@ -73,6 +82,12 @@ public class ClusterBarGauge extends Gauge{
             }
         }
     }
+
+//    public void setGradient(GradientLookup g)
+//    {
+//        gradient = g;
+//        redThresh = g.getStops().get(3).getOffset() * tile.getRange();
+//    }
 
     public void setAlarm(int i) {
         String musicFile;
@@ -110,12 +125,5 @@ public class ClusterBarGauge extends Gauge{
         this.field = field;
 //        tile.setMinValue(field.getMinValue());
 //        tile.setMaxValue(field.getMaxValue());
-    }
-
-    public void setData(ChartData data) {
-        this.data = data;
-        redThresh = data.getGradientLookup().getStops().get(3).getOffset() * tile.getRange();
-        tile.addChartData(data);
-        tile.setSkinType(Tile.SkinType.CLUSTER_MONITOR);
     }
 }

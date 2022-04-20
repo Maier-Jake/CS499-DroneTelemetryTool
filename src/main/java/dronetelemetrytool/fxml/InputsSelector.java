@@ -3,25 +3,17 @@ package dronetelemetrytool.fxml;
 import dronetelemetrytool.DTT_GUI;
 import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.FieldCollection;
-import eu.hansolo.tilesfx.tools.FlowGridPane;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.*;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
-import javafx.event.EventHandler;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Paths;
@@ -67,10 +59,11 @@ public class InputsSelector {
     }
 
     @FXML
-    protected void onVideoClick() {
+    protected void onVideoClick() throws IOException {
+
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Select Drone's Video file correlated to Telemetry file");
-        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP4 Files", "*.mp4"));
+        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP4 Files", "*.mp4;*.mov"));
 
         String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
         chooser.setInitialDirectory(new File(currentPath));
@@ -81,12 +74,23 @@ public class InputsSelector {
             String path = selectedFile.toPath().toString();
             VIDEOaddress.setText(path);
             Media tempMed = null;
-            try {
-                tempMed = new Media(selectedFile.toURI().toURL().toString());
-                MainApplication.video = tempMed;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
+            if (selectedFile.getAbsolutePath().toLowerCase().contains(".mov"))
+            {
+                int i = selectedFile.getName().lastIndexOf('.');
+                String filename = selectedFile.getName().substring(0,i);
+                File copiedFile = new File(selectedFile.getParent(), filename + ".mp4");
+                FileUtils.copyFile(selectedFile, copiedFile);
+                try { tempMed = new Media(copiedFile.toURI().toURL().toString()); }
+                catch (MalformedURLException e) { e.printStackTrace(); }
             }
+            else
+            {
+                try { tempMed = new Media(selectedFile.toURI().toURL().toString()); }
+                catch (MalformedURLException e) { e.printStackTrace(); }
+            }
+
+
+            MainApplication.video = tempMed;
 
             //check to see if csv telemetry loaded. if so, activate the continue button.
             if(CSVaddress.getText() != "")
@@ -107,4 +111,5 @@ public class InputsSelector {
     public void initialize() throws FileNotFoundException {
         continueButton.setDisable(true);
     }
+
 }

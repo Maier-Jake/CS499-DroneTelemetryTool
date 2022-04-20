@@ -24,7 +24,13 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 public class DTT_Tools {
-    
+
+    public static File changeExtension(File f, String newExtensionWithDot) {
+        int i = f.getName().lastIndexOf('.');
+        String name = f.getName().substring(0,i);
+        return new File(f.getParent(), name + newExtensionWithDot);
+    }
+
     public static Stage displayVideo(Media media)
     {
         //create Stage for tile to go onto
