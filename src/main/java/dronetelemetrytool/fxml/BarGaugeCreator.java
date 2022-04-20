@@ -218,7 +218,6 @@ public class BarGaugeCreator implements Initializable {
 //            default:
 //                break;
 //        }
-
         switch(sAlarm)
         {
             case "Chirp":

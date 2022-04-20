@@ -79,7 +79,7 @@ public class FrequencySelector implements Initializable {
     }
 
     @FXML
-    protected void onSelectFreqClick(ActionEvent actionEvent) throws IOException {
+    protected void onSelectFreqClick() throws IOException {
         ObservableList<Integer> indices = listView.getSelectionModel().getSelectedIndices();
         if (indices.size() == 1) {
             //creating gauge w/ 1 field
@@ -113,13 +113,13 @@ public class FrequencySelector implements Initializable {
     }
 
     @FXML
-    protected void onCustomFreqClick(ActionEvent actionEvent) throws IOException {
+    protected void onCustomFreqClick() throws IOException {
         if (frequencyINPUT.getText() != "")
         {
             try{
-                MainApplication.frequency = Long.parseLong(frequencyINPUT.getText());
+                MainApplication.setFrequency(Float.parseFloat(frequencyINPUT.getText()));
                 MainApplication.code = 0;
-                MainApplication.gaugeUpdateFrequency = 1_000_000_000 * MainApplication.frequency;
+//                MainApplication.gaugeUpdateFrequency = 1_000_000_000 * MainApplication.frequency;
                 DTT_GUI.fieldSelection();
                 Stage stage = (Stage) listView.getScene().getWindow();
                 stage.close();

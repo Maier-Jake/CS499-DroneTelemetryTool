@@ -19,27 +19,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainApplication extends Application {
-
+    
+    public static FieldCollection fields;
     public static ArrayList<Gauge> gauges;
     public static Media video;
-    public static FieldCollection fields;
+    
     public static TimeField timestampField;
-    public static long frequency;
+    private static float frequency;
+    private static float frequencyOriginal;
+    
     public static AnimationTimer timer;
-    private static double gaugeUpdateFrequencyModifier;
-
     private static long lastTimerCall;
-    private static long gaugeUpdateFrequency;
-
-    public static void setGaugeUpdateFrequencyModifier(double val)
-    {
-        gaugeUpdateFrequency = (long)(1000000000.0 / val);
-    }
-
 
     public static int code = -1;
     public static long prevTime;
     public static long currentTime;
+
+    public static void setFrequency(float parseFloat) {
+        parseFloat *= 100;
+        frequency = parseFloat;
+        frequencyOriginal = parseFloat;
+    }
+
+    public static void setSpeed(float rate) {
+        frequency = frequencyOriginal * rate;
+    }
 
     @Override
     public void init() {
@@ -48,19 +52,19 @@ public class MainApplication extends Application {
         video = null;
         fields = null;
         timestampField = null;
-        frequency = (long) -0.1;
+        frequency = -1.0f;
 
         final Duration[] timeStamp = {Duration.ZERO};
 
-        gaugeUpdateFrequencyModifier = 10;
-        // gaugeUpdateFrequency = (long)( (double) 1000000000 / gaugeUpdateFrequencyModifier);
+//        gaugeUpdateFrequencyModifier = 10;
+//        gaugeUpdateFrequency = (long)( (double) 1000000000 / gaugeUpdateFrequencyequencyModifier);
 
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
             @Override
             public void handle(final long now) {
                 if (code == 0) {
-                    if (now > lastTimerCall + gaugeUpdateFrequency) {
+                    if (now > lastTimerCall + frequency) {
                         //for each gauge CREATED, run an update.
                         gauges.forEach(Gauge::update);
                         lastTimerCall = now;
