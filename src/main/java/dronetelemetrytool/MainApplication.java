@@ -32,9 +32,7 @@ public class MainApplication extends Application {
 
     public static void setGaugeUpdateFrequencyModifier(double val)
     {
-        gaugeUpdateFrequencyModifier = val;
-        gaugeUpdateFrequency = (long)( (double) 1000000000 / gaugeUpdateFrequencyModifier);
-        System.out.println(gaugeUpdateFrequency);
+        gaugeUpdateFrequency = (long)(1000000000.0 / val);
     }
 
 

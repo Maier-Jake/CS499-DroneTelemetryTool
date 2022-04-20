@@ -38,6 +38,8 @@ public class ClusterBarGauge extends Gauge{
 
         data = new ChartData("");
         data.setFormatString("%.1f " + unit);
+        data.setMinValue(min);
+        data.setMaxValue(max);
         data.setGradientLookup(new GradientLookup((Arrays.asList(
                 new Stop(0, Bright.BLUE),
                 new Stop(DTT_Tools.map(green,min,max,0,1), Bright.GREEN),

@@ -16,12 +16,18 @@ public class OnOffGauge extends Gauge{
                 .prefSize(TILE_SIZE, TILE_SIZE)
                 .title("OnOff Gauge")
                 .build();
+
+        tile.setActive(false);
     }
     @Override
     public void update() {
 //        Random r = new Random();
 //        tile.setActive(r.nextBoolean());
-        tile.setActive(field.getNext());
+
+        if (field.getNext() != null)
+        {
+            tile.setActive(field.getNext());
+        }
     }
 
     public void setField(BoolField field) {

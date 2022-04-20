@@ -213,17 +213,18 @@ public class SingleBarTileSkin extends TileSkin {
         dataItem.setCompressed(height < MIN_HEIGHT);
         dataItem.setPrefSize(contentBounds.getWidth(), itemHeight);
         dataItem.setLayoutX(contentBounds.getX());
+
 //        dataItemMap.values().forEach(item -> {
 //            item.setCompressed(height < MIN_HEIGHT);
 //            item.setPrefSize(contentBounds.getWidth(), itemHeight);
 //            item.setLayoutX(contentBounds.getX());
 //        });
 
-        int noOfChartData = tile.getChartData().size();
+//        int noOfChartData = tile.getChartData().size();
         if (titleText.getText().isEmpty()) {
-            chartPane.setSpacing((contentBounds.getHeight() - (noOfChartData * itemHeight)));
+            chartPane.setSpacing(contentBounds.getHeight() - itemHeight);
         } else {
-            chartPane.setSpacing((contentBounds.getHeight() - (noOfChartData * itemHeight)) / 1.5);
+            chartPane.setSpacing((contentBounds.getHeight() - itemHeight) / 1.5);
         }
 
         if (null != graphicRegion) {
@@ -353,9 +354,9 @@ public class SingleBarTileSkin extends TileSkin {
             } else {
                 value.setText(String.format(Locale.US, formatString, chartData.getValue()));
             }
-            bar.setWidth(Helper.clamp(0, getPrefWidth(), chartData.getValue() * step));
+            bar.setWidth(Helper.clamp(0, getPrefWidth(), (chartData.getValue()-chartData.getMinValue()) * step));
             if (tile.isFillWithGradient() && null != chartData.getGradientLookup()) {
-                bar.setFill(chartData.getGradientLookup().getColorAt(chartData.getValue() / (chartData.getMaxValue() - chartData.getMinValue())));
+                bar.setFill(chartData.getGradientLookup().getColorAt((chartData.getValue() - chartData.getMinValue()) / (chartData.getMaxValue() - chartData.getMinValue())));
             } else {
                 bar.setFill(chartData.getFillColor());
             }

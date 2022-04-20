@@ -60,30 +60,31 @@ public class VideoPlayer implements Initializable {
     }
 
     public void forwardClick() {
-        MainApplication.timer.stop();
-        mediaView.getMediaPlayer().pause();
+//        MainApplication.timer.stop();
+//        mediaView.getMediaPlayer().pause();
         mediaView.getMediaPlayer().setRate(1.0);
-        MainApplication.setGaugeUpdateFrequencyModifier(10.0);
+        MainApplication.setGaugeUpdateFrequencyModifier(10.3);
         MainApplication.timer.start();
         mediaView.getMediaPlayer().play();
     }
 
     public void fiveSpeedClick() {
-        MainApplication.timer.stop();
-        mediaView.getMediaPlayer().pause();
+//        MainApplication.timer.stop();
+//        mediaView.getMediaPlayer().pause();
         mediaView.getMediaPlayer().setRate(5.0);
-        MainApplication.setGaugeUpdateFrequencyModifier(10.0 * 5.0);
-        MainApplication.timer.start();
-        mediaView.getMediaPlayer().play();
+        MainApplication.setGaugeUpdateFrequencyModifier(50);
+//        MainApplication.timer.start();
+//        mediaView.getMediaPlayer().play();
     }
 
     public void eightSpeedClick() {
-        MainApplication.timer.stop();
-        mediaView.getMediaPlayer().pause();
+//        MainApplication.timer.stop();
+//        mediaView.getMediaPlayer().pause();
         mediaView.getMediaPlayer().setRate(8.0);
-        MainApplication.setGaugeUpdateFrequencyModifier(10.0 * 8.0);
-        MainApplication.timer.start();
         mediaView.getMediaPlayer().play();
+        MainApplication.setGaugeUpdateFrequencyModifier(10.3 * 4.0);
+//        MainApplication.timer.start();
+
     }
 
 }

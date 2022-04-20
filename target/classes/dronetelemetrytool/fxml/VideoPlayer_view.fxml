@@ -19,7 +19,7 @@
     <HBox alignment="CENTER" prefHeight="600" prefWidth="1000">
         <MediaView fx:id="mediaView" fitHeight="600" fitWidth="1000"/>
     </HBox>
-    <HBox fx:id="buttonBox" alignment="BASELINE_CENTER">
+    <HBox alignment="CENTER">
         <Button fx:id="reverseButton" styleClass="button" text="◀" onAction="#reverseClick"/>
         <Button fx:id="pauseButton" styleClass="button" text="⏸" onAction="#pauseClick"/>
         <Button fx:id="forwardButton" styleClass="button" text="▶" onAction="#forwardClick"/>
