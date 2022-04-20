@@ -34,7 +34,6 @@ public class MainApplication extends Application {
     public static long prevTime;
     public static long currentTime;
 
-
     @Override
     public void init() {
 
@@ -59,7 +58,7 @@ public class MainApplication extends Application {
                         lastTimerCall = now;
                     }
                 } else if (code == 1) {
-                    if (now > lastTimerCall + currentTime - prevTime) {
+                    if (now > lastTimerCall + (currentTime - prevTime)) {
                         gauges.forEach(Gauge::update);
                         lastTimerCall = now;
                         prevTime = currentTime;
@@ -75,7 +74,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        //timer.start();
+//        timer.start();
         DTT_GUI.inputSelector();
     }
 

@@ -68,7 +68,6 @@ public class InputsSelector {
 
     @FXML
     protected void onVideoClick() {
-
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Select Drone's Video file correlated to Telemetry file");
         chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP4 Files", "*.mp4"));
