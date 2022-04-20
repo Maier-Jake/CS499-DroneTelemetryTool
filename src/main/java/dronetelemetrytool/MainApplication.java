@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.apache.commons.io.FileUtils;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -23,7 +24,7 @@ public class MainApplication extends Application {
     public static Media video;
     public static FieldCollection fields;
     public static TimeField timestampField;
-    public static float frequency;
+    public static long frequency;
     public static AnimationTimer timer;
     private static double gaugeUpdateFrequencyModifier;
 
@@ -36,6 +37,10 @@ public class MainApplication extends Application {
     }
 
 
+    public static int code = -1;
+    public static long prevTime;
+    public static long currentTime;
+
     @Override
     public void init() {
 
@@ -43,21 +48,32 @@ public class MainApplication extends Application {
         video = null;
         fields = null;
         timestampField = null;
-        frequency = -1.0f;
+        frequency = (long) -0.1;
 
         final Duration[] timeStamp = {Duration.ZERO};
 
         gaugeUpdateFrequencyModifier = 10;
-        gaugeUpdateFrequency = (long)( (double) 1000000000 / gaugeUpdateFrequencyModifier);
+        // gaugeUpdateFrequency = (long)( (double) 1000000000 / gaugeUpdateFrequencyModifier);
 
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
             @Override
             public void handle(final long now) {
-                if (now > lastTimerCall + gaugeUpdateFrequency) {
-                    //for each gauge CREATED, run an update.
-                    gauges.forEach(Gauge::update);
-                    lastTimerCall = now;
+                if (code == 0) {
+                    if (now > lastTimerCall + gaugeUpdateFrequency) {
+                        //for each gauge CREATED, run an update.
+                        gauges.forEach(Gauge::update);
+                        lastTimerCall = now;
+                    }
+                } else if (code == 1) {
+                    if (now > lastTimerCall + (currentTime - prevTime)) {
+                        gauges.forEach(Gauge::update);
+                        lastTimerCall = now;
+                        prevTime = currentTime;
+                        currentTime = timestampField.getNext();
+                    }
+                } else {
+                    System.out.println("Err?");
                 }
             }
         };
