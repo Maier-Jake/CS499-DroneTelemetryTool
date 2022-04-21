@@ -95,8 +95,8 @@ public class FrequencySelector implements Initializable {
             {
                 MainApplication.timestampField = relatedField;
                 MainApplication.code = 1;
-                MainApplication.prevTime = MainApplication.timestampField.getNext();
-                MainApplication.currentTime = MainApplication.timestampField.getNext();
+//                MainApplication.prevTime = MainApplication.timestampField.getNext();
+//                MainApplication.currentTime = MainApplication.timestampField.getNext();
                 DTT_GUI.fieldSelection();
                 Stage stage = (Stage) listView.getScene().getWindow();
                 stage.close();

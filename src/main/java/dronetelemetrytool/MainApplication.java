@@ -4,19 +4,12 @@ import dronetelemetrytool.fieldparsing.*;
 import dronetelemetrytool.gauges.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.apache.commons.io.FileUtils;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainApplication extends Application {
     
@@ -25,6 +18,7 @@ public class MainApplication extends Application {
     public static Media video;
     
     public static TimeField timestampField;
+    private static int rate;
     private static long frequency;
     private static double frequencyOriginal;
     
@@ -32,17 +26,15 @@ public class MainApplication extends Application {
 //    private static long lastTimerCall;
 
     public static int code = -1;
-    public static long prevTime;
-    public static long currentTime;
+//    public static long prevTime;
+//    public static long currentTime;
 
     public static void setFrequency(float parseFloat) {
-//        parseFloat *= 100;
-//        frequency = parseFloat;
-        frequencyOriginal = parseFloat;
+        frequencyOriginal = parseFloat * 100;
     }
 
-    public static void setSpeed(int rate) {
-        frequency = (long)((frequencyOriginal / rate) * 1_000_000_000);
+    public static void setRate(int r) {
+        rate = r;
     }
 
     @Override
@@ -64,30 +56,23 @@ public class MainApplication extends Application {
 
         timer = new AnimationTimer() {
             private long lastUpdate = 0 ;
-            private int frameNum = 0;
-            private short wait = 0;
+            private long interval = 0;
 
             @Override
             public void handle(final long now) {
-                if (wait < 3 && (now - lastUpdate >= 1_000_000_000))
-                {
-                    wait++;
-                }
-                else {
-                    if (code == 0) {
-                        if (now - lastUpdate >= frequency) {
-                            System.out.println("frame: " + (frameNum++) + " diff: " + (now - lastUpdate) + " freq: " + frequency);
-                            //for each gauge CREATED, run an update.
-                            gauges.forEach(Gauge::update);
-                            lastUpdate = now;
-                        }
-                    } else if (code == 1) {
-                        if (now - lastUpdate >= (currentTime - prevTime)) {
-                            gauges.forEach(Gauge::update);
-                            lastUpdate = now;
-                            prevTime = currentTime;
-                            currentTime = timestampField.getNext();
-                        }
+                if (code == 0) {
+                    if (now - lastUpdate >= (long)((frequencyOriginal / rate) * 1_000_000_000)) {
+                        //for each gauge CREATED, run an update.
+                        gauges.forEach(Gauge::update);
+                        lastUpdate = now;
+                    }
+                } else if (code == 1) {
+                    if (now - lastUpdate >= (interval / rate)) {
+                        interval = timestampField.getNextInterval();
+                        gauges.forEach(Gauge::update);
+                        lastUpdate = now;
+//                        prevTime = currentTime;
+//                        currentTime = timestampField.getNext();
                     }
                 }
             }

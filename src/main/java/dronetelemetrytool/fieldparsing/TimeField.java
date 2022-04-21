@@ -12,8 +12,8 @@ public class TimeField extends Field {
     SimpleDateFormat decimalTimeTemplate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS");
     List<Long> myTimes = new ArrayList<>();
     int nullCounter = 0;
-    private int i = 0;   // Index pointing to the next available data point
-    private int j = 0;   // Index pointing to the last used data point
+    private int timeCURR = 0;   // Index pointing to the next available data point
+    private int timePREV = 0;   // Index pointing to the last used data point
     private Long start;  // Start time as an epoch time with nanosecond resolution
 
     public TimeField(Field myField) {
@@ -28,7 +28,7 @@ public class TimeField extends Field {
                 myTimes.add(1000000*decimalTimeTemplate.parse(time).getTime());
             } catch (ParseException e) {
                 try {
-                    myTimes.add(timeTemplate.parse(time).getTime());
+                    myTimes.add(timeTemplate.parse(time).getTime()*1_000_000);
                 } catch (ParseException ex) {
                     e.printStackTrace();
                     nullCounter++;
@@ -46,7 +46,7 @@ public class TimeField extends Field {
     // if the update is successful.
     public boolean setIndex(int index) {
         if (0<=index && index<myTimes.size()) {
-            this.i = index;
+            this.timeCURR = index;
             return true;
         } else { return false; }
     }
@@ -54,23 +54,25 @@ public class TimeField extends Field {
     // Returns the elapsed time in nanoseconds since epoch at this
     // data point since the initial time.
     public Long getNextInterval(){
-        this.j = this.i;
-        this.i = (this.i+1)%myTimes.size();
-        return this.myTimes.get(this.j)-this.start;
+        this.timePREV = this.timeCURR;
+        this.timeCURR = (this.timeCURR+1) % myTimes.size();
+        long prev = myTimes.get(timePREV);
+        long curr = myTimes.get(timeCURR);
+        return curr - prev;
     }
 
     // Returns a Long representing nanoseconds since the epoch
     public Long getNext() {
-        this.j = this.i;
-        this.i = (this.i+1)%myTimes.size();
-        return this.myTimes.get(this.j);
+        this.timePREV = this.timeCURR;
+        this.timeCURR = (this.timeCURR+1) % myTimes.size();
+        return this.myTimes.get(this.timePREV);
     }
 
     // Returns the next time as a Date object
     public Date getNextDate() {
-        this.j = this.i;
-        this.i = (this.i+1)%myTimes.size();
-        return new Date(this.myTimes.get(this.j)/1000000);
+        this.timePREV = this.timeCURR;
+        this.timeCURR = (this.timeCURR+1) % myTimes.size();
+        return new Date(this.myTimes.get(this.timePREV)/1000000);
     }
 
     public void printDataAt(int index) {
