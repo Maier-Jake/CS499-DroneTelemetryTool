@@ -61,27 +61,34 @@ public class MainApplication extends Application {
 //        gaugeUpdateFrequency = (long)( (double) 1000000000 / gaugeUpdateFrequencyequencyModifier);
 
 //        lastTimerCall = System.nanoTime();
+
         timer = new AnimationTimer() {
             private long lastUpdate = 0 ;
+            private int frameNum = 0;
+            private short wait = 0;
+
             @Override
             public void handle(final long now) {
-                if (code == 0) {
-
-                    if (now - lastUpdate >= frequency) {
-                        System.out.println("update");
-                        //for each gauge CREATED, run an update.
-                        gauges.forEach(Gauge::update);
-                        lastUpdate = now;
+                if (wait < 3 && (now - lastUpdate >= 1_000_000_000))
+                {
+                    wait++;
+                }
+                else {
+                    if (code == 0) {
+                        if (now - lastUpdate >= frequency) {
+                            System.out.println("frame: " + (frameNum++) + " diff: " + (now - lastUpdate) + " freq: " + frequency);
+                            //for each gauge CREATED, run an update.
+                            gauges.forEach(Gauge::update);
+                            lastUpdate = now;
+                        }
+                    } else if (code == 1) {
+                        if (now - lastUpdate >= (currentTime - prevTime)) {
+                            gauges.forEach(Gauge::update);
+                            lastUpdate = now;
+                            prevTime = currentTime;
+                            currentTime = timestampField.getNext();
+                        }
                     }
-                } else if (code == 1) {
-                    if (now - lastUpdate >= (currentTime - prevTime)) {
-                        gauges.forEach(Gauge::update);
-                        lastUpdate = now;
-                        prevTime = currentTime;
-                        currentTime = timestampField.getNext();
-                    }
-                } else {
-                    System.out.println("Err?");
                 }
             }
         };

@@ -61,9 +61,6 @@ public class ClusterBarGauge extends Gauge{
     public void update() {
         //data.setValue(RND.nextDouble() * data.getMaxValue());
         data.setValue(field.getNext());
-//        System.out.println(tile.getTitle());
-//        System.out.println(tile.getTitleColor());
-//        data.setFillColor(gradient.getColorAt(data.getValue() / data.getMaxValue()));
 
         if (mediaPlayer != null)
         {
