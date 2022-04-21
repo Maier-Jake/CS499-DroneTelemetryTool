@@ -102,9 +102,8 @@ public class ClusterBarGauge extends Gauge{
         }
     }
 
-    public NumberField getField() {
-        return field;
-    }
+    @Override
+    public Field getField() { return field; }
 
     public void setField(NumberField field) {
         this.field = field;

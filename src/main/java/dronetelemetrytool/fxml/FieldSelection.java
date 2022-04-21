@@ -5,6 +5,7 @@ import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.Field;
 import dronetelemetrytool.gauges.Gauge;
+import dronetelemetrytool.gauges.XYPlotGauge;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -131,6 +132,21 @@ public class FieldSelection implements Initializable {
 //            items.clear();
 //            rightView.getSelectionModel().clearSelection();
 //        }
+
+        // Gets the selected index in the right list
+        int index = rightView.getSelectionModel().getSelectedIndex();
+        // Check the gauge type
+        if (MainApplication.gauges.get(index) instanceof XYPlotGauge) {
+            leftFields.add(((XYPlotGauge) MainApplication.gauges.get(index)).getxField().getName());
+            leftFields.add(((XYPlotGauge) MainApplication.gauges.get(index)).getyField().getName());
+        }
+        else {
+            // Add the original string to the left
+            leftFields.add(MainApplication.gauges.get(index).getField().getName());
+        }
+
+        // Remove the item from the right
+        rightFields.remove(index);
     }
 
     @FXML

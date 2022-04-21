@@ -26,6 +26,8 @@ public abstract class Gauge {
             .build();
     }
 
+    public abstract Field getField();
+
     public void display()
     {
         //create Stage for tile to go onto
