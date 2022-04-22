@@ -167,7 +167,6 @@ public class XYPlotGaugeCreator implements Initializable {
         if (xMinVal < xMaxVal && yMinVal < yMaxVal)
         {
             createGauge(title, xMinVal, xMaxVal, xTickUnit, xLabel, yMinVal, yMaxVal, yTickUnit, yLabel);
-
             Stage stage = (Stage) BUTTON_Close.getScene().getWindow();
             stage.close();
         }
@@ -180,7 +179,6 @@ public class XYPlotGaugeCreator implements Initializable {
 
     private void createGauge(String title, double xMin, double xMax, double xTick, String xLabel, double yMin, double yMax, double yTick, String yLabel)
     {
-
         XYPlotGauge newGauge = new XYPlotGauge(xMin, xMax, xTick, yMin, yMax, yTick);
         newGauge.setTitle(title);
         newGauge.setXLabel(xLabel);
@@ -198,6 +196,10 @@ public class XYPlotGaugeCreator implements Initializable {
 
     public void setxField(NumberField xField) {
         this.xField = xField;
+        STAT_max.setText(String.valueOf(xField.getMaxValue()));
+        STAT_min.setText(String.valueOf(xField.getMinValue()));
+        STAT_avg.setText(String.valueOf(xField.getMean()));
+        STAT_stddev.setText(String.valueOf(xField.getStandardDeviation()));
     }
 
     public NumberField getyField() {
@@ -206,5 +208,9 @@ public class XYPlotGaugeCreator implements Initializable {
 
     public void setyField(NumberField yField) {
         this.yField = yField;
+        STAT_max2.setText(String.valueOf(yField.getMaxValue()));
+        STAT_min2.setText(String.valueOf(yField.getMinValue()));
+        STAT_avg2.setText(String.valueOf(yField.getMean()));
+        STAT_stddev2.setText(String.valueOf(yField.getStandardDeviation()));
     }
 }
