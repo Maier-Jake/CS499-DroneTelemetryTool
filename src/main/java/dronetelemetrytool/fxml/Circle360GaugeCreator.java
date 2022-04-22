@@ -39,6 +39,8 @@ public class Circle360GaugeCreator implements Initializable {
     @FXML
     private Button BUTTON_Close;
     @FXML
+    private Button BUTTON_Unit;
+    @FXML
     private TextField STAT_max;
     @FXML
     private TextField STAT_min;
@@ -56,9 +58,13 @@ public class Circle360GaugeCreator implements Initializable {
     private ComboBox<String> desiredUnitComboBox;
 
     @FXML
+    protected void onUnitChangeClick() {
+
+    }
+
+    @FXML
     protected void onCancelClick() {
         System.out.println("Cancelled creating this gauge.");
-
         //Finished, close this Gauge Creation window.
         Stage stage = (Stage) BUTTON_Close.getScene().getWindow();
         stage.close();

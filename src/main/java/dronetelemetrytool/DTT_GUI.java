@@ -166,8 +166,7 @@ public class DTT_GUI {
         createStage(newStage);
     }
 
-    // todo: add second field parameter
-    public static void xyPlotGaugeCreator(Stage parent, NumberField relatedField) throws IOException {
+    public static void xyPlotGaugeCreator(Stage parent, NumberField relatedXField, NumberField relatedYField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");
         newStage.initOwner(parent);
@@ -176,7 +175,8 @@ public class DTT_GUI {
         XYPlotGaugeCreator controller = new XYPlotGaugeCreator();
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load());
-        controller.setxField(relatedField);
+        controller.setxField(relatedXField);
+        controller.setyField(relatedYField);
         newStage.setScene(scene);
         createStage(newStage);
     }
@@ -227,13 +227,6 @@ public class DTT_GUI {
         createStage(newStage);
     }
 
-    public static void unitSelector(List<NumberField> nfs) {
-        Stage newStage = new Stage();
-        newStage.setTitle("DTT - Unit Selection");
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/unitSelector_view.fxml"));
-
-    }
-
     private static void createStage(Stage s, FXMLLoader fxmlLoader) throws IOException {
         Scene scene = new Scene(fxmlLoader.load());
         s.setScene(scene);
@@ -248,5 +241,4 @@ public class DTT_GUI {
         s.setMaxWidth(1500);
         s.setMinWidth(400);
     }
-
 }
