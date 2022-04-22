@@ -6,6 +6,7 @@ import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.Field;
 import dronetelemetrytool.fieldparsing.NumberField;
 import dronetelemetrytool.gauges.Gauge;
+import dronetelemetrytool.gauges.TextGauge;
 import dronetelemetrytool.gauges.XYPlotGauge;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +19,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -191,11 +192,46 @@ public class FieldSelection implements Initializable {
 
     @FXML
     protected void onSaveClick() {
-
+        try {
+            FileOutputStream fileOut = new FileOutputStream("D:\\School\\CS499\\Resources\\gauge.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(MainApplication.gauges.get(0));
+            out.close();
+            fileOut.close();
+            System.out.printf("asldfhksjdf");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
     }
 
     @FXML
     protected void onContinueClick() throws IOException {
+
+//        //String title = FIELD_Title.textProperty().getValueSafe();
+//
+//        TextGauge testGA = new TextGauge();
+//        testGA.setField(field);
+//        testGA.setTitle("whatever");
+//
+//        MainApplication.gauges.add(testGA);
+//        //FieldSelection.addToRight("whatever");
+//        try {
+//            FileInputStream fileIn = new FileInputStream("D:\\School\\CS499\\Resources\\gauge.ser");
+//            ObjectInputStream in = new ObjectInputStream(fileIn);
+//            testGA = (TextGauge) in.readObject();
+//            in.close();
+//            fileIn.close();
+//        } catch (IOException i) {
+//            i.printStackTrace();
+//            return;
+//        } catch (ClassNotFoundException c) {
+//            System.out.println("Class not found");
+//            c.printStackTrace();
+//            return;
+//        }
+//
+//        MainApplication.gauges.add(testGA);
+
         for (Gauge g : MainApplication.gauges)
         {
             g.display();
