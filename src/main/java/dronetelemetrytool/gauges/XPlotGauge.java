@@ -81,7 +81,13 @@ public class XPlotGauge extends Gauge {
     }
     @Override
     public void update() {
-        double newVal = field.getNext();
+        Double newVal_o = field.getNext();
+
+        if (newVal_o == null) {
+            return;
+        }
+
+        double newVal = newVal_o.doubleValue();
         double newValInRange = DTT_Tools.map(newVal, 0, tile.getRange(), tile.getMinValue(), tile.getMaxValue());
         switch (orient)
         {

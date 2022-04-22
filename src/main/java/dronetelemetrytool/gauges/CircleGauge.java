@@ -57,8 +57,13 @@ public class CircleGauge extends Gauge {
     public void update() {
 //        double newVal = RND.nextDouble() * tile.getRange();
 
-        double newVal = field.getNext();
+        Double newVal_o = field.getNext();
 
+        if (newVal_o == null) {
+            return;
+        }
+
+        double newVal = newVal_o.doubleValue();
 
         double newValInRange = DTT_Tools.map(newVal, 0, tile.getRange(), tile.getMinValue(), tile.getMaxValue());
 

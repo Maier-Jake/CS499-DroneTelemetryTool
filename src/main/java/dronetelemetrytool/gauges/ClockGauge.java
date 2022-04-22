@@ -16,7 +16,11 @@ public class ClockGauge extends Gauge{
     }
     @Override
     public void update() {
-        tile.setTime(field.getNext());
+        Long newValue = field.getNext();
+        if (newValue == null) {
+            return;
+        }
+        tile.setTime(newValue);
     }
 
     public void setField(TimeField field) {

@@ -22,7 +22,11 @@ public class TextGauge extends Gauge{
 //        Random r = new Random();
 //        char c = (char)(r.nextInt(26) + 'a');
 //        tile.setDescription(String.valueOf(c));
-        tile.setDescription((String) field.getNext());
+        Object newValue = field.getNext();
+        if (newValue == null) {
+            return;
+        }
+        tile.setDescription((String) newValue);
     }
 
     public Field getField() {

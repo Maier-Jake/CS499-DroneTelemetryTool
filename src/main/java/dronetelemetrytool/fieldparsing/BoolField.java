@@ -41,8 +41,12 @@ public class BoolField extends Field{
     // Get the next Bool value in the Field from the current index.
     public Boolean getNext() {
         this.j = this.i;
-        this.i = (this.i+1)%myBools.size();
-        return this.myBools.get(this.j);
+        this.i = this.i+1;
+        if (!(this.j >= this.myBools.size())) {
+            return this.myBools.get(this.j);
+        } else {
+            return null;
+        }
     }
 
     public void printDataAt(int index) { System.out.println(myBools.get(index)); }

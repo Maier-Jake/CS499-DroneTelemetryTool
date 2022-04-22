@@ -64,15 +64,23 @@ public class TimeField extends Field {
     // Returns a Long representing nanoseconds since the epoch
     public Long getNext() {
         this.timePREV = this.timeCURR;
-        this.timeCURR = (this.timeCURR+1) % myTimes.size();
-        return this.myTimes.get(this.timePREV);
+        this.timeCURR = this.timeCURR+1;
+        if (!(this.timePREV >= this.myTimes.size())) {
+            return this.myTimes.get(this.timePREV);
+        } else {
+            return null;
+        }
     }
 
     // Returns the next time as a Date object
     public Date getNextDate() {
         this.timePREV = this.timeCURR;
-        this.timeCURR = (this.timeCURR+1) % myTimes.size();
-        return new Date(this.myTimes.get(this.timePREV)/1000000);
+        this.timeCURR = this.timeCURR+1;
+        if (!(this.timePREV >= this.myTimes.size())) {
+            return new Date(this.myTimes.get(this.timePREV)/1000000);
+        } else {
+            return null;
+        }
     }
 
     public void printDataAt(int index) {

@@ -27,6 +27,9 @@ public class TimestampGauge extends Gauge{
     @Override
     public void update() {
         Date date = field.getNextDate();
+        if (date == null) {
+            return;
+        }
         String dateFormatted = formatter.format(date);
         tile.setDescription(dateFormatted);
     }

@@ -63,8 +63,13 @@ public class NumberField extends Field {
     // Get the next Double value in the Field from the current index.
     public Double getNext() {
         this.j = this.i;
-        this.i = (this.i+1)%myNumbers.size();
-        return this.myNumbers.get(this.j);
+        this.i = this.i+1;
+        if (!(this.j >= this.myNumbers.size())) {
+            return this.myNumbers.get(this.j);
+        } else {
+            return null;
+        }
+
     }
 
     // Print the data point at the provided index.

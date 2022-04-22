@@ -60,7 +60,13 @@ public class ClusterBarGauge extends Gauge{
     @Override
     public void update() {
         //data.setValue(RND.nextDouble() * data.getMaxValue());
-        data.setValue(field.getNext());
+        Double newValue = field.getNext();
+
+        if (newValue == null) {
+            return;
+        }
+
+        data.setValue(newValue.doubleValue());
 
         if (mediaPlayer != null)
         {

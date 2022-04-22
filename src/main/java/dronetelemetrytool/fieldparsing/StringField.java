@@ -40,8 +40,12 @@ public class StringField extends Field{
     // Returns the next j
     public String getNext() {
         this.j = this.i;
-        this.i = (this.i+1)%myStrings.size();
-        return this.myStrings.get(this.j);
+        this.i = this.i+1;
+        if (!(this.j >= this.myStrings.size())) {
+            return this.myStrings.get(this.j);
+        } else {
+            return null;
+        }
     }
 
     public void printDataAt(int index) {

@@ -76,8 +76,12 @@ public class Field {
     public Object getNext(int step) {
         this.j = this.i;
         // Add the step and array size to ensure we get a positive number.
-        this.i = (this.i+step+this.rawData.size())%this.rawData.size();
-        return this.rawData.get(this.j);
+        this.i = (this.i+step);
+        if (!(this.j >= this.rawData.size())) {
+            return this.rawData.get(this.j);
+        } else {
+            return null;
+        }
     }
 
     public boolean hasNext()

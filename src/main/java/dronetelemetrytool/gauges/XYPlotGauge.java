@@ -44,13 +44,20 @@ public class XYPlotGauge extends Gauge {
     @Override
     public void update() {
 
-        double yRange = yAxis.getUpperBound() - yAxis.getLowerBound();
-        double xRange = xAxis.getUpperBound() - xAxis.getLowerBound();
-        double newVal;
-        newVal = RND.nextDouble() * xRange;
-        double newXVal = DTT_Tools.map(newVal, 0, xRange, xAxis.getLowerBound(), xAxis.getUpperBound());
-        newVal = RND.nextDouble() * yRange;
-        double newYVal = DTT_Tools.map(newVal, 0, yRange, yAxis.getLowerBound(), yAxis.getUpperBound());
+//        double yRange = yAxis.getUpperBound() - yAxis.getLowerBound();
+//        double xRange = xAxis.getUpperBound() - xAxis.getLowerBound();
+
+        Double xValue = xField.getNext();
+        Double yValue = yField.getNext();
+
+        if (xValue == null || yValue == null) {
+            return;
+        }
+
+        double newXVal = xValue.doubleValue();
+        //double newXVal = DTT_Tools.map(newVal, 0, xRange, xAxis.getLowerBound(), xAxis.getUpperBound());
+        double newYVal = yValue.doubleValue();
+        //double newYVal = DTT_Tools.map(newVal, 0, yRange, yAxis.getLowerBound(), yAxis.getUpperBound());
 
         series.getData().add(new XYChart.Data(newXVal, newYVal));
         if(series.getData().size() > 5)

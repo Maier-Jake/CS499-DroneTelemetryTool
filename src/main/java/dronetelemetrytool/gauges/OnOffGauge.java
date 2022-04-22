@@ -24,9 +24,11 @@ public class OnOffGauge extends Gauge{
 //        Random r = new Random();
 //        tile.setActive(r.nextBoolean());
 
-        if (field.getNext() != null)
+        Boolean newValue = field.getNext();
+
+        if (newValue != null)
         {
-            tile.setActive(field.getNext());
+            tile.setActive(newValue);
         }
     }
 
