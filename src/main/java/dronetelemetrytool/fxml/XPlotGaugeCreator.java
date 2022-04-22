@@ -190,6 +190,9 @@ public class XPlotGaugeCreator implements Initializable {
         XPlotGauge newGauge = new XPlotGauge(orient, min, max, tickUnit);
         newGauge.setTitle(title);
         newGauge.setLabel(label);
+
+        FieldSelection.leftFields.remove(field.getName());
+
         MainApplication.gauges.add(newGauge);
         FieldSelection.addToRight(title);
         Stage stage = (Stage) FIELD_Title.getScene().getWindow();

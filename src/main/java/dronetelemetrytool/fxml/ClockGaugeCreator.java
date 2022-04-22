@@ -59,6 +59,8 @@ public class ClockGaugeCreator implements Initializable {
         newGauge.setField(field);
         newGauge.setTitle(title);
 
+        FieldSelection.leftFields.remove(field.getName());
+
         MainApplication.gauges.add(newGauge);
         FieldSelection.addToRight(title);
         Stage stage = (Stage) FIELD_Title.getScene().getWindow();

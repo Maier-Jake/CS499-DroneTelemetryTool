@@ -186,6 +186,9 @@ public class XYPlotGaugeCreator implements Initializable {
         newGauge.setxField(xField);
         newGauge.setyField(yField);
 
+        FieldSelection.leftFields.remove(xField.getName());
+        FieldSelection.leftFields.remove(yField.getName());
+
         MainApplication.gauges.add(newGauge);
         FieldSelection.addToRight(title);
         Stage stage = (Stage) FIELD_Title.getScene().getWindow();

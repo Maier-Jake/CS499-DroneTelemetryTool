@@ -77,7 +77,6 @@ public class FieldSelection implements Initializable {
                         if (relatedField != null)
                         {
                             DTT_GUI.gaugeSelector(parent, relatedField);
-                            leftFields.remove(fieldName);
                         }
                         else
                         {
@@ -106,8 +105,6 @@ public class FieldSelection implements Initializable {
                             if (relatedXField.getType() == 0 && relatedYField.getType() == 0)
                             {
                                 DTT_GUI.xyPlotGaugeCreator(parent, new NumberField(relatedXField), new NumberField(relatedYField));
-                                leftFields.remove(field1Name);
-                                leftFields.remove(field2Name);
                             }
                             else
                             {

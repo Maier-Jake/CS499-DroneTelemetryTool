@@ -233,6 +233,8 @@ public class BarGaugeCreator implements Initializable {
                 break;
         }
 
+        FieldSelection.leftFields.remove(field.getName());
+
         MainApplication.gauges.add(newGauge);
         FieldSelection.addToRight(title);
         Stage stage = (Stage) FIELD_Title.getScene().getWindow();
