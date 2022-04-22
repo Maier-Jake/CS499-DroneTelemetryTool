@@ -57,9 +57,9 @@ public class TimeField extends Field {
     public Long getNextInterval(){
         this.timePREV = this.timeCURR;
         this.timeCURR = this.timeCURR+1;
-        Long prev_o = myTimes.get(timePREV);
-        Long curr_o = myTimes.get(timeCURR);
         if (!(this.timePREV >= this.myTimes.size() || this.timeCURR >= this.myTimes.size())) {
+            Long prev_o = myTimes.get(timePREV);
+            Long curr_o = myTimes.get(timeCURR);
             if (prev_o == null || curr_o == null) {
                 return prevInterval;
             }

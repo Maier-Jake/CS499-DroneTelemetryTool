@@ -1,6 +1,7 @@
 package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.MainApplication;
+import dronetelemetrytool.gauges.Gauge;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -39,6 +40,10 @@ public class VideoPlayer implements Initializable {
     }
 
     public void reverseClick() {
+        for (Gauge g : MainApplication.gauges) {
+            //MainApplication.timer.start();
+            g.getField().setIndex(0);
+        }
         mediaView.getMediaPlayer().seek(Duration.ZERO);
         //for each gauge, set field index back to start
     }

@@ -166,7 +166,6 @@ public class DTT_GUI {
         createStage(newStage);
     }
 
-    // todo: add second field parameter
     public static void xyPlotGaugeCreator(Stage parent, NumberField relatedXField, NumberField relatedYField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Creation Tool");

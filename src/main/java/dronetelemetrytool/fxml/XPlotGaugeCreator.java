@@ -43,7 +43,8 @@ public class XPlotGaugeCreator implements Initializable {
     private TextField FIELD_Maximum;
     @FXML
     private Button BUTTON_Close;
-
+    @FXML
+    private Button BUTTON_Unit;
     @FXML
     private ComboBox<String> COMBO_Orient;
     @FXML
@@ -61,6 +62,11 @@ public class XPlotGaugeCreator implements Initializable {
     @FXML
     private ComboBox<String> desiredUnitComboBox;
     private UnitConverter uc = new UnitConverter();
+
+    @FXML
+    protected void onUnitChangeClick() {
+
+    }
 
     @FXML
     protected void onCancelClick() {

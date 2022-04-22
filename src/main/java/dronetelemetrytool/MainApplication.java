@@ -56,7 +56,7 @@ public class MainApplication extends Application {
 
         timer = new AnimationTimer() {
             private long lastUpdate = 0 ;
-            private long interval = 0;
+            private Long interval = Long.valueOf(0);
 
             private int updateNumber = 1;
 
@@ -67,21 +67,25 @@ public class MainApplication extends Application {
                         if (updateNumber > fields.fieldLength()) {
                             timer.stop();
                             updateNumber = 1;
+                            timestampField.setIndex(0);
+                        } else {
+                            //for each gauge CREATED, run an update.
+                            gauges.forEach(Gauge::update);
+                            lastUpdate = now;
+                            updateNumber++;
                         }
-                        //for each gauge CREATED, run an update.
-                        gauges.forEach(Gauge::update);
-                        lastUpdate = now;
-                        updateNumber++;
                     }
                 } else if (code == 1) {
                     if (now - lastUpdate >= (interval / rate)) {
                         interval = timestampField.getNextInterval();
-                        gauges.forEach(Gauge::update);
-                        lastUpdate = now;
-                        if ((Long) interval == null) {
+                        if (interval == null) {
                             timer.stop();
                             lastUpdate = 0;
-                            interval = 0;
+                            interval = Long.valueOf(0);
+                            timestampField.setIndex(0);
+                        } else {
+                            gauges.forEach(Gauge::update);
+                            lastUpdate = now;
                         }
 //                        prevTime = currentTime;
 //                        currentTime = timestampField.getNext();
