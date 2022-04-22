@@ -5,9 +5,7 @@ import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.Field;
 import dronetelemetrytool.fieldparsing.NumberField;
-import dronetelemetrytool.gauges.Gauge;
-import dronetelemetrytool.gauges.TextGauge;
-import dronetelemetrytool.gauges.XYPlotGauge;
+import dronetelemetrytool.gauges.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -192,13 +190,56 @@ public class FieldSelection implements Initializable {
 
     @FXML
     protected void onSaveClick() {
+        ArrayList<GaugeInfo> list = new ArrayList<>();
+
+        for (Gauge g : MainApplication.gauges)
+        {
+            GaugeInfo info = new GaugeInfo();
+            switch (g.gaugeType)
+            {
+                case BAR:
+                    ClusterBarGauge barGauge = (ClusterBarGauge) g;
+                    info.gaugeTitle = barGauge.tile.getTitle();
+                    info.fieldName = barGauge.getField().getName();
+                    info.type = barGauge.gaugeType;
+                    info.max = barGauge.tile.getMaxValue();
+                    info.min = barGauge.tile.getMinValue();
+                    info.gThresh = DTT_Tools.map(barGauge.tile.getChartData().get(0).getGradientLookup().getStops().get(1).getOffset(), 0, 1, info.min, info.max);
+                    info.yThresh = DTT_Tools.map(barGauge.tile.getChartData().get(0).getGradientLookup().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
+                    info.rThresh =DTT_Tools.map(barGauge.tile.getChartData().get(0).getGradientLookup().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
+                    info.desUnit = "";
+                case CIRCLE90:
+                    break;
+                case CIRCLE180:
+                    break;
+                case CIRCLE270:
+                    break;
+                case CIRCLE360:
+                    break;
+                //EJ DO BELOW. JAKE DO ABOVE
+                case CLOCK:
+                    break;
+                case ONOFF:
+                    break;
+                case TEXT:
+                    break;
+                case TIMESTAMP:
+                    break;
+                case XPLOT:
+                    break;
+                case XYPLOT:
+                    break;
+            }
+            list.add(info);
+        }
+
         try {
-            FileOutputStream fileOut = new FileOutputStream("D:\\School\\CS499\\Resources\\gauge.ser");
+            FileOutputStream fileOut = new FileOutputStream("src//main//resources//dronetelemetrytool//data//gaugeList.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(MainApplication.gauges.get(0));
+            out.writeObject(list);
+            System.out.println("list size: " + list.size());
             out.close();
             fileOut.close();
-            System.out.printf("asldfhksjdf");
         } catch (IOException i) {
             i.printStackTrace();
         }

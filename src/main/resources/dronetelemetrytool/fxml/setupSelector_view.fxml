@@ -25,7 +25,7 @@
         <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
         </padding>
-        <Button onAction="#onNewClick" text="New Gauge Setup" prefWidth="110"/>
+        <Button fx:id="buttonNEW" onAction="#onNewClick" text="New Gauge Setup" prefWidth="110"/>
     </HBox>
-    <Button onAction="#onExistingClick" text="Load Gauge Setup" prefWidth="110"/>
+    <Button fx:id="buttonEXIST" onAction="#onExistingClick" text="Load Gauge Setup" prefWidth="110"/>
 </VBox>

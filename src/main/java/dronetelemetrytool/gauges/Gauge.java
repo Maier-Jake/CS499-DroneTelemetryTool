@@ -27,6 +27,7 @@ public abstract class Gauge implements java.io.Serializable {
         XPLOT,
         XYPLOT
     };
+
     public GaugeType gaugeType;
     final transient int TILE_SIZE = 250;
     public transient Tile tile;

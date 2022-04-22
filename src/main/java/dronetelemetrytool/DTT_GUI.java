@@ -248,4 +248,11 @@ public class DTT_GUI {
         s.setMaxWidth(1500);
         s.setMinWidth(400);
     }
+
+    public static void setupSelector() throws IOException {
+        Stage newStage = new Stage();
+        newStage.setTitle("DTT - Setup Selector");
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/setupSelector_view.fxml"));
+        createStage(newStage, fxmlLoader);
+    }
 }
