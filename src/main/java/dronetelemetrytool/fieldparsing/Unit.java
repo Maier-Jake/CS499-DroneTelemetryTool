@@ -1,11 +1,12 @@
 package dronetelemetrytool.fieldparsing;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
 
-class Unit {
+class Unit implements Serializable {
     String si;
     String name;
     List<String> subunits = new ArrayList<String>();

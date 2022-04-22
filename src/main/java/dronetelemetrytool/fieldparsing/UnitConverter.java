@@ -1,11 +1,12 @@
 package dronetelemetrytool.fieldparsing;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
-public class UnitConverter {
+public class UnitConverter implements java.io.Serializable {
     private List<String> unit_names = new ArrayList<>();
     private List<Unit> unit_array = new ArrayList<>();
     private Dictionary<String, List<String>> subunits = new Hashtable<>();

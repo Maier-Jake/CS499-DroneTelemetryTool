@@ -149,8 +149,7 @@ public class XPlotGaugeCreator implements Initializable {
 
     // Converts the current data field to the new units according the current value of the combo boxes.
     private void convertUnits() {
-        this.field.setNumberData(this.uc.convert(unitTypeComboBox.getValue(), desiredUnitComboBox.getValue(),
-                currentUnitComboBox.getValue(), field.getNumberData()));
+        this.field.convert(unitTypeComboBox.getValue(), currentUnitComboBox.getValue(), desiredUnitComboBox.getValue());
     }
 
     @FXML

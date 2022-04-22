@@ -68,7 +68,7 @@ public class InputsSelector {
         String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
         chooser.setInitialDirectory(new File(currentPath));
         Stage stage = (Stage) continueButton.getScene().getWindow();
-        File selectedFile = chooser.showOpenDialog(stage);
+        File selectedFile = new File("/home/krttd/uah/22.s/cs499/CS499-DroneTelemetryTool/target/classes/dronetelemetrytool/monopolyYES.mp4"); //chooser.showOpenDialog(stage);
 
         if (selectedFile != null) {
             String path = selectedFile.toPath().toString();
