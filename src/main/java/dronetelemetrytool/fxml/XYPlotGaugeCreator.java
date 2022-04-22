@@ -44,6 +44,10 @@ public class XYPlotGaugeCreator implements Initializable {
     @FXML
     private Button BUTTON_Close;
     @FXML
+    private Button BUTTON_UnitX;
+    @FXML
+    private Button BUTTON_UnitY;
+    @FXML
     private TextField STAT_max;
     @FXML
     private TextField STAT_min;
@@ -71,6 +75,16 @@ public class XYPlotGaugeCreator implements Initializable {
     private ComboBox<String> currentUnitComboBox2;
     @FXML
     private ComboBox<String> desiredUnitComboBox2;
+
+    @FXML
+    protected void onUnitXChangeClick() {
+
+    }
+
+    @FXML
+    protected void onUnitYChangeClick() {
+
+    }
 
     @FXML
     protected void onCancelClick() {
