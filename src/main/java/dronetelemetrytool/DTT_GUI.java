@@ -16,6 +16,13 @@ public class DTT_GUI {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Video Playback");
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/videoPlayer_view.fxml"));
+
+        newStage.setOnCloseRequest(event -> {
+            System.out.println("Stage is closing");
+
+            System.exit(0);
+        });
+
         createStage(newStage, fxmlLoader);
     }
 
