@@ -20,10 +20,10 @@ public class XPlotGauge extends Gauge {
     private NumberField field;
 
     private XYChart.Series<Number, Number> series;
-    private NumberAxis primaryAxis;
-    private NumberAxis subAxis;
+    public NumberAxis primaryAxis;
+    public NumberAxis subAxis;
     private ScatterChart<Number,Number> scatterChart;
-    private GaugeOrient orient;
+    public GaugeOrient orient;
 
     public XPlotGauge(GaugeOrient orient, double lowerBound, double upperBound, double tickUnit)
     {

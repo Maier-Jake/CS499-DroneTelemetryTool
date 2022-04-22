@@ -3,14 +3,8 @@ package dronetelemetrytool.fxml;
 import dronetelemetrytool.DTT_GUI;
 import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
-import dronetelemetrytool.fieldparsing.Field;
-import dronetelemetrytool.fieldparsing.FieldCollection;
-import dronetelemetrytool.fieldparsing.NumberField;
-import dronetelemetrytool.fieldparsing.TimeField;
-import dronetelemetrytool.gauges.CircleGauge;
-import dronetelemetrytool.gauges.ClusterBarGauge;
-import dronetelemetrytool.gauges.Gauge;
-import dronetelemetrytool.gauges.GaugeInfo;
+import dronetelemetrytool.fieldparsing.*;
+import dronetelemetrytool.gauges.*;
 import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
 import javafx.fxml.FXML;
@@ -18,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.paint.Stop;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
@@ -133,16 +128,45 @@ public class SetupSelector {
 
                     //EJ DO BELOW. JAKE DO ABOVE
                     case CLOCK:
+                        ClockGauge clockGauge = new ClockGauge();
+                        clockGauge.setField(new TimeField(field));
+                        clockGauge.setTitle(gaugeInfo.gaugeTitle);
+                        MainApplication.gauges.add(clockGauge);
                         break;
                     case ONOFF:
+                        OnOffGauge onOffGauge = new OnOffGauge();
+                        onOffGauge.setField(new BoolField(field));
+                        onOffGauge.setTitle(gaugeInfo.gaugeTitle);
+                        onOffGauge.tile.setActiveColor(Color.valueOf(gaugeInfo.color));
+                        MainApplication.gauges.add(onOffGauge);
                         break;
                     case TEXT:
+                        TextGauge newGauge = new TextGauge();
+                        newGauge.setField(field);
+                        newGauge.setTitle(gaugeInfo.gaugeTitle);
+                        MainApplication.gauges.add(newGauge);
                         break;
                     case TIMESTAMP:
+                        TimestampGauge timestampGauge = new TimestampGauge();
+                        timestampGauge.setField(new TimeField(field));
+                        timestampGauge.setTitle(gaugeInfo.gaugeTitle);
+                        MainApplication.gauges.add(timestampGauge);
                         break;
                     case XPLOT:
+                        XPlotGauge xPlotGauge = new XPlotGauge(gaugeInfo.orient, gaugeInfo.min, gaugeInfo.max, gaugeInfo.tick);
+                        xPlotGauge.setField(new NumberField(field));
+                        xPlotGauge.setTitle(gaugeInfo.gaugeTitle);
+                        xPlotGauge.setLabel(gaugeInfo.axisLabel);
+                        MainApplication.gauges.add(xPlotGauge);
                         break;
                     case XYPLOT:
+                        XYPlotGauge xyPlotGauge = new XYPlotGauge(gaugeInfo.min, gaugeInfo.max, gaugeInfo.tick, gaugeInfo.ymin, gaugeInfo.ymax, gaugeInfo.ytick);
+                        xyPlotGauge.setTitle(gaugeInfo.gaugeTitle);
+                        xyPlotGauge.setXLabel(gaugeInfo.axisLabel);
+                        xyPlotGauge.setYLabel(gaugeInfo.yaxisLabel);
+                        xyPlotGauge.setxField(new NumberField(field));
+                        xyPlotGauge.setyField(new NumberField(field));
+                        MainApplication.gauges.add(xyPlotGauge);
                         break;
                 }
             }

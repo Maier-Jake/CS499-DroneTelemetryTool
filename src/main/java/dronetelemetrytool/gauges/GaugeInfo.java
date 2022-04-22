@@ -29,4 +29,5 @@ public class GaugeInfo implements Serializable {
     public double yPos;
     public double width;
     public double height;
+    public GaugeOrient orient;
 }

@@ -264,16 +264,54 @@ public class FieldSelection implements Initializable {
                     break;
                 //EJ DO BELOW. JAKE DO ABOVE
                 case CLOCK:
+                    ClockGauge clockGauge = (ClockGauge) g;
+                    info.gaugeTitle = clockGauge.tile.getTitle();
+                    info.fieldName = clockGauge.getField().getName();
+                    info.type = clockGauge.gaugeType;
                     break;
                 case ONOFF:
+                    OnOffGauge onOffGauge = (OnOffGauge) g;
+                    info.gaugeTitle = onOffGauge.tile.getTitle();
+                    info.fieldName = onOffGauge.getField().getName();
+                    info.type = onOffGauge.gaugeType;
+                    info.color = String.valueOf(onOffGauge.tile.getActiveColor());
                     break;
                 case TEXT:
+                    TextGauge textGauge = (TextGauge) g;
+                    info.gaugeTitle = textGauge.tile.getTitle();
+                    info.fieldName = textGauge.getField().getName();
+                    info.type = textGauge.gaugeType;
                     break;
                 case TIMESTAMP:
+                    TimestampGauge timestampGauge = (TimestampGauge) g;
+                    info.gaugeTitle = timestampGauge.tile.getTitle();
+                    info.fieldName = timestampGauge.getField().getName();
+                    info.type = timestampGauge.gaugeType;
                     break;
                 case XPLOT:
+                    XPlotGauge xPlotGauge = (XPlotGauge) g;
+                    info.gaugeTitle = xPlotGauge.tile.getTitle();
+                    info.fieldName = xPlotGauge.getField().getName();
+                    info.type = xPlotGauge.gaugeType;
+                    info.axisLabel = xPlotGauge.primaryAxis.getLabel();
+                    info.max = xPlotGauge.primaryAxis.getUpperBound();
+                    info.min = xPlotGauge.primaryAxis.getLowerBound();
+                    info.orient = xPlotGauge.orient;
+                    info.tick = xPlotGauge.primaryAxis.getTickUnit();
                     break;
                 case XYPLOT:
+                    XYPlotGauge xyPlotGauge = (XYPlotGauge) g;
+                    info.gaugeTitle = xyPlotGauge.tile.getTitle();
+                    info.fieldName = xyPlotGauge.getField().getName();
+                    info.type = xyPlotGauge.gaugeType;
+                    info.axisLabel = xyPlotGauge.xAxis.getLabel();
+                    info.max = xyPlotGauge.xAxis.getUpperBound();
+                    info.min = xyPlotGauge.xAxis.getLowerBound();
+                    info.tick = xyPlotGauge.xAxis.getTickUnit();
+                    info.yaxisLabel = xyPlotGauge.yAxis.getLabel();
+                    info.ymax = xyPlotGauge.yAxis.getUpperBound();
+                    info.ymin = xyPlotGauge.yAxis.getLowerBound();
+                    info.ytick = xyPlotGauge.yAxis.getTickUnit();
                     break;
             }
             list.add(info);
