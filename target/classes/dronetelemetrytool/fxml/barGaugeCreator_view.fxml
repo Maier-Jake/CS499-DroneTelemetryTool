@@ -50,6 +50,7 @@
             <Label text="Desired Unit" prefWidth="175"/>
             <ComboBox fx:id="desiredUnitComboBox"/>
         </HBox>
+        <Button fx:id="BUTTON_Unit" onAction="#onUnitChangeClick" text="Update Units" />
     </VBox>
     <BorderPane>
         <top>
