@@ -51,6 +51,7 @@
             <Label text="Desired Unit" prefWidth="175"/>
             <ComboBox fx:id="desiredUnitComboBox"/>
         </HBox>
+        <Button fx:id="BUTTON_unit" onAction="#onUnitChangeClick" text="Update Units" />
     </VBox>
     <BorderPane>
         <top>
@@ -95,6 +96,7 @@
                         <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
                     </Label>
                 </HBox>
+                <Button fx:id="BUTTON_Unit" onAction="#onUnitChangeClick" text="Update Units" />
             </VBox>
         </top>
         <center>
