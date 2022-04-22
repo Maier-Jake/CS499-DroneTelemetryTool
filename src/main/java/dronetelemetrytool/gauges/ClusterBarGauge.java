@@ -30,6 +30,7 @@ public class ClusterBarGauge extends Gauge{
     public ClusterBarGauge(String title, double min, double max, double green, double yellow, double red, String unit)
     {
         super();
+        this.gaugeType = GaugeType.BAR;
         field = null;
         tile.setPrefSize(TILE_SIZE*2, TILE_SIZE);
         tile.setTitle(title);

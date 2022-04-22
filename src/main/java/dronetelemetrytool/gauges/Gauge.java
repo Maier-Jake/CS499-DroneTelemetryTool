@@ -14,6 +14,7 @@ import java.util.Random;
 public abstract class Gauge implements java.io.Serializable {
 
     public enum GaugeType {
+        BAR,
         CHARACTER,
         CIRCLE90,
         CIRCLE180,
