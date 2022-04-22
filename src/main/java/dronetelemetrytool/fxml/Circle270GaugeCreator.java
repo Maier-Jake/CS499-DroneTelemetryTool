@@ -45,8 +45,6 @@ public class Circle270GaugeCreator implements Initializable {
     @FXML
     private Button BUTTON_Unit;
     @FXML
-    private Button BUTTON_Unit;
-    @FXML
     private TextField STAT_max;
     @FXML
     private TextField STAT_min;

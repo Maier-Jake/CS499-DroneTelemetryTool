@@ -3,9 +3,12 @@ package dronetelemetrytool.fxml;
 import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.NumberField;
+import dronetelemetrytool.fieldparsing.UnitConverter;
 import dronetelemetrytool.gauges.CircleGauge;
 import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -18,6 +21,7 @@ import javafx.util.StringConverter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
@@ -58,6 +62,8 @@ public class Circle90GaugeCreator implements Initializable {
     private ComboBox<String> currentUnitComboBox;
     @FXML
     private ComboBox<String> desiredUnitComboBox;
+    private UnitConverter uc = new UnitConverter();
+
 
     @FXML
     protected void onUnitChangeClick() {

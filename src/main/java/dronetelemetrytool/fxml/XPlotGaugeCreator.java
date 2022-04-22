@@ -88,11 +88,6 @@ public class XPlotGaugeCreator implements Initializable {
     }
 
     @FXML
-    protected void onUnitChangeClick() {
-
-    }
-
-    @FXML
     protected void onCancelClick() {
         System.out.println("Cancelled creating this gauge.");
 
