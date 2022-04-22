@@ -1,5 +1,6 @@
 package dronetelemetrytool.gauges;
 
+import dronetelemetrytool.fieldparsing.Field;
 import dronetelemetrytool.fieldparsing.TimeField;
 import eu.hansolo.tilesfx.Tile;
 
@@ -27,9 +28,8 @@ public class ClockGauge extends Gauge{
         this.field = field;
     }
 
-    public TimeField getField() {
-        return field;
-    }
+    @Override
+    public Field getField() { return field; }
 }
 
 

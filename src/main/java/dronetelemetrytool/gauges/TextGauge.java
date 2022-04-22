@@ -29,9 +29,8 @@ public class TextGauge extends Gauge{
         tile.setDescription((String) newValue);
     }
 
-    public Field getField() {
-        return field;
-    }
+    @Override
+    public Field getField() { return field; }
 
     public void setField(Field field) {
         this.field = field;

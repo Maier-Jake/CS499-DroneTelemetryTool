@@ -1,6 +1,7 @@
 package dronetelemetrytool.gauges;
 
 import dronetelemetrytool.fieldparsing.BoolField;
+import dronetelemetrytool.fieldparsing.Field;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.TileBuilder;
 
@@ -36,7 +37,6 @@ public class OnOffGauge extends Gauge{
         this.field = field;
     }
 
-    public BoolField getField() {
-        return field;
-    }
+    @Override
+    public Field getField() { return field; }
 }

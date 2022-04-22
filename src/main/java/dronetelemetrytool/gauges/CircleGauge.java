@@ -1,6 +1,7 @@
 package dronetelemetrytool.gauges;
 
 import dronetelemetrytool.DTT_Tools;
+import dronetelemetrytool.fieldparsing.Field;
 import dronetelemetrytool.fieldparsing.NumberField;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.colors.Bright;
@@ -125,10 +126,8 @@ public class CircleGauge extends Gauge {
         }
     }
 
-    public NumberField getField()
-    {
-        return field;
-    }
+    @Override
+    public Field getField() { return field; }
 
     public void setField(NumberField field) {
         this.field = field;

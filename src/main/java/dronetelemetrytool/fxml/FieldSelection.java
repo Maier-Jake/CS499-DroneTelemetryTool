@@ -4,7 +4,9 @@ import dronetelemetrytool.DTT_GUI;
 import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.Field;
+import dronetelemetrytool.fieldparsing.NumberField;
 import dronetelemetrytool.gauges.Gauge;
+import dronetelemetrytool.gauges.XYPlotGauge;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -75,6 +77,7 @@ public class FieldSelection implements Initializable {
                         if (relatedField != null)
                         {
                             DTT_GUI.gaugeSelector(parent, relatedField);
+                            leftFields.remove(fieldName);
                         }
                         else
                         {
@@ -84,8 +87,35 @@ public class FieldSelection implements Initializable {
                     else {
                         //creating gauge w/ 2 fields
                         //both have to be number fields.
-                        Field field1;
-                        Field field2;
+                        String field1Name = items.get(0);
+                        String field2Name = items.get(1);
+                        Field relatedXField = null;
+                        Field relatedYField = null;
+                        for (Field f : MainApplication.fields.getFields()) {
+                            if (f.getName() == field1Name)
+                            {
+                                relatedXField = f;
+                            }
+                            if (f.getName() == field2Name)
+                            {
+                                relatedYField = f;
+                            }
+                        }
+                        if (relatedXField != null && relatedYField != null)
+                        {
+                            if (relatedXField.getType() == 0 && relatedYField.getType() == 0)
+                            {
+                                DTT_GUI.xyPlotGaugeCreator(parent, new NumberField(relatedXField), new NumberField(relatedYField));
+                            }
+                            else
+                            {
+                                Stage popup = DTT_Tools.popup((Stage) buttonCreate.getScene().getWindow(), "To create a gauge with two fields, they must both be number fields.");
+                            }
+                        }
+                        else
+                        {
+                            System.out.println("Error... field(s) not found");
+                        }
                     }
                 }
                 else {
@@ -131,6 +161,30 @@ public class FieldSelection implements Initializable {
 //            items.clear();
 //            rightView.getSelectionModel().clearSelection();
 //        }
+
+        // Gets the selected index in the right list
+        int index = rightView.getSelectionModel().getSelectedIndex();
+        String name = rightView.getSelectionModel().getSelectedItem().toString();
+        ObservableList<Integer> indices = rightView.getSelectionModel().getSelectedIndices();
+        ArrayList<String> items = new ArrayList<>();
+
+        for (int i = 0; i < indices.size(); i++) {
+            items.add(rightFields.get(indices.get(i)));
+        }
+        for (String s:items ) {
+            for (Gauge g:MainApplication.gauges) {
+                if (g.tile.getTitle() == s) {
+                    if (MainApplication.gauges.get(index) instanceof XYPlotGauge) {
+                        leftFields.add(((XYPlotGauge) g).getxField().getName());
+                        leftFields.add(((XYPlotGauge) g).getyField().getName());
+                    }
+                    else {
+                        leftFields.add(g.getField().getName());
+                    }
+                    rightFields.remove(s);
+                }
+            }
+        }
     }
 
     @FXML
