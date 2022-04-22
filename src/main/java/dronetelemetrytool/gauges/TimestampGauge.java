@@ -17,6 +17,7 @@ public class TimestampGauge extends Gauge{
     public TimestampGauge()
     {
         super();
+        this.gaugeType = GaugeType.TIMESTAMP;
         formatter = new SimpleDateFormat("HH:mm:ss.SSS");
         formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
 

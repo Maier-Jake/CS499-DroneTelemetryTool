@@ -97,7 +97,7 @@ public class FrequencySelector implements Initializable {
                 MainApplication.code = 1;
 //                MainApplication.prevTime = MainApplication.timestampField.getNext();
 //                MainApplication.currentTime = MainApplication.timestampField.getNext();
-                DTT_GUI.fieldSelection();
+                DTT_GUI.setupSelector();
                 Stage stage = (Stage) listView.getScene().getWindow();
                 stage.close();
             }
@@ -121,7 +121,8 @@ public class FrequencySelector implements Initializable {
                 MainApplication.code = 0;
 
 //                MainApplication.gaugeUpdateFrequency = 1_000_000_000 * MainApplication.frequency;
-                DTT_GUI.fieldSelection();
+//                DTT_GUI.fieldSelection();
+                DTT_GUI.setupSelector();
                 Stage stage = (Stage) listView.getScene().getWindow();
                 stage.close();
             } catch (NumberFormatException e)

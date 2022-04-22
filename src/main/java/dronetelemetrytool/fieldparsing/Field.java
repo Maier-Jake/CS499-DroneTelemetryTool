@@ -1,15 +1,16 @@
 package dronetelemetrytool.fieldparsing;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Field {
+public class Field implements Serializable {
     String myName;
-    List<String> rawData;
-    int type;
-    private int i = 0;
-    private int j = 0;
+    transient List<String> rawData;
+    transient int type;
+    private transient int i = 0;
+    private transient int j = 0;
 
     public Field(String name) {
         myName = name;

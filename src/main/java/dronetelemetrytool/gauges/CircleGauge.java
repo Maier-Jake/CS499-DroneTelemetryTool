@@ -17,14 +17,24 @@ import java.util.Arrays;
 public class CircleGauge extends Gauge {
 
     private NumberField field;
-    private GradientLookup gradient;
-    private Media alarm;
-    private MediaPlayer mediaPlayer;
+    private transient GradientLookup gradient;
+    private transient int alarmIndex;
+    private transient Media alarm;
+    private transient MediaPlayer mediaPlayer;
     private double redThresh;
 
     public CircleGauge(int angleRange)
     {
         super();
+        if (angleRange == 90) {
+            this.gaugeType=GaugeType.CIRCLE90;
+        } else if (angleRange == 180) {
+            this.gaugeType=GaugeType.CIRCLE180;
+        } else if (angleRange == 270) {
+            this.gaugeType=GaugeType.CIRCLE270;
+        } else if (angleRange == 360) {
+            this.gaugeType=GaugeType.CIRCLE360;
+        }
         field = null;
         tile.setSkinType(Tile.SkinType.GAUGE2);
         tile.setUnit("d");
@@ -91,6 +101,11 @@ public class CircleGauge extends Gauge {
         }
     }
 
+    public GradientLookup getGradient()
+    {
+        return gradient;
+    }
+
     public void setGradient(GradientLookup g)
     {
         gradient = g;
@@ -100,6 +115,8 @@ public class CircleGauge extends Gauge {
 
     public void setAlarm(int i) {
         String musicFile;
+        redThresh = DTT_Tools.map(gradient.getStops().get(3).getOffset(), 0, 1, tile.getMinValue(),tile.getMaxValue());
+        alarmIndex = i;
         switch(i)
         {
             case 1: //chirp
@@ -131,5 +148,9 @@ public class CircleGauge extends Gauge {
 
     public void setField(NumberField field) {
         this.field = field;
+    }
+
+    public int getAlarmIndex() {
+        return alarmIndex;
     }
 }

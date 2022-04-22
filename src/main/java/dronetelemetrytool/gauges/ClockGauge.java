@@ -11,6 +11,7 @@ public class ClockGauge extends Gauge{
     public ClockGauge()
     {
         super();
+        this.gaugeType = GaugeType.CLOCK;
         tile.setTitle("Clock Gauge");
         tile.setSkinType(Tile.SkinType.CLOCK);
         tile.setTime(System.currentTimeMillis() / 1000);

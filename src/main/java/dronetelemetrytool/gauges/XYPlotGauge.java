@@ -14,13 +14,14 @@ public class XYPlotGauge extends Gauge {
 
     private XYChart.Series<Number, Number> series;
 
-    private NumberAxis xAxis;
-    private NumberAxis yAxis;
+    public NumberAxis xAxis;
+    public NumberAxis yAxis;
     private ScatterChart<Number,Number> scatterChart;
 
     public XYPlotGauge(double xMin, double xMax, double xTick, double yMin, double yMax, double yTick)
     {
         super();
+        this.gaugeType = GaugeType.XYPLOT;
 
         // LineChart Data
         series = new XYChart.Series();

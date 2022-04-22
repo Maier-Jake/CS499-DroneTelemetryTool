@@ -227,18 +227,6 @@ public class BarGaugeCreator implements Initializable {
         ClusterBarGauge newGauge = new ClusterBarGauge(title, min, max, green, yellow, red, desiredUnitComboBox.getValue());
         newGauge.setField(field);
         newGauge.setTitle(title);
-//        newGauge.tile.getChartData().get(0).setMaxValue(max);
-//        newGauge.tile.getChartData().get(0).setMinValue(min);
-//        newGauge.tile.setMaxValue(max);
-//        newGauge.tile.setMinValue(min);
-//        GradientLookup gradient = new GradientLookup(Arrays.asList(
-//                new Stop(0, Bright.BLUE),
-//                new Stop(DTT_Tools.map(green,min,max,0,1), Bright.GREEN),
-//                new Stop(DTT_Tools.map(yellow,min,max,0,1), Bright.YELLOW),
-//                new Stop(DTT_Tools.map(red,min,max,0,1), Bright.RED),
-//                new Stop(1, Bright.RED)));
-//
-//        newGauge.setGradient(gradient);
 
 //        switch(unit)
 //        {

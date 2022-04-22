@@ -30,7 +30,7 @@ public class MainApplication extends Application {
 //    public static long currentTime;
 
     public static void setFrequency(float parseFloat) {
-        frequencyOriginal = parseFloat * 100;
+        frequencyOriginal = parseFloat;
     }
 
     public static void setRate(int r) {
@@ -67,7 +67,7 @@ public class MainApplication extends Application {
                         if (updateNumber > fields.fieldLength()) {
                             timer.stop();
                             updateNumber = 1;
-                            timestampField.setIndex(0);
+                            lastUpdate = 0;
                         } else {
                             //for each gauge CREATED, run an update.
                             gauges.forEach(Gauge::update);

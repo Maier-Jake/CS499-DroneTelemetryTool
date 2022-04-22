@@ -5,8 +5,7 @@ import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.Field;
 import dronetelemetrytool.fieldparsing.NumberField;
-import dronetelemetrytool.gauges.Gauge;
-import dronetelemetrytool.gauges.XYPlotGauge;
+import dronetelemetrytool.gauges.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -18,7 +17,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -191,11 +190,173 @@ public class FieldSelection implements Initializable {
 
     @FXML
     protected void onSaveClick() {
+        ArrayList<GaugeInfo> list = new ArrayList<>();
 
+        for (Gauge g : MainApplication.gauges)
+        {
+            GaugeInfo info = new GaugeInfo();
+            switch (g.gaugeType)
+            {
+                case BAR:
+                    ClusterBarGauge barGauge = (ClusterBarGauge) g;
+                    info.gaugeTitle = barGauge.tile.getTitle();
+                    info.fieldName = barGauge.getField().getName();
+                    info.type = barGauge.gaugeType;
+                    info.max = barGauge.tile.getMaxValue();
+                    info.min = barGauge.tile.getMinValue();
+                    info.gThresh = DTT_Tools.map(barGauge.tile.getChartData().get(0).getGradientLookup().getStops().get(1).getOffset(), 0, 1, info.min, info.max);
+                    info.yThresh = DTT_Tools.map(barGauge.tile.getChartData().get(0).getGradientLookup().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
+                    info.rThresh =DTT_Tools.map(barGauge.tile.getChartData().get(0).getGradientLookup().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
+                    info.desUnit = "";
+                    info.warning = barGauge.getAlarmIndex();
+                    break;
+                case CIRCLE90:
+                    CircleGauge circleGauge90 = (CircleGauge) g;
+                    info.gaugeTitle = circleGauge90.tile.getTitle();
+                    info.fieldName = circleGauge90.getField().getName();
+                    info.type = circleGauge90.gaugeType;
+                    info.max = circleGauge90.tile.getMaxValue();
+                    info.min = circleGauge90.tile.getMinValue();
+                    info.gThresh = DTT_Tools.map(circleGauge90.getGradient().getStops().get(1).getOffset(), 0, 1, info.min, info.max);
+                    info.yThresh = DTT_Tools.map(circleGauge90.getGradient().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
+                    info.rThresh = DTT_Tools.map(circleGauge90.getGradient().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
+                    info.desUnit = "";
+                    info.warning = circleGauge90.getAlarmIndex();
+                    break;
+                case CIRCLE180:
+                    CircleGauge circleGauge180 = (CircleGauge) g;
+                    info.gaugeTitle = circleGauge180.tile.getTitle();
+                    info.fieldName = circleGauge180.getField().getName();
+                    info.type = circleGauge180.gaugeType;
+                    info.max = circleGauge180.tile.getMaxValue();
+                    info.min = circleGauge180.tile.getMinValue();
+                    info.gThresh = DTT_Tools.map(circleGauge180.getGradient().getStops().get(1).getOffset(), 0, 1, info.min, info.max);
+                    info.yThresh = DTT_Tools.map(circleGauge180.getGradient().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
+                    info.rThresh = DTT_Tools.map(circleGauge180.getGradient().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
+                    info.desUnit = "";
+                    info.warning = circleGauge180.getAlarmIndex();
+                    break;
+                case CIRCLE270:
+                    CircleGauge circleGauge270 = (CircleGauge) g;
+                    info.gaugeTitle = circleGauge270.tile.getTitle();
+                    info.fieldName = circleGauge270.getField().getName();
+                    info.type = circleGauge270.gaugeType;
+                    info.max = circleGauge270.tile.getMaxValue();
+                    info.min = circleGauge270.tile.getMinValue();
+                    info.gThresh = DTT_Tools.map(circleGauge270.getGradient().getStops().get(1).getOffset(), 0, 1, info.min, info.max);
+                    info.yThresh = DTT_Tools.map(circleGauge270.getGradient().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
+                    info.rThresh = DTT_Tools.map(circleGauge270.getGradient().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
+                    info.desUnit = "";
+                    info.warning = circleGauge270.getAlarmIndex();
+                    break;
+                case CIRCLE360:
+                    CircleGauge circleGauge360 = (CircleGauge) g;
+                    info.gaugeTitle = circleGauge360.tile.getTitle();
+                    info.fieldName = circleGauge360.getField().getName();
+                    info.type = circleGauge360.gaugeType;
+                    info.max = circleGauge360.tile.getMaxValue();
+                    info.min = circleGauge360.tile.getMinValue();
+                    info.gThresh = DTT_Tools.map(circleGauge360.getGradient().getStops().get(1).getOffset(), 0, 1, info.min, info.max);
+                    info.yThresh = DTT_Tools.map(circleGauge360.getGradient().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
+                    info.rThresh = DTT_Tools.map(circleGauge360.getGradient().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
+                    info.desUnit = "";
+                    info.warning = circleGauge360.getAlarmIndex();
+                    break;
+                //EJ DO BELOW. JAKE DO ABOVE
+                case CLOCK:
+                    ClockGauge clockGauge = (ClockGauge) g;
+                    info.gaugeTitle = clockGauge.tile.getTitle();
+                    info.fieldName = clockGauge.getField().getName();
+                    info.type = clockGauge.gaugeType;
+                    break;
+                case ONOFF:
+                    OnOffGauge onOffGauge = (OnOffGauge) g;
+                    info.gaugeTitle = onOffGauge.tile.getTitle();
+                    info.fieldName = onOffGauge.getField().getName();
+                    info.type = onOffGauge.gaugeType;
+                    info.color = String.valueOf(onOffGauge.tile.getActiveColor());
+                    break;
+                case TEXT:
+                    TextGauge textGauge = (TextGauge) g;
+                    info.gaugeTitle = textGauge.tile.getTitle();
+                    info.fieldName = textGauge.getField().getName();
+                    info.type = textGauge.gaugeType;
+                    break;
+                case TIMESTAMP:
+                    TimestampGauge timestampGauge = (TimestampGauge) g;
+                    info.gaugeTitle = timestampGauge.tile.getTitle();
+                    info.fieldName = timestampGauge.getField().getName();
+                    info.type = timestampGauge.gaugeType;
+                    break;
+                case XPLOT:
+                    XPlotGauge xPlotGauge = (XPlotGauge) g;
+                    info.gaugeTitle = xPlotGauge.tile.getTitle();
+                    info.fieldName = xPlotGauge.getField().getName();
+                    info.type = xPlotGauge.gaugeType;
+                    info.axisLabel = xPlotGauge.primaryAxis.getLabel();
+                    info.max = xPlotGauge.primaryAxis.getUpperBound();
+                    info.min = xPlotGauge.primaryAxis.getLowerBound();
+                    info.orient = xPlotGauge.orient;
+                    info.tick = xPlotGauge.primaryAxis.getTickUnit();
+                    break;
+                case XYPLOT:
+                    XYPlotGauge xyPlotGauge = (XYPlotGauge) g;
+                    info.gaugeTitle = xyPlotGauge.tile.getTitle();
+                    info.fieldName = xyPlotGauge.getField().getName();
+                    info.type = xyPlotGauge.gaugeType;
+                    info.axisLabel = xyPlotGauge.xAxis.getLabel();
+                    info.max = xyPlotGauge.xAxis.getUpperBound();
+                    info.min = xyPlotGauge.xAxis.getLowerBound();
+                    info.tick = xyPlotGauge.xAxis.getTickUnit();
+                    info.yaxisLabel = xyPlotGauge.yAxis.getLabel();
+                    info.ymax = xyPlotGauge.yAxis.getUpperBound();
+                    info.ymin = xyPlotGauge.yAxis.getLowerBound();
+                    info.ytick = xyPlotGauge.yAxis.getTickUnit();
+                    break;
+            }
+            list.add(info);
+        }
+
+        try {
+            FileOutputStream fileOut = new FileOutputStream("src//main//resources//dronetelemetrytool//data//gaugeList.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(list);
+            System.out.println("list size: " + list.size());
+            out.close();
+            fileOut.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
     }
 
     @FXML
     protected void onContinueClick() throws IOException {
+
+//        //String title = FIELD_Title.textProperty().getValueSafe();
+//
+//        TextGauge testGA = new TextGauge();
+//        testGA.setField(field);
+//        testGA.setTitle("whatever");
+//
+//        MainApplication.gauges.add(testGA);
+//        //FieldSelection.addToRight("whatever");
+//        try {
+//            FileInputStream fileIn = new FileInputStream("D:\\School\\CS499\\Resources\\gauge.ser");
+//            ObjectInputStream in = new ObjectInputStream(fileIn);
+//            testGA = (TextGauge) in.readObject();
+//            in.close();
+//            fileIn.close();
+//        } catch (IOException i) {
+//            i.printStackTrace();
+//            return;
+//        } catch (ClassNotFoundException c) {
+//            System.out.println("Class not found");
+//            c.printStackTrace();
+//            return;
+//        }
+//
+//        MainApplication.gauges.add(testGA);
+
         for (Gauge g : MainApplication.gauges)
         {
             g.display();
