@@ -42,7 +42,7 @@
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
             <Label text="Unit Type" prefWidth="175"/>
-            <ComboBox fx:id="unitTypeComboBox"/>
+            <ComboBox fx:id="unitTypeComboBox" onAction="onNewXUnitType"/>
         </HBox>
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
@@ -222,7 +222,7 @@
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
             <Label text="Unit Type" prefWidth="175"/>
-            <ComboBox fx:id="unitTypeComboBox2"/>
+            <ComboBox fx:id="unitTypeComboBox2" onAction="onNewYUnitType"/>
         </HBox>
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>

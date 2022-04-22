@@ -5,19 +5,32 @@ import java.util.List;
 import java.util.Collections;
 
 
-public class NumberField extends Field {
+public class NumberField extends Field implements java.io.Serializable {
     List<Double> myNumbers = new ArrayList<>(); // All data values in order, including any null values.
     List<Double> mySortedNumbers; // Sorted List of all non-null data values
     List<Double> myConvertedNumbers; // Sorted List of all non-null data values
+    public String chosenUnit="";
+    public String originalUnit="";
+    public String unitType="";
 
     int nullCounter = 0;
     private int i = 0;
     private int j = 0;
+    public UnitConverter uc = new UnitConverter();
 
     public NumberField(Field myField) {
         super(myField.myName);
         super.rawData = myField.rawData;
         parseNumberField();
+        getSortedNumbers();
+    }
+
+    public void convert(String type, String from, String to) {
+        this.unitType = type;
+        this.originalUnit = from;
+        this.chosenUnit = to;
+        this.myNumbers = this.uc.convert(this.unitType,
+                this.chosenUnit, this.originalUnit, this.myNumbers);
         getSortedNumbers();
     }
 
@@ -89,8 +102,6 @@ public class NumberField extends Field {
             }
         }
     }
-
-
 
     // Update this NumberField with a new data array. This will probably only
     // be called if there is a unit conversion.

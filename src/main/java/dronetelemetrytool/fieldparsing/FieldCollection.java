@@ -3,7 +3,7 @@ package dronetelemetrytool.fieldparsing;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import java.util.List;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class FieldCollection {

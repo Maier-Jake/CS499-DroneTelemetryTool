@@ -1,11 +1,12 @@
 package dronetelemetrytool.fieldparsing;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
-public class UnitConverter {
+public class UnitConverter implements java.io.Serializable {
     private List<String> unit_names = new ArrayList<>();
     private List<Unit> unit_array = new ArrayList<>();
     private Dictionary<String, List<String>> subunits = new Hashtable<>();
@@ -13,23 +14,23 @@ public class UnitConverter {
     public UnitConverter() {
         String tmpName;
         this.unit_array.add(new Unit("speed", "m/s"));
-        unit_array.get(0).addSubunit("ft/s", 3.28084f);
-        unit_array.get(0).addSubunit("mi/h", 3600f/1609.344f);
-        unit_array.get(0).addSubunit("km/hr", 3.6f);
+        unit_array.get(0).addSubunit("ft/s", 3.28084d);
+        unit_array.get(0).addSubunit("mi/h", 3600f/1609.344d);
+        unit_array.get(0).addSubunit("km/hr", 3.6d);
         this.unit_array.add(new Unit("power", "mAh"));
-        unit_array.get(1).addSubunit("Coulombs", 3.6f);
-        unit_array.get(1).addSubunit("Quintillion electrons", 22.4694351f);
-        unit_array.get(1).addSubunit("Amp hrs", .001f);
+        unit_array.get(1).addSubunit("Coulombs", 3.6d);
+        unit_array.get(1).addSubunit("Quintillion electrons", 22.4694351d);
+        unit_array.get(1).addSubunit("Amp hrs", .001d);
         this.unit_array.add(new Unit("distance", "m"));
-        unit_array.get(2).addSubunit("cm", 100);
-        unit_array.get(2).addSubunit("ft", 3.28084f);
-        unit_array.get(2).addSubunit("mi", .0006213712f);
-        unit_array.get(2).addSubunit("km", .0001f);
+        unit_array.get(2).addSubunit("cm", 100d);
+        unit_array.get(2).addSubunit("ft", 3.28084d);
+        unit_array.get(2).addSubunit("mi", .0006213712d);
+        unit_array.get(2).addSubunit("km", .0001d);
         this.unit_array.add(new Unit("temperature", "C"));
-        unit_array.get(3).addSubunit("Kelvin", 0f, 273.15f);
-        unit_array.get(3).addSubunit("Farenheit", 1.8f, 32f);
+        unit_array.get(3).addSubunit("Kelvin", 1d, 273.15d);
+        unit_array.get(3).addSubunit("Farenheit", 1.8d, 32d);
         this.unit_array.add(new Unit("coordinates", "lat"));
-        unit_array.get(4).addSubunit("lon", 1f);
+        unit_array.get(4).addSubunit("lon", 1d);
 
         for (Unit u : unit_array) {
             tmpName = u.getName();

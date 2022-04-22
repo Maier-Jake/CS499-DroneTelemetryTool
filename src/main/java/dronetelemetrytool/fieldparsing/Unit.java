@@ -1,11 +1,12 @@
 package dronetelemetrytool.fieldparsing;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
 
-class Unit {
+class Unit implements Serializable {
     String si;
     String name;
     List<String> subunits = new ArrayList<String>();
@@ -15,9 +16,9 @@ class Unit {
     public Unit(String name, String standard) {
         this.name = name;
         this.si = standard;
-        this.subunits.add(this.si);
-        this.factors.put(this.name, 1d);
-        this.constants.put(this.name, 0d);
+        subunits.add(this.si);
+        factors.put(this.si, java.lang.Double.valueOf(1d));
+        constants.put(this.si, java.lang.Double.valueOf(0d));
     }
 
     public String getName() {
@@ -32,16 +33,16 @@ class Unit {
     // this_subunit = factor*base_unit+constant.
     void addSubunit(String name, double factor) {
         subunits.add(name);
-        factors.put(name, factor);
-        constants.put(name, 0d);
+        factors.put(name, java.lang.Double.valueOf(factor));
+        constants.put(name, java.lang.Double.valueOf(0d));
     }
 
     // Subunit setter with optional added constant
     // this_subunit = factor*base_unit+constant.
     void addSubunit(String name, double factor, double constant) {
         subunits.add(name);
-        factors.put(name, factor);
-        constants.put(name, constant);
+        factors.put(name, java.lang.Double.valueOf(factor));
+        constants.put(name, java.lang.Double.valueOf(constant));
     }
 
     // Use this Unit and its defined subunits to convert a
@@ -50,6 +51,8 @@ class Unit {
         // linear subunits and a/c, b/d are the conversion factors and consants
         // respectively, x=((y-d)/c)*a+b
         Double a, b, c, d;
+
+
         if (subunits.contains(from) && subunits.contains(to)) {
             a = factors.get(to);
             b = constants.get(to);

@@ -3,9 +3,12 @@ package dronetelemetrytool.fxml;
 import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.NumberField;
+import dronetelemetrytool.fieldparsing.UnitConverter;
 import dronetelemetrytool.gauges.CircleGauge;
 import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -16,12 +19,13 @@ import javafx.util.StringConverter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
 public class Circle360GaugeCreator implements Initializable {
-
+    private UnitConverter uc = new UnitConverter();
     private NumberField field;
 
     @FXML
@@ -59,7 +63,36 @@ public class Circle360GaugeCreator implements Initializable {
 
     @FXML
     protected void onUnitChangeClick() {
+        String cur = currentUnitComboBox.getValue();
+        String des = desiredUnitComboBox.getValue();
+        if (cur==this.field.originalUnit || des==this.field.chosenUnit || cur==des) { return; }
+        this.field.convert(unitTypeComboBox.getValue(), currentUnitComboBox.getValue(), desiredUnitComboBox.getValue());
+        this.updateStats();
+    }
 
+    public void setField(NumberField relatedField) {
+        field = relatedField;
+        FIELD_Title.setText(field.getName());
+        updateStats();
+    }
+
+    // Called when a new unit type (like "distance") is chosen in the dropdown.
+    // Updates the current and desired subunit type dropdowns to include the appropriate options.
+    @FXML
+    protected void onNewUnitType() {
+        String newType = unitTypeComboBox.getValue();
+        ObservableList<String> newSubunits = FXCollections.observableArrayList(field.uc.getSubunits(newType));
+        currentUnitComboBox.setItems(newSubunits);
+        currentUnitComboBox.setValue(newSubunits.get(0));
+        desiredUnitComboBox.setItems(newSubunits);
+        desiredUnitComboBox.setValue(newSubunits.get(0));
+    }
+
+    void updateStats() {
+        STAT_max.setText(String.valueOf(field.getMaxValue()));
+        STAT_min.setText(String.valueOf(field.getMinValue()));
+        STAT_avg.setText(String.valueOf(field.getMean()));
+        STAT_stddev.setText(String.valueOf(field.getStandardDeviation()));
     }
 
     @FXML
@@ -106,20 +139,20 @@ public class Circle360GaugeCreator implements Initializable {
         FIELD_YellowT.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
         FIELD_RedT.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
 
-        STAT_min.setText("10");
-        STAT_max.setText("20");
-        STAT_avg.setText("12");
-        STAT_stddev.setText("2");
+        String default_unit = this.uc.getUnitNames().get(0);
+        List<String> default_subunits = this.uc.getSubunits(default_unit);
+        unitTypeComboBox.setItems(FXCollections.observableArrayList(this.uc.getUnitNames()));
+        unitTypeComboBox.setValue(default_unit);
+        currentUnitComboBox.setItems(FXCollections.observableList(default_subunits));
+        currentUnitComboBox.setValue(default_subunits.get(0));
+        desiredUnitComboBox.setItems(FXCollections.observableList(default_subunits));
+        desiredUnitComboBox.setValue(default_subunits.get(0));
 
         //so focus will start on first editable textfield
         STAT_min.setFocusTraversable(false);
         STAT_max.setFocusTraversable(false);
         STAT_avg.setFocusTraversable(false);
         STAT_stddev.setFocusTraversable(false);
-
-        unitTypeComboBox.getItems().setAll("speed", "length");
-        currentUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
-        desiredUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
     }
 
 
@@ -244,15 +277,6 @@ public class Circle360GaugeCreator implements Initializable {
         FieldSelection.addToRight(title);
         Stage stage = (Stage) FIELD_Title.getScene().getWindow();
         stage.close();
-    }
-
-    public void setField(NumberField relatedField) {
-        field = relatedField;
-        FIELD_Title.setText(field.getName());
-        STAT_max.setText(String.valueOf(field.getMaxValue()));
-        STAT_min.setText(String.valueOf(field.getMinValue()));
-        STAT_avg.setText(String.valueOf(field.getMean()));
-        STAT_stddev.setText(String.valueOf(field.getStandardDeviation()));
     }
 
     public NumberField getField() {
