@@ -1,6 +1,7 @@
 package dronetelemetrytool.gauges;
 
 import dronetelemetrytool.DTT_Tools;
+import dronetelemetrytool.fieldparsing.Field;
 import dronetelemetrytool.fieldparsing.NumberField;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.ScatterChart;
@@ -41,6 +42,12 @@ public class XYPlotGauge extends Gauge {
         tile.setGraphic(scatterChart);
 
     }
+
+    @Override
+    public Field getField() {
+        return null;
+    }
+
     @Override
     public void update() {
 

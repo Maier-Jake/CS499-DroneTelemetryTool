@@ -5,6 +5,7 @@ import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.Field;
 import dronetelemetrytool.gauges.Gauge;
+import dronetelemetrytool.gauges.XYPlotGauge;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -75,6 +76,7 @@ public class FieldSelection implements Initializable {
                         if (relatedField != null)
                         {
                             DTT_GUI.gaugeSelector(parent, relatedField);
+                            leftFields.remove(fieldName);
                         }
                         else
                         {
@@ -131,6 +133,30 @@ public class FieldSelection implements Initializable {
 //            items.clear();
 //            rightView.getSelectionModel().clearSelection();
 //        }
+
+        // Gets the selected index in the right list
+        int index = rightView.getSelectionModel().getSelectedIndex();
+        String name = rightView.getSelectionModel().getSelectedItem().toString();
+        ObservableList<Integer> indices = rightView.getSelectionModel().getSelectedIndices();
+        ArrayList<String> items = new ArrayList<>();
+
+        for (int i = 0; i < indices.size(); i++) {
+            items.add(rightFields.get(indices.get(i)));
+        }
+        for (String s:items ) {
+            for (Gauge g:MainApplication.gauges) {
+                if (g.tile.getTitle() == s) {
+                    if (MainApplication.gauges.get(index) instanceof XYPlotGauge) {
+                        leftFields.add(((XYPlotGauge) g).getxField().getName());
+                        leftFields.add(((XYPlotGauge) g).getyField().getName());
+                    }
+                    else {
+                        leftFields.add(g.getField().getName());
+                    }
+                    rightFields.remove(s);
+                }
+            }
+        }
     }
 
     @FXML

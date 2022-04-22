@@ -33,7 +33,8 @@ public class CharacterGauge extends Gauge{
 //        tile.setDescription(temp);
     }
 
-    public StringField getField() {
+    @Override
+    public Field getField() {
         return field;
     }
 

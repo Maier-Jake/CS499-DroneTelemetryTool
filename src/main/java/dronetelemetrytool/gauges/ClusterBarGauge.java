@@ -2,6 +2,7 @@ package dronetelemetrytool.gauges;
 
 
 import dronetelemetrytool.DTT_Tools;
+import dronetelemetrytool.fieldparsing.Field;
 import dronetelemetrytool.fieldparsing.NumberField;
 import dronetelemetrytool.skins.SingleBarTileSkin;
 import eu.hansolo.tilesfx.Tile;
@@ -120,13 +121,10 @@ public class ClusterBarGauge extends Gauge{
         }
     }
 
-    public NumberField getField() {
-        return field;
-    }
+    @Override
+    public Field getField() { return field; }
 
     public void setField(NumberField field) {
         this.field = field;
-//        tile.setMinValue(field.getMinValue());
-//        tile.setMaxValue(field.getMaxValue());
     }
 }
