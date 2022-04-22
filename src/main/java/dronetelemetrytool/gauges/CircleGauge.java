@@ -100,6 +100,11 @@ public class CircleGauge extends Gauge {
         }
     }
 
+    public GradientLookup getGradient()
+    {
+        return gradient;
+    }
+
     public void setGradient(GradientLookup g)
     {
         gradient = g;

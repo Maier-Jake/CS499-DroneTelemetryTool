@@ -208,13 +208,54 @@ public class FieldSelection implements Initializable {
                     info.yThresh = DTT_Tools.map(barGauge.tile.getChartData().get(0).getGradientLookup().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
                     info.rThresh =DTT_Tools.map(barGauge.tile.getChartData().get(0).getGradientLookup().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
                     info.desUnit = "";
+                    break;
                 case CIRCLE90:
+                    CircleGauge circleGauge90 = (CircleGauge) g;
+                    info.gaugeTitle = circleGauge90.tile.getTitle();
+                    info.fieldName = circleGauge90.getField().getName();
+                    info.type = circleGauge90.gaugeType;
+                    info.max = circleGauge90.tile.getMaxValue();
+                    info.min = circleGauge90.tile.getMinValue();
+                    info.gThresh = DTT_Tools.map(circleGauge90.getGradient().getStops().get(1).getOffset(), 0, 1, info.min, info.max);
+                    info.yThresh = DTT_Tools.map(circleGauge90.getGradient().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
+                    info.rThresh = DTT_Tools.map(circleGauge90.getGradient().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
+                    info.desUnit = "";
                     break;
                 case CIRCLE180:
+                    CircleGauge circleGauge180 = (CircleGauge) g;
+                    info.gaugeTitle = circleGauge180.tile.getTitle();
+                    info.fieldName = circleGauge180.getField().getName();
+                    info.type = circleGauge180.gaugeType;
+                    info.max = circleGauge180.tile.getMaxValue();
+                    info.min = circleGauge180.tile.getMinValue();
+                    info.gThresh = DTT_Tools.map(circleGauge180.getGradient().getStops().get(1).getOffset(), 0, 1, info.min, info.max);
+                    info.yThresh = DTT_Tools.map(circleGauge180.getGradient().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
+                    info.rThresh = DTT_Tools.map(circleGauge180.getGradient().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
+                    info.desUnit = "";
                     break;
                 case CIRCLE270:
+                    CircleGauge circleGauge270 = (CircleGauge) g;
+                    info.gaugeTitle = circleGauge270.tile.getTitle();
+                    info.fieldName = circleGauge270.getField().getName();
+                    info.type = circleGauge270.gaugeType;
+                    info.max = circleGauge270.tile.getMaxValue();
+                    info.min = circleGauge270.tile.getMinValue();
+                    info.gThresh = DTT_Tools.map(circleGauge270.getGradient().getStops().get(1).getOffset(), 0, 1, info.min, info.max);
+                    info.yThresh = DTT_Tools.map(circleGauge270.getGradient().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
+                    info.rThresh = DTT_Tools.map(circleGauge270.getGradient().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
+                    info.desUnit = "";
                     break;
                 case CIRCLE360:
+                    CircleGauge circleGauge360 = (CircleGauge) g;
+                    info.gaugeTitle = circleGauge360.tile.getTitle();
+                    info.fieldName = circleGauge360.getField().getName();
+                    info.type = circleGauge360.gaugeType;
+                    info.max = circleGauge360.tile.getMaxValue();
+                    info.min = circleGauge360.tile.getMinValue();
+                    info.gThresh = DTT_Tools.map(circleGauge360.getGradient().getStops().get(1).getOffset(), 0, 1, info.min, info.max);
+                    info.yThresh = DTT_Tools.map(circleGauge360.getGradient().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
+                    info.rThresh = DTT_Tools.map(circleGauge360.getGradient().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
+                    info.desUnit = "";
                     break;
                 //EJ DO BELOW. JAKE DO ABOVE
                 case CLOCK:
