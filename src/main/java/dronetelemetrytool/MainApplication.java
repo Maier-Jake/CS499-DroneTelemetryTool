@@ -58,19 +58,31 @@ public class MainApplication extends Application {
             private long lastUpdate = 0 ;
             private long interval = 0;
 
+            private int updateNumber = 1;
+
             @Override
             public void handle(final long now) {
                 if (code == 0) {
                     if (now - lastUpdate >= (long)((frequencyOriginal / rate) * 1_000_000_000)) {
+                        if (updateNumber > fields.fieldLength()) {
+                            timer.stop();
+                            updateNumber = 1;
+                        }
                         //for each gauge CREATED, run an update.
                         gauges.forEach(Gauge::update);
                         lastUpdate = now;
+                        updateNumber++;
                     }
                 } else if (code == 1) {
                     if (now - lastUpdate >= (interval / rate)) {
                         interval = timestampField.getNextInterval();
                         gauges.forEach(Gauge::update);
                         lastUpdate = now;
+                        if ((Long) interval == null) {
+                            timer.stop();
+                            lastUpdate = 0;
+                            interval = 0;
+                        }
 //                        prevTime = currentTime;
 //                        currentTime = timestampField.getNext();
                     }

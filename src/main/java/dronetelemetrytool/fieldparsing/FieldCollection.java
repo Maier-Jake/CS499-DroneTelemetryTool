@@ -162,4 +162,8 @@ public class FieldCollection {
             fields.get(i).printData(length);
         }
     }
+
+    public int fieldLength() {
+        return fields.get(0).getLength();
+    }
 }

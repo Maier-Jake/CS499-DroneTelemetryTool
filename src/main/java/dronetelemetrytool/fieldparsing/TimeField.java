@@ -15,6 +15,7 @@ public class TimeField extends Field {
     private int timeCURR = 0;   // Index pointing to the next available data point
     private int timePREV = 0;   // Index pointing to the last used data point
     private Long start;  // Start time as an epoch time with nanosecond resolution
+    private Long prevInterval;
 
     public TimeField(Field myField) {
         super(myField.myName);
@@ -55,10 +56,18 @@ public class TimeField extends Field {
     // data point since the initial time.
     public Long getNextInterval(){
         this.timePREV = this.timeCURR;
-        this.timeCURR = (this.timeCURR+1) % myTimes.size();
-        long prev = myTimes.get(timePREV);
-        long curr = myTimes.get(timeCURR);
-        return curr - prev;
+        this.timeCURR = this.timeCURR+1;
+        Long prev_o = myTimes.get(timePREV);
+        Long curr_o = myTimes.get(timeCURR);
+        if (!(this.timePREV >= this.myTimes.size() || this.timeCURR >= this.myTimes.size())) {
+            if (prev_o == null || curr_o == null) {
+                return prevInterval;
+            }
+            prevInterval = curr_o.longValue() - prev_o.longValue();
+            return prevInterval;
+        } else {
+            return null;
+        }
     }
 
     // Returns a Long representing nanoseconds since the epoch

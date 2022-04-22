@@ -119,6 +119,7 @@ public class FrequencySelector implements Initializable {
             try{
                 MainApplication.setFrequency(Float.parseFloat(frequencyINPUT.getText()));
                 MainApplication.code = 0;
+
 //                MainApplication.gaugeUpdateFrequency = 1_000_000_000 * MainApplication.frequency;
                 DTT_GUI.fieldSelection();
                 Stage stage = (Stage) listView.getScene().getWindow();
