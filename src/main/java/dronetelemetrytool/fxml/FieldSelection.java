@@ -76,6 +76,7 @@ public class FieldSelection implements Initializable {
                         if (relatedField != null)
                         {
                             DTT_GUI.gaugeSelector(parent, relatedField);
+                            leftFields.remove(fieldName);
                         }
                         else
                         {
@@ -135,18 +136,27 @@ public class FieldSelection implements Initializable {
 
         // Gets the selected index in the right list
         int index = rightView.getSelectionModel().getSelectedIndex();
-        // Check the gauge type
-        if (MainApplication.gauges.get(index) instanceof XYPlotGauge) {
-            leftFields.add(((XYPlotGauge) MainApplication.gauges.get(index)).getxField().getName());
-            leftFields.add(((XYPlotGauge) MainApplication.gauges.get(index)).getyField().getName());
-        }
-        else {
-            // Add the original string to the left
-            leftFields.add(MainApplication.gauges.get(index).getField().getName());
-        }
+        String name = rightView.getSelectionModel().getSelectedItem().toString();
+        ObservableList<Integer> indices = rightView.getSelectionModel().getSelectedIndices();
+        ArrayList<String> items = new ArrayList<>();
 
-        // Remove the item from the right
-        rightFields.remove(index);
+        for (int i = 0; i < indices.size(); i++) {
+            items.add(rightFields.get(indices.get(i)));
+        }
+        for (String s:items ) {
+            for (Gauge g:MainApplication.gauges) {
+                if (g.tile.getTitle() == s) {
+                    if (MainApplication.gauges.get(index) instanceof XYPlotGauge) {
+                        leftFields.add(((XYPlotGauge) g).getxField().getName());
+                        leftFields.add(((XYPlotGauge) g).getyField().getName());
+                    }
+                    else {
+                        leftFields.add(g.getField().getName());
+                    }
+                    rightFields.remove(s);
+                }
+            }
+        }
     }
 
     @FXML
