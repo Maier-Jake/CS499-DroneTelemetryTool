@@ -13,6 +13,20 @@ import java.util.Random;
 
 public abstract class Gauge implements java.io.Serializable {
 
+    public enum GaugeType {
+        CHARACTER,
+        CIRCLE90,
+        CIRCLE180,
+        CIRCLE270,
+        CIRCLE360,
+        CLOCK,
+        ONOFF,
+        TEXT,
+        TIMESTAMP,
+        XPLOT,
+        XYPLOT
+    };
+    public GaugeType gaugeType;
     final transient int TILE_SIZE = 250;
     public transient Tile tile;
     //final Random RND = new Random();

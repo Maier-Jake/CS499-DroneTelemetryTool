@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class StringField extends Field{
-    List<String> myStrings = new ArrayList<>();
-    int nullCounter = 0;
-    private int i;
-    private int j;
+    transient List<String> myStrings = new ArrayList<>();
+    transient int nullCounter = 0;
+    transient private int i;
+    transient private int j;
 
     public StringField(Field myField) {
         super(myField.myName);

@@ -6,9 +6,9 @@ import java.util.Collections;
 
 
 public class NumberField extends Field {
-    List<Double> myNumbers = new ArrayList<>(); // All data values in order, including any null values.
-    List<Double> mySortedNumbers; // Sorted List of all non-null data values
-    List<Double> myConvertedNumbers; // Sorted List of all non-null data values
+    transient List<Double> myNumbers = new ArrayList<>(); // All data values in order, including any null values.
+    transient List<Double> mySortedNumbers; // Sorted List of all non-null data values
+    transient List<Double> myConvertedNumbers; // Sorted List of all non-null data values
 
     int nullCounter = 0;
     private int i = 0;
