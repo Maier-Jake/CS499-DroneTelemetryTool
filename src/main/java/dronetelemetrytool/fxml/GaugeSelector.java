@@ -101,8 +101,8 @@ public class GaugeSelector implements Initializable {
     // todo: add second field to xyPlotClock
     @FXML
     protected void xyPlotClick() throws IOException {
-        DTT_GUI.xyPlotGaugeCreator(parent, new NumberField(field));
-        ((Stage) buttonXYPlot.getScene().getWindow()).close();
+        //DTT_GUI.xyPlotGaugeCreator(parent, new NumberField(field));
+        //((Stage) buttonXYPlot.getScene().getWindow()).close();
     }
     @FXML
     protected void clockClick() throws IOException {

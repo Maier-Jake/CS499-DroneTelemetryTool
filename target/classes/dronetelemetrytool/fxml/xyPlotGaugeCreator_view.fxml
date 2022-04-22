@@ -42,7 +42,7 @@
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
             <Label text="Unit Type" prefWidth="175"/>
-            <ComboBox fx:id="unitTypeComboBox"/>
+            <ComboBox fx:id="unitTypeComboBox" onAction="onNewXUnitType"/>
         </HBox>
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
@@ -54,6 +54,7 @@
             <Label text="Desired Unit" prefWidth="175"/>
             <ComboBox fx:id="desiredUnitComboBox"/>
         </HBox>
+        <Button fx:id="BUTTON_UnitX" onAction="#onUnitXChangeClick" text="Update Units" />
     </VBox>
     <BorderPane prefWidth="800">
         <top>
@@ -77,7 +78,7 @@
                         <text>Gauge Title</text>
                         <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
                     </Label>
-                    <TextField fx:id="FIELD_Title" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" />
+                    <TextField fx:id="FIELD_Title" prefHeight="24.0" prefWidth="250.0" styleClass="optionTextBox" text="XYPLot Default Title" />
                     <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
                         <text>Title of the gauge</text>
                     </Label>
@@ -221,7 +222,7 @@
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
             <Label text="Unit Type" prefWidth="175"/>
-            <ComboBox fx:id="unitTypeComboBox2"/>
+            <ComboBox fx:id="unitTypeComboBox2" onAction="onNewYUnitType"/>
         </HBox>
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
@@ -233,6 +234,7 @@
             <Label text="Desired Unit" prefWidth="175"/>
             <ComboBox fx:id="desiredUnitComboBox2"/>
         </HBox>
+        <Button fx:id="BUTTON_UnitY" onAction="#onUnitYChangeClick" text="Update Units" />
     </VBox>
 
 

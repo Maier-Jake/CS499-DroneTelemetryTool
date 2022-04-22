@@ -39,7 +39,7 @@
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
             <Label text="Unit Type" prefWidth="175"/>
-            <ComboBox fx:id="unitTypeComboBox"/>
+            <ComboBox fx:id="unitTypeComboBox" onAction="#onNewUnitType"/>
         </HBox>
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
@@ -51,6 +51,7 @@
             <Label text="Desired Unit" prefWidth="175"/>
             <ComboBox fx:id="desiredUnitComboBox"/>
         </HBox>
+        <Button fx:id="BUTTON_unit" onAction="#onUnitChangeClick" text="Update Units" />
     </VBox>
     <BorderPane>
         <top>
@@ -95,6 +96,7 @@
                         <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
                     </Label>
                 </HBox>
+                <Button fx:id="BUTTON_Unit" onAction="#onUnitChangeClick" text="Update Units" />
             </VBox>
         </top>
         <center>

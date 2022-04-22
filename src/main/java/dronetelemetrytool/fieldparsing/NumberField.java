@@ -9,14 +9,14 @@ public class NumberField extends Field implements java.io.Serializable {
     List<Double> myNumbers = new ArrayList<>(); // All data values in order, including any null values.
     List<Double> mySortedNumbers; // Sorted List of all non-null data values
     List<Double> myConvertedNumbers; // Sorted List of all non-null data values
-    String chosenUnit;
-    String originalUnit;
-    String unitType;
+    public String chosenUnit="";
+    public String originalUnit="";
+    public String unitType="";
 
     int nullCounter = 0;
     private int i = 0;
     private int j = 0;
-    private UnitConverter uc = new UnitConverter();
+    public UnitConverter uc = new UnitConverter();
 
     public NumberField(Field myField) {
         super(myField.myName);

@@ -61,11 +61,30 @@ public class XPlotGaugeCreator implements Initializable {
     private ComboBox<String> currentUnitComboBox;
     @FXML
     private ComboBox<String> desiredUnitComboBox;
+
     private UnitConverter uc = new UnitConverter();
 
+    // Converts the current data field to the new units according the current value of the combo boxes.
     @FXML
     protected void onUnitChangeClick() {
+        String cur = currentUnitComboBox.getValue();
+        String des = desiredUnitComboBox.getValue();
+        if (cur==this.field.originalUnit || des==this.field.chosenUnit || cur==des) { return; }
+        this.field.convert(unitTypeComboBox.getValue(), currentUnitComboBox.getValue(), desiredUnitComboBox.getValue());
+        this.updateStats();
+    }
 
+    public void setField(NumberField relatedField) {
+        field = relatedField;
+        FIELD_Title.setText(field.getName());
+        updateStats();
+    }
+
+    void updateStats() {
+        STAT_max.setText(String.valueOf(field.getMaxValue()));
+        STAT_min.setText(String.valueOf(field.getMinValue()));
+        STAT_avg.setText(String.valueOf(field.getMean()));
+        STAT_stddev.setText(String.valueOf(field.getStandardDeviation()));
     }
 
     @FXML
@@ -110,32 +129,12 @@ public class XPlotGaugeCreator implements Initializable {
         FIELD_Maximum.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
         FIELD_TickUnit.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
 
-        STAT_min.setText("10");
-        STAT_max.setText("20");
-        STAT_avg.setText("12");
-        STAT_stddev.setText("2");
-
-        //so focus will start on first editable textfield
-        STAT_min.setFocusTraversable(false);
-        STAT_max.setFocusTraversable(false);
-        STAT_avg.setFocusTraversable(false);
-        STAT_stddev.setFocusTraversable(false);
-
-        /*
-        unitTypeComboBox.getItems().setAll("speed", "length");
-        currentUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
-        desiredUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
-         */
-
         String default_unit = this.uc.getUnitNames().get(0);
         List<String> default_subunits = this.uc.getSubunits(default_unit);
-        //unitTypeComboBox.setItems((ObservableList<String>) this.uc.getUnitNames());
         unitTypeComboBox.setItems(FXCollections.observableArrayList(this.uc.getUnitNames()));
         unitTypeComboBox.setValue(default_unit);
-//        currentUnitComboBox.setItems((ObservableList<String>) default_subunits);
         currentUnitComboBox.setItems(FXCollections.observableList(default_subunits));
         currentUnitComboBox.setValue(default_subunits.get(0));
-//        desiredUnitComboBox.setItems((ObservableList<String>) default_subunits);
         desiredUnitComboBox.setItems(FXCollections.observableList(default_subunits));
         desiredUnitComboBox.setValue(default_subunits.get(0));
     }
@@ -146,21 +145,15 @@ public class XPlotGaugeCreator implements Initializable {
     @FXML
     protected void onNewUnitType() {
         String newType = unitTypeComboBox.getValue();
-        ObservableList<String> newSubunits = (ObservableList<String>) this.uc.getSubunits(newType);
+        ObservableList<String> newSubunits = FXCollections.observableArrayList(field.uc.getSubunits(newType));
         currentUnitComboBox.setItems(newSubunits);
         currentUnitComboBox.setValue(newSubunits.get(0));
         desiredUnitComboBox.setItems(newSubunits);
         desiredUnitComboBox.setValue(newSubunits.get(0));
     }
 
-    // Converts the current data field to the new units according the current value of the combo boxes.
-    private void convertUnits() {
-        this.field.convert(unitTypeComboBox.getValue(), currentUnitComboBox.getValue(), desiredUnitComboBox.getValue());
-    }
-
     @FXML
     protected void onCompletedClick() throws IOException {
-        this.convertUnits();
         String title = FIELD_Title.textProperty().getValueSafe();
         double minVal = Double.parseDouble(FIELD_Minimum.textProperty().getValueSafe());
         double maxVal = Double.parseDouble(FIELD_Maximum.textProperty().getValueSafe());
@@ -191,7 +184,6 @@ public class XPlotGaugeCreator implements Initializable {
 
     private void createGauge(String title, double min, double max, double tickUnit, String label, GaugeOrient orient)
     {
-
         XPlotGauge newGauge = new XPlotGauge(orient, min, max, tickUnit);
         newGauge.setTitle(title);
         newGauge.setLabel(label);
@@ -199,15 +191,6 @@ public class XPlotGaugeCreator implements Initializable {
         FieldSelection.addToRight(title);
         Stage stage = (Stage) FIELD_Title.getScene().getWindow();
         stage.close();
-    }
-
-    public void setField(NumberField relatedField) {
-        field = relatedField;
-        FIELD_Title.setText(field.getName());
-        STAT_max.setText(String.valueOf(field.getMaxValue()));
-        STAT_min.setText(String.valueOf(field.getMinValue()));
-        STAT_avg.setText(String.valueOf(field.getMean()));
-        STAT_stddev.setText(String.valueOf(field.getStandardDeviation()));
     }
 
     public NumberField getField() {
