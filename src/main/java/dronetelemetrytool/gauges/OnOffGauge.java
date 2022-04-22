@@ -13,6 +13,7 @@ public class OnOffGauge extends Gauge{
 
     public OnOffGauge()
     {
+        this.gaugeType = GaugeType.ONOFF;
         tile = TileBuilder.create().skinType(Tile.SkinType.LED)
                 .prefSize(TILE_SIZE, TILE_SIZE)
                 .title("OnOff Gauge")

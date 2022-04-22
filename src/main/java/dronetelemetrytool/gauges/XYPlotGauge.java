@@ -21,6 +21,7 @@ public class XYPlotGauge extends Gauge {
     public XYPlotGauge(double xMin, double xMax, double xTick, double yMin, double yMax, double yTick)
     {
         super();
+        this.gaugeType = GaugeType.XYPLOT;
 
         // LineChart Data
         series = new XYChart.Series();

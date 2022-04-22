@@ -13,6 +13,7 @@ public class TextGauge extends Gauge{
     public TextGauge()
     {
         super();
+        this.gaugeType = GaugeType.TEXT;
         tile.setTitle("Text Gauge");
         tile.setDescription("String");
         tile.setSkinType(Tile.SkinType.CENTER_TEXT);
