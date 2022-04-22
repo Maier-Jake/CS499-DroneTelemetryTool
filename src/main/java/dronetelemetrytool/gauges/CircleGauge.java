@@ -18,6 +18,7 @@ public class CircleGauge extends Gauge {
 
     private NumberField field;
     private transient GradientLookup gradient;
+    private transient int alarmIndex;
     private transient Media alarm;
     private transient MediaPlayer mediaPlayer;
     private double redThresh;
@@ -114,6 +115,8 @@ public class CircleGauge extends Gauge {
 
     public void setAlarm(int i) {
         String musicFile;
+        redThresh = DTT_Tools.map(gradient.getStops().get(3).getOffset(), 0, 1, tile.getMinValue(),tile.getMaxValue());
+        alarmIndex = i;
         switch(i)
         {
             case 1: //chirp
@@ -145,5 +148,9 @@ public class CircleGauge extends Gauge {
 
     public void setField(NumberField field) {
         this.field = field;
+    }
+
+    public int getAlarmIndex() {
+        return alarmIndex;
     }
 }

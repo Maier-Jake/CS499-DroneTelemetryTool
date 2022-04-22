@@ -208,6 +208,7 @@ public class FieldSelection implements Initializable {
                     info.yThresh = DTT_Tools.map(barGauge.tile.getChartData().get(0).getGradientLookup().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
                     info.rThresh =DTT_Tools.map(barGauge.tile.getChartData().get(0).getGradientLookup().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
                     info.desUnit = "";
+                    info.warning = barGauge.getAlarmIndex();
                     break;
                 case CIRCLE90:
                     CircleGauge circleGauge90 = (CircleGauge) g;
@@ -220,6 +221,7 @@ public class FieldSelection implements Initializable {
                     info.yThresh = DTT_Tools.map(circleGauge90.getGradient().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
                     info.rThresh = DTT_Tools.map(circleGauge90.getGradient().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
                     info.desUnit = "";
+                    info.warning = circleGauge90.getAlarmIndex();
                     break;
                 case CIRCLE180:
                     CircleGauge circleGauge180 = (CircleGauge) g;
@@ -232,6 +234,7 @@ public class FieldSelection implements Initializable {
                     info.yThresh = DTT_Tools.map(circleGauge180.getGradient().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
                     info.rThresh = DTT_Tools.map(circleGauge180.getGradient().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
                     info.desUnit = "";
+                    info.warning = circleGauge180.getAlarmIndex();
                     break;
                 case CIRCLE270:
                     CircleGauge circleGauge270 = (CircleGauge) g;
@@ -244,6 +247,7 @@ public class FieldSelection implements Initializable {
                     info.yThresh = DTT_Tools.map(circleGauge270.getGradient().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
                     info.rThresh = DTT_Tools.map(circleGauge270.getGradient().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
                     info.desUnit = "";
+                    info.warning = circleGauge270.getAlarmIndex();
                     break;
                 case CIRCLE360:
                     CircleGauge circleGauge360 = (CircleGauge) g;
@@ -256,6 +260,7 @@ public class FieldSelection implements Initializable {
                     info.yThresh = DTT_Tools.map(circleGauge360.getGradient().getStops().get(2).getOffset(), 0, 1, info.min, info.max);
                     info.rThresh = DTT_Tools.map(circleGauge360.getGradient().getStops().get(3).getOffset(), 0, 1, info.min, info.max);
                     info.desUnit = "";
+                    info.warning = circleGauge360.getAlarmIndex();
                     break;
                 //EJ DO BELOW. JAKE DO ABOVE
                 case CLOCK:
