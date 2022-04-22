@@ -183,6 +183,8 @@ public class XYPlotGaugeCreator implements Initializable {
         newGauge.setTitle(title);
         newGauge.setXLabel(xLabel);
         newGauge.setYLabel(yLabel);
+        newGauge.setxField(xField);
+        newGauge.setyField(yField);
 
         MainApplication.gauges.add(newGauge);
         FieldSelection.addToRight(title);
@@ -196,6 +198,7 @@ public class XYPlotGaugeCreator implements Initializable {
 
     public void setxField(NumberField xField) {
         this.xField = xField;
+        FIELD_XLabel.setText(xField.getName());
         STAT_max.setText(String.valueOf(xField.getMaxValue()));
         STAT_min.setText(String.valueOf(xField.getMinValue()));
         STAT_avg.setText(String.valueOf(xField.getMean()));
@@ -208,6 +211,7 @@ public class XYPlotGaugeCreator implements Initializable {
 
     public void setyField(NumberField yField) {
         this.yField = yField;
+        FIELD_YLabel.setText(xField.getName());
         STAT_max2.setText(String.valueOf(yField.getMaxValue()));
         STAT_min2.setText(String.valueOf(yField.getMinValue()));
         STAT_avg2.setText(String.valueOf(yField.getMean()));
