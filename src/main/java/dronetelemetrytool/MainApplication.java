@@ -71,8 +71,6 @@ public class MainApplication extends Application {
                         interval = timestampField.getNextInterval();
                         gauges.forEach(Gauge::update);
                         lastUpdate = now;
-//                        prevTime = currentTime;
-//                        currentTime = timestampField.getNext();
                     }
                 }
             }

@@ -28,9 +28,6 @@ public class XPlotGauge extends Gauge {
     public XPlotGauge(GaugeOrient orient, double lowerBound, double upperBound, double tickUnit)
     {
         super();
-
-
-
 //        ArrayList<XYChart.Data> list = new ArrayList<>();
 //        ArrayList<Double> doubles = new ArrayList<>(field.getNumberData());
 //        for (Double d : doubles) {
@@ -68,11 +65,8 @@ public class XPlotGauge extends Gauge {
         scatterChart.setHorizontalZeroLineVisible(false);
         scatterChart.setHorizontalGridLinesVisible(false);
 
-
         primaryAxis.setLabel("X Axis Label");
         subAxis.setTickLabelsVisible(false);
-        //yAxis.setLabel("Y Axis Label");
-        //scatterChart.setTitle("Scatter Chart Title");
 
         scatterChart.getData().addAll(series);
 

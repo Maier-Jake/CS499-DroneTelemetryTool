@@ -63,7 +63,7 @@ public class InputsSelector {
 
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Select Drone's Video file correlated to Telemetry file");
-        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP4 Files", "*.mp4;*.mov"));
+        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.mp4;*.mov"));
 
         String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
         chooser.setInitialDirectory(new File(currentPath));
