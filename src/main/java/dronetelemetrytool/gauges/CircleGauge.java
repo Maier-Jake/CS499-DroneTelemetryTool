@@ -20,7 +20,6 @@ public class CircleGauge extends Gauge {
     private transient GradientLookup gradient;
     private transient int alarmIndex;
     private transient Media alarm;
-    private transient MediaPlayer mediaPlayer;
     private double redThresh;
 
     public CircleGauge(int angleRange)
@@ -75,12 +74,9 @@ public class CircleGauge extends Gauge {
         }
 
         double newVal = newVal_o.doubleValue();
-
         double newValInRange = DTT_Tools.map(newVal, 0, tile.getRange(), tile.getMinValue(), tile.getMaxValue());
-
         tile.setValue(newValInRange);
-        //tile.setValue(tile.getMaxValue());
-        double mappedVal = DTT_Tools.map(tile.getValue(), tile.getMinValue(), tile.getMaxValue(), 0, tile.getRange());
+
         tile.setBarColor(gradient.getColorAt(newVal / tile.getRange()));
 
         if (mediaPlayer != null)

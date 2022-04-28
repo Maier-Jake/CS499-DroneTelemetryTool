@@ -25,7 +25,6 @@ public class ClusterBarGauge extends Gauge{
 //    private GradientLookup gradient;
     private transient int alarmIndex;
     private Media alarm;
-    private MediaPlayer mediaPlayer;
     private double redThresh;
 
     public ClusterBarGauge(String title, double min, double max, double green, double yellow, double red, String unit)
