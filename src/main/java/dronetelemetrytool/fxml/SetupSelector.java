@@ -33,6 +33,8 @@ public class SetupSelector {
     @FXML
     protected void onNewClick() throws IOException {
         DTT_GUI.fieldSelection();
+        Stage stage = (Stage) buttonNEW.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -181,6 +183,8 @@ public class SetupSelector {
         }
         ((Stage) buttonEXIST.getScene().getWindow()).close();
         DTT_GUI.videoPlayer();
+        Stage stage = (Stage) buttonEXIST.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
