@@ -15,7 +15,7 @@
         <Label styleClass="header2">
             <text>Statistics</text>
         </Label>
-        <Label>
+        <Label fx:id="xStatLabel">
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
             <text>Data Field 1</text>
         </Label>
@@ -42,7 +42,7 @@
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
             <Label text="Unit Type" prefWidth="175"/>
-            <ComboBox fx:id="unitTypeComboBox" onAction="onNewXUnitType"/>
+            <ComboBox fx:id="unitTypeComboBox" onAction="#onNewXUnitType"/>
         </HBox>
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
@@ -195,7 +195,7 @@
         <Label styleClass="header2">
             <text>Statistics</text>
         </Label>
-        <Label>
+        <Label fx:id="yStatLabel">
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
             <text>Data Field 2</text>
         </Label>
@@ -222,7 +222,7 @@
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
             <Label text="Unit Type" prefWidth="175"/>
-            <ComboBox fx:id="unitTypeComboBox2" onAction="onNewYUnitType"/>
+            <ComboBox fx:id="unitTypeComboBox2" onAction="#onNewYUnitType"/>
         </HBox>
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
