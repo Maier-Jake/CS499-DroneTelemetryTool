@@ -11,11 +11,27 @@ import javafx.stage.StageStyle;
 
 import java.util.Random;
 
-public abstract class Gauge {
+public abstract class Gauge implements java.io.Serializable {
 
-    final int TILE_SIZE = 250;
-    public Tile tile;
-    final Random RND = new Random();
+    public enum GaugeType {
+        BAR,
+        CHARACTER,
+        CIRCLE90,
+        CIRCLE180,
+        CIRCLE270,
+        CIRCLE360,
+        CLOCK,
+        ONOFF,
+        TEXT,
+        TIMESTAMP,
+        XPLOT,
+        XYPLOT
+    };
+
+    public GaugeType gaugeType;
+    final transient int TILE_SIZE = 250;
+    public transient Tile tile;
+    //final Random RND = new Random();
 
     public Gauge()
     {
@@ -25,6 +41,8 @@ public abstract class Gauge {
             .title("Gauge")
             .build();
     }
+
+    public abstract Field getField();
 
     public void display()
     {

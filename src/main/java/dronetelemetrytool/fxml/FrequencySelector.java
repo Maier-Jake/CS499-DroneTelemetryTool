@@ -79,14 +79,14 @@ public class FrequencySelector implements Initializable {
     }
 
     @FXML
-    protected void onSelectFreqClick(ActionEvent actionEvent) throws IOException {
+    protected void onSelectFreqClick() throws IOException {
         ObservableList<Integer> indices = listView.getSelectionModel().getSelectedIndices();
         if (indices.size() == 1) {
             //creating gauge w/ 1 field
             String fieldName = (String) listView.getSelectionModel().getSelectedItem();
             TimeField relatedField = null;
             for (TimeField f : MainApplication.fields.getTimeFields()) {
-                if (f.myName == fieldName)
+                if (f.getName() == fieldName)
                 {
                     relatedField = f;
                 }
@@ -94,7 +94,10 @@ public class FrequencySelector implements Initializable {
             if (relatedField != null)
             {
                 MainApplication.timestampField = relatedField;
-                DTT_GUI.fieldSelection();
+                MainApplication.code = 1;
+//                MainApplication.prevTime = MainApplication.timestampField.getNext();
+//                MainApplication.currentTime = MainApplication.timestampField.getNext();
+                DTT_GUI.setupSelector();
                 Stage stage = (Stage) listView.getScene().getWindow();
                 stage.close();
             }
@@ -110,12 +113,16 @@ public class FrequencySelector implements Initializable {
     }
 
     @FXML
-    protected void onCustomFreqClick(ActionEvent actionEvent) throws IOException {
+    protected void onCustomFreqClick() throws IOException {
         if (frequencyINPUT.getText() != "")
         {
             try{
-                MainApplication.frequency = Float.parseFloat(frequencyINPUT.getText());
-                DTT_GUI.fieldSelection();
+                MainApplication.setFrequency(Float.parseFloat(frequencyINPUT.getText()));
+                MainApplication.code = 0;
+
+//                MainApplication.gaugeUpdateFrequency = 1_000_000_000 * MainApplication.frequency;
+//                DTT_GUI.fieldSelection();
+                DTT_GUI.setupSelector();
                 Stage stage = (Stage) listView.getScene().getWindow();
                 stage.close();
             } catch (NumberFormatException e)
@@ -136,11 +143,9 @@ public class FrequencySelector implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         //get only time fields
-        ArrayList<TimeField> timeFields = MainApplication.fields.getTimeFields();
-
-        for (TimeField f : timeFields)
+        for (TimeField f : MainApplication.fields.getTimeFields())
         {
-            listSet.add(f.myName);
+            listSet.add(f.getName());
         }
 
         listFields.setAll(listSet);

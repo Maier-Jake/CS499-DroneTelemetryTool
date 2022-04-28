@@ -7,51 +7,11 @@
 <?import javafx.scene.shape.*?>
 
 <?import com.sun.javafx.scene.control.CustomColorDialog.ColorRectPane?>
-<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.TimestampGaugeCreator">
+<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@DTT_Style.css" />
     </stylesheets>
-    <VBox styleClass="right-border">
-        <alignment>TOP_CENTER</alignment>
-        <Label styleClass="header2">
-            <text>Statistics</text>
-        </Label>
-        <HBox>
-            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
-            <Label text="Minimum" prefWidth="175"/>
-            <TextField fx:id="STAT_min" editable="false" disable="true"/>
-        </HBox>
-        <HBox>
-            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
-            <Label text="Maximum" prefWidth="175"/>
-            <TextField fx:id="STAT_max" editable="false" disable="true"/>
-        </HBox>
-        <HBox>
-            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
-            <Label text="Average" prefWidth="175"/>
-            <TextField fx:id="STAT_avg" editable="false" disable="true"/>
-        </HBox>
-        <HBox>
-            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
-            <Label text="Standard Deviation" prefWidth="175"/>
-            <TextField fx:id="STAT_stddev" editable="false" disable="true"/>
-        </HBox>
-        <HBox>
-            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
-            <Label text="Unit Type" prefWidth="175"/>
-            <ComboBox fx:id="unitTypeComboBox"/>
-        </HBox>
-        <HBox>
-            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
-            <Label text="Current Unit" prefWidth="175"/>
-            <ComboBox fx:id="currentUnitComboBox"/>
-        </HBox>
-        <HBox>
-            <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
-            <Label text="Desired Unit" prefWidth="175"/>
-            <ComboBox fx:id="desiredUnitComboBox"/>
-        </HBox>
-    </VBox>
+
     <BorderPane>
         <top>
             <VBox>

@@ -2,9 +2,13 @@ package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
+import dronetelemetrytool.fieldparsing.NumberField;
+import dronetelemetrytool.fieldparsing.UnitConverter;
 import dronetelemetrytool.gauges.GaugeOrient;
 import dronetelemetrytool.gauges.XPlotGauge;
 import dronetelemetrytool.gauges.XYPlotGauge;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -13,13 +17,20 @@ import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
 public class XYPlotGaugeCreator implements Initializable {
+    private UnitConverter uc = new UnitConverter();
+    private NumberField xField;
+    private NumberField yField;
+
     @FXML
-    private Label HEADER;
+    private Label xStatLabel;
+    @FXML
+    private Label yStatLabel;
     @FXML
     private TextField FIELD_Title;
     @FXML
@@ -40,6 +51,10 @@ public class XYPlotGaugeCreator implements Initializable {
     private TextField FIELD_YMaximum;
     @FXML
     private Button BUTTON_Close;
+    @FXML
+    private Button BUTTON_UnitX;
+    @FXML
+    private Button BUTTON_UnitY;
     @FXML
     private TextField STAT_max;
     @FXML
@@ -68,6 +83,75 @@ public class XYPlotGaugeCreator implements Initializable {
     private ComboBox<String> currentUnitComboBox2;
     @FXML
     private ComboBox<String> desiredUnitComboBox2;
+
+    @FXML
+    protected void onUnitXChangeClick() {
+        String cur = currentUnitComboBox.getValue();
+        String des = desiredUnitComboBox.getValue();
+        if (cur==this.xField.originalUnit || des==this.xField.chosenUnit || cur==des) { return; }
+        this.xField.convert(unitTypeComboBox.getValue(), currentUnitComboBox.getValue(), desiredUnitComboBox.getValue());
+        this.updatexStats();
+    }
+
+    @FXML
+    protected void onNewXUnitType() {
+        String newType = unitTypeComboBox.getValue();
+        ObservableList<String> newSubunits = FXCollections.observableArrayList(xField.uc.getSubunits(newType));
+        currentUnitComboBox.setItems(newSubunits);
+        currentUnitComboBox.setValue(newSubunits.get(0));
+        desiredUnitComboBox.setItems(newSubunits);
+        desiredUnitComboBox.setValue(newSubunits.get(0));
+    }
+
+    @FXML
+    protected void onNewYUnitType() {
+        String newType = unitTypeComboBox2.getValue();
+        ObservableList<String> newSubunits = FXCollections.observableArrayList(yField.uc.getSubunits(newType));
+        currentUnitComboBox2.setItems(newSubunits);
+        currentUnitComboBox2.setValue(newSubunits.get(0));
+        desiredUnitComboBox2.setItems(newSubunits);
+        desiredUnitComboBox2.setValue(newSubunits.get(0));
+    }
+
+
+    public void setxField(NumberField relatedField) {
+        xField = relatedField;
+        xStatLabel.setText(xField.getName());
+        FIELD_XLabel.setText(xField.getName());
+        FIELD_Title.setText(xField.getName());
+        updatexStats();
+    }
+
+    void updatexStats() {
+        STAT_max.setText(String.valueOf(xField.getMaxValue()));
+        STAT_min.setText(String.valueOf(xField.getMinValue()));
+        STAT_avg.setText(String.valueOf(xField.getMean()));
+        STAT_stddev.setText(String.valueOf(xField.getStandardDeviation()));
+    }
+
+    @FXML
+    protected void onUnitYChangeClick() {
+        String cur = currentUnitComboBox2.getValue();
+        String des = desiredUnitComboBox2.getValue();
+        if (cur==this.yField.originalUnit || des==this.yField.chosenUnit || cur==des) { return; }
+        this.yField.convert(unitTypeComboBox2.getValue(), currentUnitComboBox.getValue(), desiredUnitComboBox.getValue());
+        this.updateyStats();
+    }
+
+    public void setyField(NumberField relatedField) {
+        yField = relatedField;
+        yStatLabel.setText(yField.getName());
+        FIELD_YLabel.setText(yField.getName());
+        FIELD_Title.setText(yField.getName());
+        updateyStats();
+    }
+
+    void updateyStats() {
+        STAT_max2.setText(String.valueOf(yField.getMaxValue()));
+        STAT_min2.setText(String.valueOf(yField.getMinValue()));
+        STAT_avg2.setText(String.valueOf(yField.getMean()));
+        STAT_stddev2.setText(String.valueOf(yField.getStandardDeviation()));
+    }
 
     @FXML
     protected void onCancelClick() {
@@ -114,10 +198,22 @@ public class XYPlotGaugeCreator implements Initializable {
         FIELD_YMinimum.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
         FIELD_YTickUnit.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
 
-        STAT_min.setText("10");
-        STAT_max.setText("20");
-        STAT_avg.setText("12");
-        STAT_stddev.setText("2");
+        String default_unit = this.uc.getUnitNames().get(0);
+        List<String> default_subunits = this.uc.getSubunits(default_unit);
+
+        unitTypeComboBox.setItems(FXCollections.observableArrayList(this.uc.getUnitNames()));
+        unitTypeComboBox.setValue(default_unit);
+        currentUnitComboBox.setItems(FXCollections.observableList(default_subunits));
+        currentUnitComboBox.setValue(default_subunits.get(0));
+        desiredUnitComboBox.setItems(FXCollections.observableList(default_subunits));
+        desiredUnitComboBox.setValue(default_subunits.get(0));
+
+        unitTypeComboBox2.setItems(FXCollections.observableArrayList(this.uc.getUnitNames()));
+        unitTypeComboBox2.setValue(default_unit);
+        currentUnitComboBox2.setItems(FXCollections.observableList(default_subunits));
+        currentUnitComboBox2.setValue(default_subunits.get(0));
+        desiredUnitComboBox2.setItems(FXCollections.observableList(default_subunits));
+        desiredUnitComboBox2.setValue(default_subunits.get(0));
 
         //so focus will start on first editable textfield
         STAT_min.setFocusTraversable(false);
@@ -125,24 +221,11 @@ public class XYPlotGaugeCreator implements Initializable {
         STAT_avg.setFocusTraversable(false);
         STAT_stddev.setFocusTraversable(false);
 
-        STAT_min2.setText("13");
-        STAT_max2.setText("13");
-        STAT_avg2.setText("15");
-        STAT_stddev2.setText("3");
-
         //so focus will start on first editable textfield
         STAT_min2.setFocusTraversable(false);
         STAT_max2.setFocusTraversable(false);
         STAT_avg2.setFocusTraversable(false);
         STAT_stddev2.setFocusTraversable(false);
-
-        unitTypeComboBox.getItems().setAll("speed", "length");
-        currentUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
-        desiredUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
-
-        unitTypeComboBox2.getItems().setAll("speed", "length");
-        currentUnitComboBox2.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
-        desiredUnitComboBox2.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
     }
 
 
@@ -164,7 +247,6 @@ public class XYPlotGaugeCreator implements Initializable {
         if (xMinVal < xMaxVal && yMinVal < yMaxVal)
         {
             createGauge(title, xMinVal, xMaxVal, xTickUnit, xLabel, yMinVal, yMaxVal, yTickUnit, yLabel);
-
             Stage stage = (Stage) BUTTON_Close.getScene().getWindow();
             stage.close();
         }
@@ -175,14 +257,27 @@ public class XYPlotGaugeCreator implements Initializable {
         }
     }
 
-    private static void createGauge(String title, double xMin, double xMax, double xTick, String xLabel, double yMin, double yMax, double yTick, String yLabel)
+    private void createGauge(String title, double xMin, double xMax, double xTick, String xLabel, double yMin, double yMax, double yTick, String yLabel)
     {
-
         XYPlotGauge newGauge = new XYPlotGauge(xMin, xMax, xTick, yMin, yMax, yTick);
         newGauge.setTitle(title);
         newGauge.setXLabel(xLabel);
         newGauge.setYLabel(yLabel);
+        newGauge.setxField(xField);
+        newGauge.setyField(yField);
+
         MainApplication.gauges.add(newGauge);
-        newGauge.display();
+        FieldSelection.addToRight(title);
+        Stage stage = (Stage) FIELD_Title.getScene().getWindow();
+        stage.close();
     }
+
+    public NumberField getxField() {
+        return xField;
+    }
+
+    public NumberField getyField() {
+        return yField;
+    }
+
 }

@@ -14,6 +14,4 @@ public class NullField extends Field{
     public void printDataAt(int index) {
         System.out.println("null");
     }
-
-
 }

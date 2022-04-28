@@ -8,7 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="jdk" jdkName="17" jdkType="JavaSDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.8.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.opentest4j:opentest4j:1.2.0" level="project" />
@@ -44,5 +44,6 @@
     <orderEntry type="library" name="Maven: org.openjfx:javafx-web:win:17.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-swing:17.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-swing:win:17.0.2" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.11.0" level="project" />
   </component>
 </module>

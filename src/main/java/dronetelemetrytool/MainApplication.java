@@ -1,34 +1,41 @@
 package dronetelemetrytool;
 
-import dronetelemetrytool.fieldparsing.FieldCollection;
-import dronetelemetrytool.fieldparsing.TimeField;
+import dronetelemetrytool.fieldparsing.*;
 import dronetelemetrytool.gauges.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class MainApplication extends Application {
-
+    
+    public static FieldCollection fields;
     public static ArrayList<Gauge> gauges;
     public static Media video;
-    public static FieldCollection fields;
+    
     public static TimeField timestampField;
-    public static float frequency;
+    private static int rate;
+    private static long frequency;
+    private static double frequencyOriginal;
+    
+    public static AnimationTimer timer;
+//    private static long lastTimerCall;
 
-    private static long lastTimerCall;
-    private static long gaugeUpdateFrequency;
-    private static int gaugeUpdateFrequencyModifier;
-    private static AnimationTimer timer;
+    public static int code = -1;
+//    public static long prevTime;
+//    public static long currentTime;
 
+    public static void setFrequency(float parseFloat) {
+        frequencyOriginal = parseFloat;
+    }
+
+    public static void setRate(int r) {
+        rate = r;
+    }
 
     @Override
     public void init() {
@@ -37,48 +44,70 @@ public class MainApplication extends Application {
         video = null;
         fields = null;
         timestampField = null;
-        frequency = -1.0f;
+        frequencyOriginal = 0.1;
+        frequency = 100_000_000;
 
-//        File mediaFile = new File("src/main/resources/dronetelemetrytool/monopolyYES.mp4");
-//        video = null;
-//        try {
-//            video = new Media(mediaFile.toURI().toURL().toString());
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
-
-        //lastStockCall = System.nanoTime();
         final Duration[] timeStamp = {Duration.ZERO};
 
-        gaugeUpdateFrequencyModifier = 1;
-        gaugeUpdateFrequency = 1_000_000_000 / gaugeUpdateFrequencyModifier;
+//        gaugeUpdateFrequencyModifier = 10;
+//        gaugeUpdateFrequency = (long)( (double) 1000000000 / gaugeUpdateFrequencyequencyModifier);
 
-        lastTimerCall = System.nanoTime();
+//        lastTimerCall = System.nanoTime();
+
         timer = new AnimationTimer() {
+            private long lastUpdate = 0 ;
+            private Long interval = Long.valueOf(0);
+
+            private int updateNumber = 1;
+
             @Override
             public void handle(final long now) {
-                if (now > lastTimerCall + gaugeUpdateFrequency) {
-                    //for each gauge CREATED, run an update.
-                    gauges.forEach(Gauge::update);
-                    lastTimerCall = now;
+                if (code == 0) {
+                    if (now - lastUpdate >= (long)((frequencyOriginal / rate) * 1_000_000_000)) {
+                        if (updateNumber > fields.fieldLength()) {
+                            timer.stop();
+                            updateNumber = 1;
+                            lastUpdate = 0;
+                        } else {
+                            //for each gauge CREATED, run an update.
+                            gauges.forEach(Gauge::update);
+                            lastUpdate = now;
+                            updateNumber++;
+                        }
+                    }
+                } else if (code == 1) {
+                    if (now - lastUpdate >= (interval / rate)) {
+                        interval = timestampField.getNextInterval();
+                        if (interval == null) {
+                            timer.stop();
+                            lastUpdate = 0;
+                            interval = Long.valueOf(0);
+                            timestampField.setIndex(0);
+                        } else {
+                            gauges.forEach(Gauge::update);
+                            lastUpdate = now;
+                        }
+//                        prevTime = currentTime;
+//                        currentTime = timestampField.getNext();
+                    }
                 }
             }
         };
+
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-        timer.start();
+//        timer.start();
         DTT_GUI.inputSelector();
-
     }
 
     @Override
-    public void stop() {
-        System.exit(0);
-    }
+    public void stop(){System.exit(0);}
     public static void main(String[] args) {
         launch(args);
     }
+
+
 }
 

@@ -1,20 +1,14 @@
 package dronetelemetrytool.fxml;
 
+import dronetelemetrytool.MainApplication;
+import dronetelemetrytool.gauges.Gauge;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
+import javafx.util.Duration;
 
-import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -27,22 +21,64 @@ public class VideoPlayer implements Initializable {
     private MediaView mediaView;
 //    @FXML
 //    private HBox mediaBox;
+    @FXML
+    private Button reverseButton;
+    @FXML
+    private Button pauseButton;
+    @FXML
+    private Button forwardButton;
+    @FXML
+    private Button fiveSpeedButton;
+    @FXML
+    private Button eightSpeedButton;
 
     @FXML
-    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            System.out.println("1");
-            Media media = new Media("D:/School/CS499/Data/newVid.mp4");
-            System.out.println("2");
-            MediaPlayer mediaPlayer = new MediaPlayer(media);
-            System.out.println("3");
-            mediaView = new MediaView(mediaPlayer);
-        } catch (MediaException e) {
-            System.out.println("Error1");
-        } catch (UnsupportedOperationException f) {
-            System.out.println("Error2");
+        MediaPlayer mediaPlayer = new MediaPlayer(MainApplication.video);
+        mediaPlayer.setAutoPlay(false);
+        mediaView.setMediaPlayer(mediaPlayer);
+    }
+
+    public void reverseClick() {
+        for (Gauge g : MainApplication.gauges) {
+            //MainApplication.timer.start();
+            g.getField().setIndex(0);
         }
+        mediaView.getMediaPlayer().seek(Duration.ZERO);
+        //for each gauge, set field index back to start
+    }
+
+    public void pauseClick() {
+        mediaView.getMediaPlayer().pause();
+        MainApplication.timer.stop();
+    }
+
+    public void forwardClick() {
+        MainApplication.timer.stop();
+        mediaView.getMediaPlayer().pause();
+        mediaView.getMediaPlayer().setRate(1.0);
+        MainApplication.setRate(1);
+        MainApplication.timer.start();
+        mediaView.getMediaPlayer().play();
+    }
+
+    public void fiveSpeedClick() {
+        MainApplication.timer.stop();
+        mediaView.getMediaPlayer().pause();
+        mediaView.getMediaPlayer().setRate(5.0);
+        MainApplication.setRate(5);
+        MainApplication.timer.start();
+        mediaView.getMediaPlayer().play();
+    }
+
+    public void eightSpeedClick() {
+        MainApplication.timer.stop();
+        mediaView.getMediaPlayer().pause();
+        mediaView.getMediaPlayer().setRate(8.0);
+        MainApplication.setRate(8);
+        mediaView.getMediaPlayer().play();
+        MainApplication.timer.start();
+
     }
 
 }

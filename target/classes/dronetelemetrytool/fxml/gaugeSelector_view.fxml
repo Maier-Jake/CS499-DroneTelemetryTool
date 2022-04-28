@@ -145,7 +145,7 @@
                     <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                 </padding>
                 <buttons>
-                    <Button fx:id="buttonClose" onAction="#onCancelClick" text="Cancel" ButtonBar.buttonData="LEFT">
+                    <Button fx:id="buttonCancel" onAction="#onCancelClick" text="Cancel" ButtonBar.buttonData="LEFT">
                         <cancelButton>true</cancelButton>
                     </Button>
                 </buttons>

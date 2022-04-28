@@ -1,6 +1,7 @@
 package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.MainApplication;
+import dronetelemetrytool.fieldparsing.BoolField;
 import dronetelemetrytool.gauges.OnOffGauge;
 import eu.hansolo.tilesfx.colors.Bright;
 import javafx.fxml.FXML;
@@ -17,28 +18,16 @@ import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
 public class OnOffGaugeCreator implements Initializable {
-    @FXML
-    private Label HEADER;
+
+    private BoolField field;
+
     @FXML
     private TextField FIELD_Title;
     @FXML
     private ColorPicker COLOR_on;
     @FXML
     private Button BUTTON_Close;
-    @FXML
-    private TextField STAT_max;
-    @FXML
-    private TextField STAT_min;
-    @FXML
-    private TextField STAT_avg;
-    @FXML
-    private TextField STAT_stddev;
-    @FXML
-    private ComboBox<String> unitTypeComboBox;
-    @FXML
-    private ComboBox<String> currentUnitComboBox;
-    @FXML
-    private ComboBox<String> desiredUnitComboBox;
+
 
     @FXML
     protected void onCancelClick() {
@@ -52,23 +41,7 @@ public class OnOffGaugeCreator implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-
         COLOR_on.setValue(Bright.GREEN);
-
-        STAT_min.setText("10");
-        STAT_max.setText("20");
-        STAT_avg.setText("12");
-        STAT_stddev.setText("2");
-
-        //so focus will start on first editable textfield
-        STAT_min.setFocusTraversable(false);
-        STAT_max.setFocusTraversable(false);
-        STAT_avg.setFocusTraversable(false);
-        STAT_stddev.setFocusTraversable(false);
-
-        unitTypeComboBox.getItems().setAll("speed", "length");
-        currentUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
-        desiredUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
     }
 
 
@@ -86,14 +59,19 @@ public class OnOffGaugeCreator implements Initializable {
     {
         String title = FIELD_Title.textProperty().getValueSafe();
         OnOffGauge newGauge = new OnOffGauge();
+        newGauge.setField(field);
         newGauge.setTitle(title);
-
 
         Color on = COLOR_on.getValue();
         newGauge.tile.setActiveColor(on);
 
-
         MainApplication.gauges.add(newGauge);
-        newGauge.display();
+        FieldSelection.addToRight(title);
+        Stage stage = (Stage) FIELD_Title.getScene().getWindow();
+        stage.close();
+    }
+
+    public void setField(BoolField field) {
+        this.field = field;
     }
 }

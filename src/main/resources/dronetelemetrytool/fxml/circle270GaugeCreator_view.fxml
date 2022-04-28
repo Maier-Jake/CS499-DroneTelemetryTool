@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 
 <?import com.sun.javafx.scene.control.CustomColorDialog.ColorRectPane?>
-<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dronetelemetrytool.fxml.Circle270GaugeCreator">
+<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@DTT_Style.css" />
     </stylesheets>
@@ -39,7 +39,7 @@
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
             <Label text="Unit Type" prefWidth="175"/>
-            <ComboBox fx:id="unitTypeComboBox"/>
+            <ComboBox fx:id="unitTypeComboBox" onAction="#onNewUnitType"/>
         </HBox>
         <HBox>
             <padding> <Insets bottom="10" left="10" right="10" top="10" /> </padding>
@@ -51,6 +51,7 @@
             <Label text="Desired Unit" prefWidth="175"/>
             <ComboBox fx:id="desiredUnitComboBox"/>
         </HBox>
+        <Button fx:id="BUTTON_unit" onAction="#onUnitChangeClick" text="Update Units" />
     </VBox>
     <BorderPane>
         <top>
@@ -95,6 +96,7 @@
                         <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
                     </Label>
                 </HBox>
+                <Button fx:id="BUTTON_Unit" onAction="#onUnitChangeClick" text="Update Units" />
             </VBox>
         </top>
         <center>
@@ -111,17 +113,17 @@
                     </Label>
                 </HBox>
 
-                <HBox alignment="CENTER">
-                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
-                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">
-                        <text>Units</text>
-                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>
-                    </Label>
-                    <ComboBox fx:id="COMBO_Format" prefWidth="250.0" promptText="choose"/>
-                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>
-                        <text>Units of the data</text>
-                    </Label>
-                </HBox>
+<!--                <HBox alignment="CENTER">-->
+<!--                    <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>-->
+<!--                    <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="123.0" styleClass="optionLabel" textAlignment="RIGHT">-->
+<!--                        <text>Units</text>-->
+<!--                        <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>-->
+<!--                    </Label>-->
+<!--                    <ComboBox fx:id="COMBO_Format" prefWidth="250.0" promptText="choose"/>-->
+<!--                    <Label alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="300.0" textAlignment="LEFT"> <padding> <Insets left="5" /> </padding>-->
+<!--                        <text>Units of the data</text>-->
+<!--                    </Label>-->
+<!--                </HBox>-->
 
                 <HBox alignment="CENTER">
                     <padding> <Insets bottom="2" left="5" right="5" top="2" /> </padding>

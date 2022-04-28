@@ -1,6 +1,8 @@
 package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.MainApplication;
+import dronetelemetrytool.fieldparsing.NumberField;
+import dronetelemetrytool.fieldparsing.StringField;
 import dronetelemetrytool.gauges.CharacterGauge;
 import dronetelemetrytool.gauges.OnOffGauge;
 import eu.hansolo.tilesfx.colors.Bright;
@@ -15,26 +17,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CharacterGaugeCreator implements Initializable {
-    @FXML
-    private Label HEADER;
+
+    private StringField field;
+
     @FXML
     private TextField FIELD_Title;
     @FXML
     private Button BUTTON_Close;
-    @FXML
-    private TextField STAT_max;
-    @FXML
-    private TextField STAT_min;
-    @FXML
-    private TextField STAT_avg;
-    @FXML
-    private TextField STAT_stddev;
-    @FXML
-    private ComboBox<String> unitTypeComboBox;
-    @FXML
-    private ComboBox<String> currentUnitComboBox;
-    @FXML
-    private ComboBox<String> desiredUnitComboBox;
 
     @FXML
     protected void onCancelClick() {
@@ -48,20 +37,7 @@ public class CharacterGaugeCreator implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        STAT_min.setText("10");
-        STAT_max.setText("20");
-        STAT_avg.setText("12");
-        STAT_stddev.setText("2");
 
-        //so focus will start on first editable textfield
-        STAT_min.setFocusTraversable(false);
-        STAT_max.setFocusTraversable(false);
-        STAT_avg.setFocusTraversable(false);
-        STAT_stddev.setFocusTraversable(false);
-
-        unitTypeComboBox.getItems().setAll("speed", "length");
-        currentUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
-        desiredUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
     }
 
 
@@ -79,9 +55,22 @@ public class CharacterGaugeCreator implements Initializable {
     {
         String title = FIELD_Title.textProperty().getValueSafe();
         CharacterGauge newGauge = new CharacterGauge();
+        newGauge.setField(field);
         newGauge.setTitle(title);
 
         MainApplication.gauges.add(newGauge);
-        newGauge.display();
+        FieldSelection.addToRight(title);
+        Stage stage = (Stage) FIELD_Title.getScene().getWindow();
+        stage.close();
+    }
+
+    public void setField(StringField relatedField) {
+        field = relatedField;
+        FIELD_Title.setText(field.getName());
+
+    }
+
+    public StringField getField() {
+        return field;
     }
 }

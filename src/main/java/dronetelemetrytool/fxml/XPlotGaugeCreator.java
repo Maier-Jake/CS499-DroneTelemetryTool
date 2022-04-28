@@ -2,11 +2,16 @@ package dronetelemetrytool.fxml;
 
 import dronetelemetrytool.DTT_Tools;
 import dronetelemetrytool.MainApplication;
+import dronetelemetrytool.fieldparsing.NumberField;
 import dronetelemetrytool.gauges.ClusterBarGauge;
 import dronetelemetrytool.gauges.GaugeOrient;
 import dronetelemetrytool.gauges.XPlotGauge;
+import dronetelemetrytool.fieldparsing.FieldCollection;
+import dronetelemetrytool.fieldparsing.UnitConverter;
 import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.toolboxfx.GradientLookup;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -17,13 +22,15 @@ import javafx.util.StringConverter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
 public class XPlotGaugeCreator implements Initializable {
-    @FXML
-    private Label HEADER;
+
+    private NumberField field;
+
     @FXML
     private TextField FIELD_Title;
     @FXML
@@ -36,8 +43,9 @@ public class XPlotGaugeCreator implements Initializable {
     private TextField FIELD_Maximum;
     @FXML
     private Button BUTTON_Close;
-
-    @FXML // fx:id="COMBO_Format"
+    @FXML
+    private Button BUTTON_Unit;
+    @FXML
     private ComboBox<String> COMBO_Orient;
     @FXML
     private TextField STAT_max;
@@ -54,6 +62,30 @@ public class XPlotGaugeCreator implements Initializable {
     @FXML
     private ComboBox<String> desiredUnitComboBox;
 
+    private UnitConverter uc = new UnitConverter();
+
+    // Converts the current data field to the new units according the current value of the combo boxes.
+    @FXML
+    protected void onUnitChangeClick() {
+        String cur = currentUnitComboBox.getValue();
+        String des = desiredUnitComboBox.getValue();
+        if (cur==this.field.originalUnit || des==this.field.chosenUnit || cur==des) { return; }
+        this.field.convert(unitTypeComboBox.getValue(), currentUnitComboBox.getValue(), desiredUnitComboBox.getValue());
+        this.updateStats();
+    }
+
+    public void setField(NumberField relatedField) {
+        field = relatedField;
+        FIELD_Title.setText(field.getName());
+        updateStats();
+    }
+
+    void updateStats() {
+        STAT_max.setText(String.valueOf(field.getMaxValue()));
+        STAT_min.setText(String.valueOf(field.getMinValue()));
+        STAT_avg.setText(String.valueOf(field.getMean()));
+        STAT_stddev.setText(String.valueOf(field.getStandardDeviation()));
+    }
 
     @FXML
     protected void onCancelClick() {
@@ -97,26 +129,31 @@ public class XPlotGaugeCreator implements Initializable {
         FIELD_Maximum.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
         FIELD_TickUnit.setTextFormatter(new TextFormatter<>(doubleConverter, 0.0, doubleFilter));
 
-        STAT_min.setText("10");
-        STAT_max.setText("20");
-        STAT_avg.setText("12");
-        STAT_stddev.setText("2");
-
-        //so focus will start on first editable textfield
-        STAT_min.setFocusTraversable(false);
-        STAT_max.setFocusTraversable(false);
-        STAT_avg.setFocusTraversable(false);
-        STAT_stddev.setFocusTraversable(false);
-
-        unitTypeComboBox.getItems().setAll("speed", "length");
-        currentUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
-        desiredUnitComboBox.getItems().setAll("m/s", "ft/s", "mph", "m", "ft", "mi");
+        String default_unit = this.uc.getUnitNames().get(0);
+        List<String> default_subunits = this.uc.getSubunits(default_unit);
+        unitTypeComboBox.setItems(FXCollections.observableArrayList(this.uc.getUnitNames()));
+        unitTypeComboBox.setValue(default_unit);
+        currentUnitComboBox.setItems(FXCollections.observableList(default_subunits));
+        currentUnitComboBox.setValue(default_subunits.get(0));
+        desiredUnitComboBox.setItems(FXCollections.observableList(default_subunits));
+        desiredUnitComboBox.setValue(default_subunits.get(0));
     }
 
 
+    // Called when a new unit type (like "distance") is chosen in the dropdown.
+    // Updates the current and desired subunit type dropdowns to include the appropriate options.
+    @FXML
+    protected void onNewUnitType() {
+        String newType = unitTypeComboBox.getValue();
+        ObservableList<String> newSubunits = FXCollections.observableArrayList(field.uc.getSubunits(newType));
+        currentUnitComboBox.setItems(newSubunits);
+        currentUnitComboBox.setValue(newSubunits.get(0));
+        desiredUnitComboBox.setItems(newSubunits);
+        desiredUnitComboBox.setValue(newSubunits.get(0));
+    }
+
     @FXML
     protected void onCompletedClick() throws IOException {
-
         String title = FIELD_Title.textProperty().getValueSafe();
         double minVal = Double.parseDouble(FIELD_Minimum.textProperty().getValueSafe());
         double maxVal = Double.parseDouble(FIELD_Maximum.textProperty().getValueSafe());
@@ -145,13 +182,19 @@ public class XPlotGaugeCreator implements Initializable {
         }
     }
 
-    private static void createGauge(String title, double min, double max, double tickUnit, String label, GaugeOrient orient)
+    private void createGauge(String title, double min, double max, double tickUnit, String label, GaugeOrient orient)
     {
-
         XPlotGauge newGauge = new XPlotGauge(orient, min, max, tickUnit);
+        newGauge.setField(field);
         newGauge.setTitle(title);
         newGauge.setLabel(label);
         MainApplication.gauges.add(newGauge);
-        newGauge.display();
+        FieldSelection.addToRight(title);
+        Stage stage = (Stage) FIELD_Title.getScene().getWindow();
+        stage.close();
+    }
+
+    public NumberField getField() {
+        return field;
     }
 }
