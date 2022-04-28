@@ -209,13 +209,6 @@ public class DTT_GUI {
         createStage(newStage, fxmlLoader);
     }
 
-    public static void gaugeSelector() throws IOException {
-        Stage newStage = new Stage();
-        newStage.setTitle("DTT - Gauge Selector Tool");
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("fxml/gaugeSelector_view.fxml"));
-        createStage(newStage, fxmlLoader);
-    }
-
     public static void gaugeSelector(Stage parent, Field relatedField) throws IOException {
         Stage newStage = new Stage();
         newStage.setTitle("DTT - Gauge Selector Tool");

@@ -28,6 +28,10 @@ public class XYPlotGaugeCreator implements Initializable {
     private NumberField yField;
 
     @FXML
+    private Label xStatLabel;
+    @FXML
+    private Label yStatLabel;
+    @FXML
     private TextField FIELD_Title;
     @FXML
     private TextField FIELD_XLabel;
@@ -112,6 +116,8 @@ public class XYPlotGaugeCreator implements Initializable {
 
     public void setxField(NumberField relatedField) {
         xField = relatedField;
+        xStatLabel.setText(xField.getName());
+        FIELD_XLabel.setText(xField.getName());
         FIELD_Title.setText(xField.getName());
         updatexStats();
     }
@@ -134,6 +140,8 @@ public class XYPlotGaugeCreator implements Initializable {
 
     public void setyField(NumberField relatedField) {
         yField = relatedField;
+        yStatLabel.setText(yField.getName());
+        FIELD_YLabel.setText(yField.getName());
         FIELD_Title.setText(yField.getName());
         updateyStats();
     }

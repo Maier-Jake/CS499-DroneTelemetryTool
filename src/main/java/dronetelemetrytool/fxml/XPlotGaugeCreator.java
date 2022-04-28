@@ -185,6 +185,7 @@ public class XPlotGaugeCreator implements Initializable {
     private void createGauge(String title, double min, double max, double tickUnit, String label, GaugeOrient orient)
     {
         XPlotGauge newGauge = new XPlotGauge(orient, min, max, tickUnit);
+        newGauge.setField(field);
         newGauge.setTitle(title);
         newGauge.setLabel(label);
         MainApplication.gauges.add(newGauge);
