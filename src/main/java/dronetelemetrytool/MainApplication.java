@@ -23,11 +23,8 @@ public class MainApplication extends Application {
     private static double frequencyOriginal;
     
     public static AnimationTimer timer;
-//    private static long lastTimerCall;
 
     public static int code = -1;
-//    public static long prevTime;
-//    public static long currentTime;
 
     public static void setFrequency(float parseFloat) {
         frequencyOriginal = parseFloat;
@@ -48,11 +45,6 @@ public class MainApplication extends Application {
         frequency = 100_000_000;
 
         final Duration[] timeStamp = {Duration.ZERO};
-
-//        gaugeUpdateFrequencyModifier = 10;
-//        gaugeUpdateFrequency = (long)( (double) 1000000000 / gaugeUpdateFrequencyequencyModifier);
-
-//        lastTimerCall = System.nanoTime();
 
         timer = new AnimationTimer() {
             private long lastUpdate = 0 ;
@@ -87,18 +79,14 @@ public class MainApplication extends Application {
                             gauges.forEach(Gauge::update);
                             lastUpdate = now;
                         }
-//                        prevTime = currentTime;
-//                        currentTime = timestampField.getNext();
                     }
                 }
             }
         };
-
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-//        timer.start();
         DTT_GUI.inputSelector();
     }
 
