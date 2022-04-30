@@ -271,7 +271,6 @@ public class Circle90GaugeCreator implements Initializable {
         {
             case "Chirp":
                 newGauge.setAlarm(1);
-                System.out.println("ran set alarm (1)");
                 break;
             case "Siren":
                 newGauge.setAlarm(2);

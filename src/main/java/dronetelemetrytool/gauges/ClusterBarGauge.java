@@ -2,6 +2,7 @@ package dronetelemetrytool.gauges;
 
 
 import dronetelemetrytool.DTT_Tools;
+import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.Field;
 import dronetelemetrytool.fieldparsing.NumberField;
 import dronetelemetrytool.skins.SingleBarTileSkin;
@@ -15,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Stop;
 
 import java.io.File;
+import java.net.URL;
 import java.util.Arrays;
 
 public class ClusterBarGauge extends Gauge{
@@ -101,20 +103,21 @@ public class ClusterBarGauge extends Gauge{
         switch(i)
         {
             case 1: //chirp
-                musicFile = "src/main/resources/dronetelemetrytool/sounds/chirp.wav";
-                alarm = new Media(new File(musicFile).toURI().toString());
+//                  musicFile = MainApplication.class.getResource("sounds/chirp.wav");
+                //musicFile = "src/main/resources/dronetelemetrytool/sounds/chirp.wav";
+                alarm = new Media(MainApplication.class.getResource("sounds/chirp.wav").toString());
                 mediaPlayer = new MediaPlayer(alarm);
                 mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
                 break;
             case 2: //siren
-                musicFile = "src/main/resources/dronetelemetrytool/sounds/siren.wav";
-                alarm = new Media(new File(musicFile).toURI().toString());
+//                musicFile = "src/main/resources/dronetelemetrytool/sounds/siren.wav";
+                alarm = new Media(MainApplication.class.getResource("sounds/siren.wav").toString());
                 mediaPlayer = new MediaPlayer(alarm);
                 mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
                 break;
             case 3: //scream
-                musicFile = "src/main/resources/dronetelemetrytool/sounds/screams.wav";
-                alarm = new Media(new File(musicFile).toURI().toString());
+//                musicFile = "src/main/resources/dronetelemetrytool/sounds/screams.wav";
+                alarm = new Media(MainApplication.class.getResource("sounds/screams.wav").toString());
                 mediaPlayer = new MediaPlayer(alarm);
                 mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
                 break;

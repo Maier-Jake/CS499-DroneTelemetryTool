@@ -1,6 +1,7 @@
 package dronetelemetrytool.gauges;
 
 import dronetelemetrytool.DTT_Tools;
+import dronetelemetrytool.MainApplication;
 import dronetelemetrytool.fieldparsing.Field;
 import dronetelemetrytool.fieldparsing.NumberField;
 import eu.hansolo.tilesfx.Tile;
@@ -110,26 +111,26 @@ public class CircleGauge extends Gauge {
     }
 
     public void setAlarm(int i) {
-        String musicFile;
+//        String musicFile;
         redThresh = DTT_Tools.map(gradient.getStops().get(3).getOffset(), 0, 1, tile.getMinValue(),tile.getMaxValue());
         alarmIndex = i;
         switch(i)
         {
             case 1: //chirp
-                musicFile = "src/main/resources/dronetelemetrytool/sounds/chirp.wav";
-                alarm = new Media(new File(musicFile).toURI().toString());
+//                musicFile = "src/main/resources/dronetelemetrytool/sounds/chirp.wav";
+                alarm = new Media(MainApplication.class.getResource("sounds/chirp.wav").toString());
                 mediaPlayer = new MediaPlayer(alarm);
                 mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
                 break;
             case 2: //siren
-                musicFile = "src/main/resources/dronetelemetrytool/sounds/siren.wav";
-                alarm = new Media(new File(musicFile).toURI().toString());
+//                musicFile = "src/main/resources/dronetelemetrytool/sounds/siren.wav";
+                alarm = new Media(MainApplication.class.getResource("sounds/sirens.wav").toString());
                 mediaPlayer = new MediaPlayer(alarm);
                 mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
                 break;
             case 3: //scream
-                musicFile = "src/main/resources/dronetelemetrytool/sounds/screams.wav";
-                alarm = new Media(new File(musicFile).toURI().toString());
+//                musicFile = "src/main/resources/dronetelemetrytool/sounds/screams.wav";
+                alarm = new Media(MainApplication.class.getResource("sounds/screams.wav").toString());
                 mediaPlayer = new MediaPlayer(alarm);
                 mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
                 break;
