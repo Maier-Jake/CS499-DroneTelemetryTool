@@ -50,6 +50,16 @@ public class VideoPlayer implements Initializable {
 
     public void pauseClick() {
         mediaView.getMediaPlayer().pause();
+        for (Gauge g: MainApplication.gauges)
+        {
+            if (g.mediaPlayer != null)
+            {
+                if (g.mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+                    g.mediaPlayer.stop();
+                }
+            }
+        }
+
         MainApplication.timer.stop();
     }
 

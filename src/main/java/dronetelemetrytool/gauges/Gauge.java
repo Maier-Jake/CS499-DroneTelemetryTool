@@ -6,12 +6,15 @@ import eu.hansolo.tilesfx.TileBuilder;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.util.Random;
 
 public abstract class Gauge implements java.io.Serializable {
+
+    public transient MediaPlayer mediaPlayer;
 
     public enum GaugeType {
         BAR,
@@ -35,6 +38,7 @@ public abstract class Gauge implements java.io.Serializable {
 
     public Gauge()
     {
+        mediaPlayer = null;
         tile = TileBuilder.create()
             .skinType(Tile.SkinType.CUSTOM)
             .prefSize(TILE_SIZE, TILE_SIZE)
