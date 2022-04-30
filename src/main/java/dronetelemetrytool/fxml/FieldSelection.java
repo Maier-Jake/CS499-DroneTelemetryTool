@@ -14,11 +14,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -316,9 +318,18 @@ public class FieldSelection implements Initializable {
             }
             list.add(info);
         }
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Save gauge setup");
+        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Serialized Files", "*.ser"));
+
+        String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
+        chooser.setInitialDirectory(new File(currentPath));
+        Stage stage = (Stage) buttonContinue.getScene().getWindow();
+        File selectedFile = chooser.showSaveDialog(stage);
 
         try {
-            FileOutputStream fileOut = new FileOutputStream("src//main//resources//dronetelemetrytool//data//gaugeList.ser");
+            FileOutputStream fileOut = new FileOutputStream(selectedFile);
+//            FileOutputStream fileOut = new FileOutputStream("src//main//resources//dronetelemetrytool//data//gaugeList.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(list);
             System.out.println("list size: " + list.size());
